@@ -21,8 +21,6 @@ package com.anrisoftware.resources.api;
 import java.awt.Image;
 import java.net.URL;
 
-import com.anrisoftware.resources.ResourcesException;
-
 /**
  * Image resource with lazy loading.
  * 

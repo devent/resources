@@ -18,8 +18,6 @@
  */
 package com.anrisoftware.resources.api;
 
-import com.anrisoftware.resources.ResourcesException;
-
 /**
  * Gives icons resources.
  * 
