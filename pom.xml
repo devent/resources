@@ -1,0 +1,16 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>com.anrisoftware.resources</artifactId>
+    <groupId>resources-parent</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>com.anrisoftware.resources</groupId>
+  <artifactId>resources-bundle</artifactId>
+  <packaging>pom</packaging>
+  <name>Resources Bundle POM</name>
+  <description>Contains the modules of the resources project.</description>
+  <modules>
+  	<module>resources-api</module>
+  </modules>
+</project>
