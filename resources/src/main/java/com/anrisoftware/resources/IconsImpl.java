@@ -24,7 +24,7 @@ import com.google.inject.Inject;
 
 class IconsImpl implements Icons {
 
-	private final LoggerFactory.Logger log;
+	private final IconsImplLogger log;
 
 	private final Map<String, Map<IconSize, ImageResource>> images;
 
@@ -36,10 +36,9 @@ class IconsImpl implements Icons {
 
 	@Inject
 	IconsImpl(@Named("icons-properties") Properties imagesProperties,
-			LoggerFactory loggerFactory,
-			ImageResourceFactory imageResourceFactory,
+			IconsImplLogger logger, ImageResourceFactory imageResourceFactory,
 			ImageScalingWorkerFactory imageScalingWorkerFactory) {
-		this.log = loggerFactory.create(IconsImpl.class);
+		this.log = logger;
 		this.imagesProperties = imagesProperties;
 		this.images = Maps.newHashMap();
 		this.imageResourceFactory = imageResourceFactory;
