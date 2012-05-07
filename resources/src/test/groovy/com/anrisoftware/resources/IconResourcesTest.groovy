@@ -2,15 +2,9 @@ package com.anrisoftware.resources
 
 import static com.anrisoftware.resources.api.IconSize.*
 
-import java.awt.BorderLayout
-import java.awt.event.ActionListener
 
 
 import javax.inject.Named
-import javax.swing.ImageIcon
-import javax.swing.JButton
-import javax.swing.JFrame
-import javax.swing.JLabel
 
 import org.junit.Before
 import org.junit.Test
@@ -71,7 +65,7 @@ class IconResourcesTest extends TestUtils {
 		assert image.width == 32
 		assert image.height == 32
 
-		showIconFrame image.image
+		new ShowIconFrame(images: image.image)()
 	}
 
 	@Test
@@ -82,7 +76,7 @@ class IconResourcesTest extends TestUtils {
 		assert image.width == 22
 		assert image.height == 22
 
-		showIconFrame image.image
+		new ShowIconFrame(images: image.image)()
 	}
 
 	@Test
@@ -93,24 +87,6 @@ class IconResourcesTest extends TestUtils {
 		assert image.width == 48
 		assert image.height == 48
 
-		showIconFrame image.image
-	}
-
-	def showIconFrame(def image) {
-		def frame = new JFrame("Icon Show")
-		frame.layout = new BorderLayout()
-
-		def label = new JLabel(new ImageIcon(image))
-		def button = new JButton("Close")
-		button.addActionListener({e -> frame.visible = false }as ActionListener)
-
-		frame.add label, BorderLayout.CENTER
-		frame.add button, BorderLayout.SOUTH
-
-		frame.setSize 300, 300
-		frame.defaultCloseOperation = JFrame.DISPOSE_ON_CLOSE
-		frame.rootPane.defaultButton = button
-		frame.visible = true
-		Thread.sleep 60000
+		new ShowIconFrame(images: image.image)()
 	}
 }
