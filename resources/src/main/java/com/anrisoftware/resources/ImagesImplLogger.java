@@ -1,7 +1,5 @@
 package com.anrisoftware.resources;
 
-import static org.fest.util.Arrays.array;
-
 import java.net.URL;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
@@ -24,7 +22,7 @@ class ImagesImplLogger extends AbstractLogger {
 	void addedImageResource(String name, ImageResolution resolution,
 			ImageResource image) {
 		log.debug("Add new image resouce {} named {} with resolution {}.",
-				array(image, name, resolution));
+				new Object[] { image, name, resolution });
 	}
 
 	void checkImageLoaded(boolean haveImage, String name)
@@ -53,7 +51,7 @@ class ImagesImplLogger extends AbstractLogger {
 	void addResizedImage(ImageResource res, String name,
 			ImageResolution resolution) {
 		log.debug("Add resized image resouce {} named {} with resolution {}.",
-				array(res, name, resolution));
+				new Object[] { res, name, resolution });
 	}
 
 }
