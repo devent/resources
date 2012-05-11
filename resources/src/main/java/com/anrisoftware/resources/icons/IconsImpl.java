@@ -1,4 +1,4 @@
-package com.anrisoftware.resources;
+package com.anrisoftware.resources.icons;
 
 import static com.anrisoftware.resources.api.ImageResolution.LOW;
 import static java.lang.String.format;

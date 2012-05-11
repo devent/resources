@@ -1,4 +1,4 @@
-package com.anrisoftware.resources;
+package com.anrisoftware.resources.icons;
 
 import java.net.MalformedURLException;
 import java.net.URL;

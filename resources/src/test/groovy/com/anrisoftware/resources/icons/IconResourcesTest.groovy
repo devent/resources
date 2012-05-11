@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.images
+package com.anrisoftware.resources.icons
 
 import static com.anrisoftware.resources.api.IconSize.*
 
@@ -15,6 +15,7 @@ import com.anrisoftware.resources.api.ImageResource
 import com.anrisoftware.resources.api.ImageScalingWorker
 import com.anrisoftware.resources.api.ImageScalingWorkerFactory
 import com.anrisoftware.resources.api.Icons
+import com.anrisoftware.resources.images.ShowIconFrame;
 import com.anrisoftware.resources.images.SmoothImageScalingWorker
 import com.google.inject.AbstractModule
 import com.google.inject.Guice
@@ -62,7 +63,7 @@ class IconResourcesTest extends TestUtils {
 	void "load go-down with size large"() {
 		ImageResource image = resources.iconResource "go-down", LARGE
 		assert image.image != null
-		assert image.URL.toString() =~ "com/anrisoftware/resources/oxygen/x32/go-down.png"
+		assert image.URL.toString() =~ "com/anrisoftware/resources/icons/oxygen/x32/go-down.png"
 		assert image.width == 32
 		assert image.height == 32
 
