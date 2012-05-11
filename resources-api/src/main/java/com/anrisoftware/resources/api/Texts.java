@@ -40,7 +40,7 @@ public interface Texts {
 
 	/**
 	 * <p>
-	 * Returns the text resource with the given name and locale.
+	 * Returns the text resource with the given name and language.
 	 * </p>
 	 * <p>
 	 * Only the language of the locale is considered. The format parameter '%s'
@@ -55,12 +55,34 @@ public interface Texts {
 	 * @param locale
 	 *            the {@link Locale} of the resource.
 	 * 
-	 * @return the {@link TextResource} for the icon.
+	 * @return the {@link TextResource}.
 	 * 
 	 * @throws ResourcesException
 	 *             if the resource is not available.
 	 */
 	TextResource textResource(String name, Locale locale)
 			throws ResourcesException;
+
+	/**
+	 * <p>
+	 * Returns the text resource with the given name and the default locale as
+	 * in {@link Locale#getDefault()}.
+	 * </p>
+	 * <p>
+	 * Only the language of the locale is considered. The format parameter '%s'
+	 * is replaced with the language of the locale. If the resource with the
+	 * given language is not found, it returns the resource with no language
+	 * (the default language).
+	 * </p>
+	 * 
+	 * @param name
+	 *            the name of the resource.
+	 * 
+	 * @return the {@link TextResource}.
+	 * 
+	 * @throws ResourcesException
+	 *             if the resource is not available.
+	 */
+	TextResource textResource(String name) throws ResourcesException;
 
 }

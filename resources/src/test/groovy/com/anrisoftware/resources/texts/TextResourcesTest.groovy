@@ -80,4 +80,13 @@ class TextResourcesTest extends TestUtils {
 		assert text.language == null
 		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/defaultlang.txt"
 	}
+
+	@Test
+	void "load plain text default locale"() {
+		def defaultLocale = Locale.getDefault()
+		TextResource text = resources.textResource "hello"
+		assert text.text != null
+		assert text.language.language == defaultLocale.language
+		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/${defaultLocale.language}/hello.txt"
+	}
 }

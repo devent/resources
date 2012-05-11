@@ -130,4 +130,9 @@ class TextsImpl implements Texts {
 		return text;
 	}
 
+	@Override
+	public TextResource textResource(String name) throws ResourcesException {
+		return textResource(name, Locale.getDefault());
+	}
+
 }
