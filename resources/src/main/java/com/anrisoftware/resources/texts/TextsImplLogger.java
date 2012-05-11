@@ -1,9 +1,11 @@
 package com.anrisoftware.resources.texts;
 
 import java.net.URL;
+import java.util.Locale;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.api.TextResource;
 
 /**
  * Logging messages for {@link TextsImpl}.
@@ -36,4 +38,16 @@ class TextsImplLogger extends AbstractLogger {
 		}
 		return url;
 	}
+
+	void checkHaveResource(TextResource text, String name, Locale locale)
+			throws ResourcesException {
+		if (text == null) {
+			ResourcesException ex = new ResourcesException(
+					"No text resource ``%s'' available for the language %s",
+					name, locale);
+			log.error(ex.getMessage());
+			throw ex;
+		}
+	}
+
 }

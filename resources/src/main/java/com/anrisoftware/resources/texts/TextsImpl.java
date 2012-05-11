@@ -125,8 +125,9 @@ class TextsImpl implements Texts {
 	@Override
 	public TextResource textResource(String name, Locale locale)
 			throws ResourcesException {
-		// TODO Auto-generated method stub
-		return null;
+		TextResource text = texts.getText(name, locale);
+		log.checkHaveResource(text, name, locale);
+		return text;
 	}
 
 }
