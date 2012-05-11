@@ -11,12 +11,10 @@ import org.junit.Test
 
 import com.anrisoftware.globalpom.utils.TestUtils;
 import com.anrisoftware.resources.ResourcesModule;
-import com.anrisoftware.resources.api.ImageResource
 import com.anrisoftware.resources.api.ImageScalingWorker
 import com.anrisoftware.resources.api.ImageScalingWorkerFactory
 import com.anrisoftware.resources.api.TextResource
 import com.anrisoftware.resources.api.Texts;
-import com.anrisoftware.resources.images.ShowIconFrame;
 import com.anrisoftware.resources.images.SmoothImageScalingWorker
 import com.google.inject.AbstractModule
 import com.google.inject.Guice
@@ -71,27 +69,15 @@ class TextResourcesTest extends TestUtils {
 		assertStringContent text.text, "Hallo Welt"
 		assert text.language.language == "de"
 		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/de/hello.txt"
-	}
 
-	@Test
-	void "load go-down with size medium, resized from large"() {
-		ImageResource image = resources.iconResource "go-down", MEDIUM
-		assert image.image != null
-		assert image.URL == null
-		assert image.width == 22
-		assert image.height == 22
+		text = resources.textResource "hello", Locale.ENGLISH
+		assertStringContent text.text, "Hello World"
+		assert text.language.language == "en"
+		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/en/hello.txt"
 
-		new ShowIconFrame(images: image.image)()
-	}
-
-	@Test
-	void "load go-down with size huge, resized from large"() {
-		ImageResource image = resources.iconResource "go-down", HUGE
-		assert image.image != null
-		assert image.URL == null
-		assert image.width == 48
-		assert image.height == 48
-
-		new ShowIconFrame(images: image.image)()
+		text = resources.textResource "defaultlang", Locale.ENGLISH
+		assertStringContent text.text, "Only English sorry."
+		assert text.language == null
+		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/defaultlang.txt"
 	}
 }
