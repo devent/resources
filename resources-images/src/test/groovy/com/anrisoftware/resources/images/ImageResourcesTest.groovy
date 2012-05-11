@@ -2,15 +2,12 @@ package com.anrisoftware.resources.images
 
 import static com.anrisoftware.resources.api.ImageResolution.*
 
-
-
 import javax.inject.Named
 
 import org.junit.Before
 import org.junit.Test
 
 import com.anrisoftware.globalpom.utils.TestUtils;
-import com.anrisoftware.resources.ResourcesModule;
 import com.anrisoftware.resources.api.ImageResource
 import com.anrisoftware.resources.api.ImageScalingWorker
 import com.anrisoftware.resources.api.ImageScalingWorkerFactory
@@ -23,10 +20,10 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 class ImageResourcesTest extends TestUtils {
 
-	static imageresourcesProperties = resourceURL(ImageResourcesTest, "imagesresources.properties")
+	static imagePropertiesURL = resourceURL(ImageResourcesTest, "imagesresources.properties")
 
 	static injector = Guice.createInjector(
-	new ResourcesModule(),
+	new ResourcesImagesModule(),
 	new AbstractModule() {
 		@Override
 		protected void configure() {
@@ -40,16 +37,10 @@ class ImageResourcesTest extends TestUtils {
 		@Named("images-properties")
 		Properties getImagesProperties() {
 			def properties = new Properties()
-			properties.load imageresourcesProperties.openStream()
+			properties.load imagePropertiesURL.openStream()
 			properties
 		}
-
-		@Provides
-		@Named("icons-properties")
-		Properties getIconsProperties() {
-		}
-	}
-	)
+	})
 
 	static final String IMAGE_NAME = "x-mail-distribution-list"
 
