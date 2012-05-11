@@ -1,4 +1,4 @@
-package com.anrisoftware.resources;
+package com.anrisoftware.resources.images;
 
 import java.net.URL;
 

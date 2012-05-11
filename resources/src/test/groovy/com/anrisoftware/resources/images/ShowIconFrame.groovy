@@ -1,4 +1,4 @@
-package com.anrisoftware.resources;
+package com.anrisoftware.resources.images;
 
 import static javax.swing.SwingUtilities.invokeLater
 

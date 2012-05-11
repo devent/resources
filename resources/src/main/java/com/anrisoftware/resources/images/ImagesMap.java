@@ -1,4 +1,4 @@
-package com.anrisoftware.resources;
+package com.anrisoftware.resources.images;
 
 import static com.google.common.collect.Maps.newHashMap;
 import static com.google.common.collect.Maps.newTreeMap;

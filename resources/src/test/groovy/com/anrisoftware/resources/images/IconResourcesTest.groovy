@@ -1,4 +1,4 @@
-package com.anrisoftware.resources
+package com.anrisoftware.resources.images
 
 import static com.anrisoftware.resources.api.IconSize.*
 
@@ -10,6 +10,7 @@ import org.junit.Before
 import org.junit.Test
 
 import com.anrisoftware.globalpom.utils.TestUtils;
+import com.anrisoftware.resources.ResourcesModule;
 import com.anrisoftware.resources.api.ImageResource
 import com.anrisoftware.resources.api.ImageScalingWorker
 import com.anrisoftware.resources.api.ImageScalingWorkerFactory

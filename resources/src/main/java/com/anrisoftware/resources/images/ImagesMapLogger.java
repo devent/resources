@@ -1,4 +1,4 @@
-package com.anrisoftware.resources;
+package com.anrisoftware.resources.images;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.api.ImageResource;
