@@ -30,13 +30,15 @@ class TextsImpl implements Texts {
 
 	private final TextResourceFactory textResourceFactory;
 
-	private Charset defaultCharset;
+	private final Charset defaultCharset;
 
 	@Inject
 	TextsImpl(@Named("texts-properties") Properties textsProperties,
+			@Named("texts-default-charset") Charset defaultCharset,
 			TextsImplLogger logger, TextsMap texts,
 			TextResourceFactory textResourceFactory) {
 		this.textsProperties = textsProperties;
+		this.defaultCharset = defaultCharset;
 		this.log = logger;
 		this.texts = texts;
 		this.textResourceFactory = textResourceFactory;
