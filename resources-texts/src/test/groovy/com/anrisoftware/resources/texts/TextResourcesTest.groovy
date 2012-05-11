@@ -1,10 +1,6 @@
 package com.anrisoftware.resources.texts
 
-import static com.anrisoftware.resources.api.IconSize.*
-
 import java.nio.charset.Charset
-
-
 
 import javax.inject.Named
 
@@ -12,54 +8,34 @@ import org.junit.Before
 import org.junit.Test
 
 import com.anrisoftware.globalpom.utils.TestUtils;
-import com.anrisoftware.resources.ResourcesModule;
-import com.anrisoftware.resources.api.ImageScalingWorker
-import com.anrisoftware.resources.api.ImageScalingWorkerFactory
 import com.anrisoftware.resources.api.TextResource
 import com.anrisoftware.resources.api.Texts;
-import com.anrisoftware.resources.images.SmoothImageScalingWorker
-import com.google.common.base.Charsets;
+import com.google.common.base.Charsets
 import com.google.inject.AbstractModule
 import com.google.inject.Guice
 import com.google.inject.Provides
-import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Names
 
-class TextResourcesWithDefaultCharsetTest extends TestUtils {
+class TextResourcesTest extends TestUtils {
 
-	static textsPropertiesURL = resourceURL(TextResourcesWithDefaultCharsetTest, "texts_with_default_charset.properties")
+	static imageresourcesProperties = resourceURL(TextResourcesTest, "texts.properties")
 
 	static injector = Guice.createInjector(
-	new ResourcesModule(),
+	new ResourcesTextsModule(),
 	new AbstractModule() {
 		@Override
 		protected void configure() {
 			bind(Charset).annotatedWith(Names.named("texts-default-charset")) toInstance Charsets.UTF_8
-			install(new FactoryModuleBuilder().implement(
-					ImageScalingWorker.class,
-					SmoothImageScalingWorker.class).
-					build(ImageScalingWorkerFactory.class));
 		}
 
 		@Provides
 		@Named("texts-properties")
 		Properties getTextsProperties() {
 			def properties = new Properties()
-			properties.load textsPropertiesURL.openStream()
+			properties.load imageresourcesProperties.openStream()
 			properties
 		}
-
-		@Provides
-		@Named("images-properties")
-		Properties getImagesProperties() {
-		}
-
-		@Provides
-		@Named("icons-properties")
-		Properties getIconsProperties() {
-		}
-	}
-	)
+	})
 
 	Texts resources
 
