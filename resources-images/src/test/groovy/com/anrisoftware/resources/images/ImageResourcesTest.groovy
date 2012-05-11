@@ -7,6 +7,7 @@ import javax.inject.Named
 import org.junit.Before
 import org.junit.Test
 
+import com.anrisoftware.globalpom.utils.ShowImagesFrame
 import com.anrisoftware.globalpom.utils.TestUtils;
 import com.anrisoftware.resources.api.ImageResource
 import com.anrisoftware.resources.api.ImageScalingWorker
@@ -59,7 +60,7 @@ class ImageResourcesTest extends TestUtils {
 		assert image.width == 171
 		assert image.height == 171
 
-		new ShowIconFrame(images: image.image)()
+		new ShowImagesFrame(images: image.image)()
 	}
 
 	@Test
@@ -70,7 +71,7 @@ class ImageResourcesTest extends TestUtils {
 		assert image.width == 256
 		assert image.height == 256
 
-		new ShowIconFrame(images: image.image)()
+		new ShowImagesFrame(images: image.image)()
 	}
 
 	@Test
@@ -81,7 +82,7 @@ class ImageResourcesTest extends TestUtils {
 		assert image.width == 256
 		assert image.height == 256
 
-		new ShowIconFrame(images: image.image)()
+		new ShowImagesFrame(images: image.image)()
 	}
 
 	@Test
@@ -97,7 +98,7 @@ class ImageResourcesTest extends TestUtils {
 		assertImage res[2], null, 260, 260
 		assertImage res[3], null, 455, 455, "com/anrisoftware/resources/images/xhdpi/x-mail-distribution-list.png"
 
-		new ShowIconFrame(images: res.inject([], { list, value ->
+		new ShowImagesFrame(images: res.inject([], { list, value ->
 			list << value.image
 		}))()
 	}
@@ -127,7 +128,7 @@ class ImageResourcesTest extends TestUtils {
 		assertImage res[8], null, 455, 455, "com/anrisoftware/resources/images/xhdpi/x-mail-distribution-list.png"
 		assertImage res[9], null, 600, 600
 
-		new ShowIconFrame(images: res.inject([], { list, value ->
+		new ShowImagesFrame(images: res.inject([], { list, value ->
 			list << value.image
 		}))()
 	}
