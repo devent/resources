@@ -12,6 +12,8 @@
   <description>Contains the modules of the resources project.</description>
   <modules>
   	<module>resources-api</module>
-    <module>resources</module>
+        <module>resources-texts</module>
+        <module>resources-images</module>
+        <module>resources-icons</module>
   </modules>
 </project>
