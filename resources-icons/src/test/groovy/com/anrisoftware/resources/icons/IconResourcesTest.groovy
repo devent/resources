@@ -2,20 +2,18 @@ package com.anrisoftware.resources.icons
 
 import static com.anrisoftware.resources.api.IconSize.*
 
-
-
 import javax.inject.Named
 
 import org.junit.Before
 import org.junit.Test
 
+import com.anrisoftware.globalpom.utils.ShowImagesFrame
 import com.anrisoftware.globalpom.utils.TestUtils;
-import com.anrisoftware.resources.ResourcesModule;
 import com.anrisoftware.resources.api.ImageResource
 import com.anrisoftware.resources.api.ImageScalingWorker
 import com.anrisoftware.resources.api.ImageScalingWorkerFactory
 import com.anrisoftware.resources.api.Icons
-import com.anrisoftware.resources.images.ShowIconFrame;
+import com.anrisoftware.resources.images.ResourcesImagesModule
 import com.anrisoftware.resources.images.SmoothImageScalingWorker
 import com.google.inject.AbstractModule
 import com.google.inject.Guice
@@ -24,10 +22,11 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 class IconResourcesTest extends TestUtils {
 
-	static imageresourcesProperties = resourceURL(IconResourcesTest, "iconsresources.properties")
+	static iconsPropertiesURL = resourceURL(IconResourcesTest, "iconsresources.properties")
 
 	static injector = Guice.createInjector(
-	new ResourcesModule(),
+	new ResourcesIconsModule(),
+	new ResourcesImagesModule(),
 	new AbstractModule() {
 		@Override
 		protected void configure() {
@@ -38,19 +37,18 @@ class IconResourcesTest extends TestUtils {
 		}
 
 		@Provides
-		@Named("images-properties")
-		Properties getImagesProperties() {
-		}
-
-		@Provides
 		@Named("icons-properties")
 		Properties getIconsProperties() {
 			def properties = new Properties()
-			properties.load imageresourcesProperties.openStream()
+			properties.load iconsPropertiesURL.openStream()
 			properties
 		}
-	}
-	)
+
+		@Provides
+		@Named("images-properties")
+		Properties getImagesProperties() {
+		}
+	})
 
 	Icons resources
 
@@ -67,7 +65,7 @@ class IconResourcesTest extends TestUtils {
 		assert image.width == 32
 		assert image.height == 32
 
-		new ShowIconFrame(images: image.image)()
+		new ShowImagesFrame(images: image.image)()
 	}
 
 	@Test
@@ -78,7 +76,7 @@ class IconResourcesTest extends TestUtils {
 		assert image.width == 22
 		assert image.height == 22
 
-		new ShowIconFrame(images: image.image)()
+		new ShowImagesFrame(images: image.image)()
 	}
 
 	@Test
@@ -89,6 +87,6 @@ class IconResourcesTest extends TestUtils {
 		assert image.width == 48
 		assert image.height == 48
 
-		new ShowIconFrame(images: image.image)()
+		new ShowImagesFrame(images: image.image)()
 	}
 }
