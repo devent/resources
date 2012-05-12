@@ -1,6 +1,7 @@
 package com.anrisoftware.resources.texts;
 
 import static com.google.common.io.Resources.newReaderSupplier;
+import static java.lang.String.format;
 import static org.apache.commons.lang.StringUtils.length;
 import static org.apache.commons.lang.StringUtils.substring;
 
@@ -33,6 +34,8 @@ class TextResourceImpl implements TextResource {
 
 	private String text;
 
+	private String formattedText;
+
 	@Inject
 	TextResourceImpl(@Assisted @Nullable Locale locale, @Assisted URL url,
 			@Assisted Charset charset, TextResourceImplLogger logger) {
@@ -61,6 +64,23 @@ class TextResourceImpl implements TextResource {
 
 	private InputSupplier<InputStreamReader> getReader() {
 		return newReaderSupplier(url, charset);
+	}
+
+	@Override
+	public String formatText(Object... args) throws ResourcesException {
+		if (formattedText == null) {
+			formattedText = createformatText(args);
+		}
+		return formattedText;
+	}
+
+	private String createformatText(Object[] args) throws ResourcesException {
+		String text = getText();
+		if (getLanguage() != null) {
+			return format(getLanguage(), text, args);
+		} else {
+			return format(text, args);
+		}
 	}
 
 	@Override

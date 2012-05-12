@@ -67,4 +67,21 @@ class TextResourcesWithDefaultCharsetTest extends TestUtils {
 		assert text.language.language == defaultLocale.language
 		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/${defaultLocale.language}/hello.txt"
 	}
+
+	@Test
+	void "load formatted text with place holders"() {
+		String str = "aaa"
+		int num = 5
+		float dec = 1.5
+
+		TextResource text = resources.textResource "withplaceholders", Locale.GERMAN
+		assertStringContent text.formatText(str, num, dec), "Ein Text mit Placeholder: aaa 5 1,500"
+		assert text.language.language == "de"
+		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/de/withplaceholders.txt"
+
+		text = resources.textResource "withplaceholders", Locale.ENGLISH
+		assertStringContent text.formatText(str, num, dec), "A text with place holders: aaa 5 1.500"
+		assert text.language.language == "en"
+		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/en/withplaceholders.txt"
+	}
 }

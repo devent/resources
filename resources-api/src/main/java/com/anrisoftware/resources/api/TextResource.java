@@ -21,6 +21,19 @@ public interface TextResource {
 	String getText() throws ResourcesException;
 
 	/**
+	 * Returns a formatted text {@link String} of the resource. The string is
+	 * formatted as in {@link String#format(Locale, String, Object...)} with the
+	 * language as the locale.
+	 * 
+	 * @param args
+	 *            the arguments.
+	 * 
+	 * @throws ResourcesException
+	 *             if there was an error loading the text.
+	 */
+	String formatText(Object... args) throws ResourcesException;
+
+	/**
 	 * Returns the language {@link Locale} of the resource or <code>null</code>
 	 * if it is the default language.
 	 */
