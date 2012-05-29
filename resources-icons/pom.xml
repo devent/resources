@@ -45,7 +45,7 @@
         <dependency>
             <groupId>com.anrisoftware.globalpom</groupId>
             <artifactId>globalpom-groovytestutils</artifactId>
-            <version>1.7-SNAPSHOT</version>
+            <version>1.7</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
