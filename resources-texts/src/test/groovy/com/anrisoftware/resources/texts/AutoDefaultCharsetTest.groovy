@@ -10,7 +10,7 @@ import com.anrisoftware.resources.api.Texts
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-class AutoDefaultCharsetTest extends AbstractTextResourceTest {
+class AutoDefaultCharsetTest extends TextResourceTest {
 
 	def getCharacterSetModule() {
 		new ResourcesTextsCharsetModule()

@@ -24,7 +24,7 @@ import com.google.inject.name.Names
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-class AbstractTextResourceTest extends TestUtils {
+class TextResourceTest extends TestUtils {
 
 	public static textsPropertiesURL = resourceURL(AutoDefaultCharsetTest, "texts_with_default_charset.properties")
 
