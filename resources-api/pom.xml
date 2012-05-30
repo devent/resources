@@ -13,5 +13,6 @@
 	<artifactId>resources-api</artifactId>
 	<name>Resources API</name>
 	<description>The public API of the resources project.</description>
+	<version>1.0</version>
 	
 </project>
