@@ -12,6 +12,7 @@
 
 	<artifactId>resources-images</artifactId>
 	<name>Image Resources</name>
+	<version>1.0</version>
 
 	<dependencies>
 		<dependency>
