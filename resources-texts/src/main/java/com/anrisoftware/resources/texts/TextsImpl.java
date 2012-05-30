@@ -8,10 +8,9 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Properties;
+import java.util.ResourceBundle;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.apache.commons.lang.text.StrTokenizer;
 
@@ -19,10 +18,9 @@ import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.api.TextResource;
 import com.anrisoftware.resources.api.TextResourceFactory;
 import com.anrisoftware.resources.api.Texts;
+import com.google.inject.assistedinject.Assisted;
 
 class TextsImpl implements Texts {
-
-	private final Properties textsProperties;
 
 	private final TextsImplLogger log;
 
@@ -30,18 +28,16 @@ class TextsImpl implements Texts {
 
 	private final TextResourceFactory textResourceFactory;
 
-	private final Charset defaultCharset;
+	private final ResourceBundle bundle;
 
 	@Inject
-	TextsImpl(@Named("texts-properties") Properties textsProperties,
-			@Named("texts-default-charset") Charset defaultCharset,
-			TextsImplLogger logger, TextsMap texts,
-			TextResourceFactory textResourceFactory) {
-		this.textsProperties = textsProperties;
-		this.defaultCharset = defaultCharset;
+	TextsImpl(TextsImplLogger logger, TextsMap texts,
+			TextResourceFactory textResourceFactory,
+			@Assisted ResourceBundle bundle) {
 		this.log = logger;
 		this.texts = texts;
 		this.textResourceFactory = textResourceFactory;
+		this.bundle = bundle;
 	}
 
 	@Override
