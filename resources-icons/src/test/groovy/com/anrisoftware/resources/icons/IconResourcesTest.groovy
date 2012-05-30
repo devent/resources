@@ -2,13 +2,15 @@ package com.anrisoftware.resources.icons
 
 import static com.anrisoftware.resources.api.IconSize.*
 
+import java.util.Properties
+
 import javax.inject.Named
 
 import org.junit.Before
 import org.junit.Test
 
 import com.anrisoftware.globalpom.utils.ShowImagesFrame
-import com.anrisoftware.globalpom.utils.TestUtils;
+import com.anrisoftware.globalpom.utils.TestUtils
 import com.anrisoftware.resources.api.ImageResource
 import com.anrisoftware.resources.api.ImageScalingWorker
 import com.anrisoftware.resources.api.ImageScalingWorkerFactory
@@ -17,44 +19,86 @@ import com.anrisoftware.resources.images.ResourcesImagesModule
 import com.anrisoftware.resources.images.SmoothImageScalingWorker
 import com.google.inject.AbstractModule
 import com.google.inject.Guice
+import com.google.inject.Injector
 import com.google.inject.Provides
-import com.google.inject.assistedinject.FactoryModuleBuilder;
+import com.google.inject.assistedinject.FactoryModuleBuilder
 
 class IconResourcesTest extends TestUtils {
 
-	static iconsPropertiesURL = resourceURL(IconResourcesTest, "iconsresources.properties")
+	public static iconsPropertiesURL = resourceURL(IconResourcesTest, "iconsresources.properties")
 
-	static injector = Guice.createInjector(
-	new ResourcesIconsModule(),
-	new ResourcesImagesModule(),
-	new AbstractModule() {
-		@Override
-		protected void configure() {
-			install(new FactoryModuleBuilder().implement(
-					ImageScalingWorker.class,
-					SmoothImageScalingWorker.class).
-					build(ImageScalingWorkerFactory.class));
-		}
+	def modules
 
-		@Provides
-		@Named("icons-properties")
-		Properties getIconsProperties() {
-			def properties = new Properties()
-			properties.load iconsPropertiesURL.openStream()
-			properties
-		}
-
-		@Provides
-		@Named("images-properties")
-		Properties getImagesProperties() {
-		}
-	})
+	Injector injector
 
 	Icons resources
 
 	@Before
 	void before() {
+		modules = lazyCreateModules()
+		injector = lazyCreateInjector()
 		resources = injector.getInstance(Icons).loadResources()
+	}
+
+	def lazyCreateModules() {
+		modules == null ?
+				[
+					resourcesIconsModule,
+					iconsResourcesModule,
+					imagesResourcesModule,
+					imageScalingWorkerModule,
+				].flatten()
+				: modules
+	}
+
+	def getResourcesIconsModule() {
+		new ResourcesIconsModule()
+	}
+
+	def getIconsResourcesModule() {
+		new AbstractModule() {
+					@Override
+					protected void configure() {
+					}
+
+					@Provides
+					@Named("icons-properties")
+					Properties getTextsProperties() {
+						def properties = new Properties()
+						properties.load iconsPropertiesURL.openStream()
+						properties
+					}
+				}
+	}
+
+	def getImagesResourcesModule() {
+		new AbstractModule() {
+					@Override
+					protected void configure() {
+						install new ResourcesImagesModule()
+					}
+
+					@Provides
+					@Named("images-properties")
+					Properties getTextsProperties() {
+					}
+				}
+	}
+
+	def getImageScalingWorkerModule() {
+		new AbstractModule() {
+					@Override
+					protected void configure() {
+						install(new FactoryModuleBuilder().implement(
+								ImageScalingWorker.class,
+								SmoothImageScalingWorker.class).
+								build(ImageScalingWorkerFactory.class))
+					}
+				}
+	}
+
+	def lazyCreateInjector() {
+		injector == null ? Guice.createInjector(modules) : injector
 	}
 
 	@Test
