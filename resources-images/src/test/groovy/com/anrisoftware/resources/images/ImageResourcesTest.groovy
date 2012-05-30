@@ -2,54 +2,88 @@ package com.anrisoftware.resources.images
 
 import static com.anrisoftware.resources.api.ImageResolution.*
 
+import java.util.Properties
+
 import javax.inject.Named
 
 import org.junit.Before
 import org.junit.Test
 
 import com.anrisoftware.globalpom.utils.ShowImagesFrame
-import com.anrisoftware.globalpom.utils.TestUtils;
+import com.anrisoftware.globalpom.utils.TestUtils
 import com.anrisoftware.resources.api.ImageResource
 import com.anrisoftware.resources.api.ImageScalingWorker
 import com.anrisoftware.resources.api.ImageScalingWorkerFactory
 import com.anrisoftware.resources.api.Images
-import com.anrisoftware.resources.images.SmoothImageScalingWorker
 import com.google.inject.AbstractModule
 import com.google.inject.Guice
+import com.google.inject.Injector
 import com.google.inject.Provides
-import com.google.inject.assistedinject.FactoryModuleBuilder;
+import com.google.inject.assistedinject.FactoryModuleBuilder
 
 class ImageResourcesTest extends TestUtils {
 
-	static imagePropertiesURL = resourceURL(ImageResourcesTest, "imagesresources.properties")
-
-	static injector = Guice.createInjector(
-	new ResourcesImagesModule(),
-	new AbstractModule() {
-		@Override
-		protected void configure() {
-			install(new FactoryModuleBuilder().implement(
-					ImageScalingWorker.class,
-					SmoothImageScalingWorker.class).
-					build(ImageScalingWorkerFactory.class));
-		}
-
-		@Provides
-		@Named("images-properties")
-		Properties getImagesProperties() {
-			def properties = new Properties()
-			properties.load imagePropertiesURL.openStream()
-			properties
-		}
-	})
+	public static imagePropertiesURL = resourceURL(ImageResourcesTest, "imagesresources.properties")
 
 	static final String IMAGE_NAME = "x-mail-distribution-list"
+
+	def modules
+
+	Injector injector
 
 	Images resources
 
 	@Before
 	void before() {
+		modules = lazyCreateModules()
+		injector = lazyCreateInjector()
 		resources = injector.getInstance(Images).loadResources()
+	}
+
+	def lazyCreateModules() {
+		modules == null ?
+				[
+					resourcesImagesModule,
+					imagesResourcesModule,
+					imageScalingWorkerModule,
+				].flatten()
+				: modules
+	}
+
+	def getResourcesImagesModule() {
+		new ResourcesImagesModule()
+	}
+
+	def getImageScalingWorkerModule() {
+		new AbstractModule() {
+					@Override
+					protected void configure() {
+						install(new FactoryModuleBuilder().implement(
+								ImageScalingWorker.class,
+								SmoothImageScalingWorker.class).
+								build(ImageScalingWorkerFactory.class))
+					}
+				}
+	}
+
+	def getImagesResourcesModule() {
+		new AbstractModule() {
+					@Override
+					protected void configure() {
+					}
+
+					@Provides
+					@Named("images-properties")
+					Properties getTextsProperties() {
+						def properties = new Properties()
+						properties.load imagePropertiesURL.openStream()
+						properties
+					}
+				}
+	}
+
+	def lazyCreateInjector() {
+		injector == null ? Guice.createInjector(modules) : injector
 	}
 
 	@Test
