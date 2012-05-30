@@ -3,7 +3,7 @@
   <parent>
     <artifactId>com.anrisoftware.resources</artifactId>
     <groupId>resources-parent</groupId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
   </parent>
   <groupId>com.anrisoftware.resources</groupId>
   <artifactId>resources-bundle</artifactId>
@@ -11,7 +11,7 @@
   <name>Resources Bundle POM</name>
   <description>Contains the modules of the resources project.</description>
   <modules>
-  	<module>resources-api</module>
+        <module>resources-api</module>
         <module>resources-texts</module>
         <module>resources-images</module>
         <module>resources-icons</module>
