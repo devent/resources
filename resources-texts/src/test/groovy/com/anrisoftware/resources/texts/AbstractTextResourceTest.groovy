@@ -26,7 +26,7 @@ import com.google.inject.name.Names
  */
 class AbstractTextResourceTest extends TestUtils {
 
-	static textsPropertiesURL = resourceURL(AutoDefaultCharsetTest, "texts_with_default_charset.properties")
+	public static textsPropertiesURL = resourceURL(AutoDefaultCharsetTest, "texts_with_default_charset.properties")
 
 	def modules
 
@@ -45,22 +45,35 @@ class AbstractTextResourceTest extends TestUtils {
 		modules == null ?
 				[
 					new ResourcesTextsModule(),
-					new AbstractModule() {
-						@Override
-						protected void configure() {
-							bind(Charset).annotatedWith(Names.named("texts-default-charset")) toInstance Charsets.UTF_8
-						}
-
-						@Provides
-						@Named("texts-properties")
-						Properties getTextsProperties() {
-							def properties = new Properties()
-							properties.load textsPropertiesURL.openStream()
-							properties
-						}
-					}
-				]
+					textsResourcesModule,
+					characterSetModule,
+				].flatten()
 				: modules
+	}
+
+	def getTextsResourcesModule() {
+		new AbstractModule() {
+					@Override
+					protected void configure() {
+					}
+
+					@Provides
+					@Named("texts-properties")
+					Properties getTextsProperties() {
+						def properties = new Properties()
+						properties.load textsPropertiesURL.openStream()
+						properties
+					}
+				}
+	}
+
+	def getCharacterSetModule() {
+		new AbstractModule() {
+					@Override
+					protected void configure() {
+						bind(Charset).annotatedWith(Names.named("texts-default-charset")) toInstance Charsets.UTF_8
+					}
+				}
 	}
 
 	def lazyCreateInjector() {
