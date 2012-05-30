@@ -44,11 +44,15 @@ class TextResourceTest extends TestUtils {
 	def lazyCreateModules() {
 		modules == null ?
 				[
-					new ResourcesTextsModule(),
+					resourcesTextsModule,
 					textsResourcesModule,
 					characterSetModule,
 				].flatten()
 				: modules
+	}
+
+	def getResourcesTextsModule() {
+		new ResourcesTextsModule()
 	}
 
 	def getTextsResourcesModule() {
