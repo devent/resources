@@ -2,15 +2,14 @@ package com.anrisoftware.resources.api;
 
 import static java.lang.String.format;
 
+import java.util.MissingResourceException;
+
 @SuppressWarnings("serial")
-public class ResourcesException extends Exception {
+public class ResourcesException extends MissingResourceException {
 
-	public ResourcesException(Throwable cause, String format, Object... args) {
-		super(format(format, args), cause);
-	}
-
-	public ResourcesException(String format, Object... args) {
-		super(format(format, args));
+	public ResourcesException(String className, String key, String format,
+			Object... args) {
+		super(format(format, args), className, key);
 	}
 
 	@Override
