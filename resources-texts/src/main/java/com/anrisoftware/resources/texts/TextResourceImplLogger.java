@@ -1,6 +1,7 @@
 package com.anrisoftware.resources.texts;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.api.ResourcesException;
@@ -20,9 +21,11 @@ class TextResourceImplLogger extends AbstractLogger {
 		super(TextResourceImpl.class);
 	}
 
-	ResourcesException errorLoadText(TextResourceImpl text, IOException e) {
-		ResourcesException ex = new ResourcesException(
-				"Error loading the text %s", text);
+	ResourcesException errorLoadText(ResourceBundle bundle, String name,
+			IOException e) {
+		ResourcesException ex = new ResourcesException(bundle.getClass()
+				.getName(), name, "Error loading the text %s: %s", name,
+				e.getMessage());
 		log.error(ex.getMessage());
 		return ex;
 	}

@@ -2,16 +2,14 @@ package com.anrisoftware.resources.texts;
 
 import static com.google.common.io.Resources.newReaderSupplier;
 import static java.lang.String.format;
-import static org.apache.commons.lang.StringUtils.length;
-import static org.apache.commons.lang.StringUtils.substring;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
-import javax.annotation.Nullable;
 import javax.inject.Inject;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -26,7 +24,9 @@ class TextResourceImpl implements TextResource {
 
 	private final TextResourceImplLogger log;
 
-	private final Locale locale;
+	private final ResourceBundle bundle;
+
+	private final String name;
 
 	private final URL url;
 
@@ -37,10 +37,12 @@ class TextResourceImpl implements TextResource {
 	private String formattedText;
 
 	@Inject
-	TextResourceImpl(@Assisted @Nullable Locale locale, @Assisted URL url,
-			@Assisted Charset charset, TextResourceImplLogger logger) {
+	TextResourceImpl(@Assisted ResourceBundle bundle, @Assisted String name,
+			@Assisted URL url, @Assisted Charset charset,
+			TextResourceImplLogger logger) {
 		this.log = logger;
-		this.locale = locale;
+		this.bundle = bundle;
+		this.name = name;
 		this.url = url;
 		this.charset = charset;
 	}
@@ -58,7 +60,7 @@ class TextResourceImpl implements TextResource {
 			InputSupplier<InputStreamReader> reader = getReader();
 			return CharStreams.toString(reader);
 		} catch (IOException e) {
-			throw log.errorLoadText(this, e);
+			throw log.errorLoadText(bundle, name, e);
 		}
 	}
 
@@ -76,16 +78,16 @@ class TextResourceImpl implements TextResource {
 
 	private String createformatText(Object[] args) throws ResourcesException {
 		String text = getText();
-		if (getLanguage() != null) {
-			return format(getLanguage(), text, args);
+		if (getLocale() != null) {
+			return format(getLocale(), text, args);
 		} else {
 			return format(text, args);
 		}
 	}
 
 	@Override
-	public Locale getLanguage() {
-		return locale;
+	public Locale getLocale() {
+		return bundle.getLocale();
 	}
 
 	@Override
@@ -95,11 +97,8 @@ class TextResourceImpl implements TextResource {
 
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append(getShortText()).append(locale)
-				.append(url).toString();
+		return new ToStringBuilder(this).append("locale", getLocale())
+				.append("name", name).toString();
 	}
 
-	private String getShortText() {
-		return length(text) > 15 ? substring(text, 12) + "..." : text;
-	}
 }

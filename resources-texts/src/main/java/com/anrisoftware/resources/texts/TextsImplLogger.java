@@ -2,6 +2,7 @@ package com.anrisoftware.resources.texts;
 
 import java.net.URL;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.api.ResourcesException;
@@ -22,11 +23,12 @@ class TextsImplLogger extends AbstractLogger {
 		super(TextsImpl.class);
 	}
 
-	void checkTextLoaded(boolean haveText, String name)
+	void checkTextLoaded(boolean haveText, ResourceBundle bundle, String name)
 			throws ResourcesException {
 		if (!haveText) {
-			ResourcesException ex = new ResourcesException(
-					"No text resource loaded for ``%s''", name);
+			ResourcesException ex = new ResourcesException(bundle.getClass()
+					.getName(), name, "No text resource loaded for ``%s''",
+					name);
 			log.error(ex.getMessage());
 			throw ex;
 		}
@@ -39,11 +41,12 @@ class TextsImplLogger extends AbstractLogger {
 		return url;
 	}
 
-	void checkHaveResource(TextResource text, String name, Locale locale)
-			throws ResourcesException {
+	void checkHaveResource(TextResource text, ResourceBundle bundle,
+			String name, Locale locale) throws ResourcesException {
 		if (text == null) {
-			ResourcesException ex = new ResourcesException(
-					"No text resource ``%s'' available for the language %s",
+			ResourcesException ex = new ResourcesException(bundle.getClass()
+					.getName(), name,
+					"No text resource ``%s'' available for the locale %s",
 					name, locale);
 			log.error(ex.getMessage());
 			throw ex;

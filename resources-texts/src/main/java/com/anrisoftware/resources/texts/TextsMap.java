@@ -40,7 +40,7 @@ class TextsMap {
 	public void putText(String name, TextResource text) {
 		Map<Locale, TextResource> resources = resourcesMap(name);
 		if (!resources.containsKey(name)) {
-			resources.put(text.getLanguage(), text);
+			resources.put(text.getLocale(), text);
 		} else {
 			log.imageAlreadyInMap(this, text);
 		}

@@ -1,0 +1,1 @@
+A text with place holders: %s %d %.3f - English Default

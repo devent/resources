@@ -1,9 +1,7 @@
 package com.anrisoftware.resources.texts
 
 import java.nio.charset.Charset
-import java.util.Properties
 
-import javax.inject.Named
 
 import org.junit.Before
 import org.junit.Test
@@ -11,11 +9,11 @@ import org.junit.Test
 import com.anrisoftware.globalpom.utils.TestUtils
 import com.anrisoftware.resources.api.TextResource
 import com.anrisoftware.resources.api.Texts
+import com.anrisoftware.resources.api.TextsFactory
 import com.google.common.base.Charsets
 import com.google.inject.AbstractModule
 import com.google.inject.Guice
 import com.google.inject.Injector
-import com.google.inject.Provides
 import com.google.inject.name.Names
 
 /**
@@ -26,26 +24,23 @@ import com.google.inject.name.Names
  */
 class TextResourceTest extends TestUtils {
 
-	public static textsPropertiesURL = resourceURL(AutoDefaultCharsetTest, "texts_with_default_charset.properties")
-
 	def modules
 
 	Injector injector
 
-	Texts resources
+	TextsFactory factory
 
 	@Before
 	void before() {
 		modules = lazyCreateModules()
 		injector = lazyCreateInjector()
-		resources = injector.getInstance(Texts).loadResources()
+		factory = injector.getInstance(TextsFactory)
 	}
 
 	def lazyCreateModules() {
 		modules == null ?
 				[
 					resourcesTextsModule,
-					textsResourcesModule,
 					characterSetModule,
 				].flatten()
 				: modules
@@ -53,22 +48,6 @@ class TextResourceTest extends TestUtils {
 
 	def getResourcesTextsModule() {
 		new ResourcesTextsModule()
-	}
-
-	def getTextsResourcesModule() {
-		new AbstractModule() {
-					@Override
-					protected void configure() {
-					}
-
-					@Provides
-					@Named("texts-properties")
-					Properties getTextsProperties() {
-						def properties = new Properties()
-						properties.load textsPropertiesURL.openStream()
-						properties
-					}
-				}
 	}
 
 	def getCharacterSetModule() {
@@ -85,21 +64,26 @@ class TextResourceTest extends TestUtils {
 	}
 
 	@Test
-	void "load plain text"() {
-		TextResource text = resources.textResource "hello", Locale.GERMAN
-		assertStringContent text.text, "Hallo Welt"
-		assert text.language.language == "de"
+	void "load plain text with defined locale"() {
+		Texts texts = factory.create "TextsWithDefaultCharset"
+
+		Locale locale = Locale.GERMAN
+		TextResource text = texts.textResource "hello", locale
+		assertStringContent text.text, "Hallo Welt - German"
+		assert text.locale == locale
 		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/de/hello.txt"
 
-		text = resources.textResource "hello", Locale.ENGLISH
-		assertStringContent text.text, "Hello World"
-		assert text.language.language == "en"
-		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/en/hello.txt"
+		locale = new Locale("ru")
+		text = texts.textResource "hello", locale
+		assertStringContent text.text, "привет мир - Russian"
+		assert text.locale == locale
+		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/ru/hello.txt"
 
-		text = resources.textResource "defaultlang", Locale.ENGLISH
-		assertStringContent text.text, "Only English sorry."
-		assert text.language == null
-		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/defaultlang.txt"
+		locale = Locale.ENGLISH
+		text = texts.textResource "hello", Locale.ENGLISH
+		assertStringContent text.text, "Hello World - English Default"
+		assert text.locale == locale
+		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/hello.txt"
 	}
 
 	@Test
