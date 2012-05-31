@@ -3,6 +3,8 @@ package com.anrisoftware.resources.texts
 import java.nio.charset.Charset
 
 
+import org.apache.log4j.Level
+import org.apache.log4j.Logger
 import org.junit.Before
 import org.junit.Test
 
@@ -65,50 +67,53 @@ class TextResourceTest extends TestUtils {
 
 	@Test
 	void "load plain text with defined locale"() {
-		Texts texts = factory.create "TextsWithDefaultCharset"
+		def baseName = "TextsWithDefaultCharset"
+		def classLoader = getClass().classLoader
+		Texts texts = factory.create baseName, classLoader
 
 		Locale locale = Locale.GERMAN
 		TextResource text = texts.textResource "hello", locale
 		assertStringContent text.text, "Hallo Welt - German"
 		assert text.locale == locale
-		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/de/hello.txt"
+		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/texts/de/hello.txt"
 
 		locale = new Locale("ru")
 		text = texts.textResource "hello", locale
 		assertStringContent text.text, "привет мир - Russian"
 		assert text.locale == locale
-		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/ru/hello.txt"
+		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/texts/ru/hello.txt"
 
 		locale = Locale.ENGLISH
 		text = texts.textResource "hello", Locale.ENGLISH
 		assertStringContent text.text, "Hello World - English Default"
-		assert text.locale == locale
-		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/hello.txt"
+		assert text.locale.toString() == ""
+		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/texts/hello.txt"
 	}
 
 	@Test
-	void "load plain text default locale"() {
-		def defaultLocale = Locale.getDefault()
-		TextResource text = resources.textResource "hello"
-		assert text.text != null
-		assert text.language.language == defaultLocale.language
-		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/${defaultLocale.language}/hello.txt"
-	}
+	void "load the same text resource"() {
+		Logger.getLogger(TextsImpl).setLevel(Level.INFO)
+		Locale german = Locale.GERMAN
+		Locale russian = new Locale("ru")
+		Locale english = Locale.ENGLISH
+		def baseName = "TextsWithDefaultCharset"
+		def classLoader = getClass().classLoader
+		Texts texts = factory.create baseName, classLoader
+		Thread.sleep 1000
 
-	@Test
-	void "load formatted text with place holders"() {
-		String str = "aaa"
-		int num = 5
-		float dec = 1.5
+		TextResource text
+		long current = System.currentTimeMillis()
+		text = texts.textResource "hello", german
+		text = texts.textResource "hello", russian
+		text = texts.textResource "hello", english
+		long now = System.currentTimeMillis()
+		println "Lookup first time: ${(now-current) / 1000}"
 
-		TextResource text = resources.textResource "withplaceholders", Locale.GERMAN
-		assertStringContent text.formatText(str, num, dec), "Ein Text mit Placeholder: aaa 5 1,500"
-		assert text.language.language == "de"
-		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/de/withplaceholders.txt"
-
-		text = resources.textResource "withplaceholders", Locale.ENGLISH
-		assertStringContent text.formatText(str, num, dec), "A text with place holders: aaa 5 1.500"
-		assert text.language.language == "en"
-		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/en/withplaceholders.txt"
+		current = System.currentTimeMillis()
+		text = texts.textResource "hello", german
+		text = texts.textResource "hello", russian
+		text = texts.textResource "hello", english
+		now = System.currentTimeMillis()
+		println "Lookup second time: ${(now-current) / 1000}"
 	}
 }

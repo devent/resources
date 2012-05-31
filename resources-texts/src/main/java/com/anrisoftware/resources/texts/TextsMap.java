@@ -1,6 +1,5 @@
 package com.anrisoftware.resources.texts;
 
-import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -19,7 +18,7 @@ class TextsMap {
 
 	private final TextsMapLogger log;
 
-	private final Map<String, Map<Locale, TextResource>> texts;
+	private final Map<String, TextResource> texts;
 
 	@Inject
 	TextsMap(TextsMapLogger logger) {
@@ -28,8 +27,8 @@ class TextsMap {
 	}
 
 	/**
-	 * Adds a new text resource to the map. Only one resource for name and
-	 * language.
+	 * Adds a new text resource to the map. Only one resource for the given
+	 * name.
 	 * 
 	 * @param name
 	 *            the name of the resource.
@@ -38,57 +37,26 @@ class TextsMap {
 	 *            the {@link TextResource} to add.
 	 */
 	public void putText(String name, TextResource text) {
-		Map<Locale, TextResource> resources = resourcesMap(name);
-		if (!resources.containsKey(name)) {
-			resources.put(text.getLocale(), text);
-		} else {
-			log.imageAlreadyInMap(this, text);
+		if (!texts.containsKey(name)) {
+			texts.put(name, text);
 		}
-	}
-
-	private Map<Locale, TextResource> resourcesMap(String name) {
-		Map<Locale, TextResource> resources = texts.get(name);
-		if (resources == null) {
-			resources = Maps.newHashMap();
-			texts.put(name, resources);
-		}
-		return resources;
 	}
 
 	/**
-	 * Returns the text resource with the name and language. If no resource can
-	 * be found with the given language, the resource with the default language
-	 * will be returned.
+	 * Returns the text resource with the name.
 	 * 
 	 * @param name
 	 *            the name of the resource.
 	 * 
-	 * @param locale
-	 *            the language {@link Locale}.
-	 * 
 	 * @return the {@link TextResource} with the name and language, the resource
 	 *         with the default language, or <code>null</code>.
+	 * 
+	 * @since 1.1
 	 */
-	public TextResource getText(String name, Locale locale) {
-		Map<Locale, TextResource> resources = resourcesMap(name);
-		TextResource resource = null;
-		if (resources != null) {
-			resource = textFrom(resources, locale);
-		}
-		log.checkHaveText(this, resource, name, locale);
+	public TextResource getText(String name) {
+		TextResource resource = texts.get(name);
+		log.checkHaveText(this, resource, name);
 		return resource;
-	}
-
-	private TextResource textFrom(Map<Locale, TextResource> resources,
-			Locale locale) {
-		TextResource text = resources.get(localeLanguage(locale));
-		text = text == null ? resources.get(null) : text;
-		return text;
-	}
-
-	private Locale localeLanguage(Locale locale) {
-		String language = locale.getLanguage();
-		return new Locale(language);
 	}
 
 	/**

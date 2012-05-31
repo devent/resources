@@ -1,7 +1,5 @@
 package com.anrisoftware.resources.texts;
 
-import java.util.Locale;
-
 import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.api.TextResource;
 
@@ -24,12 +22,9 @@ class TextsMapLogger extends AbstractLogger {
 		log.warn("The text {} is already in the map {}.", text, map);
 	}
 
-	void checkHaveText(TextsMap map, TextResource text, String name,
-			Locale language) {
+	void checkHaveText(TextsMap map, TextResource text, String name) {
 		if (text == null) {
-			log.warn(
-					"No text with the name ``{}'' and language {} found in the map {}.",
-					new Object[] { name, language, map });
+			log.warn("No text with the name ``{}'' in the map found.", name);
 		}
 	}
 }

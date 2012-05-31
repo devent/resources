@@ -107,7 +107,7 @@ class TextsImpl implements Texts {
 		TextsMap map = texts.getTexts(bundle);
 		loadTextResource(bundle, map, name, location);
 
-		TextResource text = map.getText(name, locale);
+		TextResource text = map.getText(name);
 		log.checkHaveResource(text, bundle, name, locale);
 		return text;
 	}
