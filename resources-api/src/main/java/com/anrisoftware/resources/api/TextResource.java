@@ -34,10 +34,13 @@ public interface TextResource {
 	String formatText(Object... args) throws ResourcesException;
 
 	/**
-	 * Returns the language {@link Locale} of the resource or <code>null</code>
-	 * if it is the default language.
+	 * Returns the locale of the resource.
+	 * 
+	 * @return the {@link Locale} of the resource.
+	 * 
+	 * @since 1.1
 	 */
-	Locale getLanguage();
+	Locale getLocale();
 
 	/**
 	 * Returns the {@link URL} of the resource.
