@@ -19,6 +19,7 @@
 package com.anrisoftware.resources.api;
 
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Gives text resources. Text resources are either single words, line or whole
@@ -31,12 +32,31 @@ import java.util.Locale;
 public interface Texts {
 
 	/**
-	 * Load the resources and returns {@link Texts} instance.
+	 * Returns the used resource bundle base name.
 	 * 
-	 * @throws ResourcesException
-	 *             if some error happening while loading one of the resource.
+	 * @return the used base name {@link String}.
+	 * 
+	 * @since 1.1
 	 */
-	Texts loadResources() throws ResourcesException;
+	String getBaseName();
+
+	/**
+	 * Returns the used resource bundle class loader.
+	 * 
+	 * @return the used {@link ClassLoader}.
+	 * 
+	 * @since 1.1
+	 */
+	ClassLoader getClassLoader();
+
+	/**
+	 * Returns the used resource bundle control.
+	 * 
+	 * @return the used {@link ResourceBundle.Control}.
+	 * 
+	 * @since 1.1
+	 */
+	ResourceBundle.Control getControl();
 
 	/**
 	 * <p>
