@@ -7,7 +7,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
-import javax.annotation.Nullable;
+import javax.inject.Named;
 
 import org.apache.commons.lang.text.StrTokenizer;
 
@@ -28,45 +28,53 @@ class TextsImpl implements Texts {
 
 	private final GetBundle getBundle;
 
-	private Charset defaultCharset;
+	private final Charset defaultCharset;
 
 	@AssistedInject
 	TextsImpl(TextsImplLogger logger, BundlesMap texts,
-			TextResourceFactory textResourceFactory, @Assisted String baseName) {
-		this(logger, texts, textResourceFactory, new GetBundle(baseName));
+			TextResourceFactory textResourceFactory,
+			@Named("texts-default-charset") Charset defaultCharset,
+			@Assisted String baseName) {
+		this(logger, texts, textResourceFactory, defaultCharset, new GetBundle(
+				baseName));
 	}
 
 	@AssistedInject
 	TextsImpl(TextsImplLogger logger, BundlesMap texts,
-			TextResourceFactory textResourceFactory, @Assisted String baseName,
-			@Assisted ClassLoader classLoader) {
-		this(logger, texts, textResourceFactory, new GetBundleWithClassLoader(
-				baseName, classLoader));
+			TextResourceFactory textResourceFactory,
+			@Named("texts-default-charset") Charset defaultCharset,
+			@Assisted String baseName, @Assisted ClassLoader classLoader) {
+		this(logger, texts, textResourceFactory, defaultCharset,
+				new GetBundleWithClassLoader(baseName, classLoader));
 	}
 
 	@AssistedInject
 	TextsImpl(TextsImplLogger logger, BundlesMap texts,
-			TextResourceFactory textResourceFactory, @Assisted String baseName,
+			TextResourceFactory textResourceFactory,
+			@Named("texts-default-charset") Charset defaultCharset,
+			@Assisted String baseName, @Assisted ResourceBundle.Control control) {
+		this(logger, texts, textResourceFactory, defaultCharset,
+				new GetBundleWithControl(baseName, control));
+	}
+
+	@AssistedInject
+	TextsImpl(TextsImplLogger logger, BundlesMap texts,
+			TextResourceFactory textResourceFactory,
+			@Named("texts-default-charset") Charset defaultCharset,
+			@Assisted String baseName, @Assisted ClassLoader classLoader,
 			@Assisted ResourceBundle.Control control) {
-		this(logger, texts, textResourceFactory, new GetBundleWithControl(
-				baseName, control));
-	}
-
-	@AssistedInject
-	TextsImpl(TextsImplLogger logger, BundlesMap texts,
-			TextResourceFactory textResourceFactory, @Assisted String baseName,
-			@Assisted @Nullable ClassLoader classLoader,
-			@Assisted @Nullable ResourceBundle.Control control) {
-		this(logger, texts, textResourceFactory,
+		this(logger, texts, textResourceFactory, defaultCharset,
 				new GetBundleWithClassLoaderAndControl(baseName, classLoader,
 						control));
 	}
 
 	private TextsImpl(TextsImplLogger logger, BundlesMap texts,
-			TextResourceFactory textResourceFactory, GetBundle getBundle) {
+			TextResourceFactory textResourceFactory, Charset defaultCharset,
+			GetBundle getBundle) {
 		this.log = logger;
 		this.texts = texts;
 		this.textResourceFactory = textResourceFactory;
+		this.defaultCharset = defaultCharset;
 		this.getBundle = getBundle;
 	}
 
@@ -94,6 +102,7 @@ class TextsImpl implements Texts {
 	public TextResource textResource(String name, Locale locale)
 			throws ResourcesException {
 		ResourceBundle bundle = getBundle.bundleFor(locale);
+		log.loadedResourceBundle(name, bundle);
 		String location = bundle.getString(name);
 		TextsMap map = texts.getTexts(bundle);
 		loadTextResource(bundle, map, name, location);

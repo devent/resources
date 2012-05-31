@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.api.TextResource;
@@ -51,6 +53,19 @@ class TextsImplLogger extends AbstractLogger {
 			log.error(ex.getMessage());
 			throw ex;
 		}
+	}
+
+	void loadedResourceBundle(String name, ResourceBundle bundle) {
+		if (log.isDebugEnabled()) {
+			log.debug(
+					"Loaded the resource bundle {} for the text resource ``{}''.",
+					bundleToString(bundle), name);
+		}
+	}
+
+	private String bundleToString(ResourceBundle bundle) {
+		return new ToStringBuilder(bundle).append("locale", bundle.getLocale())
+				.toString();
 	}
 
 }
