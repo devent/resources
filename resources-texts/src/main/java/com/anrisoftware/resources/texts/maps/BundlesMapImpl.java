@@ -1,5 +1,6 @@
-package com.anrisoftware.resources.texts;
+package com.anrisoftware.resources.texts.maps;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -12,10 +13,7 @@ import com.google.common.collect.Maps;
 
 /**
  * <p>
- * A map of texts for each resource bundle.
- * </p>
- * <p>
- * Lazy create a new texts map for a new resource bundle.
+ * Uses a {@link HashMap} to store the texts for each resource bundle.
  * </p>
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org

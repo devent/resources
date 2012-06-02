@@ -15,6 +15,7 @@ import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.api.TextResource;
 import com.anrisoftware.resources.api.TextResourceFactory;
 import com.anrisoftware.resources.api.Texts;
+import com.anrisoftware.resources.texts.api.BundlesMap;
 import com.anrisoftware.resources.texts.api.TextsMap;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
@@ -29,7 +30,7 @@ class TextsImpl implements Texts {
 
 	private final TextsImplLogger log;
 
-	private final BundlesMapImpl texts;
+	private final BundlesMap texts;
 
 	private final TextResourceFactory textResourceFactory;
 
@@ -38,7 +39,7 @@ class TextsImpl implements Texts {
 	private final Charset defaultCharset;
 
 	@AssistedInject
-	TextsImpl(TextsImplLogger logger, BundlesMapImpl texts,
+	TextsImpl(TextsImplLogger logger, BundlesMap texts,
 			TextResourceFactory textResourceFactory,
 			@Named("texts-default-charset") Charset defaultCharset,
 			@Assisted String baseName) {
@@ -47,7 +48,7 @@ class TextsImpl implements Texts {
 	}
 
 	@AssistedInject
-	TextsImpl(TextsImplLogger logger, BundlesMapImpl texts,
+	TextsImpl(TextsImplLogger logger, BundlesMap texts,
 			TextResourceFactory textResourceFactory,
 			@Named("texts-default-charset") Charset defaultCharset,
 			@Assisted String baseName, @Assisted ClassLoader classLoader) {
@@ -56,7 +57,7 @@ class TextsImpl implements Texts {
 	}
 
 	@AssistedInject
-	TextsImpl(TextsImplLogger logger, BundlesMapImpl texts,
+	TextsImpl(TextsImplLogger logger, BundlesMap texts,
 			TextResourceFactory textResourceFactory,
 			@Named("texts-default-charset") Charset defaultCharset,
 			@Assisted String baseName, @Assisted ResourceBundle.Control control) {
@@ -65,7 +66,7 @@ class TextsImpl implements Texts {
 	}
 
 	@AssistedInject
-	TextsImpl(TextsImplLogger logger, BundlesMapImpl texts,
+	TextsImpl(TextsImplLogger logger, BundlesMap texts,
 			TextResourceFactory textResourceFactory,
 			@Named("texts-default-charset") Charset defaultCharset,
 			@Assisted String baseName, @Assisted ClassLoader classLoader,
@@ -75,7 +76,7 @@ class TextsImpl implements Texts {
 						control));
 	}
 
-	private TextsImpl(TextsImplLogger logger, BundlesMapImpl texts,
+	private TextsImpl(TextsImplLogger logger, BundlesMap texts,
 			TextResourceFactory textResourceFactory, Charset defaultCharset,
 			GetBundle getBundle) {
 		this.log = logger;

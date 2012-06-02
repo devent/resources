@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.texts;
+package com.anrisoftware.resources.texts.maps;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.api.TextResource;

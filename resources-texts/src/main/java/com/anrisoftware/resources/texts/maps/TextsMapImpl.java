@@ -1,5 +1,6 @@
-package com.anrisoftware.resources.texts;
+package com.anrisoftware.resources.texts.maps;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -9,8 +10,9 @@ import com.anrisoftware.resources.texts.api.TextsMap;
 import com.google.common.collect.Maps;
 
 /**
- * Puts {@link TextResource}s and retrieves them. The text resources are
- * identified by their name and locale. No dublicates are allowed.
+ * <p>
+ * Uses a {@link HashMap} to store the text resources identified by their name.
+ * </p>
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
