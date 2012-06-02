@@ -15,14 +15,21 @@ import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.api.TextResource;
 import com.anrisoftware.resources.api.TextResourceFactory;
 import com.anrisoftware.resources.api.Texts;
+import com.anrisoftware.resources.texts.api.TextsMap;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
 
+/**
+ * Loads the text resources from the resource bundle.
+ * 
+ * @author Erwin Mueller, erwin.mueller@deventm.org
+ * @since 1.0
+ */
 class TextsImpl implements Texts {
 
 	private final TextsImplLogger log;
 
-	private final BundlesMap texts;
+	private final BundlesMapImpl texts;
 
 	private final TextResourceFactory textResourceFactory;
 
@@ -31,7 +38,7 @@ class TextsImpl implements Texts {
 	private final Charset defaultCharset;
 
 	@AssistedInject
-	TextsImpl(TextsImplLogger logger, BundlesMap texts,
+	TextsImpl(TextsImplLogger logger, BundlesMapImpl texts,
 			TextResourceFactory textResourceFactory,
 			@Named("texts-default-charset") Charset defaultCharset,
 			@Assisted String baseName) {
@@ -40,7 +47,7 @@ class TextsImpl implements Texts {
 	}
 
 	@AssistedInject
-	TextsImpl(TextsImplLogger logger, BundlesMap texts,
+	TextsImpl(TextsImplLogger logger, BundlesMapImpl texts,
 			TextResourceFactory textResourceFactory,
 			@Named("texts-default-charset") Charset defaultCharset,
 			@Assisted String baseName, @Assisted ClassLoader classLoader) {
@@ -49,7 +56,7 @@ class TextsImpl implements Texts {
 	}
 
 	@AssistedInject
-	TextsImpl(TextsImplLogger logger, BundlesMap texts,
+	TextsImpl(TextsImplLogger logger, BundlesMapImpl texts,
 			TextResourceFactory textResourceFactory,
 			@Named("texts-default-charset") Charset defaultCharset,
 			@Assisted String baseName, @Assisted ResourceBundle.Control control) {
@@ -58,7 +65,7 @@ class TextsImpl implements Texts {
 	}
 
 	@AssistedInject
-	TextsImpl(TextsImplLogger logger, BundlesMap texts,
+	TextsImpl(TextsImplLogger logger, BundlesMapImpl texts,
 			TextResourceFactory textResourceFactory,
 			@Named("texts-default-charset") Charset defaultCharset,
 			@Assisted String baseName, @Assisted ClassLoader classLoader,
@@ -68,7 +75,7 @@ class TextsImpl implements Texts {
 						control));
 	}
 
-	private TextsImpl(TextsImplLogger logger, BundlesMap texts,
+	private TextsImpl(TextsImplLogger logger, BundlesMapImpl texts,
 			TextResourceFactory textResourceFactory, Charset defaultCharset,
 			GetBundle getBundle) {
 		this.log = logger;
@@ -112,15 +119,15 @@ class TextsImpl implements Texts {
 		return text;
 	}
 
-	private TextsMap loadTextResource(ResourceBundle bundle, TextsMap texts,
+	private TextsMap loadTextResource(ResourceBundle bundle, TextsMap map,
 			String name, String value) throws ResourcesException {
 		StrTokenizer tokenizer = new StrTokenizer(value, ',', '\\');
 		String[] tokens = tokenizer.getTokenArray();
 		Charset charset = parseCharset(tokens);
 		URL url = parseUrl(tokens);
-		loadText(bundle, texts, name, charset, url);
-		log.checkTextLoaded(texts.haveText(name), bundle, name);
-		return texts;
+		loadText(bundle, map, name, charset, url);
+		log.checkTextLoaded(map.haveText(name), bundle, name);
+		return map;
 	}
 
 	private Charset parseCharset(String[] tokens) {
@@ -149,12 +156,12 @@ class TextsImpl implements Texts {
 		}
 	}
 
-	private void loadText(ResourceBundle bundle, TextsMap texts, String name,
+	private void loadText(ResourceBundle bundle, TextsMap map, String name,
 			Charset charset, URL url) {
 		if (url != null) {
 			TextResource text = textResourceFactory.create(bundle, name, url,
 					charset);
-			texts.putText(name, text);
+			map.putText(name, text);
 		}
 	}
 

@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.texts;
+package com.anrisoftware.resources.texts.api;
 
 /**
  * Factory to create a new texts map.
@@ -6,7 +6,7 @@ package com.anrisoftware.resources.texts;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
  */
-interface TextsMapFactory {
+public interface TextsMapFactory {
 
 	/**
 	 * Creates a new {@link TextsMap}.

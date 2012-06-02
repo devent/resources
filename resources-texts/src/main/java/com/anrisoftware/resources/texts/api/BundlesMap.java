@@ -1,11 +1,6 @@
-package com.anrisoftware.resources.texts;
+package com.anrisoftware.resources.texts.api;
 
-import java.util.Map;
 import java.util.ResourceBundle;
-
-import javax.inject.Inject;
-
-import com.google.common.collect.Maps;
 
 /**
  * <p>
@@ -18,17 +13,7 @@ import com.google.common.collect.Maps;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
  */
-class BundlesMap {
-
-	private final Map<ResourceBundle, TextsMap> map;
-
-	private final TextsMapFactory textsFactory;
-
-	@Inject
-	BundlesMap(TextsMapFactory textsFactory) {
-		this.map = Maps.newHashMap();
-		this.textsFactory = textsFactory;
-	}
+public interface BundlesMap {
 
 	/**
 	 * <p>
@@ -44,12 +29,6 @@ class BundlesMap {
 	 * 
 	 * @return the {@link TextsMap} for the resource bundle.
 	 */
-	public TextsMap getTexts(ResourceBundle bundle) {
-		TextsMap texts = map.get(bundle);
-		if (texts == null) {
-			texts = textsFactory.create();
-			map.put(bundle, texts);
-		}
-		return texts;
-	}
+	TextsMap getTexts(ResourceBundle bundle);
+
 }
