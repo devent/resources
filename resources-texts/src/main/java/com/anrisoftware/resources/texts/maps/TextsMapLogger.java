@@ -18,13 +18,14 @@ class TextsMapLogger extends AbstractLogger {
 		super(TextsMapImpl.class);
 	}
 
-	void imageAlreadyInMap(TextsMapImpl map, TextResource text) {
-		log.warn("The text {} is already in the map {}.", text, map);
+	void textAlreadyInMap(String name) {
+		log.warn("We contain already the text ``{}''.", name);
 	}
 
-	void checkHaveText(TextsMapImpl map, TextResource text, String name) {
+	void checkHaveText(TextResource text, String name) {
 		if (text == null) {
 			log.warn("No text with the name ``{}'' in the map found.", name);
 		}
 	}
+
 }

@@ -43,6 +43,8 @@ class TextsMapImpl implements TextsMap {
 	public void putText(String name, TextResource text) {
 		if (!texts.containsKey(name)) {
 			texts.put(name, text);
+		} else {
+			log.textAlreadyInMap(name);
 		}
 	}
 
@@ -58,7 +60,7 @@ class TextsMapImpl implements TextsMap {
 	@Override
 	public TextResource getText(String name) {
 		TextResource resource = texts.get(name);
-		log.checkHaveText(this, resource, name);
+		log.checkHaveText(resource, name);
 		return resource;
 	}
 
