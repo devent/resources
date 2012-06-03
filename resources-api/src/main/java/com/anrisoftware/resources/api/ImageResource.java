@@ -20,6 +20,7 @@ package com.anrisoftware.resources.api;
 
 import java.awt.Image;
 import java.net.URL;
+import java.util.Locale;
 
 /**
  * Image resource with lazy loading.
@@ -37,6 +38,15 @@ public interface ImageResource {
 	 *             if the loading of the resource is failed.
 	 */
 	Image getImage() throws ResourcesException;
+
+	/**
+	 * Returns the locale of the resource.
+	 * 
+	 * @return the {@link Locale} of the resource.
+	 * 
+	 * @since 1.1
+	 */
+	Locale getLocale();
 
 	/**
 	 * Returns the width of the image. The method will block until the width is

@@ -20,6 +20,7 @@ package com.anrisoftware.resources.api;
 
 import java.awt.Image;
 import java.net.URL;
+import java.util.Locale;
 
 /**
  * Factory to create a new {@link ImageResource}.
@@ -33,22 +34,40 @@ public interface ImageResourceFactory {
 	 * Creates a new {@link ImageResource} that will load an image from the
 	 * resource URL.
 	 * 
+	 * @param name
+	 *            the name {@link String} of this resource.
+	 * 
+	 * @param locale
+	 *            the {@link Locale} this text resource.
+	 * 
 	 * @param url
 	 *            the resource {@link URL} of the image.
 	 * 
 	 * @param resolution
 	 *            the {@link ImageResolution} of the image.
+	 * 
+	 * @since 1.1
 	 */
-	ImageResource create(URL url, ImageResolution resolution);
+	ImageResource create(String name, Locale locale, URL url,
+			ImageResolution resolution);
 
 	/**
 	 * Creates a new {@link ImageResource} that have an already loaded image.
+	 * 
+	 * @param name
+	 *            the name {@link String} of this resource.
+	 * 
+	 * @param locale
+	 *            the {@link Locale} this text resource.
 	 * 
 	 * @param image
 	 *            the {@link Image} of the resource.
 	 * 
 	 * @param resolution
 	 *            the {@link ImageResolution} of the image.
+	 * 
+	 * @since 1.1
 	 */
-	ImageResource create(Image image, ImageResolution resolution);
+	ImageResource create(String name, Locale locale, Image image,
+			ImageResolution resolution);
 }

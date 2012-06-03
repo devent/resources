@@ -18,6 +18,9 @@
  */
 package com.anrisoftware.resources.api;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 /**
  * Gives images resources.
  * 
@@ -28,16 +31,35 @@ package com.anrisoftware.resources.api;
 public interface Images {
 
 	/**
-	 * Load the resources and returns {@link Images} instance.
+	 * Returns the used resource bundle base name.
 	 * 
-	 * @throws ResourcesException
-	 *             if some error happening while loading one of the resource.
+	 * @return the used base name {@link String}.
+	 * 
+	 * @since 1.1
 	 */
-	Images loadResources() throws ResourcesException;
+	String getBaseName();
+
+	/**
+	 * Returns the used resource bundle class loader.
+	 * 
+	 * @return the used {@link ClassLoader}.
+	 * 
+	 * @since 1.1
+	 */
+	ClassLoader getClassLoader();
+
+	/**
+	 * Returns the used resource bundle control.
+	 * 
+	 * @return the used {@link ResourceBundle.Control}.
+	 * 
+	 * @since 1.1
+	 */
+	ResourceBundle.Control getControl();
 
 	/**
 	 * <p>
-	 * Returns the image with the given name and size.
+	 * Returns the image with the specified name, locale size.
 	 * </p>
 	 * <p>
 	 * If the needed size is not the size of the image, a scaled instance will
@@ -46,7 +68,10 @@ public interface Images {
 	 * </p>
 	 * 
 	 * @param name
-	 *            the name of the resource.
+	 *            the name {@link String} of the resource.
+	 * 
+	 * @param locale
+	 *            the {@link Locale} of the resource.
 	 * 
 	 * @param width
 	 *            the needed width of the image.
@@ -59,21 +84,26 @@ public interface Images {
 	 * 
 	 * @throws ResourcesException
 	 *             if the resource is not available.
+	 * 
+	 * @since 1.1
 	 */
-	ImageResource imageResource(String name, int width, int height)
-			throws ResourcesException;
+	ImageResource imageResource(String name, Locale locale, int width,
+			int height) throws ResourcesException;
 
 	/**
 	 * <p>
-	 * Returns the image with the given name, size and resolution.
+	 * Returns the image with the given name, locale, size and resolution.
 	 * </p>
 	 * <p>
 	 * If the needed size is not the size of the image, a scaled instance will
-	 * be returned.
+	 * be returned, from the specified resolution.
 	 * </p>
 	 * 
 	 * @param name
-	 *            the name of the resource.
+	 *            the name {@link String} of the resource.
+	 * 
+	 * @param locale
+	 *            the {@link Locale} of the resource.
 	 * 
 	 * @param width
 	 *            the needed width of the image.
@@ -87,7 +117,7 @@ public interface Images {
 	 * @throws ResourcesException
 	 *             if the resource is not available.
 	 */
-	ImageResource imageResource(String name, int width, int height,
-			ImageResolution resolution) throws ResourcesException;
+	ImageResource imageResource(String name, Locale locale, int width,
+			int height, ImageResolution resolution) throws ResourcesException;
 
 }
