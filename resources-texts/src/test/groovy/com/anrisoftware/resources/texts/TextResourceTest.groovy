@@ -12,6 +12,7 @@ import com.anrisoftware.globalpom.utils.TestUtils
 import com.anrisoftware.resources.api.TextResource
 import com.anrisoftware.resources.api.Texts
 import com.anrisoftware.resources.api.TextsFactory
+import com.anrisoftware.resources.texts.maps.ResourcesTextsMapsModule
 import com.google.common.base.Charsets
 import com.google.inject.AbstractModule
 import com.google.inject.Guice
@@ -49,7 +50,10 @@ class TextResourceTest extends TestUtils {
 	}
 
 	def getResourcesTextsModule() {
-		new ResourcesTextsModule()
+		[
+			new ResourcesTextsModule(),
+			new ResourcesTextsMapsModule()
+		]
 	}
 
 	def getCharacterSetModule() {
