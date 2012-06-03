@@ -7,6 +7,12 @@ import java.util.MissingResourceException;
 @SuppressWarnings("serial")
 public class ResourcesException extends MissingResourceException {
 
+	public ResourcesException(Throwable cause, String key, String format,
+			Object... args) {
+		super(format("%s: %s", cause.getMessage(), format(format, args)), "",
+				key);
+	}
+
 	public ResourcesException(String className, String key, String format,
 			Object... args) {
 		super(format(format, args), className, key);
