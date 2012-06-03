@@ -3,12 +3,15 @@ package com.anrisoftware.resources.texts;
 import static com.google.common.io.Resources.newReaderSupplier;
 import static java.lang.String.format;
 
+import java.io.Externalizable;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+import java.io.Serializable;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 
@@ -20,29 +23,36 @@ import com.google.common.io.CharStreams;
 import com.google.common.io.InputSupplier;
 import com.google.inject.assistedinject.Assisted;
 
-class TextResourceImpl implements TextResource {
+class TextResourceImpl implements TextResource, Serializable, Externalizable {
 
-	private final TextResourceImplLogger log;
+	private TextResourceImplLogger log;
 
-	private final ResourceBundle bundle;
+	private String name;
 
-	private final String name;
+	private Locale locale;
 
-	private final URL url;
+	private URL url;
 
-	private final Charset charset;
+	private Charset charset;
 
 	private String text;
 
 	private String formattedText;
 
+	/**
+	 * For serialization.
+	 */
+	@Deprecated
+	public TextResourceImpl() {
+	}
+
 	@Inject
-	TextResourceImpl(@Assisted ResourceBundle bundle, @Assisted String name,
+	TextResourceImpl(@Assisted String name, @Assisted Locale locale,
 			@Assisted URL url, @Assisted Charset charset,
 			TextResourceImplLogger logger) {
 		this.log = logger;
-		this.bundle = bundle;
 		this.name = name;
+		this.locale = locale;
 		this.url = url;
 		this.charset = charset;
 	}
@@ -60,7 +70,7 @@ class TextResourceImpl implements TextResource {
 			InputSupplier<InputStreamReader> reader = getReader();
 			return CharStreams.toString(reader);
 		} catch (IOException e) {
-			throw log.errorLoadText(bundle, name, e);
+			throw log.errorLoadText(name, locale, e);
 		}
 	}
 
@@ -87,7 +97,7 @@ class TextResourceImpl implements TextResource {
 
 	@Override
 	public Locale getLocale() {
-		return bundle.getLocale();
+		return locale;
 	}
 
 	@Override
@@ -98,7 +108,28 @@ class TextResourceImpl implements TextResource {
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("locale", getLocale())
-				.append("name", name).toString();
+				.append("name", name).append("url", getURL()).toString();
+	}
+
+	@Override
+	public void writeExternal(ObjectOutput out) throws IOException {
+		out.writeObject(log);
+		out.writeObject(name);
+		out.writeObject(locale);
+		out.writeObject(url);
+		out.writeUTF(charset.name());
+		out.flush();
+	}
+
+	@Override
+	public void readExternal(ObjectInput in) throws IOException,
+			ClassNotFoundException {
+		log = (TextResourceImplLogger) in.readObject();
+		name = (String) in.readObject();
+		locale = (Locale) in.readObject();
+		url = (URL) in.readObject();
+		String charsetName = in.readUTF();
+		charset = Charset.forName(charsetName);
 	}
 
 }
