@@ -6,23 +6,25 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.0</version>
+		<version>1.1-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-images</artifactId>
 	<name>Image Resources</name>
-	<version>1.0</version>
+	<version>1.1-SNAPSHOT</version>
 
 	<dependencies>
+        <dependency>
+            <groupId>com.anrisoftware.resources</groupId>
+            <artifactId>resources-api</artifactId>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- other dependencies -->
 		<dependency>
 			<groupId>com.google.inject.extensions</groupId>
 			<artifactId>guice-assistedinject</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.anrisoftware.resources</groupId>
-			<artifactId>resources-api</artifactId>
-			<version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -41,7 +43,6 @@
 		<dependency>
 			<groupId>com.anrisoftware.globalpom</groupId>
 			<artifactId>globalpom-groovytestutils</artifactId>
-			<version>1.7</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
