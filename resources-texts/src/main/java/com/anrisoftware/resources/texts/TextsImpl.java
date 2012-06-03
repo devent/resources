@@ -132,7 +132,8 @@ class TextsImpl implements Texts {
 		String[] tokens = tokenizer.getTokenArray();
 		Charset charset = parseCharset(tokens);
 		URL url = parseUrl(tokens);
-		TextResource text = loadText(bundle, map, name, charset, url);
+		Locale locale = bundle.getLocale();
+		TextResource text = loadText(locale, map, name, charset, url);
 		log.checkTextLoaded(map.haveText(name), bundle, name);
 		return text;
 	}
@@ -163,10 +164,10 @@ class TextsImpl implements Texts {
 		}
 	}
 
-	private TextResource loadText(ResourceBundle bundle, TextsMap map,
-			String name, Charset charset, URL url) {
+	private TextResource loadText(Locale locale, TextsMap map, String name,
+			Charset charset, URL url) {
 		if (url != null) {
-			TextResource text = textResourceFactory.create(bundle, name, url,
+			TextResource text = textResourceFactory.create(name, locale, url,
 					charset);
 			map.putText(name, text);
 			return text;
