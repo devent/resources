@@ -15,5 +15,4 @@
 	<packaging>pom</packaging>
 	<name>Resources Parent POM</name>
 	<description>The parent POM of the resources project.</description>
-	
 </project>

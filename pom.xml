@@ -15,5 +15,6 @@
         <module>resources-texts</module>
         <module>resources-images</module>
         <module>resources-icons</module>
+        <module>resources-texts-cached</module>
   </modules>
 </project>
