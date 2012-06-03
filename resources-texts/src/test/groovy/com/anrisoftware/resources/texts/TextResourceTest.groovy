@@ -95,7 +95,7 @@ class TextResourceTest extends TestUtils {
 	}
 
 	@Test
-	void "load the same text resource"() {
+	void "micro-benchmark get the same text resource for different languages"() {
 		Logger.getLogger(TextsImpl).setLevel(Level.INFO)
 		Locale german = Locale.GERMAN
 		Locale russian = new Locale("ru")
@@ -103,21 +103,33 @@ class TextResourceTest extends TestUtils {
 		def baseName = "TextsWithDefaultCharset"
 		def classLoader = getClass().classLoader
 		Texts texts = factory.create baseName, classLoader
-		Thread.sleep 1000
 
 		TextResource text
-		long current = System.currentTimeMillis()
-		text = texts.textResource "hello", german
-		text = texts.textResource "hello", russian
-		text = texts.textResource "hello", english
-		long now = System.currentTimeMillis()
-		println "Lookup first time: ${(now-current) / 1000}"
+		long current
+		long now
+		int max = 1
 
+		printf "Lookup first time, difference languages:%n"
+		Thread.sleep 1000
 		current = System.currentTimeMillis()
 		text = texts.textResource "hello", german
 		text = texts.textResource "hello", russian
 		text = texts.textResource "hello", english
 		now = System.currentTimeMillis()
-		println "Lookup second time: ${(now-current) / 1000}"
+		printf "system time : %.3f%n", (now-current) / 3
+
+		printf "Lookup second time, difference languages:%n"
+		(0..10).each {
+			Thread.sleep 1000
+			current = System.currentTimeMillis()
+			(0..max).each {
+				text = texts.textResource "hello", german
+				text = texts.textResource "hello", russian
+				text = texts.textResource "hello", english
+			}
+			now = System.currentTimeMillis()
+			printf "system time (%d): %.3f%n", max, (now-current) / max / 3
+			max *= 2
+		}
 	}
 }
