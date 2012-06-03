@@ -23,15 +23,17 @@ class EhcacheTest {
 		Cache cache = lazyGetCache cacheManager, names[0]
 		cache.put "Test_A", "A"
 
+		printf "Lookup in cache:%n"
 		(0..10).each {
 			Thread.sleep 1000
 			current = System.currentTimeMillis()
 			(0..max).each { value = cache.get "Test_A" }
 			now = System.currentTimeMillis()
 
-			max *= 2
 			def s = cache.statistics
-			printf "Lookup in cache: system time: %.3f; statistics: %.3f%n", (now-current) / max, s.averageGetMillis
+			printf "system time (%d): %.3f; statistics: %.3f%n", max, (now-current) / max, s.averageGetMillis
+			max *= 2
+			s.clearStatistics()
 		}
 		println value
 	}
@@ -45,13 +47,14 @@ class EhcacheTest {
 		def map = Maps.newHashMap()
 		map.put "Test_A", "A"
 
+		printf "Lookup in hash map:%n"
 		(0..10).each {
 			current = System.currentTimeMillis()
 			Thread.sleep 1000
 			(0..max).each { value = map.get "Test_A" }
 			now = System.currentTimeMillis()
+			printf "system time (%d): %.3f%n", max, (now-current) / max
 			max *= 2
-			printf "Lookup in hash map: %.3f%n", (now-current) / max
 		}
 		println value
 	}
@@ -65,13 +68,14 @@ class EhcacheTest {
 		def map = Maps.newConcurrentMap()
 		map.put "Test_A", "A"
 
+		printf "Lookup in concurrent map:%n"
 		(0..10).each {
 			current = System.currentTimeMillis()
 			Thread.sleep 1000
 			(0..max).each { value = map.get "Test_A" }
 			now = System.currentTimeMillis()
+			printf "system time (%d): %.3f%n", max, (now-current) / max
 			max *= 2
-			printf "Lookup in concurrent map: %.3f%n", (now-current) / max
 		}
 		println value
 	}
