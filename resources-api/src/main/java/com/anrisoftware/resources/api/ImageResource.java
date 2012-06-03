@@ -18,6 +18,7 @@
  */
 package com.anrisoftware.resources.api;
 
+import java.awt.Dimension;
 import java.awt.Image;
 import java.net.URL;
 import java.util.Locale;
@@ -31,13 +32,13 @@ import java.util.Locale;
 public interface ImageResource {
 
 	/**
-	 * Returns the {@link Image} of the resource. It will lazy load the
-	 * resource.
+	 * Returns the name of this resource.
 	 * 
-	 * @throws ResourcesException
-	 *             if the loading of the resource is failed.
+	 * @return the {@link String} name.
+	 * 
+	 * @since 1.1
 	 */
-	Image getImage() throws ResourcesException;
+	String getName();
 
 	/**
 	 * Returns the locale of the resource.
@@ -47,6 +48,25 @@ public interface ImageResource {
 	 * @since 1.1
 	 */
 	Locale getLocale();
+
+	/**
+	 * Returns the resource {@link URL} of the image.
+	 */
+	URL getURL();
+
+	/**
+	 * Returns the {@link ImageResolution}.
+	 */
+	ImageResolution getResolution();
+
+	/**
+	 * Returns the {@link Image} of the resource. It will lazy load the
+	 * resource.
+	 * 
+	 * @throws ResourcesException
+	 *             if the loading of the resource is failed.
+	 */
+	Image getImage() throws ResourcesException;
 
 	/**
 	 * Returns the width of the image. The method will block until the width is
@@ -67,12 +87,16 @@ public interface ImageResource {
 	int getHeight() throws ResourcesException;
 
 	/**
-	 * Returns the resource {@link URL} of the image.
+	 * Returns the width and height of the image. The method will block until
+	 * the height is available from the image.
+	 * 
+	 * @return the {@link Dimension} containing the width and height.
+	 * 
+	 * @throws ResourcesException
+	 *             if the loading of the resource is failed.
+	 * 
+	 * @since 1.1
 	 */
-	URL getURL();
+	Dimension getSize() throws ResourcesException;
 
-	/**
-	 * Returns the {@link ImageResolution}.
-	 */
-	ImageResolution getResolution();
 }
