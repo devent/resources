@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.images;
+package com.anrisoftware.resources.images.resource;
 
 import java.awt.Image;
 import java.awt.image.ImageObserver;

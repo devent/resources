@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.images;
+package com.anrisoftware.resources.images.resource;
 
 import java.io.IOException;
 
@@ -19,7 +19,7 @@ class ImageResourceImplLogger extends AbstractLogger {
 
 	ResourcesException errorLoadingImage(ImageResourceImpl resource,
 			IOException e) {
-		ResourcesException ex = new ResourcesException(e,
+		ResourcesException ex = new ResourcesException(e, resource.getName(),
 				"Error loading the image resource %s", resource);
 		log.error(e.getMessage());
 		return ex;

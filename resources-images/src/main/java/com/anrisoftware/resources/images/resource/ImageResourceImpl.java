@@ -1,12 +1,14 @@
-package com.anrisoftware.resources.images;
+package com.anrisoftware.resources.images.resource;
 
 import static java.awt.image.ImageObserver.HEIGHT;
 import static java.awt.image.ImageObserver.WIDTH;
 
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -32,36 +34,63 @@ class ImageResourceImpl implements ImageResource {
 
 	private final ImageResourceImplLogger log;
 
+	private final String name;
+
+	private final Locale locale;
+
+	private final Dimension size;
+
 	private final ImageResolution resolution;
 
-	private URL url;
+	private final URL url;
 
 	private Image image;
 
 	private ImageIcon imageLoader;
 
-	private Integer height;
-
-	private Integer width;
-
 	@AssistedInject
-	ImageResourceImpl(@Assisted URL url, @Assisted ImageResolution resolution,
-			ImageResourceImplLogger logger) {
-		this.log = logger;
-		this.url = url;
-		this.resolution = resolution;
-		this.height = HEIGHT_WIDTH_NOT_SET;
-		this.width = HEIGHT_WIDTH_NOT_SET;
+	ImageResourceImpl(ImageResourceImplLogger logger, @Assisted String name,
+			@Assisted Locale locale, @Assisted ImageResolution resolution,
+			@Assisted URL url) {
+		this(logger, name, locale, resolution, url, null);
 	}
 
 	@AssistedInject
-	ImageResourceImpl(@Assisted Image image,
-			@Assisted ImageResolution resolution, ImageResourceImplLogger logger) {
+	ImageResourceImpl(ImageResourceImplLogger logger, @Assisted String name,
+			@Assisted Locale locale, @Assisted ImageResolution resolution,
+			@Assisted Image image) {
+		this(logger, name, locale, resolution, null, image);
+	}
+
+	private ImageResourceImpl(ImageResourceImplLogger logger, String name,
+			Locale locale, ImageResolution resolution, URL url, Image image) {
 		this.log = logger;
-		this.image = image;
+		this.name = name;
+		this.locale = locale;
 		this.resolution = resolution;
-		this.height = HEIGHT_WIDTH_NOT_SET;
-		this.width = HEIGHT_WIDTH_NOT_SET;
+		this.url = url;
+		this.image = image;
+		this.size = new Dimension(HEIGHT_WIDTH_NOT_SET, HEIGHT_WIDTH_NOT_SET);
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public Locale getLocale() {
+		return locale;
+	}
+
+	@Override
+	public URL getURL() {
+		return url;
+	}
+
+	@Override
+	public ImageResolution getResolution() {
+		return resolution;
 	}
 
 	@Override
@@ -105,12 +134,12 @@ class ImageResourceImpl implements ImageResource {
 
 	@Override
 	public int getHeight() throws ResourcesException {
-		synchronized (height) {
-			if (height == HEIGHT_WIDTH_NOT_SET) {
-				height = determineHeight();
+		if (size.height == HEIGHT_WIDTH_NOT_SET) {
+			synchronized (getImage()) {
+				size.height = determineHeight();
 			}
-			return height;
 		}
+		return size.height;
 	}
 
 	private Integer determineHeight() throws ResourcesException {
@@ -133,12 +162,12 @@ class ImageResourceImpl implements ImageResource {
 
 	@Override
 	public int getWidth() throws ResourcesException {
-		synchronized (width) {
-			if (width == HEIGHT_WIDTH_NOT_SET) {
-				width = determineWidth();
+		if (size.width == HEIGHT_WIDTH_NOT_SET) {
+			synchronized (getImage()) {
+				size.width = determineWidth();
 			}
-			return width;
 		}
+		return size.width;
 	}
 
 	private int determineWidth() throws ResourcesException {
@@ -160,18 +189,20 @@ class ImageResourceImpl implements ImageResource {
 	}
 
 	@Override
-	public URL getURL() {
-		return url;
-	}
-
-	@Override
-	public ImageResolution getResolution() {
-		return resolution;
+	public Dimension getSize() {
+		if (size.height == HEIGHT_WIDTH_NOT_SET) {
+			getHeight();
+		}
+		if (size.width == HEIGHT_WIDTH_NOT_SET) {
+			getWidth();
+		}
+		return size;
 	}
 
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append(url).append(image).toString();
+		return new ToStringBuilder(this).append(name).append(locale)
+				.append(resolution).toString();
 	}
 
 }
