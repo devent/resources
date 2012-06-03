@@ -111,13 +111,18 @@ class TextsImpl implements Texts {
 			throws ResourcesException {
 		ResourceBundle bundle = getBundle.bundleFor(locale);
 		log.loadedResourceBundle(name, bundle);
+		TextResource text = lazyLoadResource(name, bundle);
+		log.checkHaveResource(text, bundle, name, locale);
+		return text;
+	}
+
+	private TextResource lazyLoadResource(String name, ResourceBundle bundle) {
 		String location = bundle.getString(name);
 		TextsMap map = texts.getTexts(bundle);
 		TextResource text = map.getText(name);
 		if (text == null) {
 			text = loadTextResource(bundle, map, name, location);
 		}
-		log.checkHaveResource(text, bundle, name, locale);
 		return text;
 	}
 
