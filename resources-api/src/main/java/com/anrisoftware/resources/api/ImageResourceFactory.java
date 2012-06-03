@@ -40,16 +40,16 @@ public interface ImageResourceFactory {
 	 * @param locale
 	 *            the {@link Locale} this text resource.
 	 * 
-	 * @param url
-	 *            the resource {@link URL} of the image.
-	 * 
 	 * @param resolution
 	 *            the {@link ImageResolution} of the image.
 	 * 
+	 * @param url
+	 *            the resource {@link URL} of the image.
+	 * 
 	 * @since 1.1
 	 */
-	ImageResource create(String name, Locale locale, URL url,
-			ImageResolution resolution);
+	ImageResource create(String name, Locale locale,
+			ImageResolution resolution, URL url);
 
 	/**
 	 * Creates a new {@link ImageResource} that have an already loaded image.
@@ -60,14 +60,14 @@ public interface ImageResourceFactory {
 	 * @param locale
 	 *            the {@link Locale} this text resource.
 	 * 
-	 * @param image
-	 *            the {@link Image} of the resource.
-	 * 
 	 * @param resolution
 	 *            the {@link ImageResolution} of the image.
 	 * 
+	 * @param image
+	 *            the {@link Image} of the resource.
+	 * 
 	 * @since 1.1
 	 */
-	ImageResource create(String name, Locale locale, Image image,
-			ImageResolution resolution);
+	ImageResource create(String name, Locale locale,
+			ImageResolution resolution, Image image);
 }
