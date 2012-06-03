@@ -8,10 +8,10 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 /**
  * <p>
- * Binds the text resources bundles and texts maps.
+ * Binds the text resources texts maps.
  * </p>
  * <p>
- * The implementations are using Java HashMap.
+ * This implementation is using Java hash map.
  * </p>
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
