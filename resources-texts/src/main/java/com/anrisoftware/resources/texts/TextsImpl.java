@@ -113,22 +113,23 @@ class TextsImpl implements Texts {
 		log.loadedResourceBundle(name, bundle);
 		String location = bundle.getString(name);
 		TextsMap map = texts.getTexts(bundle);
-		loadTextResource(bundle, map, name, location);
-
 		TextResource text = map.getText(name);
+		if (text == null) {
+			text = loadTextResource(bundle, map, name, location);
+		}
 		log.checkHaveResource(text, bundle, name, locale);
 		return text;
 	}
 
-	private TextsMap loadTextResource(ResourceBundle bundle, TextsMap map,
+	private TextResource loadTextResource(ResourceBundle bundle, TextsMap map,
 			String name, String value) throws ResourcesException {
 		StrTokenizer tokenizer = new StrTokenizer(value, ',', '\\');
 		String[] tokens = tokenizer.getTokenArray();
 		Charset charset = parseCharset(tokens);
 		URL url = parseUrl(tokens);
-		loadText(bundle, map, name, charset, url);
+		TextResource text = loadText(bundle, map, name, charset, url);
 		log.checkTextLoaded(map.haveText(name), bundle, name);
-		return map;
+		return text;
 	}
 
 	private Charset parseCharset(String[] tokens) {
@@ -157,12 +158,15 @@ class TextsImpl implements Texts {
 		}
 	}
 
-	private void loadText(ResourceBundle bundle, TextsMap map, String name,
-			Charset charset, URL url) {
+	private TextResource loadText(ResourceBundle bundle, TextsMap map,
+			String name, Charset charset, URL url) {
 		if (url != null) {
 			TextResource text = textResourceFactory.create(bundle, name, url,
 					charset);
 			map.putText(name, text);
+			return text;
+		} else {
+			return null;
 		}
 	}
 
