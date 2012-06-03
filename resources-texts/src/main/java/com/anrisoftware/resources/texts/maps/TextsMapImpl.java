@@ -60,7 +60,6 @@ class TextsMapImpl implements TextsMap {
 	@Override
 	public TextResource getText(String name) {
 		TextResource resource = texts.get(name);
-		log.checkHaveText(resource, name);
 		return resource;
 	}
 
