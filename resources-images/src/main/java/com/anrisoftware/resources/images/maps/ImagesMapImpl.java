@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.images;
+package com.anrisoftware.resources.images.maps;
 
 import static com.google.common.collect.Maps.newHashMap;
 import static com.google.common.collect.Maps.newTreeMap;
@@ -12,15 +12,16 @@ import javax.inject.Inject;
 
 import com.anrisoftware.resources.api.ImageResolution;
 import com.anrisoftware.resources.api.ImageResource;
+import com.anrisoftware.resources.images.api.ImagesMap;
 
 /**
  * Puts {@link ImageResource}s and retrieve them. The images are identified by
  * their name, resolution and size. No duplicates are allowed in the map.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
+ * @since 1.1
  */
-class ImagesMap {
+class ImagesMapImpl implements ImagesMap {
 
 	private final ImagesMapLogger log;
 
@@ -30,36 +31,19 @@ class ImagesMap {
 	 * Creates the images map.
 	 */
 	@Inject
-	ImagesMap(ImagesMapLogger logger) {
+	ImagesMapImpl(ImagesMapLogger logger) {
 		this.log = logger;
 		this.images = newHashMap();
 	}
 
-	/**
-	 * Add new image to the map. It will be only one image with the same name,
-	 * the same size and the same resolution in the map.
-	 * 
-	 * @param image
-	 *            the {@link ImageResource}.
-	 * 
-	 * @param name
-	 *            the name of the image.
-	 * 
-	 * @param width
-	 *            the width of the image.
-	 * 
-	 * @param height
-	 *            the height of the image.
-	 * 
-	 * @param resolution
-	 *            the {@link ImageResolution} of the image.
-	 */
-	public void putImage(ImageResource image, String name, int width,
-			int height, ImageResolution resolution) {
+	@Override
+	public void putImage(ImageResource image) {
+		String name = image.getName();
+		ImageResolution resolution = image.getResolution();
 		Map<ImageResolution, Map<Dimension, ImageResource>> resolutions = resolutionsMap(name);
 		Map<Dimension, ImageResource> resources = resourcesMap(resolutions,
 				resolution);
-		Dimension dimension = new Dimension(width, height);
+		Dimension dimension = image.getSize();
 		if (!resources.containsKey(dimension)) {
 			resources.put(dimension, image);
 		} else {
@@ -101,23 +85,7 @@ class ImagesMap {
 		return resolutions;
 	}
 
-	/**
-	 * Returns the image from the map. The image with the best resolution and
-	 * nearest size will be returned.
-	 * 
-	 * @param name
-	 *            the name of the image.
-	 * 
-	 * @param width
-	 *            the width of the image.
-	 * 
-	 * @param height
-	 *            the height of the image.
-	 * 
-	 * @return the {@link ImageResource}, the image with the best resolution and
-	 *         the nearest size or <code>null</code> if no such image was found
-	 *         in the map.
-	 */
+	@Override
 	public ImageResource getImage(String name, int width, int height) {
 		Map<ImageResolution, Map<Dimension, ImageResource>> resolutions = resolutionsMap(name);
 		Dimension dimension = new Dimension(width, height);
@@ -144,24 +112,7 @@ class ImagesMap {
 		return foundImage;
 	}
 
-	/**
-	 * Returns the image from the map.
-	 * 
-	 * @param name
-	 *            the name of the image.
-	 * 
-	 * @param width
-	 *            the width of the image.
-	 * 
-	 * @param height
-	 *            the height of the image.
-	 * 
-	 * @param resolution
-	 *            the {@link ImageResolution} of the image.
-	 * 
-	 * @return the {@link ImageResource}, the nearest image to the size give or
-	 *         <code>null</code> if no such image was found in the map.
-	 */
+	@Override
 	public ImageResource getImage(String name, int width, int height,
 			ImageResolution resolution) {
 		Map<ImageResolution, Map<Dimension, ImageResource>> resolutions = resolutionsMap(name);
@@ -248,14 +199,7 @@ class ImagesMap {
 
 	}
 
-	/**
-	 * Check if the image with the given name is in the map.
-	 * 
-	 * @param name
-	 *            the name of the image.
-	 * 
-	 * @return <code>true</code>if the image is in the map.
-	 */
+	@Override
 	public boolean haveImage(String name) {
 		return images.containsKey(name);
 	}
