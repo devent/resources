@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.images;
+package com.anrisoftware.resources.images.scaling;
 
 import static java.awt.Image.SCALE_SMOOTH;
 
