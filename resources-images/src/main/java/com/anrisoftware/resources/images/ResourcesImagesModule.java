@@ -1,8 +1,8 @@
 package com.anrisoftware.resources.images;
 
-import com.anrisoftware.resources.api.ImageResource;
-import com.anrisoftware.resources.api.ImageResourceFactory;
 import com.anrisoftware.resources.api.Images;
+import com.anrisoftware.resources.api.ImagesFactory;
+import com.anrisoftware.resources.images.resource.ResourcesImagesResourceModule;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
@@ -16,9 +16,11 @@ public class ResourcesImagesModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		bind(Images.class).to(ImagesImpl.class);
-		install(new FactoryModuleBuilder().implement(ImageResource.class,
-				ImageResourceImpl.class).build(ImageResourceFactory.class));
+		install(new ResourcesImagesResourceModule());
+		install(new FactoryModuleBuilder().implement(Images.class,
+				ImagesImpl.class).build(ImagesFactory.class));
+		install(new FactoryModuleBuilder().implement(ImagesWorker.class,
+				ImagesWorker.class).build(ImagesWorkerFactory.class));
 	}
 
 }

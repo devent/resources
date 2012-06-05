@@ -16,7 +16,7 @@ import com.google.inject.assistedinject.Assisted;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-public class SmoothImageScalingWorker implements ImageScalingWorker {
+class SmoothImageScalingWorker implements ImageScalingWorker {
 
 	private final Dimension size;
 

@@ -5,6 +5,7 @@ import static com.anrisoftware.resources.api.ImageResolution.*
 import java.net.URL
 
 import com.anrisoftware.resources.api.Images
+import com.anrisoftware.resources.images.resource.ImageResourceTest;
 import com.google.inject.Injector
 
 /**
@@ -13,12 +14,12 @@ import com.google.inject.Injector
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-class PropertyLoaderModuleTest extends ImageResourcesTest {
+class PropertyLoaderModuleTest extends ImageResourceTest {
 
 	def getResourcesImagesModule() {
 		new ResourcesImagesPropertyLoaderModule() {
 					URL getImagesPropertiesURL() {
-						ImageResourcesTest.imagePropertiesURL
+						ImageResourceTest.imagePropertiesURL
 					}
 				}
 	}

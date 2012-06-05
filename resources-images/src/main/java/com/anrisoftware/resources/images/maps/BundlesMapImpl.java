@@ -32,7 +32,7 @@ class BundlesMapImpl implements BundlesMap {
 	}
 
 	@Override
-	public ImagesMap getTexts(ResourceBundle bundle) {
+	public ImagesMap getImages(ResourceBundle bundle) {
 		ImagesMap images = map.get(bundle);
 		if (images == null) {
 			images = factory.create();

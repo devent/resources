@@ -29,6 +29,6 @@ public interface BundlesMap {
 	 * 
 	 * @return the {@link TextsMap} for the resource bundle.
 	 */
-	ImagesMap getTexts(ResourceBundle bundle);
+	ImagesMap getImages(ResourceBundle bundle);
 
 }

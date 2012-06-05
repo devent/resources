@@ -2,49 +2,42 @@ package com.anrisoftware.resources.images
 
 import static com.anrisoftware.resources.api.ImageResolution.*
 
-import java.util.Properties
-
-import javax.inject.Named
-
+import java.awt.Dimension
 import org.junit.Before
 import org.junit.Test
 
 import com.anrisoftware.globalpom.utils.ShowImagesFrame
 import com.anrisoftware.globalpom.utils.TestUtils
 import com.anrisoftware.resources.api.ImageResource
-import com.anrisoftware.resources.api.ImageScalingWorker
-import com.anrisoftware.resources.api.ImageScalingWorkerFactory
-import com.anrisoftware.resources.api.Images
-import com.google.inject.AbstractModule
+import com.anrisoftware.resources.api.ImagesFactory
+import com.anrisoftware.resources.images.ResourcesImagesModule
+import com.anrisoftware.resources.images.maps.ResourcesImagesMapsModule
+import com.anrisoftware.resources.images.scaling.ResourcesSmoothScalingModule
 import com.google.inject.Guice
 import com.google.inject.Injector
-import com.google.inject.Provides
-import com.google.inject.assistedinject.FactoryModuleBuilder
 
 class ImageResourcesTest extends TestUtils {
 
-	public static imagePropertiesURL = resourceURL(ImageResourcesTest, "imagesresources.properties")
-
-	static final String IMAGE_NAME = "x-mail-distribution-list"
+	static final String IMAGE_NAME = "logo"
 
 	def modules
 
 	Injector injector
 
-	Images resources
+	ImagesFactory factory
 
 	@Before
 	void before() {
 		modules = lazyCreateModules()
 		injector = lazyCreateInjector()
-		resources = injector.getInstance(Images).loadResources()
+		factory = injector.getInstance(ImagesFactory)
 	}
 
 	def lazyCreateModules() {
 		modules == null ?
 				[
 					resourcesImagesModule,
-					imagesResourcesModule,
+					mapModule,
 					imageScalingWorkerModule,
 				].flatten()
 				: modules
@@ -54,32 +47,12 @@ class ImageResourcesTest extends TestUtils {
 		new ResourcesImagesModule()
 	}
 
-	def getImageScalingWorkerModule() {
-		new AbstractModule() {
-					@Override
-					protected void configure() {
-						install(new FactoryModuleBuilder().implement(
-								ImageScalingWorker.class,
-								SmoothImageScalingWorker.class).
-								build(ImageScalingWorkerFactory.class))
-					}
-				}
+	def getMapModule() {
+		new ResourcesImagesMapsModule()
 	}
 
-	def getImagesResourcesModule() {
-		new AbstractModule() {
-					@Override
-					protected void configure() {
-					}
-
-					@Provides
-					@Named("images-properties")
-					Properties getTextsProperties() {
-						def properties = new Properties()
-						properties.load imagePropertiesURL.openStream()
-						properties
-					}
-				}
+	def getImageScalingWorkerModule() {
+		new ResourcesSmoothScalingModule()
 	}
 
 	def lazyCreateInjector() {
@@ -88,49 +61,79 @@ class ImageResourcesTest extends TestUtils {
 
 	@Test
 	void "load image with no resize and ldpi"() {
-		ImageResource image = resources.imageResource IMAGE_NAME, 171, 171, LOW
+		def name = IMAGE_NAME
+		def size = new Dimension(171, 171)
+		def resolution = LOW
+		def baseName = "Logos"
+		def locale = Locale.GERMAN
+		def images = factory.create(baseName)
+
+		ImageResource image = images.imageResource name, locale, size, resolution
+		assert image.name == name
+		assert image.locale == locale
+		assert image.resolution == resolution
 		assert image.image != null
-		assert image.URL.toString() =~ "com/anrisoftware/resources/images/ldpi/x-mail-distribution-list.png"
-		assert image.width == 171
-		assert image.height == 171
+		assert image.URL.toString() =~ "com/anrisoftware/resources/images/logos/de/ldpi/x-mail-distribution-list.png"
+		assert image.size == size
 
 		new ShowImagesFrame(images: image.image)()
 	}
 
 	@Test
 	void "load image with resize and ldpi"() {
-		ImageResource image = resources.imageResource IMAGE_NAME, 256, 256, LOW
+		def name = IMAGE_NAME
+		def size = new Dimension(256, 256)
+		def resolution = LOW
+		def baseName = "Logos"
+		def locale = Locale.GERMAN
+		def images = factory.create(baseName)
+
+		ImageResource image = images.imageResource name, locale, size, resolution
+		assert image.name == name
+		assert image.locale == locale
+		assert image.resolution == resolution
 		assert image.image != null
 		assert image.URL == null
-		assert image.width == 256
-		assert image.height == 256
+		assert image.size == size
 
 		new ShowImagesFrame(images: image.image)()
 	}
 
 	@Test
 	void "load image with resize and xhdpi"() {
-		ImageResource image = resources.imageResource IMAGE_NAME, 256, 256, EXTRA_HIGH
+		def name = IMAGE_NAME
+		def size = new Dimension(128, 128)
+		def resolution = EXTRA_HIGH
+		def baseName = "Logos"
+		def locale = Locale.GERMAN
+		def images = factory.create(baseName)
+
+		ImageResource image = images.imageResource name, locale, size, resolution
+		assert image.name == name
+		assert image.locale == locale
+		assert image.resolution == resolution
 		assert image.image != null
 		assert image.URL == null
-		assert image.width == 256
-		assert image.height == 256
+		assert image.size == size
 
 		new ShowImagesFrame(images: image.image)()
 	}
 
 	@Test
 	void "same image with different sizes"() {
+		def baseName = "Logos"
+		def locale = Locale.GERMAN
+		def images = factory.create(baseName)
 		def res = []
-		res << resources.imageResource(IMAGE_NAME, 256, 256, EXTRA_HIGH)
-		res << resources.imageResource(IMAGE_NAME, 230, 230, EXTRA_HIGH)
-		res << resources.imageResource(IMAGE_NAME, 260, 260, EXTRA_HIGH)
-		res << resources.imageResource(IMAGE_NAME, 455, 455, EXTRA_HIGH)
+		res << images.imageResource(IMAGE_NAME, locale, 256, 256, EXTRA_HIGH)
+		res << images.imageResource(IMAGE_NAME, locale, 230, 230, EXTRA_HIGH)
+		res << images.imageResource(IMAGE_NAME, locale, 260, 260, EXTRA_HIGH)
+		res << images.imageResource(IMAGE_NAME, locale, 455, 455, EXTRA_HIGH)
 
 		assertImage res[0], null, 256, 256
 		assertImage res[1], null, 230, 230
 		assertImage res[2], null, 260, 260
-		assertImage res[3], null, 455, 455, "com/anrisoftware/resources/images/xhdpi/x-mail-distribution-list.png"
+		assertImage res[3], null, 455, 455, "com/anrisoftware/resources/images/logos/de/xhdpi/x-mail-distribution-list.png"
 
 		new ShowImagesFrame(images: res.inject([], { list, value ->
 			list << value.image
@@ -139,27 +142,30 @@ class ImageResourcesTest extends TestUtils {
 
 	@Test
 	void "same image with different sizes and auto-resolution"() {
+		def baseName = "Logos"
+		def locale = Locale.GERMAN
+		def images = factory.create(baseName)
 		def res = []
-		res << resources.imageResource(IMAGE_NAME, 50, 50)
-		res << resources.imageResource(IMAGE_NAME, 171, 171)
-		res << resources.imageResource(IMAGE_NAME, 191, 191)
-		res << resources.imageResource(IMAGE_NAME, 200, 200)
-		res << resources.imageResource(IMAGE_NAME, 228, 228)
-		res << resources.imageResource(IMAGE_NAME, 300, 300)
-		res << resources.imageResource(IMAGE_NAME, 341, 341)
-		res << resources.imageResource(IMAGE_NAME, 400, 400)
-		res << resources.imageResource(IMAGE_NAME, 455, 455)
-		res << resources.imageResource(IMAGE_NAME, 600, 600)
+		res << images.imageResource(IMAGE_NAME, locale, 50, 50)
+		res << images.imageResource(IMAGE_NAME, locale, 171, 171)
+		res << images.imageResource(IMAGE_NAME, locale, 191, 191)
+		res << images.imageResource(IMAGE_NAME, locale, 200, 200)
+		res << images.imageResource(IMAGE_NAME, locale, 228, 228)
+		res << images.imageResource(IMAGE_NAME, locale, 300, 300)
+		res << images.imageResource(IMAGE_NAME, locale, 341, 341)
+		res << images.imageResource(IMAGE_NAME, locale, 400, 400)
+		res << images.imageResource(IMAGE_NAME, locale, 455, 455)
+		res << images.imageResource(IMAGE_NAME, locale, 600, 600)
 
 		assertImage res[0], null, 50, 50
-		assertImage res[1], null, 171, 171, "com/anrisoftware/resources/images/ldpi/x-mail-distribution-list.png"
+		assertImage res[1], null, 171, 171, "com/anrisoftware/resources/images/logos/de/ldpi/x-mail-distribution-list.png"
 		assertImage res[2], null, 191, 191
 		assertImage res[3], null, 200, 200
-		assertImage res[4], null, 228, 228, "com/anrisoftware/resources/images/mdpi/x-mail-distribution-list.png"
+		assertImage res[4], null, 228, 228, "com/anrisoftware/resources/images/logos/de/mdpi/x-mail-distribution-list.png"
 		assertImage res[5], null, 300, 300
-		assertImage res[6], null, 341, 341, "com/anrisoftware/resources/images/hdpi/x-mail-distribution-list.png"
+		assertImage res[6], null, 341, 341, "com/anrisoftware/resources/images/logos/de/hdpi/x-mail-distribution-list.png"
 		assertImage res[7], null, 400, 400
-		assertImage res[8], null, 455, 455, "com/anrisoftware/resources/images/xhdpi/x-mail-distribution-list.png"
+		assertImage res[8], null, 455, 455, "com/anrisoftware/resources/images/logos/de/xhdpi/x-mail-distribution-list.png"
 		assertImage res[9], null, 600, 600
 
 		new ShowImagesFrame(images: res.inject([], { list, value ->
@@ -167,7 +173,7 @@ class ImageResourcesTest extends TestUtils {
 		}))()
 	}
 
-	def assertImage(def resource, def image, def width, def height, def url=/.*/) {
+	def assertImage(ImageResource resource, def image, def width, def height, def url=/.*/) {
 		assert resource.image != image
 		assert resource?.URL?.toString() =~ url
 		assert resource.width == width

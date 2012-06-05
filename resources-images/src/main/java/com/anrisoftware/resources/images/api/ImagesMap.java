@@ -1,7 +1,10 @@
 package com.anrisoftware.resources.images.api;
 
+import java.awt.Dimension;
+
 import com.anrisoftware.resources.api.ImageResolution;
 import com.anrisoftware.resources.api.ImageResource;
+import com.anrisoftware.resources.api.ResourcesException;
 
 /**
  * Puts {@link ImageResource}s and retrieve them. The images are identified by
@@ -26,7 +29,7 @@ public interface ImagesMap {
 	 * @param image
 	 *            the {@link ImageResource} that should be added.
 	 */
-	void putImage(ImageResource image);
+	void putImage(ImageResource image) throws ResourcesException;
 
 	/**
 	 * Returns the image from the map. The image with the best resolution and
@@ -35,17 +38,14 @@ public interface ImagesMap {
 	 * @param name
 	 *            the name of the image.
 	 * 
-	 * @param width
-	 *            the width of the image.
-	 * 
-	 * @param height
-	 *            the height of the image.
+	 * @param size
+	 *            the {@link Dimension} with the width and height of the image.
 	 * 
 	 * @return the {@link ImageResource}, the image with the best resolution and
 	 *         the nearest size or <code>null</code> if no such image was found
 	 *         in the map.
 	 */
-	ImageResource getImage(String name, int width, int height);
+	ImageResource getImage(String name, Dimension size);
 
 	/**
 	 * Returns the image from the map.
@@ -53,11 +53,8 @@ public interface ImagesMap {
 	 * @param name
 	 *            the name of the image.
 	 * 
-	 * @param width
-	 *            the width of the image.
-	 * 
-	 * @param height
-	 *            the height of the image.
+	 * @param size
+	 *            the {@link Dimension} with the width and height of the image.
 	 * 
 	 * @param resolution
 	 *            the {@link ImageResolution} of the image.
@@ -65,16 +62,29 @@ public interface ImagesMap {
 	 * @return the {@link ImageResource}, the nearest image to the size give or
 	 *         <code>null</code> if no such image was found in the map.
 	 */
-	ImageResource getImage(String name, int width, int height,
+	ImageResource getImage(String name, Dimension size,
 			ImageResolution resolution);
 
 	/**
-	 * Check if the image with the given name and locale is in the map.
+	 * Check if the image with the given name and resolution is in the map.
 	 * 
 	 * @param name
 	 *            the name of the image.
 	 * 
-	 * @return <code>true</code>if the image is in the map.
+	 * @param resolution
+	 *            the {@link ImageResolution} of the image.
+	 * 
+	 * @return <code>true</code> if the image is in the map.
+	 */
+	boolean haveImage(String name, ImageResolution resolution);
+
+	/**
+	 * Check if the image with the given name is in the map.
+	 * 
+	 * @param name
+	 *            the name of the image.
+	 * 
+	 * @return <code>true</code> if the image is in the map.
 	 */
 	boolean haveImage(String name);
 

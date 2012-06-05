@@ -1,128 +1,101 @@
 package com.anrisoftware.resources.images;
 
-import static java.lang.String.format;
-
 import java.awt.Dimension;
-import java.awt.Image;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Map;
-import java.util.Properties;
-
-import javax.inject.Named;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.ResourceBundle.Control;
 
 import com.anrisoftware.resources.api.ImageResolution;
 import com.anrisoftware.resources.api.ImageResource;
-import com.anrisoftware.resources.api.ImageResourceFactory;
-import com.anrisoftware.resources.api.ImageScalingWorkerFactory;
 import com.anrisoftware.resources.api.Images;
 import com.anrisoftware.resources.api.ResourcesException;
-import com.google.inject.Inject;
+import com.anrisoftware.resources.images.api.BundlesMap;
+import com.google.inject.assistedinject.Assisted;
+import com.google.inject.assistedinject.AssistedInject;
 
 class ImagesImpl implements Images {
 
-	private final ImagesImplLogger log;
+	private final BundlesMap bundles;
 
-	private final ImagesMap images;
+	private final GetBundle getBundle;
 
-	private final ImageResourceFactory imageResourceFactory;
+	private final ImagesWorkerFactory workerFactory;
 
-	private final Properties imagesProperties;
+	@AssistedInject
+	ImagesImpl(ImagesWorkerFactory workerFactory, BundlesMap bundles,
+			@Assisted String baseName) {
+		this(workerFactory, bundles, new GetBundle(baseName));
+	}
 
-	private final ImageScalingWorkerFactory imageScalingWorkerFactory;
+	@AssistedInject
+	ImagesImpl(ImagesWorkerFactory workerFactory, BundlesMap bundles,
+			@Assisted String baseName, @Assisted ClassLoader classLoader) {
+		this(workerFactory, bundles, new GetBundleWithClassLoader(baseName,
+				classLoader));
+	}
 
-	@Inject
-	ImagesImpl(@Named("images-properties") Properties imagesProperties,
-			ImagesImplLogger logger, ImagesMap images,
-			ImageResourceFactory imageResourceFactory,
-			ImageScalingWorkerFactory imageScalingWorkerFactory) {
-		this.log = logger;
-		this.imagesProperties = imagesProperties;
-		this.images = images;
-		this.imageResourceFactory = imageResourceFactory;
-		this.imageScalingWorkerFactory = imageScalingWorkerFactory;
+	@AssistedInject
+	ImagesImpl(ImagesWorkerFactory workerFactory, BundlesMap bundles,
+			@Assisted String baseName, @Assisted ResourceBundle.Control control) {
+		this(workerFactory, bundles,
+				new GetBundleWithControl(baseName, control));
+	}
+
+	@AssistedInject
+	ImagesImpl(ImagesWorkerFactory workerFactory, BundlesMap bundles,
+			@Assisted String baseName, @Assisted ClassLoader classLoader,
+			@Assisted ResourceBundle.Control control) {
+		this(workerFactory, bundles, new GetBundleWithClassLoaderAndControl(
+				baseName, classLoader, control));
+	}
+
+	private ImagesImpl(ImagesWorkerFactory workerFactory, BundlesMap bundles,
+			GetBundle getBundle) {
+		this.workerFactory = workerFactory;
+		this.bundles = bundles;
+		this.getBundle = getBundle;
 	}
 
 	@Override
-	public Images loadResources() throws ResourcesException {
-		loadImageResources();
-		return this;
-	}
-
-	private void loadImageResources() throws ResourcesException {
-		for (Map.Entry<Object, Object> entry : imagesProperties.entrySet()) {
-			loadImageResourceForResolutions((String) entry.getKey(),
-					(String) entry.getValue());
-		}
-	}
-
-	private void loadImageResourceForResolutions(String name, String urlPattern)
-			throws ResourcesException {
-		for (ImageResolution resolution : ImageResolution.values()) {
-			String urlString = format(urlPattern, resolution.getName());
-			URL url = createURL(urlString);
-			if (url == null) {
-				continue;
-			}
-			ImageResource image = imageResourceFactory.create(url, resolution);
-			addImageResource(name, resolution, image);
-		}
-		log.checkImageLoaded(images.haveImage(name), name);
-	}
-
-	private URL createURL(String value) {
-		try {
-			return new URL(value);
-		} catch (MalformedURLException e) {
-			URL url = ImagesImpl.class.getClassLoader().getResource(value);
-			return log.checkResourceURL(url, value);
-		}
-	}
-
-	private void addImageResource(String name, ImageResolution resolution,
-			ImageResource image) throws ResourcesException {
-		int width = image.getWidth();
-		int height = image.getHeight();
-		images.putImage(image, name, width, height, resolution);
-		log.addedImageResource(name, resolution, image);
+	public ClassLoader getClassLoader() {
+		return getBundle.getClassLoader();
 	}
 
 	@Override
-	public ImageResource imageResource(String name, int width, int height)
-			throws ResourcesException {
-		ImageResource res = images.getImage(name, width, height);
-		res = resizeIfNeeded(name, width, height, res.getResolution(), res);
-		return res;
+	public String getBaseName() {
+		return getBundle.getBaseName();
 	}
 
 	@Override
-	public ImageResource imageResource(String name, int width, int height,
-			ImageResolution resolution) throws ResourcesException {
-		ImageResource res = images.getImage(name, width, height, resolution);
-		res = resizeIfNeeded(name, width, height, resolution, res);
-		return res;
+	public Control getControl() {
+		return getBundle.getControl();
 	}
 
-	private ImageResource resizeIfNeeded(String name, int width, int height,
-			ImageResolution resolution, ImageResource res)
+	@Override
+	public ImageResource imageResource(String name, Locale locale, int width,
+			int height) throws ResourcesException {
+		return imageResource(name, locale, new Dimension(width, height));
+	}
+
+	@Override
+	public ImageResource imageResource(String name, Locale locale,
+			Dimension size) throws ResourcesException {
+		return workerFactory.create(name, locale, size, getBundle, bundles)
+				.imageResource();
+	}
+
+	@Override
+	public ImageResource imageResource(String name, Locale locale, int width,
+			int height, ImageResolution resolution) throws ResourcesException {
+		return imageResource(name, locale, new Dimension(width, height),
+				resolution);
+	}
+
+	@Override
+	public ImageResource imageResource(String name, Locale locale,
+			Dimension size, ImageResolution resolution)
 			throws ResourcesException {
-		if (res.getWidth() != width || res.getHeight() != height) {
-			Image image = resizeImage(res.getImage(), width, height);
-			res = imageResourceFactory.create(image, resolution);
-			images.putImage(res, name, width, height, resolution);
-			log.addResizedImage(res, name, resolution);
-		}
-		return res;
+		return workerFactory.create(name, locale, size, getBundle, bundles)
+				.imageResource(resolution);
 	}
-
-	private Image resizeImage(Image image, int width, int height)
-			throws ResourcesException {
-		try {
-			return imageScalingWorkerFactory.create(image,
-					new Dimension(width, height)).call();
-		} catch (Exception e) {
-			throw log.errorResizeImage(e);
-		}
-	}
-
 }

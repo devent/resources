@@ -12,6 +12,7 @@ import javax.inject.Inject;
 
 import com.anrisoftware.resources.api.ImageResolution;
 import com.anrisoftware.resources.api.ImageResource;
+import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.images.api.ImagesMap;
 
 /**
@@ -25,6 +26,19 @@ class ImagesMapImpl implements ImagesMap {
 
 	private final ImagesMapLogger log;
 
+	/**
+	 * <p>
+	 * Saves the loaded image resources.
+	 * </p>
+	 * <p>
+	 * The image resources are stored for each name, for each resolution and for
+	 * each image size, i.e.:
+	 * </p>
+	 * 
+	 * <pre>
+	 * &lt;name:{@link String}&gt; = [&lt;resolution:{@link ImageResolution}&gt; = [&lt;size:{@link Dimension}&gt; = {@link ImageResource}]]
+	 * </pre>
+	 */
 	private final Map<String, Map<ImageResolution, Map<Dimension, ImageResource>>> images;
 
 	/**
@@ -37,7 +51,7 @@ class ImagesMapImpl implements ImagesMap {
 	}
 
 	@Override
-	public void putImage(ImageResource image) {
+	public void putImage(ImageResource image) throws ResourcesException {
 		String name = image.getName();
 		ImageResolution resolution = image.getResolution();
 		Map<ImageResolution, Map<Dimension, ImageResource>> resolutions = resolutionsMap(name);
@@ -86,15 +100,14 @@ class ImagesMapImpl implements ImagesMap {
 	}
 
 	@Override
-	public ImageResource getImage(String name, int width, int height) {
+	public ImageResource getImage(String name, Dimension size) {
 		Map<ImageResolution, Map<Dimension, ImageResource>> resolutions = resolutionsMap(name);
-		Dimension dimension = new Dimension(width, height);
-		FindNearest findNearest = new FindNearest(dimension);
+		FindNearest findNearest = new FindNearest(size);
 
 		int diff = Integer.MAX_VALUE;
 		ImageResource foundImage = null;
 		for (Map<Dimension, ImageResource> resolution : resolutions.values()) {
-			ImageResource image = resolution.get(dimension);
+			ImageResource image = resolution.get(size);
 			if (image != null) {
 				return image;
 			}
@@ -113,16 +126,15 @@ class ImagesMapImpl implements ImagesMap {
 	}
 
 	@Override
-	public ImageResource getImage(String name, int width, int height,
+	public ImageResource getImage(String name, Dimension size,
 			ImageResolution resolution) {
 		Map<ImageResolution, Map<Dimension, ImageResource>> resolutions = resolutionsMap(name);
 		Map<Dimension, ImageResource> resources = resourcesMap(resolutions,
 				resolution);
-		Dimension dimension = new Dimension(width, height);
-		ImageResource image = resources.get(dimension);
+		ImageResource image = resources.get(size);
 		if (image == null) {
 			log.noImageReturningNearest(this, name);
-			return new FindNearest(dimension).findNearest(resources);
+			return new FindNearest(size).findNearest(resources);
 		}
 		return image;
 	}
@@ -202,6 +214,14 @@ class ImagesMapImpl implements ImagesMap {
 	@Override
 	public boolean haveImage(String name) {
 		return images.containsKey(name);
+	}
+
+	@Override
+	public boolean haveImage(String name, ImageResolution resolution) {
+		Map<ImageResolution, Map<Dimension, ImageResource>> resolutions = images
+				.get(name);
+		return resolutions == null ? false : resolutions
+				.containsKey(resolution);
 	}
 
 	@Override
