@@ -21,15 +21,13 @@ class CachedTextResourceTest extends TextResourceTest {
 
 	def getResourcesTextsModule() {
 		CacheManager manager = Caching.getCacheManager()
-		def builderFactory = { m, name ->
-			def cde = manager.getCache("texts-map-cache-de")
-			println "'$name' ${cde?.status}"
-
-			def builder = manager.createCacheBuilder "bundles-map-cache"
+		def builderFactory = {
+			m, name ->
+			def builder = manager.createCacheBuilder name
 			builder.setStoreByValue(true)
 			//builder.setReadThrough(true)
 			//builder.setWriteThrough(false)
-			builder.setStatisticsEnabled(true)
+			builder.setStatisticsEnabled(false)
 			//builder.setTransactionEnabled(IsolationLevel.NONE, Mode.NONE)
 			builder.registerCacheEntryListener([
 						entryCreated: { event -> println "entry created $event" },

@@ -13,6 +13,18 @@ import com.google.common.collect.Maps
 class EhcacheTest {
 
 	@Test
+	void "create multiple caches"() {
+		def names = ["myCache1", "myCache2"]
+		CacheManager cacheManager = Caching.getCacheManager()
+
+		Cache cache = lazyGetCache cacheManager, names[0]
+		cache.put "Test_A", "A"
+
+		Cache cache2 = lazyGetCache cacheManager, names[1]
+		cache2.put "Test_A", "A"
+	}
+
+	@Test
 	void "store and load items in cache"() {
 		int max = 10
 		def value
