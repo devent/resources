@@ -1,6 +1,5 @@
 package com.anrisoftware.resources.api;
 
-import java.net.URL;
 import java.util.Locale;
 
 /**
@@ -10,7 +9,7 @@ import java.util.Locale;
  * @since 1.0
  * @see TextResourceFactory
  */
-public interface TextResource {
+public interface TextResource extends BinaryResource {
 
 	/**
 	 * Returns the text {@link String} of the resource.
@@ -38,17 +37,4 @@ public interface TextResource {
 	 */
 	String formatText(Object... args) throws ResourcesException;
 
-	/**
-	 * Returns the locale of the resource.
-	 * 
-	 * @return the {@link Locale} of the resource.
-	 * 
-	 * @since 1.1
-	 */
-	Locale getLocale();
-
-	/**
-	 * Returns the {@link URL} of the resource.
-	 */
-	URL getURL();
 }

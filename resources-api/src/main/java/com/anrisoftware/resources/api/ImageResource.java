@@ -20,8 +20,6 @@ package com.anrisoftware.resources.api;
 
 import java.awt.Dimension;
 import java.awt.Image;
-import java.net.URL;
-import java.util.Locale;
 
 /**
  * Image resource with lazy loading.
@@ -29,30 +27,7 @@ import java.util.Locale;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-public interface ImageResource {
-
-	/**
-	 * Returns the name of this resource.
-	 * 
-	 * @return the {@link String} name.
-	 * 
-	 * @since 1.1
-	 */
-	String getName();
-
-	/**
-	 * Returns the locale of the resource.
-	 * 
-	 * @return the {@link Locale} of the resource.
-	 * 
-	 * @since 1.1
-	 */
-	Locale getLocale();
-
-	/**
-	 * Returns the resource {@link URL} of the image.
-	 */
-	URL getURL();
+public interface ImageResource extends BinaryResource {
 
 	/**
 	 * Returns the {@link ImageResolution}.

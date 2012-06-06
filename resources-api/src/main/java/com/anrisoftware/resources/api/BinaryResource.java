@@ -22,6 +22,13 @@ public interface BinaryResource {
 	byte[] getBinary() throws ResourcesException;
 
 	/**
+	 * Returns the name of this resource.
+	 * 
+	 * @return the {@link String} name.
+	 */
+	String getName();
+
+	/**
 	 * Returns the locale of the resource.
 	 * 
 	 * @return the {@link Locale} of the resource.
