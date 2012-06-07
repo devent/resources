@@ -18,5 +18,6 @@
         <module>resources-icons</module>
         <module>resources-texts-cached</module>
         <module>resources-binary-cached</module>
+        <module>resources-binary-tests</module>
   </modules>
 </project>
