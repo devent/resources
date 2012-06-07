@@ -2,7 +2,7 @@ package com.anrisoftware.resources.binary.resources;
 
 import java.io.IOException;
 
-import com.anrisoftware.globalpom.log.AbstractLogger;
+import com.anrisoftware.globalpom.log.AbstractSerializedLogger;
 import com.anrisoftware.resources.api.ResourcesException;
 
 /**
@@ -11,9 +11,12 @@ import com.anrisoftware.resources.api.ResourcesException;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-class BinaryResourceImplLogger extends AbstractLogger {
+class BinaryResourceImplLogger extends AbstractSerializedLogger {
 
-	BinaryResourceImplLogger() {
+	/**
+	 * Creates the logger for {@link BinaryResourceImpl}.
+	 */
+	public BinaryResourceImplLogger() {
 		super(BinaryResourceImpl.class);
 	}
 
