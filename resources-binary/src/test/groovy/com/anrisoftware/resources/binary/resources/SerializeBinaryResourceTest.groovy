@@ -4,6 +4,7 @@ import org.junit.Before
 import org.junit.Test
 
 import com.anrisoftware.globalpom.utils.TestUtils
+import com.anrisoftware.resources.api.BinaryResource
 import com.anrisoftware.resources.api.BinaryResourceFactory
 import com.google.common.io.Resources
 import com.google.inject.Guice
@@ -40,6 +41,9 @@ class SerializeBinaryResourceTest extends TestUtils {
 		def locale = Locale.ENGLISH
 		def url = Resources.getResource("com/anrisoftware/resources/binary/zipfiles/Lorem ipsum.html.zip")
 		def resource = factory.create name, locale, url
-		def resourceB = reserialize resource
+		assert resource.binary.size() == 71573
+
+		BinaryResource resourceB = reserialize resource
+		assert resourceB.binary.size() == 71573
 	}
 }
