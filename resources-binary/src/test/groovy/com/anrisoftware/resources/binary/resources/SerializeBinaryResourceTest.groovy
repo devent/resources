@@ -36,7 +36,7 @@ class SerializeBinaryResourceTest extends TestUtils {
 
 	@Test
 	void "test serialize binary resource"() {
-		def name = "Test"
+		def name = "lorem"
 		def locale = Locale.ENGLISH
 		def url = Resources.getResource("com/anrisoftware/resources/binary/zipfiles/Lorem ipsum.html.zip")
 		def resource = factory.create name, locale, url
