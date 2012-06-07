@@ -1,6 +1,5 @@
 package com.anrisoftware.resources.binary;
 
-import java.awt.Dimension;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
@@ -62,8 +61,8 @@ class BinariesWorker {
 	@Inject
 	BinariesWorker(BinariesWorkerLogger logger,
 			BinaryResourceFactory resourceFactory, @Assisted String name,
-			@Assisted Locale locale, @Assisted Dimension size,
-			@Assisted GetBundle getBundle, @Assisted BundlesMap bundles) {
+			@Assisted Locale locale, @Assisted GetBundle getBundle,
+			@Assisted BundlesMap bundles) {
 		this.log = logger;
 		this.resourceFactory = resourceFactory;
 		this.name = name;

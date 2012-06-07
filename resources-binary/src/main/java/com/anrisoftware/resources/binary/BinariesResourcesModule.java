@@ -2,6 +2,7 @@ package com.anrisoftware.resources.binary;
 
 import com.anrisoftware.resources.api.Binaries;
 import com.anrisoftware.resources.api.BinariesFactory;
+import com.anrisoftware.resources.binary.resources.BinaryResourceModule;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
@@ -15,6 +16,7 @@ public class BinariesResourcesModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
+		install(new BinaryResourceModule());
 		install(new FactoryModuleBuilder().implement(Binaries.class,
 				BinariesImpl.class).build(BinariesFactory.class));
 		install(new FactoryModuleBuilder().implement(BinariesWorker.class,

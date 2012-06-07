@@ -62,7 +62,9 @@ public interface Binaries {
 	 *            the name of the resource.
 	 * 
 	 * @param locale
-	 *            the {@link Locale} of the resource.
+	 *            the {@link Locale} of the resource or <code>null</code>. If
+	 *            the locale is <code>null</code> the default locale as in
+	 *            {@link Locale#getDefault()} is used.
 	 * 
 	 * @return the {@link BinaryResource}.
 	 * 
