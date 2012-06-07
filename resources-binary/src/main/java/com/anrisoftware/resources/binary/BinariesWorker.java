@@ -78,7 +78,7 @@ class BinariesWorker {
 	 */
 	public BinaryResource binaryResource() {
 		ResourceBundle bundle = getBundle.bundleFor(locale);
-		BinariesMap map = bundles.getImages(bundle);
+		BinariesMap map = bundles.getBinaries(bundle);
 		log.loadedResourceBundle(name, bundle);
 		lazyLoadBinary(map, bundle);
 		log.checkBinaryLoaded(map.haveBinary(name), name);
