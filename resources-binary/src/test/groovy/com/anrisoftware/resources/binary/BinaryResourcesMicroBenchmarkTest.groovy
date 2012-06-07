@@ -17,16 +17,36 @@ class BinaryResourcesMicroBenchmarkTest extends BinaryResourcesTestUtil {
 			long old = System.currentTimeMillis()
 			def binary = binaries.binaryResource name, locale
 			binary.getBinary()
-			//assert binary.stream.available() == output.availableBytes
 			long now = System.currentTimeMillis()
 			now - old
 		}
+
+		printf "access binary data of resource micro benchmark:%n"
 		inputs.eachWithIndex { it, i ->
-			createBinaries(it.baseName, it.resources, outputs[i].resources, callback)
+			createBinaries(it.baseName, it.resources, callback)
 		}
 	}
 
-	private createBinaries(def baseName, def resources, def output, def callback) {
+	@Test
+	void "open binary stream of resource micro benchmark"() {
+		Logger.getLogger(BinariesImpl).level = Level.INFO
+
+		def callback = { Binaries binaries, name, locale ->
+			Thread.sleep 500
+			long old = System.currentTimeMillis()
+			def binary = binaries.binaryResource name, locale
+			binary.getStream()
+			long now = System.currentTimeMillis()
+			now - old
+		}
+
+		printf "open binary stream of resource micro benchmark:%n"
+		inputs.eachWithIndex { it, i ->
+			createBinaries(it.baseName, it.resources, callback)
+		}
+	}
+
+	private createBinaries(def baseName, def resources, def callback) {
 		def binaries = factory.create(baseName)
 		long firstAccessTime = 0
 		long secondAccessTime = 0
