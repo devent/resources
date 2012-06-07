@@ -31,4 +31,8 @@ class BinaryResourceImplLogger extends AbstractLogger {
 		log.error(e.getMessage());
 		return ex;
 	}
+
+	void loadedBuffer(BinaryResourceImpl res) {
+		log.debug("Loaded the binary buffer in resource {}.", res);
+	}
 }

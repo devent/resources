@@ -71,6 +71,7 @@ class BinaryResourceImpl implements BinaryResource, Serializable {
 		InputStream stream = getStream();
 		buffer = createBufferWithStreamSize(stream);
 		readStreamToBuffer(stream, buffer);
+		log.loadedBuffer(this);
 		return buffer;
 	}
 
