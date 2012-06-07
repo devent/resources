@@ -1,17 +1,22 @@
+
+
 package com.anrisoftware.resources.binary
 
 import org.apache.log4j.Level
 import org.apache.log4j.Logger
-import org.junit.Test
+import org.junit.BeforeClass
 
 import com.anrisoftware.resources.api.Binaries
 
-class BinaryResourcesMicroBenchmarkTest extends BinaryResourcesTestUtil {
+abstract class AbstractBinaryResourcesMicroBenchmarkTest extends AbstractBinaryResourcesTestUtil {
 
-	@Test
+	@BeforeClass
+	static void beforeClass() {
+		AbstractBinaryResourcesTestUtil.beforeClass()
+		Logger.getLogger(Binaries).level = Level.INFO
+	}
+
 	void "access binary data of resource micro benchmark"() {
-		Logger.getLogger(BinariesImpl).level = Level.INFO
-
 		def callback = { Binaries binaries, name, locale ->
 			Thread.sleep 500
 			long old = System.currentTimeMillis()
@@ -27,10 +32,7 @@ class BinaryResourcesMicroBenchmarkTest extends BinaryResourcesTestUtil {
 		}
 	}
 
-	@Test
 	void "open binary stream of resource micro benchmark"() {
-		Logger.getLogger(BinariesImpl).level = Level.INFO
-
 		def callback = { Binaries binaries, name, locale ->
 			Thread.sleep 500
 			long old = System.currentTimeMillis()
@@ -46,7 +48,7 @@ class BinaryResourcesMicroBenchmarkTest extends BinaryResourcesTestUtil {
 		}
 	}
 
-	private createBinaries(def baseName, def resources, def callback) {
+	def createBinaries(def baseName, def resources, def callback) {
 		def binaries = factory.create(baseName)
 		long firstAccessTime = 0
 		long secondAccessTime = 0

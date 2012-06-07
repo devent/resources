@@ -5,12 +5,17 @@ import org.junit.BeforeClass
 
 import com.anrisoftware.globalpom.utils.TestUtils
 import com.anrisoftware.resources.api.BinariesFactory
-import com.anrisoftware.resources.binary.maps.BinariesResourcesMapsModule
 import com.google.common.io.Resources
 import com.google.inject.Guice
 import com.google.inject.Injector
 
-class BinaryResourcesTestUtil extends TestUtils {
+/**
+ * Creates the environment to test the binary resources.
+ * 
+ * @author Erwin Mueller, erwin.mueller@deventm.org
+ * @since 1.0
+ */
+abstract class AbstractBinaryResourcesTestUtil extends TestUtils {
 
 	static inputs
 
@@ -56,11 +61,7 @@ class BinaryResourcesTestUtil extends TestUtils {
 				: modules
 	}
 
-	def getResourcesModule() {
-		new BinariesResourcesModule()
-	}
+	abstract def getResourcesModule()
 
-	def getMapModule() {
-		new BinariesResourcesMapsModule()
-	}
+	abstract def getMapModule()
 }
