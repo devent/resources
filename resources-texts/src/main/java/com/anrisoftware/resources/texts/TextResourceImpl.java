@@ -1,10 +1,10 @@
 package com.anrisoftware.resources.texts;
 
-import static com.google.common.io.Resources.newReaderSupplier;
 import static java.lang.String.format;
 
 import java.io.Externalizable;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
@@ -17,23 +17,55 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+import com.anrisoftware.resources.api.BinaryResource;
+import com.anrisoftware.resources.api.BinaryResourceFactory;
 import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.api.TextResource;
 import com.google.common.io.CharStreams;
-import com.google.common.io.InputSupplier;
 import com.google.inject.assistedinject.Assisted;
 
-class TextResourceImpl implements TextResource, Serializable, Externalizable {
+@SuppressWarnings("serial")
+class TextResourceImpl implements TextResource, Serializable {
+
+	private static class SerializableCharsetWrapper implements Externalizable {
+
+		private Charset charset;
+
+		/**
+		 * For serialization.
+		 */
+		@SuppressWarnings("unused")
+		@Deprecated
+		public SerializableCharsetWrapper() {
+		}
+
+		public SerializableCharsetWrapper(Charset charset) {
+			this.charset = charset;
+		}
+
+		public Charset getCharset() {
+			return charset;
+		}
+
+		@Override
+		public void writeExternal(ObjectOutput out) throws IOException {
+			out.writeUTF(charset.name());
+		}
+
+		@Override
+		public void readExternal(ObjectInput in) throws IOException,
+				ClassNotFoundException {
+			String charsetName = in.readUTF();
+			charset = Charset.forName(charsetName);
+		}
+
+	}
 
 	private TextResourceImplLogger log;
 
-	private String name;
+	private BinaryResource binary;
 
-	private Locale locale;
-
-	private URL url;
-
-	private Charset charset;
+	private SerializableCharsetWrapper charsetWrapper;
 
 	private String text;
 
@@ -47,35 +79,47 @@ class TextResourceImpl implements TextResource, Serializable, Externalizable {
 	}
 
 	@Inject
-	TextResourceImpl(@Assisted String name, @Assisted Locale locale,
-			@Assisted URL url, @Assisted Charset charset,
-			TextResourceImplLogger logger) {
+	TextResourceImpl(TextResourceImplLogger logger,
+			BinaryResourceFactory factory, @Assisted String name,
+			@Assisted Locale locale, @Assisted URL url,
+			@Assisted Charset charset) {
+		this.binary = factory.create(name, locale, url);
 		this.log = logger;
-		this.name = name;
-		this.locale = locale;
-		this.url = url;
-		this.charset = charset;
+		this.charsetWrapper = new SerializableCharsetWrapper(charset);
+	}
+
+	@Override
+	public String getName() {
+		return binary.getName();
+	}
+
+	@Override
+	public byte[] getBinary() throws ResourcesException {
+		return binary.getBinary();
+	}
+
+	@Override
+	public InputStream getStream() throws ResourcesException {
+		return binary.getStream();
 	}
 
 	@Override
 	public String getText() throws ResourcesException {
 		if (text == null) {
 			text = readText();
+			discardBinary();
 		}
 		return text;
 	}
 
 	private String readText() throws ResourcesException {
+		InputStreamReader reader = new InputStreamReader(getStream(),
+				charsetWrapper.getCharset());
 		try {
-			InputSupplier<InputStreamReader> reader = getReader();
 			return CharStreams.toString(reader);
 		} catch (IOException e) {
-			throw log.errorLoadText(name, locale, e);
+			throw log.errorLoadText(this, e);
 		}
-	}
-
-	private InputSupplier<InputStreamReader> getReader() {
-		return newReaderSupplier(url, charset);
 	}
 
 	@Override
@@ -97,39 +141,23 @@ class TextResourceImpl implements TextResource, Serializable, Externalizable {
 
 	@Override
 	public Locale getLocale() {
-		return locale;
+		return binary.getLocale();
 	}
 
 	@Override
 	public URL getURL() {
-		return url;
+		return binary.getURL();
+	}
+
+	@Override
+	public void discardBinary() throws ResourcesException {
+		binary.discardBinary();
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("locale", getLocale())
-				.append("name", name).append("url", getURL()).toString();
-	}
-
-	@Override
-	public void writeExternal(ObjectOutput out) throws IOException {
-		out.writeObject(log);
-		out.writeObject(name);
-		out.writeObject(locale);
-		out.writeObject(url);
-		out.writeUTF(charset.name());
-		out.flush();
-	}
-
-	@Override
-	public void readExternal(ObjectInput in) throws IOException,
-			ClassNotFoundException {
-		log = (TextResourceImplLogger) in.readObject();
-		name = (String) in.readObject();
-		locale = (Locale) in.readObject();
-		url = (URL) in.readObject();
-		String charsetName = in.readUTF();
-		charset = Charset.forName(charsetName);
+				.append("name", getName()).append("url", getURL()).toString();
 	}
 
 }

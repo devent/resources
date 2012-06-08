@@ -1,6 +1,7 @@
 package com.anrisoftware.resources.texts
 
 import java.nio.charset.Charset
+import java.util.Locale
 
 
 import org.apache.log4j.Level
@@ -12,6 +13,8 @@ import com.anrisoftware.globalpom.utils.TestUtils
 import com.anrisoftware.resources.api.TextResource
 import com.anrisoftware.resources.api.Texts
 import com.anrisoftware.resources.api.TextsFactory
+import com.anrisoftware.resources.binary.BinariesResourcesModule
+import com.anrisoftware.resources.binary.maps.BinariesResourcesMapsModule
 import com.anrisoftware.resources.texts.maps.ResourcesTextsMapsModule
 import com.google.common.base.Charsets
 import com.google.inject.AbstractModule
@@ -43,17 +46,29 @@ class TextResourceTest extends TestUtils {
 	def lazyCreateModules() {
 		modules == null ?
 				[
-					resourcesTextsModule,
+					textsModule,
+					textsMapModule,
+					binariesModule,
+					binariesMapModule,
 					characterSetModule,
 				].flatten()
 				: modules
 	}
 
-	def getResourcesTextsModule() {
-		[
-			new ResourcesTextsModule(),
-			new ResourcesTextsMapsModule()
-		]
+	def getTextsModule() {
+		new ResourcesTextsModule()
+	}
+
+	def getTextsMapModule() {
+		new ResourcesTextsMapsModule()
+	}
+
+	def getBinariesModule() {
+		new BinariesResourcesModule()
+	}
+
+	def getBinariesMapModule() {
+		new BinariesResourcesMapsModule()
 	}
 
 	def getCharacterSetModule() {
