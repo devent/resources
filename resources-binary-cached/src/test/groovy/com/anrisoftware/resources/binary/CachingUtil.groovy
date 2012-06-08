@@ -25,18 +25,21 @@ class CachingUtil {
 
 	boolean storeByValue
 
-	CachingUtil(CacheManager manager, boolean storeByValue=true) {
+	boolean statisticsEnabled
+
+	CachingUtil(CacheManager manager, boolean storeByValue=true, boolean statisticsEnabled=false) {
 		this.manager = manager
 		this.cache = createCache()
 		this.storeByValue = storeByValue
+		this.statisticsEnabled = statisticsEnabled
 	}
 
-	def createCache() {
+	private createCache() {
 		def builder = manager.createCacheBuilder cacheName
 		builder.setStoreByValue storeByValue
 		//builder.setReadThrough(true)
 		//builder.setWriteThrough(false)
-		builder.setStatisticsEnabled(true)
+		builder.setStatisticsEnabled statisticsEnabled
 		//builder.setTransactionEnabled(IsolationLevel.NONE, Mode.NONE)
 		builder.registerCacheEntryListener([
 					entryCreated: { event -> println "entry created $event" },
