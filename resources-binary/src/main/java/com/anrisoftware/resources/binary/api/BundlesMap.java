@@ -26,11 +26,14 @@ public interface BundlesMap {
 	 * {@link DefaultBinariesMap} is created.
 	 * </p>
 	 * 
+	 * @param baseName
+	 *            the base name {@link String} of the resource bundle.
+	 * 
 	 * @param bundle
 	 *            the {@link ResourceBundle}.
 	 * 
 	 * @return the {@link TextsMap} for the resource bundle.
 	 */
-	BinariesMap getBinaries(ResourceBundle bundle);
+	BinariesMap getBinaries(String baseName, ResourceBundle bundle);
 
 }

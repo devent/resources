@@ -31,7 +31,7 @@ public class DefaultBundlesMap implements BundlesMap {
 	}
 
 	@Override
-	public BinariesMap getBinaries(ResourceBundle bundle) {
+	public BinariesMap getBinaries(String baseName, ResourceBundle bundle) {
 		BinariesMap images = map.get(bundle);
 		if (images == null) {
 			images = factory.create();
