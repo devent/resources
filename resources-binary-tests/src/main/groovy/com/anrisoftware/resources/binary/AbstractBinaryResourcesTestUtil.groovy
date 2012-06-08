@@ -51,6 +51,7 @@ abstract class AbstractBinaryResourcesTestUtil extends TestUtils {
 					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-7.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
 					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-8.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
 					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-9.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/ru/Lorem ipsum.html.zip"), locale: new Locale("ru"), availableBytes: 71906],
 					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/Lorem ipsum.html.zip"), locale: Locale.getDefault(), availableBytes: 71573],
 				]],
 		]
