@@ -94,6 +94,21 @@ class TextResourceImpl implements TextResource, Serializable {
 	}
 
 	@Override
+	public Locale getLocale() {
+		return binary.getLocale();
+	}
+
+	@Override
+	public URL getURL() {
+		return binary.getURL();
+	}
+
+	@Override
+	public Charset getCharset() {
+		return charsetWrapper.getCharset();
+	}
+
+	@Override
 	public byte[] getBinary() throws ResourcesException {
 		return binary.getBinary();
 	}
@@ -137,16 +152,6 @@ class TextResourceImpl implements TextResource, Serializable {
 		} else {
 			return format(text, args);
 		}
-	}
-
-	@Override
-	public Locale getLocale() {
-		return binary.getLocale();
-	}
-
-	@Override
-	public URL getURL() {
-		return binary.getURL();
 	}
 
 	@Override

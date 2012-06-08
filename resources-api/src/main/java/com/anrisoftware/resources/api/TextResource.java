@@ -1,5 +1,6 @@
 package com.anrisoftware.resources.api;
 
+import java.nio.charset.Charset;
 import java.util.Locale;
 
 /**
@@ -10,6 +11,15 @@ import java.util.Locale;
  * @see TextResourceFactory
  */
 public interface TextResource extends BinaryResource {
+
+	/**
+	 * Returns the character set of this resource.
+	 * 
+	 * @return the {@link Charset}.
+	 * 
+	 * @since 1.2
+	 */
+	Charset getCharset();
 
 	/**
 	 * Returns the text {@link String} of the resource.
