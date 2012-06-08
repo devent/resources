@@ -92,30 +92,6 @@ abstract class AbstractTextResourceTestUtils extends TestUtils {
 				}
 	}
 
-	void "load plain text with defined locale"() {
-		def baseName = "TextsWithDefaultCharset"
-		def classLoader = getClass().classLoader
-		Texts texts = factory.create baseName, classLoader
-
-		Locale locale = Locale.GERMAN
-		TextResource text = texts.textResource "hello", locale
-		assertStringContent text.text, "Hallo Welt - German"
-		assert text.locale == locale
-		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/texts/de/hello.txt"
-
-		locale = new Locale("ru")
-		text = texts.textResource "hello", locale
-		assertStringContent text.text, "привет мир - Russian"
-		assert text.locale == locale
-		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/texts/ru/hello.txt"
-
-		locale = Locale.ENGLISH
-		text = texts.textResource "hello", Locale.ENGLISH
-		assertStringContent text.text, "Hello World - English Default"
-		assert text.locale.toString() == ""
-		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/texts/hello.txt"
-	}
-
 	void "micro-benchmark get the same text resource for different languages"() {
 		Logger.getLogger(TextsImpl).setLevel(Level.INFO)
 		Locale german = Locale.GERMAN
