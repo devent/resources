@@ -24,7 +24,6 @@ import com.google.inject.assistedinject.AssistedInject;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-@SuppressWarnings("serial")
 class BinaryResourceImpl implements BinaryResource, Serializable {
 
 	private final BinaryResourceImplLogger log;
@@ -112,8 +111,14 @@ class BinaryResourceImpl implements BinaryResource, Serializable {
 	}
 
 	@Override
+	public void discardBinary() throws ResourcesException {
+		buffer = null;
+	}
+
+	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append(name).append(locale).toString();
+		return new ToStringBuilder(this).append(name).append("locale", locale)
+				.append("url", url).toString();
 	}
 
 	Object writeReplace() throws ObjectStreamException {

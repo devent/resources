@@ -65,4 +65,16 @@ public interface BinaryResource {
 	 */
 	InputStream getStream() throws ResourcesException;
 
+	/**
+	 * <p>
+	 * Discards the binary data of this resource.
+	 * </p>
+	 * <p>
+	 * Use this method if the binary data is no longer needed.
+	 * </p>
+	 * 
+	 * @throws ResourcesException
+	 *             if there was an error discarding the data.
+	 */
+	void discardBinary() throws ResourcesException;
 }
