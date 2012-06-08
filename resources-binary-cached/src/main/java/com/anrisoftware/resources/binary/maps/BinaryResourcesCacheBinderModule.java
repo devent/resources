@@ -2,10 +2,10 @@ package com.anrisoftware.resources.binary.maps;
 
 import static com.google.inject.name.Names.named;
 
-import javax.cache.CacheBuilder;
-import javax.cache.CacheManager;
+import javax.cache.Cache;
 
 import com.anrisoftware.resources.api.BinaryResource;
+import com.anrisoftware.resources.binary.api.BinariesCacheKey;
 import com.google.inject.AbstractModule;
 
 /**
@@ -13,55 +13,37 @@ import com.google.inject.AbstractModule;
  * Helper module to bind the cache for the binaries map.
  * </p>
  * <p>
- * It will lazy create a new cache from a specified cache builder if the cache
- * is not already present in the cache manager.
+ * It will create a new cache from a specified cache factory.
  * </p>
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
- * @see CacheManager
- * @see CacheBuilder
+ * @see CacheFactory
  */
 public class BinaryResourcesCacheBinderModule extends AbstractModule {
 
-	public interface BuilderFactory {
-		CacheBuilder<String, BinaryResource> create(CacheManager manager,
-				String name);
+	public interface CacheFactory {
+		Cache<BinariesCacheKey, BinaryResource> create();
 	}
 
-	public static final String BINARIES_MAP_CACHE_NAME = "texts-map-cache";
+	public static final String BINARIES_CACHE_FACTORY = "binaries-cache-factory";
 
-	public static final String BINARIES_MAP_CACHE_MANAGER = "texts-map-cache-manager";
-
-	public static final String BINARIES_MAP_CACHE_BUILDER = "texts-map-cache-builder";
-
-	private final CacheManager manager;
-
-	private final BuilderFactory builderFactory;
+	private final CacheFactory cacheFactory;
 
 	/**
-	 * Set the specified cache builder from which the module will create a new
-	 * cache for the binary resources if the cache is not already present in the
-	 * specified cache manager.
+	 * Set the specified cache factory from which we create needed caches.
 	 * 
-	 * @param manager
-	 *            the {@link CacheManager}.
-	 * 
-	 * @param builder
-	 *            the {@link CacheBuilder}.
+	 * @param factory
+	 *            the {@link CacheFactory}.
 	 */
-	public BinaryResourcesCacheBinderModule(CacheManager manager,
-			BuilderFactory builderFactory) {
-		this.manager = manager;
-		this.builderFactory = builderFactory;
+	public BinaryResourcesCacheBinderModule(CacheFactory factory) {
+		this.cacheFactory = factory;
 	}
 
 	@Override
 	protected void configure() {
-		bind(CacheManager.class).annotatedWith(
-				named(BINARIES_MAP_CACHE_MANAGER)).toInstance(manager);
-		bind(BuilderFactory.class).annotatedWith(
-				named(BINARIES_MAP_CACHE_BUILDER)).toInstance(builderFactory);
+		bind(CacheFactory.class).annotatedWith(
+				named(BINARIES_CACHE_FACTORY)).toInstance(cacheFactory);
 	}
 
 }

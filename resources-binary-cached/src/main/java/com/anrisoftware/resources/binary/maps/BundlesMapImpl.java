@@ -1,25 +1,21 @@
 package com.anrisoftware.resources.binary.maps;
 
-import static com.anrisoftware.resources.binary.maps.BinaryResourcesCacheBinderModule.BINARIES_MAP_CACHE_BUILDER;
-import static com.anrisoftware.resources.binary.maps.BinaryResourcesCacheBinderModule.BINARIES_MAP_CACHE_MANAGER;
-import static com.anrisoftware.resources.binary.maps.BinaryResourcesCacheBinderModule.BINARIES_MAP_CACHE_NAME;
-import static java.lang.String.format;
+import static com.anrisoftware.resources.binary.maps.BinaryResourcesCacheBinderModule.BINARIES_CACHE_FACTORY;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.cache.Cache;
-import javax.cache.CacheManager;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.anrisoftware.resources.api.BinaryResource;
+import com.anrisoftware.resources.binary.api.BinariesCacheKey;
 import com.anrisoftware.resources.binary.api.BinariesMap;
 import com.anrisoftware.resources.binary.api.BinariesMapFactory;
 import com.anrisoftware.resources.binary.api.BundlesMap;
-import com.anrisoftware.resources.binary.maps.BinaryResourcesCacheBinderModule.BuilderFactory;
+import com.anrisoftware.resources.binary.maps.BinaryResourcesCacheBinderModule.CacheFactory;
 import com.google.common.collect.Maps;
 
 /**
@@ -32,52 +28,39 @@ import com.google.common.collect.Maps;
  */
 class BundlesMapImpl implements BundlesMap {
 
-	private final BundlesMapLogger log;
-
 	private final Map<ResourceBundle, BinariesMap> map;
 
-	private final BinariesMapFactory textsFactory;
+	private final BinariesMapFactory binariesFactory;
 
-	private final CacheManager manager;
-
-	private final BuilderFactory builderFactory;
+	private final CacheFactory cacheFactory;
 
 	@Inject
-	BundlesMapImpl(BundlesMapLogger logger, BinariesMapFactory textsFactory,
-			@Named(BINARIES_MAP_CACHE_MANAGER) CacheManager manager,
-			@Named(BINARIES_MAP_CACHE_BUILDER) BuilderFactory builderFactory) {
-		this.log = logger;
+	BundlesMapImpl(BinariesMapFactory binariesFactory,
+			@Named(BINARIES_CACHE_FACTORY) CacheFactory cacheFactory) {
 		this.map = Maps.newHashMap();
-		this.textsFactory = textsFactory;
-		this.manager = manager;
-		this.builderFactory = builderFactory;
+		this.binariesFactory = binariesFactory;
+		this.cacheFactory = cacheFactory;
 	}
 
 	@Override
-	public BinariesMap getBinaries(ResourceBundle bundle) {
-		BinariesMap Binaries = map.get(bundle);
-		if (Binaries == null) {
-			Binaries = createTexts(bundle);
+	public BinariesMap getBinaries(String baseName, ResourceBundle bundle) {
+		BinariesMap binaries = map.get(bundle);
+		if (binaries == null) {
+			binaries = createMap(baseName, bundle);
 		}
-		return Binaries;
+		return binaries;
 	}
 
-	private BinariesMap createTexts(ResourceBundle bundle) {
-		BinariesMapImpl binaries = (BinariesMapImpl) textsFactory.create();
-		Cache<String, BinaryResource> cache = lazyCreateCache(bundle
-				.getLocale());
-		binaries.setCache(cache);
+	private BinariesMap createMap(String baseName, ResourceBundle bundle) {
+		BinariesMapImpl binaries = (BinariesMapImpl) binariesFactory.create();
+		binaries.setCache(createCache());
+		binaries.setBaseName(baseName);
+		binaries.setLocale(bundle.getLocale());
 		map.put(bundle, binaries);
 		return binaries;
 	}
 
-	private Cache<String, BinaryResource> lazyCreateCache(Locale locale) {
-		String name = format("%s-%s", BINARIES_MAP_CACHE_NAME, locale);
-		Cache<String, BinaryResource> cache = manager.getCache(name);
-		if (cache == null) {
-			cache = builderFactory.create(manager, name).build();
-			log.buildNewCache(name);
-		}
-		return cache;
+	private Cache<BinariesCacheKey, BinaryResource> createCache() {
+		return cacheFactory.create();
 	}
 }

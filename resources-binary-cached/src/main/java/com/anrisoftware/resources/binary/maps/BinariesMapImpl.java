@@ -1,10 +1,13 @@
 package com.anrisoftware.resources.binary.maps;
 
+import java.util.Locale;
+
 import javax.cache.Cache;
 import javax.inject.Inject;
 
 import com.anrisoftware.resources.api.BinaryResource;
-import com.anrisoftware.resources.binary.api.BinariesMap;
+import com.anrisoftware.resources.binary.api.BinariesCacheKey;
+import com.anrisoftware.resources.binary.api.BinariesCachedMap;
 
 /**
  * <p>
@@ -14,19 +17,34 @@ import com.anrisoftware.resources.binary.api.BinariesMap;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-class BinariesMapImpl implements BinariesMap {
+class BinariesMapImpl implements BinariesCachedMap {
 
 	private final BinariesMapLogger log;
 
-	private Cache<String, BinaryResource> cache;
+	private Cache<BinariesCacheKey, BinaryResource> cache;
+
+	private String baseName;
+
+	private Locale locale;
 
 	@Inject
 	BinariesMapImpl(BinariesMapLogger logger) {
 		this.log = logger;
 	}
 
-	public void setCache(Cache<String, BinaryResource> cache) {
+	@Override
+	public void setCache(Cache<BinariesCacheKey, BinaryResource> cache) {
 		this.cache = cache;
+	}
+
+	@Override
+	public void setBaseName(String baseName) {
+		this.baseName = baseName;
+	}
+
+	@Override
+	public void setLocale(Locale locale) {
+		this.locale = locale;
 	}
 
 	/**
@@ -39,11 +57,16 @@ class BinariesMapImpl implements BinariesMap {
 	@Override
 	public void putBinary(BinaryResource resource) {
 		String name = resource.getName();
-		if (!cache.containsKey(name)) {
-			cache.put(name, resource);
+		BinariesCacheKey key = createKey(name);
+		if (!cache.containsKey(key)) {
+			cache.put(key, resource);
 		} else {
 			log.textAlreadyInMap(name);
 		}
+	}
+
+	private CacheKeyImpl createKey(String name) {
+		return new CacheKeyImpl(name, baseName, locale);
 	}
 
 	/**
@@ -57,7 +80,7 @@ class BinariesMapImpl implements BinariesMap {
 	 */
 	@Override
 	public BinaryResource getBinary(String name) {
-		return cache.get(name);
+		return cache.get(createKey(name));
 	}
 
 	/**
@@ -71,6 +94,6 @@ class BinariesMapImpl implements BinariesMap {
 	 */
 	@Override
 	public boolean haveBinary(String name) {
-		return cache.containsKey(name);
+		return cache.containsKey(createKey(name));
 	}
 }
