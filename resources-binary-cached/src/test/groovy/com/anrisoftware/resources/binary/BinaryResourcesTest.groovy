@@ -1,8 +1,9 @@
 package com.anrisoftware.resources.binary
 
+import javax.cache.Caching
+
 import org.junit.Test
 
-import com.anrisoftware.resources.binary.maps.BinariesResourcesMapsModule
 
 class BinaryResourcesTest extends AbstractBinaryResourcesTest {
 
@@ -16,6 +17,6 @@ class BinaryResourcesTest extends AbstractBinaryResourcesTest {
 	}
 
 	def getMapModule() {
-		new BinariesResourcesMapsModule()
+		new CachingUtil(Caching.getCacheManager()).mapModule
 	}
 }

@@ -5,61 +5,71 @@ import static com.anrisoftware.resources.binary.maps.BinaryResourcesCacheBinderM
 
 import javax.cache.CacheManager
 import javax.cache.Caching
+import javax.cache.event.CacheEntryCreatedListener
+import javax.cache.event.CacheEntryExpiredListener
+import javax.cache.event.CacheEntryReadListener
+import javax.cache.event.CacheEntryRemovedListener
+import javax.cache.event.CacheEntryUpdatedListener
+import javax.cache.event.NotificationScope
 
-import com.anrisoftware.resources.binary.maps.BinaryResourcesCachedModule
-import com.anrisoftware.resources.binary.maps.BinaryResourcesCacheBinderModule.CacheFactory
-import com.google.inject.AbstractModule
+import org.junit.Before
+import org.junit.Test
+
+import com.anrisoftware.resources.api.Binaries
+
 
 class CachingTest extends AbstractBinaryResourcesTestUtil {
 
 	static CacheManager cacheManager = Caching.getCacheManager()
+
+	CachingUtil cachingUtil
+
+	@Before
+	public void before() {
+		cachingUtil = new CachingUtil(cacheManager)
+		cachingUtil.cache.configuration.cacheConfiguration.timeToIdleSeconds = 0
+		cachingUtil.cache.configuration.cacheConfiguration.timeToLiveSeconds = 0
+
+		def scope = NotificationScope.REMOTE
+		def synchronous = false
+		cachingUtil.cache.registerCacheEntryListener([entryCreated: { event -> println event }, entriesCreated: { events -> println events }]as CacheEntryCreatedListener, scope, synchronous)
+		cachingUtil.cache.registerCacheEntryListener({ entry -> println entry }as CacheEntryExpiredListener, scope, synchronous)
+		cachingUtil.cache.registerCacheEntryListener([entryRead: { event -> println event }, entriesRead: { events -> println events }]as CacheEntryReadListener, scope, synchronous)
+		cachingUtil.cache.registerCacheEntryListener([entryRemoved: { event -> println event }, entriesRemoved: { events -> println events }]as CacheEntryRemovedListener, scope, synchronous)
+		cachingUtil.cache.registerCacheEntryListener([entryUpdated: { event -> println event }, entriesUpdated: { events -> println events }]as CacheEntryUpdatedListener, scope, synchronous)
+		super.before()
+	}
 
 	def getResourcesModule() {
 		new BinariesResourcesModule()
 	}
 
 	def getMapModule() {
-		def builderFactory = {
-			manager, name ->
-			def cache = cacheManager.getCache(name)
-			cache = cache == null ? createCache(name) : cache
-		}as CacheFactory
-		[
-			new BinaryResourcesCachedModule(),
-			new AbstractModule() {
-				@Override
-				protected void configure() {
-					bind(CacheManager.class).annotatedWith(
-							named(BINARIES_MAP_CACHE_MANAGER)).toInstance(cacheManager)
-					bind(CacheFactory.class).annotatedWith(
-							named(BINARIES_CACHE_FACTORY)).toInstance(builderFactory)
-				}
-			}
-		]
+		cachingUtil.mapModule
 	}
 
+	@Test
 	void "test time to idle"() {
+		def binariesMap = [:]
 		inputs.eachWithIndex { it, i ->
-			createBinaries(it.baseName, it.resources, callback)
+			createBinaries(binariesMap, it.baseName, it.resources)
+		}
+		inputs.eachWithIndex { it, i ->
+			loadBinaryData binariesMap[it.baseName], it.resources, 1000
 		}
 	}
 
-	def createBinaries(def baseName, def resources, def callback) {
+	def createBinaries(def binariesMap, def baseName, def resources) {
 		def binaries = factory.create(baseName)
-		long firstAccessTime = 0
-		long secondAccessTime = 0
-		int num = resources.size()
+		loadBinaryData binaries, resources
+		binariesMap[baseName] = binaries
+	}
 
+	private loadBinaryData(Binaries binaries, def resources, long waitTime = 0) {
 		resources.eachWithIndex { it, i ->
-			firstAccessTime += callback binaries, it.name, it.locale
+			Thread.sleep waitTime
+			def binary = binaries.binaryResource it.name, it.locale
+			binary.getBinary()
 		}
-		resources.eachWithIndex { it, i ->
-			secondAccessTime += callback binaries, it.name, it.locale
-		}
-
-		printf "First access:%n"
-		printf "System time (%d): (%.3f)%n", num, firstAccessTime/num
-		printf "Second access:%n"
-		printf "System time (%d): (%.3f)%n", num, secondAccessTime/num
 	}
 }

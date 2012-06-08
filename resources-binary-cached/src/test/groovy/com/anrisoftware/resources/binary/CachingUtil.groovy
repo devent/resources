@@ -23,17 +23,20 @@ class CachingUtil {
 
 	private Cache cache
 
-	CachingUtil(CacheManager manager) {
+	boolean storeByValue
+
+	CachingUtil(CacheManager manager, boolean storeByValue=true) {
 		this.manager = manager
 		this.cache = createCache()
+		this.storeByValue = storeByValue
 	}
 
 	def createCache() {
 		def builder = manager.createCacheBuilder cacheName
-		builder.setStoreByValue(true)
+		builder.setStoreByValue storeByValue
 		//builder.setReadThrough(true)
 		//builder.setWriteThrough(false)
-		builder.setStatisticsEnabled(false)
+		builder.setStatisticsEnabled(true)
 		//builder.setTransactionEnabled(IsolationLevel.NONE, Mode.NONE)
 		builder.registerCacheEntryListener([
 					entryCreated: { event -> println "entry created $event" },
@@ -48,6 +51,10 @@ class CachingUtil {
 			new BinaryResourcesCachedModule(),
 			new BinaryResourcesCacheBinderModule(cacheFactory)
 		]
+	}
+
+	Cache getCache() {
+		cache
 	}
 
 }
