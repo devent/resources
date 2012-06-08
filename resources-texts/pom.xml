@@ -38,15 +38,11 @@
 		</dependency>
 
 		<!-- test dependencies -->
-		<dependency>
-			<groupId>com.anrisoftware.globalpom</groupId>
-			<artifactId>globalpom-groovytestutils</artifactId>
-			<scope>test</scope>
-		</dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
-            <artifactId>resources-binary</artifactId>
+            <artifactId>resources-texts-tests</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
         </dependency>
 	</dependencies>
 
