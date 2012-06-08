@@ -26,6 +26,15 @@ abstract class AbstractBinaryResourcesTestUtil extends TestUtils {
 		inputs = [
 			[baseName: "Zipfiles", resources: [
 					[name: "lorem", locale: Locale.GERMAN],
+					[name: "lorem1", locale: Locale.GERMAN],
+					[name: "lorem2", locale: Locale.GERMAN],
+					[name: "lorem3", locale: Locale.GERMAN],
+					[name: "lorem4", locale: Locale.GERMAN],
+					[name: "lorem5", locale: Locale.GERMAN],
+					[name: "lorem6", locale: Locale.GERMAN],
+					[name: "lorem7", locale: Locale.GERMAN],
+					[name: "lorem8", locale: Locale.GERMAN],
+					[name: "lorem9", locale: Locale.GERMAN],
 					[name: "lorem", locale: new Locale("ru")],
 					[name: "lorem", locale: null]
 				]],
@@ -33,7 +42,15 @@ abstract class AbstractBinaryResourcesTestUtil extends TestUtils {
 		outputs = [
 			[baseName: "Zipfiles", resources: [
 					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
-					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/ru/Lorem ipsum.html.zip"), locale: new Locale("ru"), availableBytes: 71906],
+					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-1.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-2.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-3.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-4.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-5.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-6.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-7.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-8.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-9.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
 					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/Lorem ipsum.html.zip"), locale: Locale.getDefault(), availableBytes: 71573],
 				]],
 		]
