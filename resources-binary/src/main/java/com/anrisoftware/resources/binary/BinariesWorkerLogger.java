@@ -1,6 +1,7 @@
 package com.anrisoftware.resources.binary;
 
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -38,11 +39,12 @@ class BinariesWorkerLogger extends AbstractLogger {
 		log.debug("Add new binary resouce {}.", resource);
 	}
 
-	void checkBinaryLoaded(boolean haveResource, String name)
+	void checkBinaryLoaded(boolean haveResource, String name, Locale locale)
 			throws ResourcesException {
 		if (!haveResource) {
 			ResourcesException ex = new ResourcesException("", name,
-					"No binary resource loaded for ``%s''", name);
+					"No binary resource loaded for ``%s'' for locale %s", name,
+					locale);
 			log.error(ex.getMessage());
 			throw ex;
 		}
