@@ -13,7 +13,7 @@ abstract class AbstractBinaryResourcesMicroBenchmarkTest extends AbstractBinaryR
 	@BeforeClass
 	static void beforeClass() {
 		AbstractBinaryResourcesTestUtil.beforeClass()
-		Logger.getLogger(Binaries).level = Level.INFO
+		Logger.getLogger("com.anrisoftware.resources.binary").level = Level.INFO
 	}
 
 	void "access binary data of resource micro benchmark"() {
