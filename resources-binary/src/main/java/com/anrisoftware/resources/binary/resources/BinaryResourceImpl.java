@@ -1,8 +1,11 @@
 package com.anrisoftware.resources.binary.resources;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectStreamException;
 import java.io.Serializable;
+import java.io.WriteAbortedException;
 import java.net.URL;
 import java.util.Locale;
 
@@ -93,6 +96,14 @@ class BinaryResourceImpl implements BinaryResource, Serializable {
 
 	@Override
 	public InputStream getStream() throws ResourcesException {
+		if (buffer == null) {
+			return openStream();
+		} else {
+			return new ByteArrayInputStream(buffer);
+		}
+	}
+
+	private InputStream openStream() {
 		try {
 			return url.openStream();
 		} catch (IOException e) {
@@ -105,4 +116,12 @@ class BinaryResourceImpl implements BinaryResource, Serializable {
 		return new ToStringBuilder(this).append(name).append(locale).toString();
 	}
 
+	Object writeReplace() throws ObjectStreamException {
+		try {
+			getBinary();
+		} catch (ResourcesException e) {
+			throw new WriteAbortedException("Failed to read binary data.", e);
+		}
+		return this;
+	}
 }
