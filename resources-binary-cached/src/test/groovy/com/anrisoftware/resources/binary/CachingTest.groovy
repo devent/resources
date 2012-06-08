@@ -12,6 +12,8 @@ import javax.cache.event.CacheEntryRemovedListener
 import javax.cache.event.CacheEntryUpdatedListener
 import javax.cache.event.NotificationScope
 
+import net.sf.ehcache.store.MemoryStoreEvictionPolicy
+
 import org.junit.Before
 import org.junit.Test
 
@@ -27,8 +29,10 @@ class CachingTest extends AbstractBinaryResourcesTestUtil {
 	@Before
 	public void before() {
 		cachingUtil = new CachingUtil(cacheManager)
-		cachingUtil.cache.configuration.cacheConfiguration.timeToIdleSeconds = 0
-		cachingUtil.cache.configuration.cacheConfiguration.timeToLiveSeconds = 0
+		cachingUtil.cache.configuration.cacheConfiguration.timeToIdleSeconds = 5
+		cachingUtil.cache.configuration.cacheConfiguration.timeToLiveSeconds = 5
+		cachingUtil.cache.configuration.cacheConfiguration.maxEntriesLocalHeap = 5
+		cachingUtil.cache.configuration.cacheConfiguration.memoryStoreEvictionPolicyFromObject = MemoryStoreEvictionPolicy.FIFO
 
 		def scope = NotificationScope.REMOTE
 		def synchronous = false
