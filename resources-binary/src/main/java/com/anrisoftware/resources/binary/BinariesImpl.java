@@ -4,6 +4,10 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
+import com.anrisoftware.resources.GetBundle;
+import com.anrisoftware.resources.GetBundleWithClassLoader;
+import com.anrisoftware.resources.GetBundleWithClassLoaderAndControl;
+import com.anrisoftware.resources.GetBundleWithControl;
 import com.anrisoftware.resources.api.Binaries;
 import com.anrisoftware.resources.api.BinaryResource;
 import com.anrisoftware.resources.api.ResourcesException;

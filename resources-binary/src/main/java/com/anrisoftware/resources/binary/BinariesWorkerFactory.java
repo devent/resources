@@ -2,6 +2,7 @@ package com.anrisoftware.resources.binary;
 
 import java.util.Locale;
 
+import com.anrisoftware.resources.GetBundle;
 import com.anrisoftware.resources.binary.api.BundlesMap;
 
 /**
