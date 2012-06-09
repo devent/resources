@@ -10,7 +10,7 @@ import java.util.Locale;
  * @since 1.0
  * @see TextResourceFactory
  */
-public interface TextResource extends BinaryResource {
+public interface TextResource extends Resource {
 
 	/**
 	 * Returns the character set of this resource.

@@ -27,7 +27,7 @@ import java.awt.Image;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-public interface ImageResource extends BinaryResource {
+public interface ImageResource extends Resource {
 
 	/**
 	 * Returns the {@link ImageResolution}.

@@ -1,8 +1,6 @@
 package com.anrisoftware.resources.api;
 
 import java.io.InputStream;
-import java.net.URL;
-import java.util.Locale;
 
 /**
  * Resource for binary data.
@@ -10,28 +8,7 @@ import java.util.Locale;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.2
  */
-public interface BinaryResource {
-
-	/**
-	 * Returns the name of this resource.
-	 * 
-	 * @return the {@link String} name.
-	 */
-	String getName();
-
-	/**
-	 * Returns the locale of the resource.
-	 * 
-	 * @return the {@link Locale} of the resource.
-	 */
-	Locale getLocale();
-
-	/**
-	 * Returns the URL of the resource.
-	 * 
-	 * @return the {@link URL} of the resource.
-	 */
-	URL getURL();
+public interface BinaryResource extends Resource {
 
 	/**
 	 * <p>
