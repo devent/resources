@@ -77,15 +77,39 @@ public interface Images {
 	 * @param size
 	 *            the needed {@link Dimension} width and height of the image.
 	 * 
-	 * @param resolution
-	 *            the {@link ImageResolution} to use.
-	 * 
 	 * @throws ResourcesException
 	 *             if the resource is not available.
 	 * 
 	 * @since 1.1
 	 */
 	ImageResource imageResource(String name, Locale locale, Dimension size)
+			throws ResourcesException;
+
+	/**
+	 * <p>
+	 * Returns the image with the specified name, locale size.
+	 * </p>
+	 * <p>
+	 * If the needed size is not the size of the image, a scaled instance will
+	 * be returned. The most nearest available image resolution will be used for
+	 * scaling.
+	 * </p>
+	 * 
+	 * @param name
+	 *            the name {@link String} of the resource.
+	 * 
+	 * @param locale
+	 *            the {@link Locale} of the resource.
+	 * 
+	 * @param size
+	 *            the needed {@link IconSize} of the image.
+	 * 
+	 * @throws ResourcesException
+	 *             if the resource is not available.
+	 * 
+	 * @since 1.1
+	 */
+	ImageResource imageResource(String name, Locale locale, IconSize size)
 			throws ResourcesException;
 
 	/**
