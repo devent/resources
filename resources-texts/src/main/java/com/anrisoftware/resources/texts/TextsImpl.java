@@ -11,6 +11,10 @@ import javax.inject.Named;
 
 import org.apache.commons.lang.text.StrTokenizer;
 
+import com.anrisoftware.resources.GetBundle;
+import com.anrisoftware.resources.GetBundleWithClassLoader;
+import com.anrisoftware.resources.GetBundleWithClassLoaderAndControl;
+import com.anrisoftware.resources.GetBundleWithControl;
 import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.api.TextResource;
 import com.anrisoftware.resources.api.TextResourceFactory;
