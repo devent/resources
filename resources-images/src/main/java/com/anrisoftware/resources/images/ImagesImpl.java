@@ -9,6 +9,7 @@ import com.anrisoftware.resources.GetBundle;
 import com.anrisoftware.resources.GetBundleWithClassLoader;
 import com.anrisoftware.resources.GetBundleWithClassLoaderAndControl;
 import com.anrisoftware.resources.GetBundleWithControl;
+import com.anrisoftware.resources.api.IconSize;
 import com.anrisoftware.resources.api.ImageResolution;
 import com.anrisoftware.resources.api.ImageResource;
 import com.anrisoftware.resources.api.Images;
@@ -79,6 +80,13 @@ class ImagesImpl implements Images {
 	public ImageResource imageResource(String name, Locale locale, int width,
 			int height) throws ResourcesException {
 		return imageResource(name, locale, new Dimension(width, height));
+	}
+
+	@Override
+	public ImageResource imageResource(String name, Locale locale, IconSize size)
+			throws ResourcesException {
+		return imageResource(name, locale,
+				new Dimension(size.getSize(), size.getSize()));
 	}
 
 	@Override
