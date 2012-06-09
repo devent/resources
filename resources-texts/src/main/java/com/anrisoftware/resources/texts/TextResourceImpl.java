@@ -112,7 +112,7 @@ class TextResourceImpl implements TextResource, Serializable {
 	public String getText() throws ResourcesException {
 		if (text == null) {
 			readText();
-			binary = null;
+			binary.discardBinary();
 		}
 		return text;
 	}
