@@ -2,7 +2,7 @@ package com.anrisoftware.resources.texts
 
 import org.junit.Test
 
-import com.anrisoftware.resources.texts.maps.ResourcesTextsMapsModule
+import com.anrisoftware.resources.texts.maps.TextsDefaultMapsModule
 
 class SerializeTextResourceTest extends AbstractSerializationTest {
 
@@ -13,11 +13,11 @@ class SerializeTextResourceTest extends AbstractSerializationTest {
 
 	@Override
 	Object getTextsModule() {
-		new ResourcesTextsModule()
+		new TextsResourcesModule()
 	}
 
 	@Override
 	Object getTextsMapModule() {
-		new ResourcesTextsMapsModule()
+		new TextsDefaultMapsModule()
 	}
 }

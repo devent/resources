@@ -6,7 +6,7 @@ import java.nio.charset.Charset
 import org.junit.Test
 
 import com.anrisoftware.resources.api.TextsFactory
-import com.anrisoftware.resources.texts.maps.ResourcesTextsMapsModule
+import com.anrisoftware.resources.texts.maps.TextsDefaultMapsModule
 import com.google.inject.Injector
 
 /**
@@ -18,11 +18,11 @@ import com.google.inject.Injector
 class TextResourceTest extends AbstractTextResourceTest {
 
 	def getTextsModule() {
-		new ResourcesTextsModule()
+		new TextsResourcesModule()
 	}
 
 	def getTextsMapModule() {
-		new ResourcesTextsMapsModule()
+		new TextsDefaultMapsModule()
 	}
 
 	@Test

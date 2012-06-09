@@ -17,7 +17,7 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-public class BinariesResourcesMapsModule extends AbstractModule {
+public class BinariesDefaultMapsModule extends AbstractModule {
 
 	@Override
 	protected void configure() {

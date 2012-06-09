@@ -13,7 +13,7 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-public class ResourcesTextsModule extends AbstractModule {
+public class TextsResourcesModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
