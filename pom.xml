@@ -20,5 +20,6 @@
         <module>resources-texts-tests</module>
         <module>resources-binary-cached</module>
         <module>resources-binary-tests</module>
+        <module>resources-getbundle</module>
   </modules>
 </project>
