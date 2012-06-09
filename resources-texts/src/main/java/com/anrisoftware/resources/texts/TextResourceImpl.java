@@ -109,29 +109,20 @@ class TextResourceImpl implements TextResource, Serializable {
 	}
 
 	@Override
-	public byte[] getBinary() throws ResourcesException {
-		return binary.getBinary();
-	}
-
-	@Override
-	public InputStream getStream() throws ResourcesException {
-		return binary.getStream();
-	}
-
-	@Override
 	public String getText() throws ResourcesException {
 		if (text == null) {
-			text = readText();
-			discardBinary();
+			readText();
+			binary = null;
 		}
 		return text;
 	}
 
-	private String readText() throws ResourcesException {
-		InputStreamReader reader = new InputStreamReader(getStream(),
-				charsetWrapper.getCharset());
+	private void readText() throws ResourcesException {
+		InputStream stream = binary.getStream();
+		Charset charset = charsetWrapper.getCharset();
+		InputStreamReader reader = new InputStreamReader(stream, charset);
 		try {
-			return CharStreams.toString(reader);
+			text = CharStreams.toString(reader);
 		} catch (IOException e) {
 			throw log.errorLoadText(this, e);
 		}
@@ -152,11 +143,6 @@ class TextResourceImpl implements TextResource, Serializable {
 		} else {
 			return format(text, args);
 		}
-	}
-
-	@Override
-	public void discardBinary() throws ResourcesException {
-		binary.discardBinary();
 	}
 
 	@Override
