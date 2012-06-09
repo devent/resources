@@ -5,6 +5,10 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
+import com.anrisoftware.resources.GetBundle;
+import com.anrisoftware.resources.GetBundleWithClassLoader;
+import com.anrisoftware.resources.GetBundleWithClassLoaderAndControl;
+import com.anrisoftware.resources.GetBundleWithControl;
 import com.anrisoftware.resources.api.ImageResolution;
 import com.anrisoftware.resources.api.ImageResource;
 import com.anrisoftware.resources.api.Images;

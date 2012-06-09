@@ -3,6 +3,7 @@ package com.anrisoftware.resources.images;
 import java.awt.Dimension;
 import java.util.Locale;
 
+import com.anrisoftware.resources.GetBundle;
 import com.anrisoftware.resources.images.api.BundlesMap;
 
 /**

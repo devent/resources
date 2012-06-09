@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 
+import com.anrisoftware.resources.GetBundle;
 import com.anrisoftware.resources.api.ImageResolution;
 import com.anrisoftware.resources.api.ImageResource;
 import com.anrisoftware.resources.api.ImageResourceFactory;
