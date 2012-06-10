@@ -38,7 +38,7 @@ class CachedTextResourceTest extends TextResourceTest {
 		}as BuilderFactory
 
 		[
-			new ResourcesTextsModule(),
+			new TextsResourcesModule(),
 			new ResourcesTextsCachedModule(),
 			new TextsCachedModule(manager, builderFactory),
 		]
