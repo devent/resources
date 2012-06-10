@@ -13,7 +13,7 @@ import com.anrisoftware.resources.api.TextResource
 import com.anrisoftware.resources.api.Texts
 import com.anrisoftware.resources.api.TextsFactory
 import com.anrisoftware.resources.binary.BinariesResourcesModule
-import com.anrisoftware.resources.binary.maps.BinariesResourcesMapsModule
+import com.anrisoftware.resources.binary.maps.BinariesDefaultMapsModule
 import com.google.common.base.Charsets
 import com.google.inject.AbstractModule
 import com.google.inject.Guice
@@ -77,7 +77,7 @@ abstract class AbstractTextResourceTestUtils extends TestUtils {
 	 * Returns the module that binds the binaries map.
 	 */
 	def getBinariesMapModule() {
-		new BinariesResourcesMapsModule()
+		new BinariesDefaultMapsModule()
 	}
 
 	/**
