@@ -21,5 +21,6 @@
         <module>resources-binary-cached</module>
         <module>resources-binary-tests</module>
         <module>resources-getbundle</module>
+        <module>resources-images-tests</module>
   </modules>
 </project>
