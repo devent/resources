@@ -102,7 +102,8 @@ class ImagesMapTest extends TestUtils {
 	void "put images to map without dublicates"() {
 		inputsNoDublicates.each { map.putImage it }
 		inputsNoDublicates.each {
-			def image = map.getImage it.name, it.width, it.height, it.resolution
+			def size = new Dimension(it.width, it.height)
+			def image = map.getImage it.name, size, it.resolution
 			assert image == it
 		}
 	}
@@ -111,7 +112,8 @@ class ImagesMapTest extends TestUtils {
 	void "put images to map with dublicates"() {
 		inputsWithDublicates.each { map.putImage it }
 		outputsWithDublicates.each {
-			def image = map.getImage it.name, it.width, it.height, it.resolution
+			def size = new Dimension(it.width, it.height)
+			def image = map.getImage it.name, size, it.resolution
 			assert image == it
 		}
 	}
@@ -120,7 +122,8 @@ class ImagesMapTest extends TestUtils {
 	void "return custom sizes of images"() {
 		inputsCustomSizes.put.each { map.putImage it }
 		inputsCustomSizes.get.each {
-			def image = map.getImage it.name, it.width, it.height, it.resolution
+			def size = new Dimension(it.width, it.height)
+			def image = map.getImage it.name, size, it.resolution
 			assert image == it.image
 		}
 	}
@@ -129,7 +132,8 @@ class ImagesMapTest extends TestUtils {
 	void "return custom sizes of images with auto resolution"() {
 		inputsCustomSizes.put.each { map.putImage it }
 		inputsCustomSizes.get.each {
-			def image = map.getImage it.name, it.width, it.height
+			def size = new Dimension(it.width, it.height)
+			def image = map.getImage it.name, size
 			assert image == it.image
 		}
 	}
@@ -144,7 +148,7 @@ class ImagesMapTest extends TestUtils {
 					getWidth: { image.width },
 					getHeight: { image.height },
 					getSize: { new Dimension(image.width, image.height) },
-					toString: { "${image.name}: ${image.image}" },
+					toString: { "${image.name}: ${image.image}".toString() },
 				]as ImageResource
 	}
 }
