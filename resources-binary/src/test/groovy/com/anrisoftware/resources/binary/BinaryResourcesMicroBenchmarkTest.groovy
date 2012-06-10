@@ -2,7 +2,7 @@ package com.anrisoftware.resources.binary
 
 import org.junit.Test
 
-import com.anrisoftware.resources.binary.maps.BinariesResourcesMapsModule
+import com.anrisoftware.resources.binary.maps.BinariesDefaultMapsModule
 
 class BinaryResourcesMicroBenchmarkTest extends AbstractBinaryResourcesMicroBenchmarkTest {
 
@@ -21,6 +21,6 @@ class BinaryResourcesMicroBenchmarkTest extends AbstractBinaryResourcesMicroBenc
 	}
 
 	def getMapModule() {
-		new BinariesResourcesMapsModule()
+		new BinariesDefaultMapsModule()
 	}
 }
