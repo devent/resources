@@ -22,12 +22,39 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
+ * <p>
  * Gives text resources. Text resources are either single words, line or whole
  * text.
+ * </p>
+ * <p>
+ * An instance is usually created from the {@link TextsFactory} factory, in
+ * which we can set the base name and optionally the class loader and the
+ * control. The parameters are passed to the {@link ResourceBundle} class to
+ * load the resource property file.
+ * </p>
+ * <p>
+ * Example after instantiating the type:
+ * </p>
+ * 
+ * <pre>
+ * Texts texts;
+ * 
+ * // ...
+ * Locale locale = Locale.GERMAN;
+ * TextResource text = texts.textResource(&quot;hello&quot;, locale);
+ * String textString = text.getText();
+ * System.out.println(textString);
+ * 
+ * // ...
+ * TextResource text = texts.textResource(&quot;withplaceholders&quot;);
+ * String textString = text.formatText(&quot;text&quot;, 10, 0.333);
+ * System.out.println(textString);
+ * </pre>
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  * @see TextResource
+ * @see TextsFactory
  */
 public interface Texts {
 
@@ -60,13 +87,23 @@ public interface Texts {
 
 	/**
 	 * <p>
-	 * Returns the text resource with the given name and language.
+	 * Returns the text resource with the given name and the default locale as
+	 * in {@link Locale#getDefault()}.
 	 * </p>
+	 * 
+	 * @param name
+	 *            the name of the resource.
+	 * 
+	 * @return the {@link TextResource}.
+	 * 
+	 * @throws ResourcesException
+	 *             if the resource is not available.
+	 */
+	TextResource textResource(String name) throws ResourcesException;
+
+	/**
 	 * <p>
-	 * Only the language of the locale is considered. The format parameter '%s'
-	 * is replaced with the language of the locale. If the resource with the
-	 * given language is not found, it returns the resource with no language
-	 * (the default language).
+	 * Returns the text resource with the given name and language.
 	 * </p>
 	 * 
 	 * @param name
@@ -82,27 +119,5 @@ public interface Texts {
 	 */
 	TextResource textResource(String name, Locale locale)
 			throws ResourcesException;
-
-	/**
-	 * <p>
-	 * Returns the text resource with the given name and the default locale as
-	 * in {@link Locale#getDefault()}.
-	 * </p>
-	 * <p>
-	 * Only the language of the locale is considered. The format parameter '%s'
-	 * is replaced with the language of the locale. If the resource with the
-	 * given language is not found, it returns the resource with no language
-	 * (the default language).
-	 * </p>
-	 * 
-	 * @param name
-	 *            the name of the resource.
-	 * 
-	 * @return the {@link TextResource}.
-	 * 
-	 * @throws ResourcesException
-	 *             if the resource is not available.
-	 */
-	TextResource textResource(String name) throws ResourcesException;
 
 }
