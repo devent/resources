@@ -6,7 +6,7 @@ import java.io.InputStream;
  * Resource for binary data.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.2
+ * @since 1.1
  */
 public interface BinaryResource extends Resource {
 

@@ -17,7 +17,7 @@ public interface TextResource extends Resource {
 	 * 
 	 * @return the {@link Charset}.
 	 * 
-	 * @since 1.2
+	 * @since 1.1
 	 */
 	Charset getCharset();
 

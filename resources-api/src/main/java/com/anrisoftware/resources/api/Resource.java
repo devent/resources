@@ -7,7 +7,7 @@ import java.util.Locale;
  * Base interface for a resource.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.2
+ * @since 1.1
  */
 public interface Resource {
 

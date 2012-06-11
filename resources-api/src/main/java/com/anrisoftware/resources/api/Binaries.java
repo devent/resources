@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
  * </p>
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.2
+ * @since 1.1
  * @see BinaryResource
  */
 public interface Binaries {

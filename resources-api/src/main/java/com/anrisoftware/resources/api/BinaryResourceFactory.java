@@ -7,7 +7,7 @@ import java.util.Locale;
  * Factory to create a new binary data resource.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.2
+ * @since 1.1
  */
 public interface BinaryResourceFactory {
 
