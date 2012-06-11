@@ -12,6 +12,8 @@
 
 	<artifactId>resources-texts-tests</artifactId>
 	<version>1.0</version>
+	<name>Text Resources Tests</name>
+	<description>Bundles test resources and unit tests for the text resources.</description>
 
 	<dependencies>
 		<dependency>
