@@ -6,7 +6,8 @@
 	<parent>
 		<artifactId>globalpom-groovy</artifactId>
 		<groupId>com.anrisoftware.globalpom</groupId>
-		<version>1.10-SNAPSHOT</version>
+		<version>1.10</version>
+        <relativePath />
 	</parent>
 
 	<groupId>com.anrisoftware.resources</groupId>
