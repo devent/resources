@@ -3,7 +3,8 @@
   <parent>
     <artifactId>com.anrisoftware.resources</artifactId>
     <groupId>resources-parent</groupId>
-    <version>1.0</version>
+    <version>1.1</version>
+    <relativePath>./resources-parent</relativePath>
   </parent>
   <groupId>com.anrisoftware.resources</groupId>
   <artifactId>resources-bundle</artifactId>
