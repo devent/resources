@@ -12,6 +12,8 @@
 
 	<artifactId>resources-images-tests</artifactId>
 	<version>1.0</version>
+	<name>Image Resources Tests</name>
+	<description>Bundles test resources and unit tests for the image resources.</description>
 
 	<dependencies>
 
