@@ -12,7 +12,7 @@
 
 	<groupId>com.anrisoftware.resources</groupId>
 	<artifactId>resources-parent</artifactId>
-	<version>1.2-SNAPSHOT</version>
+	<version>1.2</version>
 	<packaging>pom</packaging>
 	<name>Resources Parent POM</name>
 	<description>The parent POM of the resources project.</description>

@@ -6,8 +6,8 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.2-SNAPSHOT</version>
-		<relativePath>..resources-parent</relativePath>
+		<version>1.2</version>
+		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-texts-tests</artifactId>
