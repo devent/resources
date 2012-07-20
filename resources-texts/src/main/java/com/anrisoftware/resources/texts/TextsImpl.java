@@ -9,7 +9,7 @@ import java.util.ResourceBundle.Control;
 
 import javax.inject.Named;
 
-import org.apache.commons.lang.text.StrTokenizer;
+import org.apache.commons.lang3.text.StrTokenizer;
 
 import com.anrisoftware.resources.GetBundle;
 import com.anrisoftware.resources.GetBundleWithClassLoader;

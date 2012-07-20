@@ -15,7 +15,7 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.anrisoftware.resources.api.BinaryResource;
 import com.anrisoftware.resources.api.BinaryResourceFactory;
