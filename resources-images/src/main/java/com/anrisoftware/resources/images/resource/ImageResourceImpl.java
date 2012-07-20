@@ -13,7 +13,7 @@ import java.util.Locale;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.anrisoftware.resources.api.ImageResolution;
 import com.anrisoftware.resources.api.ImageResource;
