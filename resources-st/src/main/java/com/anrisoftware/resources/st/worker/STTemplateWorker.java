@@ -18,6 +18,14 @@ import com.anrisoftware.resources.api.ResourcesException;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
+/**
+ * Template worker that is using a <a
+ * href=http://www.antlr.org/wiki/display/ST4/StringTemplate+4+Wiki+Home>String
+ * Template</a> template engine.
+ * 
+ * @author Erwin Mueller, erwin.mueller@deventm.org
+ * @since 1.0
+ */
 class STTemplateWorker implements TemplateWorker {
 
 	private final STGroupFile groupFile;
@@ -82,6 +90,7 @@ class STTemplateWorker implements TemplateWorker {
 			throws ResourcesException {
 		ST template = createTemplate(name, data);
 		String rendered = renderTemplate(template);
+		log.templateProcessed(name);
 		return rendered;
 	}
 

@@ -35,4 +35,8 @@ class STTemplateWorkerLogger extends AbstractLogger {
 		return ex;
 	}
 
+	void templateProcessed(String name) {
+		log.debug("Processed the template {name}.");
+	}
+
 }
