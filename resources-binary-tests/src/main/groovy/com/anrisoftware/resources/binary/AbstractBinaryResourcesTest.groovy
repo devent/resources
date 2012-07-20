@@ -18,7 +18,7 @@ abstract class AbstractBinaryResourcesTest extends AbstractBinaryResourcesTestUt
 	}
 
 	def testBinary(def output, Binaries binaries, def name, def locale) {
-		def binary = binaries.binaryResource name, locale
+		def binary = binaries.getResource name, locale
 		assert binary.name == name
 		assert binary.locale == output.locale
 		assert binary.URL == output.url

@@ -70,8 +70,10 @@ public interface Binaries {
 	 * 
 	 * @throws ResourcesException
 	 *             if the resource is not available.
+	 * 
+	 * @since 1.2
 	 */
-	BinaryResource binaryResource(String name, Locale locale)
+	BinaryResource getResource(String name, Locale locale)
 			throws ResourcesException;
 
 	/**
@@ -87,7 +89,9 @@ public interface Binaries {
 	 * 
 	 * @throws ResourcesException
 	 *             if the resource is not available.
+	 * 
+	 * @since 1.2
 	 */
-	BinaryResource binaryResource(String name) throws ResourcesException;
+	BinaryResource getResource(String name) throws ResourcesException;
 
 }

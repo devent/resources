@@ -74,12 +74,12 @@ class BinariesImpl implements Binaries {
 	}
 
 	@Override
-	public BinaryResource binaryResource(String name) throws ResourcesException {
-		return binaryResource(name, null);
+	public BinaryResource getResource(String name) throws ResourcesException {
+		return getResource(name, null);
 	}
 
 	@Override
-	public BinaryResource binaryResource(String name, Locale locale)
+	public BinaryResource getResource(String name, Locale locale)
 			throws ResourcesException {
 		locale = locale == null ? Locale.getDefault() : locale;
 		return workerFactory.create(name, locale, getBundle, bundles)

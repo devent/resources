@@ -20,7 +20,7 @@ abstract class AbstractBinaryResourcesMicroBenchmarkTest extends AbstractBinaryR
 		def callback = { Binaries binaries, name, locale ->
 			Thread.sleep 500
 			long old = System.currentTimeMillis()
-			def binary = binaries.binaryResource name, locale
+			def binary = binaries.getResource name, locale
 			binary.getBinary()
 			long now = System.currentTimeMillis()
 			now - old
@@ -36,7 +36,7 @@ abstract class AbstractBinaryResourcesMicroBenchmarkTest extends AbstractBinaryR
 		def callback = { Binaries binaries, name, locale ->
 			Thread.sleep 500
 			long old = System.currentTimeMillis()
-			def binary = binaries.binaryResource name, locale
+			def binary = binaries.getResource name, locale
 			binary.getStream()
 			long now = System.currentTimeMillis()
 			now - old
