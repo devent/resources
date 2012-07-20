@@ -1,5 +1,6 @@
 package com.anrisoftware.resources.st.worker;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Properties;
 
@@ -11,7 +12,7 @@ import com.anrisoftware.resources.api.ResourcesException;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-public interface TemplateWorker {
+public interface TemplateWorker extends Serializable {
 
 	/**
 	 * Returns the URL of the template.

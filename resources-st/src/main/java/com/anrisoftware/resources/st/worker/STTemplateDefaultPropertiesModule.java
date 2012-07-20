@@ -28,12 +28,15 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 
 /**
- * Binds the String Template template recourses default properties.
+ * Binds the String Template template resource default properties.
+ * <p>
+ * Loads the {@code stringtemplate.properties} from the template worker class
+ * path.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-public class ResourcesSTTemplatePropertiesModule extends AbstractModule {
+public class STTemplateDefaultPropertiesModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
@@ -43,6 +46,7 @@ public class ResourcesSTTemplatePropertiesModule extends AbstractModule {
 	@Named("st-default-properties")
 	Properties getSTDefaultProperties() throws IOException {
 		return new ContextPropertiesFactory(STTemplateWorker.class)
-				.fromResource("stringtemplate.properties");
+				.fromResource(STTemplateDefaultPropertiesModule.class,
+						"stringtemplate.properties");
 	}
 }

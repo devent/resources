@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.texts
+package com.anrisoftware.resources.templates
 
 import javax.inject.Named
 
@@ -6,7 +6,8 @@ import org.junit.Before
 
 import com.anrisoftware.globalpom.utils.TestUtils
 import com.anrisoftware.propertiesutils.ContextPropertiesFactory
-import com.anrisoftware.resources.api.TextsFactory
+import com.anrisoftware.resources.api.TemplatesFactory
+import com.google.common.io.Resources
 import com.google.inject.AbstractModule
 import com.google.inject.Guice
 import com.google.inject.Injector
@@ -20,17 +21,19 @@ import com.google.inject.Provides
  */
 abstract class AbstractTemplateResourceTestUtils extends TestUtils {
 
+	static final ST_PROPERTIES_URL = Resources.getResource("com/anrisoftware/resources/st/stringtemplate.properties")
+
 	def modules
 
 	Injector injector
 
-	TextsFactory factory
+	TemplatesFactory factory
 
 	@Before
 	void before() {
 		modules = lazyCreateModules()
 		injector = injector == null ? Guice.createInjector(modules) : injector
-		factory = injector.getInstance(TextsFactory)
+		factory = injector.getInstance(TemplatesFactory)
 	}
 
 	/**
@@ -68,7 +71,8 @@ abstract class AbstractTemplateResourceTestUtils extends TestUtils {
 					@Provides
 					@Named("st-default-properties")
 					Properties getSTDefaultProperties() throws IOException {
-						new ContextPropertiesFactory(AbstractTemplateResourceTestUtils).fromResource("stringtemplate.properties")
+						String context = "com.anrisoftware.resources.st.worker"
+						new ContextPropertiesFactory(context).fromResource(ST_PROPERTIES_URL)
 					}
 				}
 	}

@@ -10,7 +10,6 @@ import javax.inject.Inject;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.anrisoftware.resources.api.BinaryResourceFactory;
 import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.api.TemplateResource;
 import com.anrisoftware.resources.st.worker.STTemplateWorkerFactory;
@@ -41,10 +40,12 @@ class StResourceImpl implements TemplateResource, Serializable {
 	}
 
 	@Inject
-	StResourceImpl(StResourceImplLogger logger, BinaryResourceFactory factory,
+	StResourceImpl(StResourceImplLogger logger,
 			STTemplateWorkerFactory workerFactory, @Assisted String name,
 			@Assisted Locale locale, @Assisted URL url,
 			@Assisted Properties properties) {
+		this.name = name;
+		this.locale = locale;
 		this.worker = workerFactory.create(url, properties);
 		this.log = logger;
 	}
@@ -71,7 +72,10 @@ class StResourceImpl implements TemplateResource, Serializable {
 
 	@Override
 	public String getText(Object... data) throws ResourcesException {
-		if (text == null || !isSameData(data)) {
+		if (text == null) {
+			text = worker.process(name, data);
+			dataHashCode = ArrayUtils.hashCode(data);
+		} else if (!isSameData(data)) {
 			text = worker.process(name, data);
 		}
 		return text;
@@ -82,7 +86,6 @@ class StResourceImpl implements TemplateResource, Serializable {
 		boolean same = dataHashCode == hashCode;
 		dataHashCode = hashCode;
 		log.dataIsSame(this, same);
-		System.out.println(hashCode);
 		return same;
 	}
 

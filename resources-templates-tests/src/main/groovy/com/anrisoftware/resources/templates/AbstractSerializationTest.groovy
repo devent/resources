@@ -1,5 +1,6 @@
-package com.anrisoftware.resources.texts
+package com.anrisoftware.resources.templates
 
+import com.anrisoftware.propertiesutils.ContextPropertiesFactory
 import com.anrisoftware.resources.api.TemplateResource
 import com.anrisoftware.resources.api.TemplateResourceFactory
 import com.google.common.io.Resources
@@ -13,18 +14,25 @@ import com.google.inject.Injector
  */
 abstract class AbstractSerializationTest extends AbstractTemplateResourceTestUtils {
 
-	void "serialize text resource"() {
+	void "serialize resource"() {
 		TemplateResourceFactory factory = injector.getInstance TemplateResourceFactory
-		def name = "Template Resource A"
+		String[] args = ["arg1", "one", "arg2", "two"]
+		def name = "test"
 		def locale = Locale.ENGLISH
 		def url = Resources.getResource "com/anrisoftware/resources/st/testtemplate.stg"
 
-		def resource = factory.create name, locale, url, properties
+		def resource = factory.create name, locale, url, defaultProperties
 		TemplateResource resourceB = reserialize resource
 
+		assertStringContent resourceB.getText(args), "${args[1]}:${args[3]}"
 		assert resourceB.name == name
 		assert resourceB.locale == locale
 		assert resourceB.URL == url
-		assert resourceB.properties == charset
+		assert resourceB.properties == defaultProperties
+	}
+
+	Properties getDefaultProperties() {
+		String context = "com.anrisoftware.resources.st.worker"
+		new ContextPropertiesFactory(context).fromResource(ST_PROPERTIES_URL)
 	}
 }

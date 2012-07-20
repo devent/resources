@@ -4,6 +4,7 @@ import static com.anrisoftware.resources.st.worker.STTemplateWorkerFactory.DELIM
 import static com.anrisoftware.resources.st.worker.STTemplateWorkerFactory.DELIMITER_STOP_CHAR_PROPERTY;
 import static com.anrisoftware.resources.st.worker.STTemplateWorkerFactory.ENCODING_PROPERTY;
 
+import java.io.ObjectStreamException;
 import java.net.URL;
 import java.util.Properties;
 
@@ -28,19 +29,33 @@ import com.google.inject.assistedinject.Assisted;
  */
 class STTemplateWorker implements TemplateWorker {
 
-	private final STGroupFile groupFile;
+	private static final long serialVersionUID = -7497653988923573560L;
 
 	private final STTemplateWorkerLogger log;
 
 	private final ContextProperties properties;
 
-	private ResourcesException error;
+	private final URL templateUrl;
+
+	private transient STGroupFile groupFile;
+
+	private transient ResourcesException error;
 
 	@Inject
 	STTemplateWorker(STTemplateWorkerLogger logger, @Assisted URL templateUrl,
 			@Assisted Properties properties) throws ResourcesException {
 		this.log = logger;
+		this.templateUrl = templateUrl;
 		this.properties = new ContextProperties(this, properties);
+		createGroupFile();
+	}
+
+	private Object readResolve() throws ObjectStreamException {
+		createGroupFile();
+		return this;
+	}
+
+	private void createGroupFile() {
 		this.groupFile = openGroupFile(templateUrl);
 		groupFile.setListener(new STErrorListener() {
 
@@ -88,7 +103,7 @@ class STTemplateWorker implements TemplateWorker {
 
 	@Override
 	public URL getURL() {
-		return groupFile.url;
+		return templateUrl;
 	}
 
 	/**
@@ -112,6 +127,7 @@ class STTemplateWorker implements TemplateWorker {
 	private ST createTemplate(String templateName, Object... data)
 			throws ResourcesException {
 		ST template = groupFile.getInstanceOf(templateName);
+		log.checkTemplateCreated(template, templateName);
 		throwErrors();
 		for (int i = 0; i < data.length; i++) {
 			template.add(data[i].toString(), data[++i]);

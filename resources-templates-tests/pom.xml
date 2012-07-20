@@ -43,6 +43,11 @@
         	<artifactId>propertiesutils</artifactId>
         	<version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+        	<groupId>org.perf4j</groupId>
+        	<artifactId>perf4j</artifactId>
+        	<version>0.9.16</version>
+        </dependency>
 	</dependencies>
 
 </project>
