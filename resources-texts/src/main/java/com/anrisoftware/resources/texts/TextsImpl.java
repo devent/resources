@@ -106,12 +106,12 @@ class TextsImpl implements Texts {
 	}
 
 	@Override
-	public TextResource textResource(String name) throws ResourcesException {
-		return textResource(name, Locale.getDefault());
+	public TextResource getResource(String name) throws ResourcesException {
+		return getResource(name, Locale.getDefault());
 	}
 
 	@Override
-	public TextResource textResource(String name, Locale locale)
+	public TextResource getResource(String name, Locale locale)
 			throws ResourcesException {
 		ResourceBundle bundle = getBundle.bundleFor(locale);
 		log.loadedResourceBundle(name, bundle);

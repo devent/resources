@@ -76,19 +76,19 @@ class TextResourceTest extends TestUtils {
 		Texts texts = factory.create baseName, classLoader
 
 		Locale locale = Locale.GERMAN
-		TextResource text = texts.textResource "hello", locale
+		TextResource text = texts.getResource "hello", locale
 		assertStringContent text.text, "Hallo Welt - German"
 		assert text.locale == locale
 		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/texts/de/hello.txt"
 
 		locale = new Locale("ru")
-		text = texts.textResource "hello", locale
+		text = texts.getResource "hello", locale
 		assertStringContent text.text, "привет мир - Russian"
 		assert text.locale == locale
 		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/texts/ru/hello.txt"
 
 		locale = Locale.ENGLISH
-		text = texts.textResource "hello", Locale.ENGLISH
+		text = texts.getResource "hello", Locale.ENGLISH
 		assertStringContent text.text, "Hello World - English Default"
 		assert text.locale.toString() == ""
 		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/texts/hello.txt"
@@ -112,9 +112,9 @@ class TextResourceTest extends TestUtils {
 		printf "Lookup first time, difference languages:%n"
 		Thread.sleep 1000
 		current = System.currentTimeMillis()
-		text = texts.textResource "hello", german
-		text = texts.textResource "hello", russian
-		text = texts.textResource "hello", english
+		text = texts.getResource "hello", german
+		text = texts.getResource "hello", russian
+		text = texts.getResource "hello", english
 		now = System.currentTimeMillis()
 		printf "system time : %.3f%n", (now-current) / 3
 
@@ -123,9 +123,9 @@ class TextResourceTest extends TestUtils {
 			Thread.sleep 1000
 			current = System.currentTimeMillis()
 			(0..max).each {
-				text = texts.textResource "hello", german
-				text = texts.textResource "hello", russian
-				text = texts.textResource "hello", english
+				text = texts.getResource "hello", german
+				text = texts.getResource "hello", russian
+				text = texts.getResource "hello", english
 			}
 			now = System.currentTimeMillis()
 			printf "system time (%d): %.3f%n", max, (now-current) / max / 3

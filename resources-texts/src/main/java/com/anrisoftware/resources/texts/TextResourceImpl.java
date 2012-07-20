@@ -129,7 +129,7 @@ class TextResourceImpl implements TextResource, Serializable {
 	}
 
 	@Override
-	public String formatText(Object... args) throws ResourcesException {
+	public String getFormattedText(Object... args) throws ResourcesException {
 		if (formattedText == null) {
 			formattedText = createformatText(args);
 		}

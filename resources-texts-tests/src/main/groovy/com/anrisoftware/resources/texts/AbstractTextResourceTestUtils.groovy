@@ -1,8 +1,6 @@
 package com.anrisoftware.resources.texts
 
 import java.nio.charset.Charset
-import java.util.Locale
-
 
 import org.apache.log4j.Level
 import org.apache.log4j.Logger
@@ -109,9 +107,9 @@ abstract class AbstractTextResourceTestUtils extends TestUtils {
 		printf "Lookup first time, difference languages:%n"
 		Thread.sleep 1000
 		current = System.currentTimeMillis()
-		text = texts.textResource "hello", german
-		text = texts.textResource "hello", russian
-		text = texts.textResource "hello", english
+		text = texts.getResource "hello", german
+		text = texts.getResource "hello", russian
+		text = texts.getResource "hello", english
 		now = System.currentTimeMillis()
 		printf "system time : %.3f%n", (now-current) / 3
 
@@ -120,9 +118,9 @@ abstract class AbstractTextResourceTestUtils extends TestUtils {
 			Thread.sleep 1000
 			current = System.currentTimeMillis()
 			(0..max).each {
-				text = texts.textResource "hello", german
-				text = texts.textResource "hello", russian
-				text = texts.textResource "hello", english
+				text = texts.getResource "hello", german
+				text = texts.getResource "hello", russian
+				text = texts.getResource "hello", english
 			}
 			now = System.currentTimeMillis()
 			printf "system time (%d): %.3f%n", max, (now-current) / max / 3

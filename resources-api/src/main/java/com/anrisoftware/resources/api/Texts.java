@@ -41,13 +41,13 @@ import java.util.ResourceBundle;
  * 
  * // ...
  * Locale locale = Locale.GERMAN;
- * TextResource text = texts.textResource(&quot;hello&quot;, locale);
+ * TextResource text = texts.getResource(&quot;hello&quot;, locale);
  * String textString = text.getText();
  * System.out.println(textString);
  * 
  * // ...
- * TextResource text = texts.textResource(&quot;withplaceholders&quot;);
- * String textString = text.formatText(&quot;text&quot;, 10, 0.333);
+ * TextResource text = texts.getResource(&quot;withplaceholders&quot;);
+ * String textString = text.getFormattedText(&quot;text&quot;, 10, 0.333);
  * System.out.println(textString);
  * </pre>
  * 
@@ -98,8 +98,10 @@ public interface Texts {
 	 * 
 	 * @throws ResourcesException
 	 *             if the resource is not available.
+	 * 
+	 * @since 1.2
 	 */
-	TextResource textResource(String name) throws ResourcesException;
+	TextResource getResource(String name) throws ResourcesException;
 
 	/**
 	 * <p>
@@ -116,8 +118,10 @@ public interface Texts {
 	 * 
 	 * @throws ResourcesException
 	 *             if the resource is not available.
+	 * 
+	 * @since 1.2
 	 */
-	TextResource textResource(String name, Locale locale)
+	TextResource getResource(String name, Locale locale)
 			throws ResourcesException;
 
 }

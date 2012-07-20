@@ -44,7 +44,9 @@ public interface TextResource extends Resource {
 	 * 
 	 * @throws ResourcesException
 	 *             if there was an error loading the text.
+	 * 
+	 * @since 1.2
 	 */
-	String formatText(Object... args) throws ResourcesException;
+	String getFormattedText(Object... args) throws ResourcesException;
 
 }

@@ -44,13 +44,13 @@ import java.util.ResourceBundle;
  * 
  * // ...
  * Locale locale = Locale.GERMAN;
- * TextResource text = texts.textResource("hello", locale);
+ * TextResource text = texts.getResource("hello", locale);
  * String textString = text.getText();
  * System.out.println(textString);
  * 
  * // ...
- * TextResource text = texts.textResource("withplaceholders");
- * String textString = text.formatText("text", 10, 0.333);
+ * TextResource text = texts.getResource("withplaceholders");
+ * String textString = text.getFormattedText("text", 10, 0.333);
  * System.out.println(textString);
  * </pre>
  * 
