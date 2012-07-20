@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.anrisoftware.resources</groupId>
+		<artifactId>resources-parent</artifactId>
+		<version>1.1</version>
+		<relativePath>../resources-parent</relativePath>
+	</parent>
+
+	<artifactId>resources-st</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>ST Resources</name>
+	<description>Loads and caches String Template resources.</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.anrisoftware.resources</groupId>
+			<artifactId>resources-binary</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>ST4</artifactId>
+			<version>4.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.anrisoftware.propertiesutils</groupId>
+			<artifactId>propertiesutils</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.anrisoftware.resources</groupId>
+			<artifactId>resources-api</artifactId>
+			<version>1.2-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+</project>
