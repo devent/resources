@@ -22,56 +22,32 @@ import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 /**
- * <p>
- * Factory to create a new texts resources with the specified resource bundle
- * base name and optional class loader and resource bundle control.
- * </p>
+ * Factory to create a new templates resources with the specified resource
+ * bundle base name and optional class loader and resource bundle control.
  * <p>
  * The class {@link PropertyResourceBundle} is used to load the right property
- * file for the specified locale. The factory offers methods to create text
+ * file for the specified locale. The factory offers methods to create template
  * resources with just the base name, or with the class loader or also with the
  * {@link ResourceBundle.Control}.
- * </p>
- * 
- * <pre>
- * List modules = { new TextsResourcesModule(), new TextsDefaultMapsModule(), new BinariesResourcesModule(), new BinariesDefaultMapsModule() }
- * Injector injector = Guice.createInjector(modules);
- * TextsFactory factory = injector.getInstance(TextsFactory);
- * 
- * // ...
- * String baseName = "TextsWithDefaultCharset";
- * Texts texts = factory.create(baseName);
- * 
- * // ...
- * Locale locale = Locale.GERMAN;
- * TextResource text = texts.textResource("hello", locale);
- * String textString = text.getText();
- * System.out.println(textString);
- * 
- * // ...
- * TextResource text = texts.textResource("withplaceholders");
- * String textString = text.formatText("text", 10, 0.333);
- * System.out.println(textString);
- * </pre>
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.1
- * @see Texts
+ * @since 1.2
+ * @see Templates
  */
 public interface TemplatesFactory {
 
 	/**
-	 * Creates a new {@link Texts} with the resource bundle base name and the
-	 * caller's class loader.
+	 * Creates a new {@link Templates} with the resource bundle base name and
+	 * the caller's class loader.
 	 * 
 	 * @param baseName
 	 *            the base name {@link String}.
 	 */
-	Texts create(String baseName);
+	Templates create(String baseName);
 
 	/**
-	 * Creates a new {@link Texts} with the resource bundle base name and the
-	 * class loader.
+	 * Creates a new {@link Templates} with the resource bundle base name and
+	 * the class loader.
 	 * 
 	 * @param baseName
 	 *            the base name {@link String}.
@@ -79,11 +55,11 @@ public interface TemplatesFactory {
 	 * @param classLoader
 	 *            the {@link ClassLoader}.
 	 */
-	Texts create(String baseName, ClassLoader classLoader);
+	Templates create(String baseName, ClassLoader classLoader);
 
 	/**
-	 * Creates a new {@link Texts} with the resource bundle base name and the
-	 * control.
+	 * Creates a new {@link Templates} with the resource bundle base name and
+	 * the control.
 	 * 
 	 * @param baseName
 	 *            the base name {@link String}.
@@ -91,11 +67,11 @@ public interface TemplatesFactory {
 	 * @param control
 	 *            the {@link ResourceBundle.Control}.
 	 */
-	Texts create(String baseName, ResourceBundle.Control control);
+	Templates create(String baseName, ResourceBundle.Control control);
 
 	/**
-	 * Creates a new {@link Texts} with the resource bundle base name, the class
-	 * loader and the control.
+	 * Creates a new {@link Templates} with the resource bundle base name, the
+	 * class loader and the control.
 	 * 
 	 * @param baseName
 	 *            the base name {@link String}.
@@ -106,7 +82,7 @@ public interface TemplatesFactory {
 	 * @param control
 	 *            the {@link ResourceBundle.Control}.
 	 */
-	Texts create(String baseName, ClassLoader classLoader,
+	Templates create(String baseName, ClassLoader classLoader,
 			ResourceBundle.Control control);
 
 }
