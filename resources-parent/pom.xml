@@ -17,11 +17,43 @@
 	<name>Resources Parent POM</name>
 	<description>The parent POM of the resources project.</description>
 
+    <developers>
+        <developer>
+            <id>EM</id>
+            <name>Erwin Müller</name>
+            <organization>Advanced Natural Research Insitute GmbH</organization>
+            <email>erwin.mueller@deventm.org</email>
+            <roles>
+                <role>Owner</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>LGPLv3</name>
+            <url>http://www.gnu.org/licenses/lgpl.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
 	<scm>
 		<connection>scm:git:${custom.gitpublic.url}resources.git</connection>
 		<developerConnection>scm:git:${custom.gitpublic.url}resources.git</developerConnection>
 		<url>scm:git:${custom.gitpublic.url}resources.git</url>
 	</scm>
+
+    <distributionManagement>
+        <repository>
+            <id>${custom.repository.anrispublic.id}</id>
+            <url>${custom.repository.root}${custom.repository.anrispublic.path}</url>
+        </repository>
+        <snapshotRepository>
+            <id>${custom.repository.anrispublicsnapshots.id}</id>
+            <url>${custom.repository.root}${custom.repository.anrispublicsnapshots.path}</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 	<dependencyManagement>
 		<dependencies>
