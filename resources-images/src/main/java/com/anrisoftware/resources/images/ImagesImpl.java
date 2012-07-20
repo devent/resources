@@ -77,34 +77,34 @@ class ImagesImpl implements Images {
 	}
 
 	@Override
-	public ImageResource imageResource(String name, Locale locale, int width,
+	public ImageResource getResource(String name, Locale locale, int width,
 			int height) throws ResourcesException {
-		return imageResource(name, locale, new Dimension(width, height));
+		return getResource(name, locale, new Dimension(width, height));
 	}
 
 	@Override
-	public ImageResource imageResource(String name, Locale locale, IconSize size)
+	public ImageResource getResource(String name, Locale locale, IconSize size)
 			throws ResourcesException {
-		return imageResource(name, locale,
+		return getResource(name, locale,
 				new Dimension(size.getSize(), size.getSize()));
 	}
 
 	@Override
-	public ImageResource imageResource(String name, Locale locale,
+	public ImageResource getResource(String name, Locale locale,
 			Dimension size) throws ResourcesException {
 		return workerFactory.create(name, locale, size, getBundle, bundles)
 				.imageResource();
 	}
 
 	@Override
-	public ImageResource imageResource(String name, Locale locale, int width,
+	public ImageResource getResource(String name, Locale locale, int width,
 			int height, ImageResolution resolution) throws ResourcesException {
-		return imageResource(name, locale, new Dimension(width, height),
+		return getResource(name, locale, new Dimension(width, height),
 				resolution);
 	}
 
 	@Override
-	public ImageResource imageResource(String name, Locale locale,
+	public ImageResource getResource(String name, Locale locale,
 			Dimension size, ImageResolution resolution)
 			throws ResourcesException {
 		return workerFactory.create(name, locale, size, getBundle, bundles)

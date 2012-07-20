@@ -80,9 +80,9 @@ public interface Images {
 	 * @throws ResourcesException
 	 *             if the resource is not available.
 	 * 
-	 * @since 1.1
+	 * @since 1.2
 	 */
-	ImageResource imageResource(String name, Locale locale, Dimension size)
+	ImageResource getResource(String name, Locale locale, Dimension size)
 			throws ResourcesException;
 
 	/**
@@ -107,9 +107,9 @@ public interface Images {
 	 * @throws ResourcesException
 	 *             if the resource is not available.
 	 * 
-	 * @since 1.1
+	 * @since 1.2
 	 */
-	ImageResource imageResource(String name, Locale locale, IconSize size)
+	ImageResource getResource(String name, Locale locale, IconSize size)
 			throws ResourcesException;
 
 	/**
@@ -140,10 +140,10 @@ public interface Images {
 	 * @throws ResourcesException
 	 *             if the resource is not available.
 	 * 
-	 * @since 1.1
+	 * @since 1.2
 	 */
-	ImageResource imageResource(String name, Locale locale, int width,
-			int height) throws ResourcesException;
+	ImageResource getResource(String name, Locale locale, int width, int height)
+			throws ResourcesException;
 
 	/**
 	 * <p>
@@ -169,9 +169,9 @@ public interface Images {
 	 * @throws ResourcesException
 	 *             if the resource is not available.
 	 * 
-	 * @since 1.1
+	 * @since 1.2
 	 */
-	ImageResource imageResource(String name, Locale locale, Dimension size,
+	ImageResource getResource(String name, Locale locale, Dimension size,
 			ImageResolution resolution) throws ResourcesException;
 
 	/**
@@ -201,9 +201,9 @@ public interface Images {
 	 * @throws ResourcesException
 	 *             if the resource is not available.
 	 * 
-	 * @since 1.1
+	 * @since 1.2
 	 */
-	ImageResource imageResource(String name, Locale locale, int width,
+	ImageResource getResource(String name, Locale locale, int width,
 			int height, ImageResolution resolution) throws ResourcesException;
 
 }

@@ -25,7 +25,7 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
 		def locale = Locale.GERMAN
 		def images = factory.create(baseName)
 
-		ImageResource image = images.imageResource name, locale, size, resolution
+		ImageResource image = images.getResource name, locale, size, resolution
 		assert image.name == name
 		assert image.locale == locale
 		assert image.resolution == resolution
@@ -44,7 +44,7 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
 		def locale = Locale.GERMAN
 		def images = factory.create(baseName)
 
-		ImageResource image = images.imageResource name, locale, size, resolution
+		ImageResource image = images.getResource name, locale, size, resolution
 		assert image.name == name
 		assert image.locale == locale
 		assert image.resolution == resolution
@@ -63,7 +63,7 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
 		def locale = Locale.GERMAN
 		def images = factory.create(baseName)
 
-		ImageResource image = images.imageResource name, locale, size, resolution
+		ImageResource image = images.getResource name, locale, size, resolution
 		assert image.name == name
 		assert image.locale == locale
 		assert image.resolution == resolution
@@ -79,10 +79,10 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
 		def locale = Locale.GERMAN
 		def images = factory.create(baseName)
 		def res = []
-		res << images.imageResource(IMAGE_NAME, locale, 256, 256, EXTRA_HIGH)
-		res << images.imageResource(IMAGE_NAME, locale, 230, 230, EXTRA_HIGH)
-		res << images.imageResource(IMAGE_NAME, locale, 260, 260, EXTRA_HIGH)
-		res << images.imageResource(IMAGE_NAME, locale, 455, 455, EXTRA_HIGH)
+		res << images.getResource(IMAGE_NAME, locale, 256, 256, EXTRA_HIGH)
+		res << images.getResource(IMAGE_NAME, locale, 230, 230, EXTRA_HIGH)
+		res << images.getResource(IMAGE_NAME, locale, 260, 260, EXTRA_HIGH)
+		res << images.getResource(IMAGE_NAME, locale, 455, 455, EXTRA_HIGH)
 
 		assertImage res[0], null, 256, 256
 		assertImage res[1], null, 230, 230
@@ -99,16 +99,16 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
 		def locale = Locale.GERMAN
 		def images = factory.create(baseName)
 		def res = []
-		res << images.imageResource(IMAGE_NAME, locale, 50, 50)
-		res << images.imageResource(IMAGE_NAME, locale, 171, 171)
-		res << images.imageResource(IMAGE_NAME, locale, 191, 191)
-		res << images.imageResource(IMAGE_NAME, locale, 200, 200)
-		res << images.imageResource(IMAGE_NAME, locale, 228, 228)
-		res << images.imageResource(IMAGE_NAME, locale, 300, 300)
-		res << images.imageResource(IMAGE_NAME, locale, 341, 341)
-		res << images.imageResource(IMAGE_NAME, locale, 400, 400)
-		res << images.imageResource(IMAGE_NAME, locale, 455, 455)
-		res << images.imageResource(IMAGE_NAME, locale, 600, 600)
+		res << images.getResource(IMAGE_NAME, locale, 50, 50)
+		res << images.getResource(IMAGE_NAME, locale, 171, 171)
+		res << images.getResource(IMAGE_NAME, locale, 191, 191)
+		res << images.getResource(IMAGE_NAME, locale, 200, 200)
+		res << images.getResource(IMAGE_NAME, locale, 228, 228)
+		res << images.getResource(IMAGE_NAME, locale, 300, 300)
+		res << images.getResource(IMAGE_NAME, locale, 341, 341)
+		res << images.getResource(IMAGE_NAME, locale, 400, 400)
+		res << images.getResource(IMAGE_NAME, locale, 455, 455)
+		res << images.getResource(IMAGE_NAME, locale, 600, 600)
 
 		assertImage res[0], null, 50, 50
 		assertImage res[1], null, 171, 171, "com/anrisoftware/resources/images/logos/de/ldpi/x-mail-distribution-list.png"
