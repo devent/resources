@@ -11,7 +11,7 @@
 	</parent>
 	
 	<artifactId>resources-binary-tests</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.1</version>
 	<name>Binary Resources Tests</name>
 	<description>Tests package for binary resources.</description>
 	
