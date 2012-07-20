@@ -32,14 +32,16 @@ class STTemplateWorker implements TemplateWorker {
 
 	private final STTemplateWorkerLogger log;
 
+	private final ContextProperties properties;
+
 	private ResourcesException error;
 
 	@Inject
 	STTemplateWorker(STTemplateWorkerLogger logger, @Assisted URL templateUrl,
 			@Assisted Properties properties) throws ResourcesException {
 		this.log = logger;
-		this.groupFile = openGroupFile(templateUrl, new ContextProperties(this,
-				properties));
+		this.properties = new ContextProperties(this, properties);
+		this.groupFile = openGroupFile(templateUrl);
 		groupFile.setListener(new STErrorListener() {
 
 			@Override
@@ -64,16 +66,29 @@ class STTemplateWorker implements TemplateWorker {
 		});
 	}
 
-	private STGroupFile openGroupFile(URL templateUrl, ContextProperties p)
+	private STGroupFile openGroupFile(URL templateUrl)
 			throws ResourcesException {
-		String encoding = p.getProperty(ENCODING_PROPERTY);
-		char startChar = p.getCharProperty(DELIMITER_START_CHAR_PROPERTY);
-		char stopChar = p.getCharProperty(DELIMITER_STOP_CHAR_PROPERTY);
+		String encoding;
+		char startChar;
+		char stopChar;
+		encoding = properties.getProperty(ENCODING_PROPERTY);
+		startChar = properties.getCharProperty(DELIMITER_START_CHAR_PROPERTY);
+		stopChar = properties.getCharProperty(DELIMITER_STOP_CHAR_PROPERTY);
 		try {
 			return new STGroupFile(templateUrl, encoding, startChar, stopChar);
 		} catch (STException e) {
 			throw log.errorOpenGroupFile(e);
 		}
+	}
+
+	@Override
+	public Properties getProperties() {
+		return properties;
+	}
+
+	@Override
+	public URL getURL() {
+		return groupFile.url;
 	}
 
 	/**

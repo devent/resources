@@ -1,5 +1,8 @@
 package com.anrisoftware.resources.st.worker;
 
+import java.net.URL;
+import java.util.Properties;
+
 import com.anrisoftware.resources.api.ResourcesException;
 
 /**
@@ -9,6 +12,20 @@ import com.anrisoftware.resources.api.ResourcesException;
  * @since 1.0
  */
 public interface TemplateWorker {
+
+	/**
+	 * Returns the URL of the template.
+	 * 
+	 * @return the {@link URL} of the template.
+	 */
+	URL getURL();
+
+	/**
+	 * Returns the properties of the template.
+	 * 
+	 * @return the {@link Properties} of the template.
+	 */
+	Properties getProperties();
 
 	/**
 	 * Process the calculated data.

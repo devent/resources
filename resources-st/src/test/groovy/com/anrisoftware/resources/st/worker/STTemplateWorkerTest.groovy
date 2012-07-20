@@ -22,7 +22,7 @@ class STTemplateWorkerTest extends TestUtils {
 	def properties = new ContextPropertiesFactory(this).fromResource templateProperties
 
 	@Test
-	void "output template"() {
+	void "process template"() {
 		def args = ["one", "two"]
 		def worker = factory.create template, properties
 		def process = worker.process templateName, "arg1", args[0], "arg2", args[1]
