@@ -7,8 +7,8 @@ import java.util.Properties;
 
 import javax.inject.Inject;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.anrisoftware.resources.api.BinaryResourceFactory;
 import com.anrisoftware.resources.api.ResourcesException;
@@ -41,8 +41,7 @@ class StResourceImpl implements TemplateResource, Serializable {
 	}
 
 	@Inject
-	StResourceImpl(StResourceImplLogger logger,
-			BinaryResourceFactory factory,
+	StResourceImpl(StResourceImplLogger logger, BinaryResourceFactory factory,
 			STTemplateWorkerFactory workerFactory, @Assisted String name,
 			@Assisted Locale locale, @Assisted URL url,
 			@Assisted Properties properties) {
