@@ -6,8 +6,8 @@
 	<parent>
 		<artifactId>globalpom-groovy</artifactId>
 		<groupId>com.anrisoftware.globalpom</groupId>
-		<version>1.10</version>
-        <relativePath />
+		<version>1.11</version>
+		<relativePath />
 	</parent>
 
 	<groupId>com.anrisoftware.resources</groupId>
@@ -16,5 +16,20 @@
 	<packaging>pom</packaging>
 	<name>Resources Parent POM</name>
 	<description>The parent POM of the resources project.</description>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.anrisoftware.globalpom</groupId>
+				<artifactId>globalpom-log</artifactId>
+				<version>${project.custom.globalpom.log.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.anrisoftware.globalpom</groupId>
+				<artifactId>globalpom-groovytestutils</artifactId>
+				<version>${project.custom.globalpom.groovytestutils.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 </project>
