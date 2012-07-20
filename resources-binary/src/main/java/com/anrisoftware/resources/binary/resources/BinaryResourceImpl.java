@@ -9,7 +9,7 @@ import java.io.WriteAbortedException;
 import java.net.URL;
 import java.util.Locale;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.anrisoftware.resources.api.BinaryResource;
 import com.anrisoftware.resources.api.ResourcesException;
