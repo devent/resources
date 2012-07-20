@@ -1,27 +1,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>com.anrisoftware.resources</artifactId>
-    <groupId>resources-parent</groupId>
-    <version>1.1</version>
-    <relativePath>./resources-parent</relativePath>
-  </parent>
-  <groupId>com.anrisoftware.resources</groupId>
-  <artifactId>resources-bundle</artifactId>
-  <packaging>pom</packaging>
-  <name>Resources Bundle POM</name>
-  <description>Contains the modules of the resources project.</description>
-  <modules>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.anrisoftware.resources</groupId>
+    <artifactId>resources-bundle</artifactId>
+    <packaging>pom</packaging>
+    <name>Resources Bundle POM</name>
+    <version>1.0</version>
+    <description>Contains the modules of the resources project.</description>
+
+    <modules>
         <module>resources-api</module>
         <module>resources-binary</module>
-        <module>resources-texts</module>
-        <module>resources-images</module>
-        <module>resources-icons</module>
-        <module>resources-texts-cached</module>
-        <module>resources-texts-tests</module>
-        <module>resources-binary-cached</module>
         <module>resources-binary-tests</module>
         <module>resources-getbundle</module>
+        <module>resources-images</module>
         <module>resources-images-tests</module>
+        <module>resources-parent</module>
+        <module>resources-st</module>
+        <module>resources-templates-tests</module>
+        <module>resources-texts</module>
+        <module>resources-texts-cached</module>
+        <module>resources-texts-tests</module>
   </modules>
+
 </project>
