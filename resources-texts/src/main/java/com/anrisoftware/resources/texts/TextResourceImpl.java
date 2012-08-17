@@ -24,25 +24,49 @@ import com.anrisoftware.resources.api.TextResource;
 import com.google.common.io.CharStreams;
 import com.google.inject.assistedinject.Assisted;
 
+/**
+ * Lazy load the text resource from the specified URL. The resource is
+ * serializable to be used in a distributed cache.
+ * 
+ * @author Erwin Mueller, erwin.mueller@deventm.org
+ * @since 1.0
+ */
 @SuppressWarnings("serial")
 class TextResourceImpl implements TextResource, Serializable {
 
+	/**
+	 * Wrapper around a character set to make the character set serializable.
+	 * 
+	 * @author Erwin Mueller, erwin.mueller@deventm.org
+	 * @since 1.0
+	 */
 	private static class SerializableCharsetWrapper implements Externalizable {
 
 		private Charset charset;
 
 		/**
-		 * For serialization.
+		 * @deprecated Used only for serialization.
 		 */
 		@SuppressWarnings("unused")
 		@Deprecated
 		public SerializableCharsetWrapper() {
 		}
 
+		/**
+		 * Sets the character set for serialization.
+		 * 
+		 * @param charset
+		 *            the {@link Charset}.
+		 */
 		public SerializableCharsetWrapper(Charset charset) {
 			this.charset = charset;
 		}
 
+		/**
+		 * Returns the character set.
+		 * 
+		 * @return the {@link Charset}.
+		 */
 		public Charset getCharset() {
 			return charset;
 		}
@@ -72,17 +96,39 @@ class TextResourceImpl implements TextResource, Serializable {
 	private String formattedText;
 
 	/**
-	 * For serialization.
+	 * @deprecated Used only for serialization.
 	 */
 	@Deprecated
 	public TextResourceImpl() {
 	}
 
+	/**
+	 * Sets the needed properties of the text resource.
+	 * 
+	 * @param logger
+	 *            the {@link TextResourceImplLogger} for logging messages.
+	 * 
+	 * @param factory
+	 *            the {@link BinaryResourceFactory} that creates the binary
+	 *            resource from which we load the text resource.
+	 * 
+	 * @param name
+	 *            the name of this resource.
+	 * 
+	 * @param locale
+	 *            the {@link Locale} of this resource.
+	 * 
+	 * @param charset
+	 *            the {@link Charset} of this resource.
+	 * 
+	 * @param url
+	 *            the {@link URL} of this resource.
+	 */
 	@Inject
 	TextResourceImpl(TextResourceImplLogger logger,
 			BinaryResourceFactory factory, @Assisted String name,
-			@Assisted Locale locale, @Assisted URL url,
-			@Assisted Charset charset) {
+			@Assisted Locale locale, @Assisted Charset charset,
+			@Assisted URL url) {
 		this.binary = factory.create(name, locale, url);
 		this.log = logger;
 		this.charsetWrapper = new SerializableCharsetWrapper(charset);
@@ -145,6 +191,10 @@ class TextResourceImpl implements TextResource, Serializable {
 		}
 	}
 
+	/**
+	 * String representation for debugging. Contains the locale, name and the
+	 * URL of this resource.
+	 */
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("locale", getLocale())
