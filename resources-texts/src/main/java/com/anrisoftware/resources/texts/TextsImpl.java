@@ -163,7 +163,7 @@ class TextsImpl implements Texts {
 		try {
 			return new URL(urlString);
 		} catch (MalformedURLException e) {
-			URL url = TextsImpl.class.getClassLoader().getResource(urlString);
+			URL url = getClassLoader().getResource(urlString);
 			return log.checkResourceURL(url, urlString);
 		}
 	}
