@@ -42,6 +42,25 @@ class TextsImpl implements Texts {
 
 	private final Charset defaultCharset;
 
+	/**
+	 * Sets the default character set and the base name of the text resources.
+	 * 
+	 * @param logger
+	 *            the {@link TextsImplLogger} for the logging messages.
+	 * 
+	 * @param texts
+	 *            the {@link BundlesMap} that cache the resource bundles.
+	 * 
+	 * @param textResourceFactory
+	 *            the {@link TextResourceFactory} that creates the text
+	 *            resources.
+	 * 
+	 * @param defaultCharset
+	 *            the default {@link Charset} for the text resources.
+	 * 
+	 * @param baseName
+	 *            the base name for the text resources.
+	 */
 	@AssistedInject
 	TextsImpl(TextsImplLogger logger, BundlesMap texts,
 			TextResourceFactory textResourceFactory,
@@ -51,6 +70,29 @@ class TextsImpl implements Texts {
 				baseName));
 	}
 
+	/**
+	 * Sets the default character set, the base name and the class loader for
+	 * the text resources.
+	 * 
+	 * @param logger
+	 *            the {@link TextsImplLogger} for the logging messages.
+	 * 
+	 * @param texts
+	 *            the {@link BundlesMap} that cache the resource bundles.
+	 * 
+	 * @param textResourceFactory
+	 *            the {@link TextResourceFactory} that creates the text
+	 *            resources.
+	 * 
+	 * @param defaultCharset
+	 *            the default {@link Charset} for the text resources.
+	 * 
+	 * @param baseName
+	 *            the base name for the text resources.
+	 * 
+	 * @param classLoader
+	 *            the {@link ClassLoader} to load the text resources.
+	 */
 	@AssistedInject
 	TextsImpl(TextsImplLogger logger, BundlesMap texts,
 			TextResourceFactory textResourceFactory,
@@ -60,6 +102,29 @@ class TextsImpl implements Texts {
 				new GetBundleWithClassLoader(baseName, classLoader));
 	}
 
+	/**
+	 * Sets the default character set, the base name and the resource bundle
+	 * control for the text resources.
+	 * 
+	 * @param logger
+	 *            the {@link TextsImplLogger} for the logging messages.
+	 * 
+	 * @param texts
+	 *            the {@link BundlesMap} that cache the resource bundles.
+	 * 
+	 * @param textResourceFactory
+	 *            the {@link TextResourceFactory} that creates the text
+	 *            resources.
+	 * 
+	 * @param defaultCharset
+	 *            the default {@link Charset} for the text resources.
+	 * 
+	 * @param baseName
+	 *            the base name for the text resources.
+	 * 
+	 * @param control
+	 *            the {@link ResourceBundle.Control} for the text resources.
+	 */
 	@AssistedInject
 	TextsImpl(TextsImplLogger logger, BundlesMap texts,
 			TextResourceFactory textResourceFactory,
@@ -69,6 +134,32 @@ class TextsImpl implements Texts {
 				new GetBundleWithControl(baseName, control));
 	}
 
+	/**
+	 * Sets the default character set, the base name, the class loader and the
+	 * resource bundle control for the text resources.
+	 * 
+	 * @param logger
+	 *            the {@link TextsImplLogger} for the logging messages.
+	 * 
+	 * @param texts
+	 *            the {@link BundlesMap} that cache the resource bundles.
+	 * 
+	 * @param textResourceFactory
+	 *            the {@link TextResourceFactory} that creates the text
+	 *            resources.
+	 * 
+	 * @param defaultCharset
+	 *            the default {@link Charset} for the text resources.
+	 * 
+	 * @param baseName
+	 *            the base name for the text resources.
+	 * 
+	 * @param classLoader
+	 *            the {@link ClassLoader} to load the text resources.
+	 * 
+	 * @param control
+	 *            the {@link ResourceBundle.Control} for the text resources.
+	 */
 	@AssistedInject
 	TextsImpl(TextsImplLogger logger, BundlesMap texts,
 			TextResourceFactory textResourceFactory,
