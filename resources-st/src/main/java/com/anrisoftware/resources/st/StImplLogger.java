@@ -29,7 +29,7 @@ class StImplLogger extends AbstractLogger {
 			String name) throws ResourcesException {
 		if (!haveTemplate) {
 			ResourcesException ex = new ResourcesException(bundle.getClass()
-					.getName(), name, "No text resource loaded for ``%s''",
+					.getName(), name, "No template resource loaded for ``%s''",
 					name);
 			log.error(ex.getMessage());
 			throw ex;
