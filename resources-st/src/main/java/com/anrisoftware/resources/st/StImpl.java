@@ -142,7 +142,7 @@ class StImpl implements Templates {
 		try {
 			return new URL(string);
 		} catch (MalformedURLException e) {
-			URL url = StImpl.class.getClassLoader().getResource(string);
+			URL url = getClassLoader().getResource(string);
 			return log.checkResourceURL(url, string);
 		}
 	}
