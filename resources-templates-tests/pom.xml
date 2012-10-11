@@ -11,11 +11,13 @@
 	</parent>
 
 	<artifactId>resources-templates-tests</artifactId>
-	<version>1.0</version>
+	<version>1.1-SNAPSHOT</version>
 	<name>Templates Resources Tests</name>
 	<description>Bundles test resources and unit tests for the template resources.</description>
 
 	<dependencies>
+
+    <!-- compile dependencies -->
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
@@ -38,9 +40,9 @@
             <artifactId>log4j</artifactId>
         </dependency>
         <dependency>
-        	<groupId>com.anrisoftware.propertiesutils</groupId>
-        	<artifactId>propertiesutils</artifactId>
-        	<version>1.0</version>
+            <groupId>com.anrisoftware.propertiesutils</groupId>
+            <artifactId>propertiesutils-contextproperties</artifactId>
+            <version>1.2</version>
         </dependency>
         <dependency>
         	<groupId>org.perf4j</groupId>
