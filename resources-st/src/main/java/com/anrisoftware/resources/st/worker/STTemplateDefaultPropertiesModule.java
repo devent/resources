@@ -1,24 +1,25 @@
 /*
  * Copyright 2012 Erwin Müller <erwin.mueller@deventm.org>
- * 
+ *
  * This file is part of resources-texts.
- * 
+ *
  * resources-texts is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or (at your
  * option) any later version.
- * 
+ *
  * resources-texts is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-texts. If not, see <http://www.gnu.org/licenses/>.
  */
 package com.anrisoftware.resources.st.worker;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 
 import javax.inject.Named;
@@ -38,6 +39,9 @@ import com.google.inject.Provides;
  */
 public class STTemplateDefaultPropertiesModule extends AbstractModule {
 
+	static final URL PROPERTIES_URL = STTemplateDefaultPropertiesModule.class
+			.getResource("stringtemplate.properties");
+
 	@Override
 	protected void configure() {
 	}
@@ -46,7 +50,6 @@ public class STTemplateDefaultPropertiesModule extends AbstractModule {
 	@Named("st-default-properties")
 	Properties getSTDefaultProperties() throws IOException {
 		return new ContextPropertiesFactory(STTemplateWorker.class)
-				.fromResource(STTemplateDefaultPropertiesModule.class,
-						"stringtemplate.properties");
+				.fromResource(PROPERTIES_URL);
 	}
 }

@@ -11,49 +11,54 @@
 	</parent>
 
 	<artifactId>resources-st</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.1-SNAPSHOT</version>
 	<name>ST Resources</name>
 	<description>Loads and caches String Template resources.</description>
+	<inceptionYear>2012</inceptionYear>
 
 	<dependencies>
+
+		<!-- test dependencies -->
+		<dependency>
+			<groupId>com.anrisoftware.globalpom</groupId>
+			<artifactId>globalpom-groovytestutils</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.anrisoftware.resources</groupId>
+			<artifactId>resources-templates-tests</artifactId>
+			<version>1.1-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- compile dependencies -->
 		<dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>ST4</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.propertiesutils</groupId>
-			<artifactId>propertiesutils</artifactId>
-			<version>1.0</version>
+			<artifactId>propertiesutils-contextproperties</artifactId>
+			<version>1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
 			<version>1.2</version>
 		</dependency>
-        <dependency>
-        	<groupId>com.google.inject.extensions</groupId>
-        	<artifactId>guice-assistedinject</artifactId>
-        </dependency>
-        <dependency>
-        	<groupId>com.anrisoftware.resources</groupId>
-        	<artifactId>resources-getbundle</artifactId>
-        	<version>1.1</version>
-        </dependency>
-        <dependency>
-        	<groupId>com.anrisoftware.globalpom</groupId>
-        	<artifactId>globalpom-log</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.anrisoftware.globalpom</groupId>
-            <artifactId>globalpom-groovytestutils</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.anrisoftware.resources</groupId>
-            <artifactId>resources-templates-tests</artifactId>
-            <version>1.0</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-assistedinject</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.anrisoftware.resources</groupId>
+			<artifactId>resources-getbundle</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.anrisoftware.globalpom</groupId>
+			<artifactId>globalpom-log</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
