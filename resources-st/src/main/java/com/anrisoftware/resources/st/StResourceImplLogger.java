@@ -1,9 +1,6 @@
 package com.anrisoftware.resources.st;
 
-import java.io.IOException;
-
 import com.anrisoftware.globalpom.log.AbstractSerializedLogger;
-import com.anrisoftware.resources.api.ResourcesException;
 
 /**
  * Logging messages for {@link StResourceImpl}.
@@ -24,18 +21,12 @@ class StResourceImplLogger extends AbstractSerializedLogger {
 		super(StResourceImpl.class);
 	}
 
-	ResourcesException errorLoadText(StResourceImpl res, IOException e) {
-		ResourcesException ex = new ResourcesException(
-				"",
-				res.getName(),
-				"Error loading the template resource ``%s'' with the locale %s: %s",
-				res.getName(), res.getLocale(), e.getMessage());
-		log.error(ex.getMessage());
-		return ex;
+	void processTemplate(StResourceImpl resource) {
+		log.trace("Process the template for {}.", resource);
 	}
 
-	void dataIsSame(StResourceImpl res, boolean same) {
-		log.debug("The data is the same {} in the resource {}.", same, res);
+	void resourceInvalidated(StResourceImpl resource) {
+		log.trace("Invalidate resource {}.", resource);
 	}
 
 }

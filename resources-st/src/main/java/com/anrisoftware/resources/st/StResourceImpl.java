@@ -7,7 +7,6 @@ import java.util.Properties;
 
 import javax.inject.Inject;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.anrisoftware.resources.api.ResourcesException;
@@ -29,14 +28,11 @@ class StResourceImpl implements TemplateResource, Serializable {
 
 	private Locale locale;
 
-	private int dataHashCode;
-
 	/**
 	 * For serialization.
 	 */
 	@Deprecated
 	public StResourceImpl() {
-		dataHashCode = 0;
 	}
 
 	@Inject
@@ -66,27 +62,23 @@ class StResourceImpl implements TemplateResource, Serializable {
 	}
 
 	@Override
-	public Properties getProperties() {
-		return worker.getProperties();
-	}
-
-	@Override
 	public String getText(Object... data) throws ResourcesException {
 		if (text == null) {
-			text = worker.process(name, data);
-			dataHashCode = ArrayUtils.hashCode(data);
-		} else if (!isSameData(data)) {
+			log.processTemplate(this);
 			text = worker.process(name, data);
 		}
 		return text;
 	}
 
-	private boolean isSameData(Object[] data) {
-		int hashCode = ArrayUtils.hashCode(data);
-		boolean same = dataHashCode == hashCode;
-		dataHashCode = hashCode;
-		log.dataIsSame(this, same);
-		return same;
+	@Override
+	public void invalidate() {
+		text = null;
+		log.resourceInvalidated(this);
+	}
+
+	@Override
+	public Properties getProperties() {
+		return worker.getProperties();
 	}
 
 	@Override

@@ -14,13 +14,6 @@ import java.util.Properties;
 public interface TemplateResource extends Resource {
 
 	/**
-	 * Returns the properties of this resource.
-	 * 
-	 * @return the {@link Properties}.
-	 */
-	Properties getProperties();
-
-	/**
 	 * <p>
 	 * Process the template and returns the text.
 	 * </p>
@@ -35,4 +28,21 @@ public interface TemplateResource extends Resource {
 	 *             if there was an error loading the text.
 	 */
 	String getText(Object... data) throws ResourcesException;
+
+	/**
+	 * Invalidate the template resource. Delete the cached resource so a
+	 * subsequent call of {@link #getText(Object...)} will process the template.
+	 * <p>
+	 * Use this if the data for the template have changed.
+	 * 
+	 * @since 1.3
+	 */
+	void invalidate();
+
+	/**
+	 * Returns the properties of this resource.
+	 * 
+	 * @return the {@link Properties}.
+	 */
+	Properties getProperties();
 }
