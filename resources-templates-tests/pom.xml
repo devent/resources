@@ -11,18 +11,20 @@
 	</parent>
 
 	<artifactId>resources-templates-tests</artifactId>
-	<version>1.2-SNAPSHOT</version>
+	<version>1.2</version>
 	<name>Templates Resources Tests</name>
 	<description>Bundles test resources and unit tests for the template resources.</description>
 
 	<dependencies>
 
+        <!-- own modules dependencies -->
+        <dependency>
+            <groupId>com.anrisoftware.resources</groupId>
+            <artifactId>resources-api</artifactId>
+            <version>1.3</version>
+        </dependency>
+
 		<!-- compile dependencies -->
-		<dependency>
-			<groupId>com.anrisoftware.resources</groupId>
-			<artifactId>resources-api</artifactId>
-			<version>1.3-SNAPSHOT</version>
-		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.globalpom</groupId>
 			<artifactId>globalpom-groovytestutils</artifactId>
