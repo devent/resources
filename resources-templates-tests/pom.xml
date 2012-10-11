@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>resources-templates-tests</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.1</version>
 	<name>Templates Resources Tests</name>
 	<description>Bundles test resources and unit tests for the template resources.</description>
 
