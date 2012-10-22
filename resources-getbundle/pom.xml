@@ -11,7 +11,7 @@
 	</parent>
 	
 	<artifactId>resources-getbundle</artifactId>
-	<version>1.1</version>
+	<version>1.1.1-SNAPSHOT</version>
 	<description>Offers an object oriented way to create ResourceBundle depending on the given parameter.</description>
 	
 </project>

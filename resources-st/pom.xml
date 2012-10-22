@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>resources-st</artifactId>
-	<version>1.1</version>
+	<version>1.1.1-SNAPSHOT</version>
 	<name>ST Resources</name>
 	<description>Loads and caches String Template resources.</description>
 	<inceptionYear>2012</inceptionYear>
@@ -40,7 +40,7 @@
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-getbundle</artifactId>
-            <version>1.1</version>
+            <version>1.1.1-SNAPSHOT</version>
         </dependency>
 
 		<!-- compile dependencies -->

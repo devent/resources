@@ -54,7 +54,7 @@ public class GetBundle {
 	 *         loader was set.
 	 */
 	public ClassLoader getClassLoader() {
-		return null;
+		return getClass().getClassLoader();
 	}
 
 	/**
