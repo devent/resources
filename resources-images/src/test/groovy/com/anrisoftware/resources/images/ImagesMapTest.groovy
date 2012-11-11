@@ -12,37 +12,33 @@ import com.anrisoftware.resources.images.maps.ResourcesImagesMapsModule
 import com.anrisoftware.resources.images.scaling.ResourcesSmoothScalingModule
 
 /**
- * Test the image resources.
+ * Test the images map.
  *
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-class ImageResourcesTest extends AbstractImageResourcesTest {
+class ImagesMapTest extends AbstractImagesMapTest {
 
 	@Test
-	void "load image with no resize and ldpi"() {
-		super."load image with no resize and ldpi"()
+	void "put images to map without dublicates"() {
+		super."put images to map without dublicates"()
 	}
 
 	@Test
-	void "load image with resize and ldpi"() {
-		super."load image with resize and ldpi"()
+	void "put images to map with dublicates"() {
+		super."put images to map with dublicates"()
 	}
 
 	@Test
-	void "load image with resize and xhdpi"() {
-		super."load image with resize and xhdpi"()
+	void "return custom sizes of images"() {
+		super."return custom sizes of images"()
 	}
 
 	@Test
-	void "same image with different sizes"() {
-		super."same image with different sizes"()
+	void "return custom sizes of images with auto resolution"() {
+		super."return custom sizes of images with auto resolution"()
 	}
 
-	@Test
-	void "same image with different sizes and auto-resolution"() {
-		super."same image with different sizes and auto-resolution"()
-	}
 
 	@Override
 	def createFactory() {

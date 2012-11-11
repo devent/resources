@@ -12,36 +12,16 @@ import com.anrisoftware.resources.images.maps.ResourcesImagesMapsModule
 import com.anrisoftware.resources.images.scaling.ResourcesSmoothScalingModule
 
 /**
- * Test the image resources.
+ * Tests the image resource.
  *
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
+ * @since 1.1
  */
-class ImageResourcesTest extends AbstractImageResourcesTest {
+class ImageResourceTest extends AbstractImageResourceTest {
 
 	@Test
 	void "load image with no resize and ldpi"() {
 		super."load image with no resize and ldpi"()
-	}
-
-	@Test
-	void "load image with resize and ldpi"() {
-		super."load image with resize and ldpi"()
-	}
-
-	@Test
-	void "load image with resize and xhdpi"() {
-		super."load image with resize and xhdpi"()
-	}
-
-	@Test
-	void "same image with different sizes"() {
-		super."same image with different sizes"()
-	}
-
-	@Test
-	void "same image with different sizes and auto-resolution"() {
-		super."same image with different sizes and auto-resolution"()
 	}
 
 	@Override

@@ -1,15 +1,12 @@
 package com.anrisoftware.resources.images
 
-import static com.anrisoftware.resources.api.ImageResolution.*
-
 import java.awt.Dimension
 
 import com.anrisoftware.globalpom.utils.ShowImagesFrame
-import com.anrisoftware.resources.api.ImageResource
 
 /**
  * Defines the image resources tests.
- * 
+ *
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
@@ -20,12 +17,12 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
 	void "load image with no resize and ldpi"() {
 		def name = IMAGE_NAME
 		def size = new Dimension(171, 171)
-		def resolution = LOW
+		def resolution = low
 		def baseName = "Logos"
 		def locale = Locale.GERMAN
 		def images = factory.create(baseName)
 
-		ImageResource image = images.getResource name, locale, size, resolution
+		def image = images.getResource name, locale, size, resolution
 		assert image.name == name
 		assert image.locale == locale
 		assert image.resolution == resolution
@@ -33,18 +30,18 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
 		assert image.URL.toString() =~ "com/anrisoftware/resources/images/logos/de/ldpi/x-mail-distribution-list.png"
 		assert image.size == size
 
-		new ShowImagesFrame(images: image.image)()
+		new ShowImagesFrame(images: image.image, timeout: timeout)()
 	}
 
 	void "load image with resize and ldpi"() {
 		def name = IMAGE_NAME
 		def size = new Dimension(256, 256)
-		def resolution = LOW
+		def resolution = low
 		def baseName = "Logos"
 		def locale = Locale.GERMAN
 		def images = factory.create(baseName)
 
-		ImageResource image = images.getResource name, locale, size, resolution
+		def image = images.getResource name, locale, size, resolution
 		assert image.name == name
 		assert image.locale == locale
 		assert image.resolution == resolution
@@ -52,18 +49,18 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
 		assert image.URL == null
 		assert image.size == size
 
-		new ShowImagesFrame(images: image.image)()
+		new ShowImagesFrame(images: image.image, timeout: timeout)()
 	}
 
 	void "load image with resize and xhdpi"() {
 		def name = IMAGE_NAME
 		def size = new Dimension(128, 128)
-		def resolution = EXTRA_HIGH
+		def resolution = extraHigh
 		def baseName = "Logos"
 		def locale = Locale.GERMAN
 		def images = factory.create(baseName)
 
-		ImageResource image = images.getResource name, locale, size, resolution
+		def image = images.getResource name, locale, size, resolution
 		assert image.name == name
 		assert image.locale == locale
 		assert image.resolution == resolution
@@ -71,7 +68,7 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
 		assert image.URL == null
 		assert image.size == size
 
-		new ShowImagesFrame(images: image.image)()
+		new ShowImagesFrame(images: image.image, timeout: timeout)()
 	}
 
 	void "same image with different sizes"() {
@@ -79,10 +76,10 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
 		def locale = Locale.GERMAN
 		def images = factory.create(baseName)
 		def res = []
-		res << images.getResource(IMAGE_NAME, locale, 256, 256, EXTRA_HIGH)
-		res << images.getResource(IMAGE_NAME, locale, 230, 230, EXTRA_HIGH)
-		res << images.getResource(IMAGE_NAME, locale, 260, 260, EXTRA_HIGH)
-		res << images.getResource(IMAGE_NAME, locale, 455, 455, EXTRA_HIGH)
+		res << images.getResource(IMAGE_NAME, locale, 256, 256, extraHigh)
+		res << images.getResource(IMAGE_NAME, locale, 230, 230, extraHigh)
+		res << images.getResource(IMAGE_NAME, locale, 260, 260, extraHigh)
+		res << images.getResource(IMAGE_NAME, locale, 455, 455, extraHigh)
 
 		assertImage res[0], null, 256, 256
 		assertImage res[1], null, 230, 230
@@ -91,7 +88,7 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
 
 		new ShowImagesFrame(images: res.inject([], { list, value ->
 			list << value.image
-		}))()
+		}), timeout: 5 * 1000)()
 	}
 
 	void "same image with different sizes and auto-resolution"() {
@@ -123,13 +120,13 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
 
 		new ShowImagesFrame(images: res.inject([], { list, value ->
 			list << value.image
-		}))()
+		}), timeout: timeout)()
 	}
 
-	def assertImage(ImageResource resource, def image, def width, def height, def url=/.*/) {
+	def assertImage(def resource, def image, def width, def height, def url=/.*/) {
 		assert resource.image != image
 		assert resource?.URL?.toString() =~ url
-		assert resource.width == width
-		assert resource.height == height
+		assert resource.widthPx == width
+		assert resource.heightPx == height
 	}
 }
