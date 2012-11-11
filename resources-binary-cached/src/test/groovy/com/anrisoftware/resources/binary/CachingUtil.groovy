@@ -11,7 +11,7 @@ import com.anrisoftware.resources.binary.maps.BinaryResourcesCacheBinderModule.C
 
 /**
  * Util class to create the caching modules.
- * 
+ *
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
@@ -27,7 +27,9 @@ class CachingUtil {
 
 	boolean statisticsEnabled
 
-	CachingUtil(CacheManager manager, boolean storeByValue=true, boolean statisticsEnabled=false) {
+	CachingUtil(CacheManager manager,
+	boolean storeByValue = true,
+	boolean statisticsEnabled = false) {
 		this.manager = manager
 		this.cache = createCache()
 		this.storeByValue = storeByValue
@@ -42,9 +44,9 @@ class CachingUtil {
 		builder.setStatisticsEnabled statisticsEnabled
 		//builder.setTransactionEnabled(IsolationLevel.NONE, Mode.NONE)
 		builder.registerCacheEntryListener([
-					entryCreated: { event -> println "entry created $event" },
-					entriesCreated: { event -> println "entry created $event" }
-				]as CacheEntryCreatedListener, NotificationScope.LOCAL, false)
+			entryCreated: { event -> println "entry created $event" },
+			entriesCreated: { event -> println "entry created $event" }
+		]as CacheEntryCreatedListener, NotificationScope.LOCAL, false)
 		builder.build()
 	}
 

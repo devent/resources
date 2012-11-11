@@ -4,8 +4,6 @@ import java.util.Locale;
 
 import javax.cache.Cache;
 
-import com.anrisoftware.resources.api.BinaryResource;
-
 /**
  * Uses a cache to store the binary resources.
  * 

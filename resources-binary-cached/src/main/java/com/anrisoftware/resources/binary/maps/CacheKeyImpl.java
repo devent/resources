@@ -2,8 +2,8 @@ package com.anrisoftware.resources.binary.maps;
 
 import java.util.Locale;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.anrisoftware.resources.binary.api.BinariesCacheKey;
 

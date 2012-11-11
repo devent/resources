@@ -10,18 +10,16 @@ import javax.cache.Cache;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.anrisoftware.resources.api.BinaryResource;
 import com.anrisoftware.resources.binary.api.BinariesCacheKey;
 import com.anrisoftware.resources.binary.api.BinariesMap;
 import com.anrisoftware.resources.binary.api.BinariesMapFactory;
+import com.anrisoftware.resources.binary.api.BinaryResource;
 import com.anrisoftware.resources.binary.api.BundlesMap;
 import com.anrisoftware.resources.binary.maps.BinaryResourcesCacheBinderModule.CacheFactory;
 import com.google.common.collect.Maps;
 
 /**
- * <p>
  * Uses a {@link HashMap} to store the binaries for each resource bundle.
- * </p>
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0

@@ -5,14 +5,12 @@ import java.util.Locale;
 import javax.cache.Cache;
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.api.BinaryResource;
 import com.anrisoftware.resources.binary.api.BinariesCacheKey;
 import com.anrisoftware.resources.binary.api.BinariesCachedMap;
+import com.anrisoftware.resources.binary.api.BinaryResource;
 
 /**
- * <p>
  * Uses a JCache cache to store the binary resources identified by their name.
- * </p>
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0

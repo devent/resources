@@ -4,17 +4,14 @@ import static com.google.inject.name.Names.named;
 
 import javax.cache.Cache;
 
-import com.anrisoftware.resources.api.BinaryResource;
 import com.anrisoftware.resources.binary.api.BinariesCacheKey;
+import com.anrisoftware.resources.binary.api.BinaryResource;
 import com.google.inject.AbstractModule;
 
 /**
- * <p>
  * Helper module to bind the cache for the binaries map.
- * </p>
  * <p>
- * It will create a new cache from a specified cache factory.
- * </p>
+ * It will create a new cache from the specified cache factory.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
@@ -42,8 +39,8 @@ public class BinaryResourcesCacheBinderModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		bind(CacheFactory.class).annotatedWith(
-				named(BINARIES_CACHE_FACTORY)).toInstance(cacheFactory);
+		bind(CacheFactory.class).annotatedWith(named(BINARIES_CACHE_FACTORY))
+				.toInstance(cacheFactory);
 	}
 
 }
