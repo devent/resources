@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.binary;
+package com.anrisoftware.resources.binary.binaries;
 
 import com.anrisoftware.resources.binary.api.Binaries;
 import com.anrisoftware.resources.binary.api.BinariesFactory;

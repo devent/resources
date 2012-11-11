@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.binary;
+package com.anrisoftware.resources.binary.binaries;
 
 import java.util.Locale;
 import java.util.ResourceBundle;

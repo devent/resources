@@ -3,8 +3,15 @@ package com.anrisoftware.resources.binary
 import org.junit.Test
 
 import com.anrisoftware.resources.binary.api.BinariesFactory
+import com.anrisoftware.resources.binary.binaries.BinariesResourcesModule
 import com.anrisoftware.resources.binary.maps.BinariesDefaultMapsModule
 
+/**
+ * Test the binary resources.
+ *
+ * @author Erwin Mueller, erwin.mueller@deventm.org
+ * @since 1.0
+ */
 class BinaryResourcesTest extends AbstractBinaryResourcesTest {
 
 	@Test
