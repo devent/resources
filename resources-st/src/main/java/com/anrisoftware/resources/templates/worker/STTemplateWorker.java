@@ -1,8 +1,8 @@
 package com.anrisoftware.resources.templates.worker;
 
-import static com.anrisoftware.resources.templates.api.TemplateWorkerFactory.DELIMITER_START_CHAR_PROPERTY;
-import static com.anrisoftware.resources.templates.api.TemplateWorkerFactory.DELIMITER_STOP_CHAR_PROPERTY;
-import static com.anrisoftware.resources.templates.api.TemplateWorkerFactory.ENCODING_PROPERTY;
+import static com.anrisoftware.resources.templates.worker.STTemplateWorkerFactory.DELIMITER_START_CHAR_PROPERTY;
+import static com.anrisoftware.resources.templates.worker.STTemplateWorkerFactory.DELIMITER_STOP_CHAR_PROPERTY;
+import static com.anrisoftware.resources.templates.worker.STTemplateWorkerFactory.ENCODING_PROPERTY;
 
 import java.io.ObjectStreamException;
 import java.net.URL;
@@ -107,15 +107,6 @@ class STTemplateWorker implements TemplateWorker {
 		return templateUrl;
 	}
 
-	/**
-	 * Process the template and return the text.
-	 * 
-	 * @param name
-	 *            the name of the template in the group file.
-	 * 
-	 * @param data
-	 *            the data that is passed to the template.
-	 */
 	@Override
 	public String process(String name, Object... data)
 			throws ResourcesException {

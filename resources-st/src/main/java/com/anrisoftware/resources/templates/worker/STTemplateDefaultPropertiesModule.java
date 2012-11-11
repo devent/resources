@@ -34,9 +34,13 @@ import com.google.inject.Provides;
  * Binds the String Template template resource default properties.
  * <p>
  * Loads the {@code stringtemplate.properties} from the template worker class
- * path.
+ * path. The properties can be overridden by system properties.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
+ * @see STTemplateWorkerFactory#DELIMITER_START_CHAR_PROPERTY
+ * @see STTemplateWorkerFactory#DELIMITER_STOP_CHAR_PROPERTY
+ * @see STTemplateWorkerFactory#ENCODING_PROPERTY
+ * @see System#getProperties()
  * @since 1.0
  */
 public class STTemplateDefaultPropertiesModule extends AbstractModule {

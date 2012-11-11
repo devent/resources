@@ -29,18 +29,18 @@ public interface TemplateWorker extends Serializable {
 	Properties getProperties();
 
 	/**
-	 * Process the calculated data.
+	 * Process the template and return the text.
 	 * 
 	 * @param name
-	 *            the name of the data.
+	 *            the name of the template.
 	 * 
 	 * @param data
 	 *            the data.
 	 * 
-	 * @return the processed data as a string.
+	 * @return the processed template as a string.
 	 * 
 	 * @throws ResourcesException
-	 *             if an error has occurred while.
+	 *             if an error has occurred while processing the template.
 	 */
 	String process(String name, Object... data) throws ResourcesException;
 
