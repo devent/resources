@@ -6,37 +6,42 @@
 	<parent>
 		<artifactId>globalpom-groovy</artifactId>
 		<groupId>com.anrisoftware.globalpom</groupId>
-		<version>1.11</version>
+		<version>1.13</version>
 		<relativePath />
 	</parent>
 
 	<groupId>com.anrisoftware.resources</groupId>
 	<artifactId>resources-parent</artifactId>
-	<version>1.2</version>
+	<version>1.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Resources Parent POM</name>
-	<description>The parent POM of the resources project.</description>
+	<name>Resources :: Parent POM</name>
+	<description>The parent POM of the resources project. Defines the group ID, source control management, project properties.</description>
+	<inceptionYear>2012</inceptionYear>
 
-    <developers>
-        <developer>
-            <id>EM</id>
-            <name>Erwin Müller</name>
-            <organization>Advanced Natural Research Insitute GmbH</organization>
-            <email>erwin.mueller@deventm.org</email>
-            <roles>
-                <role>Owner</role>
-                <role>Developer</role>
-            </roles>
-        </developer>
-    </developers>
+	<developers>
+		<developer>
+			<id>EM</id>
+			<name>Erwin Müller</name>
+			<organization>Advanced Natural Research Insitute GmbH</organization>
+			<email>erwin.mueller@deventm.org</email>
+			<roles>
+				<role>Owner</role>
+				<role>Developer</role>
+			</roles>
+		</developer>
+	</developers>
 
-    <licenses>
-        <license>
-            <name>LGPLv3</name>
-            <url>http://www.gnu.org/licenses/lgpl.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
+	<licenses>
+		<license>
+			<name>LGPLv3</name>
+			<url>http://www.gnu.org/licenses/lgpl.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<properties>
+		<project.custom.year>${project.inceptionYear}</project.custom.year>
+	</properties>
 
 	<scm>
 		<connection>scm:git:${custom.gitpublic.url}resources.git</connection>
@@ -44,28 +49,28 @@
 		<url>scm:git:${custom.gitpublic.url}resources.git</url>
 	</scm>
 
-    <distributionManagement>
-        <repository>
-            <id>${custom.repository.anrispublic.id}</id>
-            <url>${custom.repository.root}${custom.repository.anrispublic.path}</url>
-        </repository>
-        <snapshotRepository>
-            <id>${custom.repository.anrispublicsnapshots.id}</id>
-            <url>${custom.repository.root}${custom.repository.anrispublicsnapshots.path}</url>
-        </snapshotRepository>
-    </distributionManagement>
+	<distributionManagement>
+		<repository>
+			<id>${custom.repository.anrispublic.id}</id>
+			<url>${custom.repository.root}${custom.repository.anrispublic.path}</url>
+		</repository>
+		<snapshotRepository>
+			<id>${custom.repository.anrispublicsnapshots.id}</id>
+			<url>${custom.repository.root}${custom.repository.anrispublicsnapshots.path}</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>com.anrisoftware.globalpom</groupId>
 				<artifactId>globalpom-log</artifactId>
-				<version>${project.custom.globalpom.log.version}</version>
+				<version>1.6</version>
 			</dependency>
 			<dependency>
 				<groupId>com.anrisoftware.globalpom</groupId>
 				<artifactId>globalpom-groovytestutils</artifactId>
-				<version>${project.custom.globalpom.groovytestutils.version}</version>
+				<version>1.10</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
