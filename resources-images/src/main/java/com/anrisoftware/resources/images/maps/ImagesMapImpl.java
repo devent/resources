@@ -1,12 +1,12 @@
 package com.anrisoftware.resources.images.maps;
 
-import static com.google.common.collect.Maps.newHashMap;
-import static com.google.common.collect.Maps.newTreeMap;
 import static java.lang.Math.abs;
 
 import java.awt.Dimension;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.inject.Inject;
 
@@ -16,8 +16,7 @@ import com.anrisoftware.resources.images.api.ImageResource;
 import com.anrisoftware.resources.images.api.ImagesMap;
 
 /**
- * Puts {@link ImageResource}s and retrieve them. The images are identified by
- * their name, resolution and size. No duplicates are allowed in the map.
+ * Uses a Java hash map to store the image resources.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
@@ -27,16 +26,13 @@ class ImagesMapImpl implements ImagesMap {
 	private final ImagesMapLogger log;
 
 	/**
-	 * <p>
 	 * Saves the loaded image resources.
-	 * </p>
 	 * <p>
 	 * The image resources are stored for each name, for each resolution and for
 	 * each image size, i.e.:
-	 * </p>
 	 * 
 	 * <pre>
-	 * &lt;name:{@link String}&gt; = [&lt;resolution:{@link ImageResolution}&gt; = [&lt;size:{@link Dimension}&gt; = {@link ImageResource}]]
+	 * [&lt;name:{@link String}&gt; = [&lt;resolution:{@link ImageResolution}&gt; = [&lt;size:{@link Dimension}&gt; = {@link ImageResource}]]]
 	 * </pre>
 	 */
 	private final Map<String, Map<ImageResolution, Map<Dimension, ImageResource>>> images;
@@ -47,7 +43,7 @@ class ImagesMapImpl implements ImagesMap {
 	@Inject
 	ImagesMapImpl(ImagesMapLogger logger) {
 		this.log = logger;
-		this.images = newHashMap();
+		this.images = new HashMap<String, Map<ImageResolution, Map<Dimension, ImageResource>>>();
 	}
 
 	@Override
@@ -70,19 +66,20 @@ class ImagesMapImpl implements ImagesMap {
 			ImageResolution resolution) {
 		Map<Dimension, ImageResource> resources = resolutions.get(resolution);
 		if (resources == null) {
-			resources = newTreeMap(new Comparator<Dimension>() {
+			resources = new TreeMap<Dimension, ImageResource>(
+					new Comparator<Dimension>() {
 
-				@Override
-				public int compare(Dimension o1, Dimension o2) {
-					return compeateByArea(o1, o2);
-				}
+						@Override
+						public int compare(Dimension o1, Dimension o2) {
+							return compeateByArea(o1, o2);
+						}
 
-				private int compeateByArea(Dimension o1, Dimension o2) {
-					int area1 = o1.width * o1.height;
-					int area2 = o2.width * o2.height;
-					return area1 < area2 ? -1 : area1 > area2 ? 1 : 0;
-				}
-			});
+						private int compeateByArea(Dimension o1, Dimension o2) {
+							int area1 = o1.width * o1.height;
+							int area2 = o2.width * o2.height;
+							return area1 < area2 ? -1 : area1 > area2 ? 1 : 0;
+						}
+					});
 		}
 		resolutions.put(resolution, resources);
 		return resources;
@@ -90,10 +87,10 @@ class ImagesMapImpl implements ImagesMap {
 
 	private Map<ImageResolution, Map<Dimension, ImageResource>> resolutionsMap(
 			String name) {
-		Map<ImageResolution, Map<Dimension, ImageResource>> resolutions = images
-				.get(name);
+		Map<ImageResolution, Map<Dimension, ImageResource>> resolutions;
+		resolutions = images.get(name);
 		if (resolutions == null) {
-			resolutions = newHashMap();
+			resolutions = new HashMap<ImageResolution, Map<Dimension, ImageResource>>();
 			images.put(name, resolutions);
 		}
 		return resolutions;
@@ -128,9 +125,10 @@ class ImagesMapImpl implements ImagesMap {
 	@Override
 	public ImageResource getImage(String name, Dimension size,
 			ImageResolution resolution) {
-		Map<ImageResolution, Map<Dimension, ImageResource>> resolutions = resolutionsMap(name);
-		Map<Dimension, ImageResource> resources = resourcesMap(resolutions,
-				resolution);
+		Map<ImageResolution, Map<Dimension, ImageResource>> resolutions;
+		Map<Dimension, ImageResource> resources;
+		resolutions = resolutionsMap(name);
+		resources = resourcesMap(resolutions, resolution);
 		ImageResource image = resources.get(size);
 		if (image == null) {
 			log.noImageReturningNearest(this, name);
@@ -140,7 +138,7 @@ class ImagesMapImpl implements ImagesMap {
 	}
 
 	/**
-	 * Find the nearest {@link ImageResource}.
+	 * Find the nearest image resource.
 	 * 
 	 * @author Erwin Mueller, erwin.mueller@deventm.org
 	 * @since 1.0
@@ -218,8 +216,8 @@ class ImagesMapImpl implements ImagesMap {
 
 	@Override
 	public boolean haveImage(String name, ImageResolution resolution) {
-		Map<ImageResolution, Map<Dimension, ImageResource>> resolutions = images
-				.get(name);
+		Map<ImageResolution, Map<Dimension, ImageResource>> resolutions;
+		resolutions = images.get(name);
 		return resolutions == null ? false : resolutions
 				.containsKey(resolution);
 	}

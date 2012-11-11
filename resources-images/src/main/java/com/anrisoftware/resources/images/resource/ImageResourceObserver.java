@@ -27,8 +27,9 @@ class ImageResourceObserver implements ImageObserver {
 	 * Sets the flags we observe for.
 	 * 
 	 * @param flags
-	 *            one or a combination of the flags of the {@link ImageObserver}
-	 *            .
+	 *            one or a combination of the flags of the image observer.
+	 * 
+	 * @see ImageObserver
 	 */
 	public ImageResourceObserver(int flags) {
 		this.flags = flags;

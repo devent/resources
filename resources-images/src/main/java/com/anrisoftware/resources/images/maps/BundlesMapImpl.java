@@ -12,9 +12,7 @@ import com.anrisoftware.resources.images.api.ImagesMapFactory;
 import com.google.common.collect.Maps;
 
 /**
- * <p>
  * Uses a {@link HashMap} to store the images for each resource bundle.
- * </p>
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1

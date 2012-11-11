@@ -7,12 +7,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 /**
- * <p>
- * Binds the image resources images maps.
- * </p>
- * <p>
- * This implementation is using Java hash map.
- * </p>
+ * Binds the Java hash map as the image resources map.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1

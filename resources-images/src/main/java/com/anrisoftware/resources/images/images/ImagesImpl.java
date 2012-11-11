@@ -18,6 +18,12 @@ import com.anrisoftware.resources.images.api.Images;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
 
+/**
+ * Manages the bundles of the image resources.
+ * 
+ * @author Erwin Mueller, erwin.mueller@deventm.org
+ * @since 1.0
+ */
 class ImagesImpl implements Images {
 
 	private final BundlesMap bundles;
@@ -90,8 +96,8 @@ class ImagesImpl implements Images {
 	}
 
 	@Override
-	public ImageResource getResource(String name, Locale locale,
-			Dimension size) throws ResourcesException {
+	public ImageResource getResource(String name, Locale locale, Dimension size)
+			throws ResourcesException {
 		return workerFactory.create(name, locale, size, getBundle, bundles)
 				.imageResource();
 	}
