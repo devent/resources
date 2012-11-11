@@ -3,8 +3,8 @@ package com.anrisoftware.resources.binary.api;
 import com.anrisoftware.resources.api.ResourcesException;
 
 /**
- * Puts {@link BinaryResource}s and retrieve them. The resources are identified
- * by their name. Resources with the name that are already in the map are not
+ * Puts binary resources and retrieve them. The resources are identified by
+ * their name. Resources with the name that are already in the map are not
  * added.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
@@ -13,13 +13,10 @@ import com.anrisoftware.resources.api.ResourcesException;
 public interface BinariesMap {
 
 	/**
-	 * <p>
 	 * Add new binary resource to the map.
-	 * </p>
 	 * <p>
 	 * If there is already a resource with the same name in the map, the
 	 * resource will not be added.
-	 * </p>
 	 * 
 	 * @param resource
 	 *            the {@link BinaryResource} that should be added.

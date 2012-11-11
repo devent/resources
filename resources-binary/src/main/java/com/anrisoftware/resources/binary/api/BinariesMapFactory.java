@@ -1,7 +1,7 @@
 package com.anrisoftware.resources.binary.api;
 
 /**
- * Factory to create a new binary map.
+ * Factory to create a new map for binary resources.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
@@ -9,7 +9,9 @@ package com.anrisoftware.resources.binary.api;
 public interface BinariesMapFactory {
 
 	/**
-	 * Creates a new {@link BinariesMap}.
+	 * Creates a new map for binary resources.
+	 * 
+	 * @return the {@link BinariesMap}.
 	 */
 	BinariesMap create();
 }

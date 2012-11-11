@@ -12,6 +12,11 @@ class BinaryResourcesTest extends AbstractBinaryResourcesTest {
 		super."load lorem zipfile with different locale"()
 	}
 
+	@Test
+	void "test serialize binary resource"() {
+		super."test serialize binary resource"()
+	}
+
 	@Override
 	def createFactory() {
 		injector.getInstance(BinariesFactory)

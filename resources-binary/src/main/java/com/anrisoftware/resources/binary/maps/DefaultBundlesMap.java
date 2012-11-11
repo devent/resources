@@ -1,5 +1,6 @@
 package com.anrisoftware.resources.binary.maps;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -8,12 +9,9 @@ import javax.inject.Inject;
 import com.anrisoftware.resources.binary.api.BinariesMap;
 import com.anrisoftware.resources.binary.api.BinariesMapFactory;
 import com.anrisoftware.resources.binary.api.BundlesMap;
-import com.google.common.collect.Maps;
 
 /**
- * <p>
  * Uses Java hash map to store the binaries for each resource bundle.
- * </p>
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
@@ -26,7 +24,7 @@ public class DefaultBundlesMap implements BundlesMap {
 
 	@Inject
 	DefaultBundlesMap(BinariesMapFactory imagesFactory) {
-		this.map = Maps.newHashMap();
+		this.map = new HashMap<ResourceBundle, BinariesMap>();
 		this.factory = imagesFactory;
 	}
 

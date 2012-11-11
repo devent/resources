@@ -3,11 +3,11 @@ package com.anrisoftware.resources.binary.resources;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectStreamException;
 import java.io.Serializable;
-import java.io.WriteAbortedException;
 import java.net.URL;
 import java.util.Locale;
+
+import javax.inject.Inject;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -15,16 +15,19 @@ import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.binary.api.BinaryResource;
 import com.google.common.io.ByteStreams;
 import com.google.inject.assistedinject.Assisted;
-import com.google.inject.assistedinject.AssistedInject;
 
 /**
- * Image resource with lazy loading. Two image resources are equals if the
- * resource URL is the same.
+ * Binary resource with lazy loading.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
 class BinaryResourceImpl implements BinaryResource, Serializable {
+
+	/**
+	 * @since 1.0
+	 */
+	private static final long serialVersionUID = -1207420120451049084L;
 
 	private final BinaryResourceImplLogger log;
 
@@ -36,7 +39,22 @@ class BinaryResourceImpl implements BinaryResource, Serializable {
 
 	private byte[] buffer;
 
-	@AssistedInject
+	/**
+	 * Sets the name, locale and URL of the binary resource.
+	 * 
+	 * @param logger
+	 *            the {@link BinaryResourceImplLogger} for logging messages.
+	 * 
+	 * @param name
+	 *            the name of the resource.
+	 * 
+	 * @param locale
+	 *            the {@link Locale} of the resource.
+	 * 
+	 * @param url
+	 *            the {@link URL} of the resource.
+	 */
+	@Inject
 	BinaryResourceImpl(BinaryResourceImplLogger logger, @Assisted String name,
 			@Assisted Locale locale, @Assisted URL url) {
 		this.log = logger;
@@ -119,14 +137,5 @@ class BinaryResourceImpl implements BinaryResource, Serializable {
 	public String toString() {
 		return new ToStringBuilder(this).append(name).append("locale", locale)
 				.append("url", url).toString();
-	}
-
-	Object writeReplace() throws ObjectStreamException {
-		try {
-			getBinary();
-		} catch (ResourcesException e) {
-			throw new WriteAbortedException("Failed to read binary data.", e);
-		}
-		return this;
 	}
 }

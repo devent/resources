@@ -12,14 +12,13 @@ import java.util.Locale;
 public interface BinaryResourceFactory {
 
 	/**
-	 * Creates a new {@link BinaryResource} which will load the text from the
-	 * URL.
+	 * Creates a new binary resource with the specified name, locale and URL.
 	 * 
 	 * @param name
-	 *            the name {@link String} of this resource.
+	 *            the name {@link String} of the resource.
 	 * 
 	 * @param locale
-	 *            the {@link Locale} this text resource.
+	 *            the {@link Locale} this the resource.
 	 * 
 	 * @param url
 	 *            the {@link URL} of the resource.

@@ -2,15 +2,10 @@ package com.anrisoftware.resources.binary.api;
 
 import java.util.ResourceBundle;
 
-import com.anrisoftware.resources.binary.maps.DefaultBinariesMap;
-
 /**
- * <p>
- * Associated a resource bundle with an binaries map.
- * </p>
+ * Associating a resource bundle with an binaries map.
  * <p>
  * Lazy create a new binaries map for a new resource bundle.
- * </p>
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
@@ -18,13 +13,10 @@ import com.anrisoftware.resources.binary.maps.DefaultBinariesMap;
 public interface BundlesMap {
 
 	/**
-	 * <p>
 	 * Returns the binaries for the specified resource bundle.
-	 * </p>
 	 * <p>
-	 * If no binaries are found for the specified resource bundle a new
-	 * {@link DefaultBinariesMap} is created.
-	 * </p>
+	 * If no binaries are found for the specified resource bundle a new binaries
+	 * map is created.
 	 * 
 	 * @param baseName
 	 *            the base name {@link String} of the resource bundle.
@@ -32,7 +24,7 @@ public interface BundlesMap {
 	 * @param bundle
 	 *            the {@link ResourceBundle}.
 	 * 
-	 * @return the {@link TextsMap} for the resource bundle.
+	 * @return the {@link BinariesMap} for the resource bundle.
 	 */
 	BinariesMap getBinaries(String baseName, ResourceBundle bundle);
 

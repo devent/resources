@@ -1,7 +1,6 @@
 package com.anrisoftware.resources.binary.maps;
 
-import static com.google.common.collect.Maps.newHashMap;
-
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -11,7 +10,7 @@ import com.anrisoftware.resources.binary.api.BinariesMap;
 import com.anrisoftware.resources.binary.api.BinaryResource;
 
 /**
- * Stores the binary resources in the Java hash map.
+ * Stores the binary resources in a Java hash map.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
@@ -28,7 +27,7 @@ public class DefaultBinariesMap implements BinariesMap {
 	@Inject
 	DefaultBinariesMap(BinariesMapLogger logger) {
 		this.log = logger;
-		this.map = newHashMap();
+		this.map = new HashMap<String, BinaryResource>();
 	}
 
 	@Override
