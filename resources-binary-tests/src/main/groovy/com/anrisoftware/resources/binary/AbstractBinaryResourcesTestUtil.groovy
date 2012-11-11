@@ -1,28 +1,28 @@
 package com.anrisoftware.resources.binary
 
+import static com.anrisoftware.globalpom.utils.TestUtils.*
+
 import org.junit.Before
 import org.junit.BeforeClass
 
-import com.anrisoftware.globalpom.utils.TestUtils
-import com.anrisoftware.resources.api.BinariesFactory
 import com.google.common.io.Resources
 import com.google.inject.Guice
 import com.google.inject.Injector
 
 /**
  * Creates the environment to test the binary resources.
- * 
+ *
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-abstract class AbstractBinaryResourcesTestUtil extends TestUtils {
+abstract class AbstractBinaryResourcesTestUtil {
 
 	static inputs
 
 	static outputs
 
 	@BeforeClass
-	static void beforeClass() {
+	static void createTestIO() {
 		inputs = [
 			[baseName: "Zipfiles", resources: [
 					[name: "lorem", locale: Locale.GERMAN],
@@ -57,29 +57,35 @@ abstract class AbstractBinaryResourcesTestUtil extends TestUtils {
 		]
 	}
 
-	def modules
-
 	Injector injector
 
-	BinariesFactory factory
+	def factory
 
 	@Before
-	void before() {
-		modules = lazyCreateModules()
-		injector = injector == null ? Guice.createInjector(modules) : injector
-		factory = injector.getInstance BinariesFactory
+	void createFactories() {
+		injector = createInjector()
+		factory = createFactory()
 	}
 
-	def lazyCreateModules() {
-		modules == null ?
-				[
-					resourcesModule,
-					mapModule,
-				].flatten()
-				: modules
+	Injector createInjector() {
+		if (injector != null) {
+			injector
+		}
+		injector = Guice.createInjector(resourcesModule, mapModule)
 	}
 
-	abstract def getResourcesModule()
+	/**
+	 * Create the binary resources factory.
+	 */
+	abstract createFactory()
 
-	abstract def getMapModule()
+	/**
+	 * Returns the binary resources module.
+	 */
+	abstract getResourcesModule()
+
+	/**
+	 * Returns the binary resources map module.
+	 */
+	abstract getMapModule()
 }
