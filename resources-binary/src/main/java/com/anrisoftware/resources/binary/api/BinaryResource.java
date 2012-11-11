@@ -1,6 +1,9 @@
-package com.anrisoftware.resources.api;
+package com.anrisoftware.resources.binary.api;
 
 import java.io.InputStream;
+
+import com.anrisoftware.resources.api.Resource;
+import com.anrisoftware.resources.api.ResourcesException;
 
 /**
  * Resource for binary data.

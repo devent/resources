@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.api;
+package com.anrisoftware.resources.binary.api;
 
 import java.net.URL;
 import java.util.Locale;
