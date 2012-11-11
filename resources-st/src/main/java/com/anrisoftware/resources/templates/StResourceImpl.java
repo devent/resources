@@ -15,8 +15,18 @@ import com.anrisoftware.resources.templates.worker.STTemplateWorkerFactory;
 import com.anrisoftware.resources.templates.worker.TemplateWorker;
 import com.google.inject.assistedinject.Assisted;
 
-@SuppressWarnings("serial")
+/**
+ * Serializable template resource.
+ * 
+ * @author Erwin Mueller, erwin.mueller@deventm.org
+ * @since 1.0
+ */
 class StResourceImpl implements TemplateResource, Serializable {
+
+	/**
+	 * @since 1.0
+	 */
+	private static final long serialVersionUID = -8844751640256590067L;
 
 	private StResourceImplLogger log;
 

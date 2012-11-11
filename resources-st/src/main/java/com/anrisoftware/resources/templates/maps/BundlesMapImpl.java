@@ -1,6 +1,5 @@
 package com.anrisoftware.resources.templates.maps;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -12,9 +11,7 @@ import com.anrisoftware.resources.templates.api.TemplatesMapFactory;
 import com.google.common.collect.Maps;
 
 /**
- * <p>
- * Uses a {@link HashMap} to store the texts for each resource bundle.
- * </p>
+ * Uses a Java hash map to store the texts for each resource bundle.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1

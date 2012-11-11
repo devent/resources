@@ -18,6 +18,8 @@
  */
 package com.anrisoftware.resources.templates.worker;
 
+import static java.lang.System.getProperties;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
@@ -50,6 +52,6 @@ public class STTemplateDefaultPropertiesModule extends AbstractModule {
 	@Named("st-default-properties")
 	Properties getSTDefaultProperties() throws IOException {
 		return new ContextPropertiesFactory(STTemplateWorker.class)
-				.fromResource(PROPERTIES_URL);
+				.withProperties(getProperties()).fromResource(PROPERTIES_URL);
 	}
 }

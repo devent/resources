@@ -1,6 +1,5 @@
 package com.anrisoftware.resources.templates.maps;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -10,10 +9,8 @@ import com.anrisoftware.resources.templates.api.TemplatesMap;
 import com.google.common.collect.Maps;
 
 /**
- * <p>
- * Uses a {@link HashMap} to store the template resources identified by their
+ * Uses a Java hash map to store the template resources identified by their
  * name.
- * </p>
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
