@@ -36,6 +36,6 @@ class BinaryResourceImplLogger extends AbstractSerializedLogger {
 	}
 
 	void loadedBuffer(BinaryResourceImpl res) {
-		log.debug("Loaded the binary buffer in resource {}.", res);
+		log.trace("Loaded the binary buffer in resource {}.", res);
 	}
 }

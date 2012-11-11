@@ -1,13 +1,13 @@
 package com.anrisoftware.resources.binary;
 
-import com.anrisoftware.resources.api.Binaries;
-import com.anrisoftware.resources.api.BinariesFactory;
+import com.anrisoftware.resources.binary.api.Binaries;
+import com.anrisoftware.resources.binary.api.BinariesFactory;
 import com.anrisoftware.resources.binary.resources.BinaryResourceModule;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 /**
- * Binds the binary resources classes.
+ * Installs the binary resources factories.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0

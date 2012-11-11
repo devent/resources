@@ -1,6 +1,5 @@
 package com.anrisoftware.resources.binary.api;
 
-import com.anrisoftware.resources.api.BinaryResource;
 import com.anrisoftware.resources.api.ResourcesException;
 
 /**

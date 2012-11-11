@@ -11,7 +11,10 @@
 	</parent>
 
 	<artifactId>resources-binary</artifactId>
+	<name>Resources :: Binary</name>
+	<description>Binary resources.</description>
 	<version>1.3-SNAPSHOT</version>
+	<inceptionYear>2012</inceptionYear>
 
 	<dependencies>
 
@@ -19,7 +22,7 @@
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-binary-tests</artifactId>
-            <version>1.1</version>
+            <version>1.2-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
 
@@ -27,7 +30,7 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>1.3-SNAPSHOT</version>
+			<version>1.4-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>

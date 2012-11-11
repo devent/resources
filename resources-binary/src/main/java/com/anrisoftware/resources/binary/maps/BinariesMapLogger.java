@@ -1,7 +1,7 @@
 package com.anrisoftware.resources.binary.maps;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
-import com.anrisoftware.resources.api.BinaryResource;
+import com.anrisoftware.resources.binary.api.BinaryResource;
 
 /**
  * Logger messages for the {@link DefaultBinariesMap}.

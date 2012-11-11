@@ -8,10 +8,10 @@ import java.util.ResourceBundle;
 import javax.inject.Inject;
 
 import com.anrisoftware.resources.GetBundle;
-import com.anrisoftware.resources.api.BinaryResource;
-import com.anrisoftware.resources.api.BinaryResourceFactory;
 import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.binary.api.BinariesMap;
+import com.anrisoftware.resources.binary.api.BinaryResource;
+import com.anrisoftware.resources.binary.api.BinaryResourceFactory;
 import com.anrisoftware.resources.binary.api.BundlesMap;
 import com.google.inject.assistedinject.Assisted;
 

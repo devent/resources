@@ -6,9 +6,9 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.api.BinaryResource;
 import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.binary.api.BinariesMap;
+import com.anrisoftware.resources.binary.api.BinaryResource;
 
 /**
  * Stores the binary resources in the Java hash map.

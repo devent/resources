@@ -1,7 +1,7 @@
 package com.anrisoftware.resources.binary.resources;
 
-import com.anrisoftware.resources.api.BinaryResource;
-import com.anrisoftware.resources.api.BinaryResourceFactory;
+import com.anrisoftware.resources.binary.api.BinaryResource;
+import com.anrisoftware.resources.binary.api.BinaryResourceFactory;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 

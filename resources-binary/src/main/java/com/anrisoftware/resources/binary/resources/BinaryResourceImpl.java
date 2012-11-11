@@ -11,8 +11,8 @@ import java.util.Locale;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.anrisoftware.resources.api.BinaryResource;
 import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.binary.api.BinaryResource;
 import com.google.common.io.ByteStreams;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
