@@ -18,13 +18,6 @@
 
 	<dependencies>
 
-        <!-- own modules dependency -->
-        <dependency>
-            <groupId>com.anrisoftware.resources</groupId>
-            <artifactId>resources-api</artifactId>
-            <version>1.4-SNAPSHOT</version>
-        </dependency>
-
         <!-- compile dependency -->
         <dependency>
             <groupId>com.google.guava</groupId>

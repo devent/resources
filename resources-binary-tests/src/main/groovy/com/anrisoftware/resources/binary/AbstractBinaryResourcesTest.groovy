@@ -19,11 +19,11 @@ abstract class AbstractBinaryResourcesTest extends AbstractBinaryResourcesTestUt
 	void "test serialize binary resource"() {
 		def input = inputs[0]
 		def resource = input.resources[0]
-		def output = outputs[0]
+		def output = outputs[0].resources[0]
 		def binaries = factory.create(input.baseName)
 		def binary = binaries.getResource resource.name, resource.locale
-		def binaryB = reserialize(resource)
-		testBinaryArgs(binaryB, [name: name, locale: output.locale, url: output.url, size: output.availableBytes])
+		def binaryB = reserialize(binary)
+		testBinaryArgs(binaryB, [name: resource.name, locale: output.locale, url: output.url, size: output.availableBytes])
 	}
 
 	def testBinaries(def baseName, def resources, def output) {

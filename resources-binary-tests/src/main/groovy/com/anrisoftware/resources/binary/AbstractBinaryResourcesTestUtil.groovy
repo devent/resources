@@ -22,6 +22,11 @@ abstract class AbstractBinaryResourcesTestUtil {
 	static outputs
 
 	@BeforeClass
+	static void setupToStringStyle() {
+		toStringStyle
+	}
+
+	@BeforeClass
 	static void createTestIO() {
 		inputs = [
 			[baseName: "Zipfiles", resources: [
@@ -71,7 +76,7 @@ abstract class AbstractBinaryResourcesTestUtil {
 		if (injector != null) {
 			injector
 		}
-		injector = Guice.createInjector(resourcesModule, mapModule)
+		Guice.createInjector(resourcesModule, mapModule)
 	}
 
 	/**
