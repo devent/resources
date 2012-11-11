@@ -21,6 +21,7 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
  * 
  * <pre>
  * resourcesModule = new TemplatesResourcesModule();
+ * mapsModule = new TemplatesDefaultMapsModule();
  * List modules = { resourcesModule, mapsModule, propertiesModule }
  * Injector injector = Guice.createInjector(modules);
  * TemplatesFactory factory = injector.getInstance(TemplatesFactory);

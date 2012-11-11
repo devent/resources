@@ -1,5 +1,6 @@
 package com.anrisoftware.resources.templates.maps;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -8,7 +9,6 @@ import javax.inject.Inject;
 import com.anrisoftware.resources.templates.api.BundlesMap;
 import com.anrisoftware.resources.templates.api.TemplatesMap;
 import com.anrisoftware.resources.templates.api.TemplatesMapFactory;
-import com.google.common.collect.Maps;
 
 /**
  * Uses a Java hash map to store the texts for each resource bundle.
@@ -24,7 +24,7 @@ class BundlesMapImpl implements BundlesMap {
 
 	@Inject
 	BundlesMapImpl(TemplatesMapFactory textsFactory) {
-		this.map = Maps.newHashMap();
+		this.map = new HashMap<ResourceBundle, TemplatesMap>();
 		this.textsFactory = textsFactory;
 	}
 

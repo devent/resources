@@ -1,12 +1,12 @@
 package com.anrisoftware.resources.templates.maps;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
 
 import com.anrisoftware.resources.templates.api.TemplateResource;
 import com.anrisoftware.resources.templates.api.TemplatesMap;
-import com.google.common.collect.Maps;
 
 /**
  * Uses a Java hash map to store the template resources identified by their
@@ -24,7 +24,7 @@ class TemplatesMapImpl implements TemplatesMap {
 	@Inject
 	TemplatesMapImpl(TemplatesMapLogger logger) {
 		this.log = logger;
-		this.texts = Maps.newHashMap();
+		this.texts = new HashMap<String, TemplateResource>();
 	}
 
 	@Override
