@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.templates.worker;
+package com.anrisoftware.resources.templates.api;
 
 import java.io.Serializable;
 import java.net.URL;

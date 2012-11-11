@@ -1,16 +1,14 @@
-package com.anrisoftware.resources.templates;
+package com.anrisoftware.resources.templates.templates;
 
 import com.anrisoftware.resources.templates.api.TemplateResource;
 import com.anrisoftware.resources.templates.api.TemplateResourceFactory;
 import com.anrisoftware.resources.templates.api.Templates;
 import com.anrisoftware.resources.templates.api.TemplatesFactory;
-import com.anrisoftware.resources.templates.worker.STTemplateDefaultPropertiesModule;
-import com.anrisoftware.resources.templates.worker.STWorkerModule;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 /**
- * Binds the template resources classes.
+ * Installs the template resources factory.
  * <p>
  * It will use the <a
  * href=http://www.antlr.org/wiki/display/ST4/StringTemplate+4+Wiki+Home>String
@@ -22,8 +20,8 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
  * loaded in the {@link STTemplateDefaultPropertiesModule}.
  * 
  * <pre>
- * List modules = { new StResourcesModule(), new TemplatesDefaultMapsModule(), 
- * new STTemplateDefaultPropertiesModule() }
+ * resourcesModule = new TemplatesResourcesModule();
+ * List modules = { resourcesModule, mapsModule, propertiesModule }
  * Injector injector = Guice.createInjector(modules);
  * TemplatesFactory factory = injector.getInstance(TemplatesFactory);
  * 
@@ -31,7 +29,7 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
  * String baseName = "StTemplates";
  * Templates templates = factory.create(baseName);
  * 
- * // no specific locale
+ * // use default locale
  * TemplateResource template = texts.getResource("test");
  * String textString = template.getText("name", "Erwin");
  * System.out.println(textString);
@@ -40,15 +38,15 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-public class StResourcesModule extends AbstractModule {
+public class TemplatesResourcesModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
 		install(new FactoryModuleBuilder().implement(Templates.class,
-				StImpl.class).build(TemplatesFactory.class));
+				TemplatesImpl.class).build(TemplatesFactory.class));
 		install(new FactoryModuleBuilder().implement(TemplateResource.class,
-				StResourceImpl.class).build(TemplateResourceFactory.class));
-		install(new STWorkerModule());
+				TemplateResourceImpl.class)
+				.build(TemplateResourceFactory.class));
 	}
 
 }

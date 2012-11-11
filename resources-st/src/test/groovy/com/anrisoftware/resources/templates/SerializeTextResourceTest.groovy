@@ -4,7 +4,7 @@ import org.junit.Test
 
 import com.anrisoftware.resources.st.maps.TemplatesDefaultMapsModule
 import com.anrisoftware.resources.templates.AbstractSerializationTest
-import com.anrisoftware.resources.templates.StResourcesModule;
+import com.anrisoftware.resources.templates.templates.TemplatesResourcesModule;
 
 class SerializeTextResourceTest extends AbstractSerializationTest {
 

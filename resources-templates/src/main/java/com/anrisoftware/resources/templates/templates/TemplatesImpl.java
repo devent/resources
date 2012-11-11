@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.templates;
+package com.anrisoftware.resources.templates.templates;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -28,9 +28,9 @@ import com.google.inject.assistedinject.AssistedInject;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-class StImpl implements Templates {
+class TemplatesImpl implements Templates {
 
-	private final StImplLogger log;
+	private final TemplatesImplLogger log;
 
 	private final BundlesMap texts;
 
@@ -41,7 +41,7 @@ class StImpl implements Templates {
 	private final Properties properties;
 
 	@AssistedInject
-	StImpl(StImplLogger logger, BundlesMap texts,
+	TemplatesImpl(TemplatesImplLogger logger, BundlesMap texts,
 			TemplateResourceFactory textResourceFactory,
 			@Named("st-default-properties") Properties defaultProperties,
 			@Assisted String baseName) {
@@ -50,7 +50,7 @@ class StImpl implements Templates {
 	}
 
 	@AssistedInject
-	StImpl(StImplLogger logger, BundlesMap texts,
+	TemplatesImpl(TemplatesImplLogger logger, BundlesMap texts,
 			TemplateResourceFactory textResourceFactory,
 			@Named("st-default-properties") Properties defaultProperties,
 			@Assisted String baseName, @Assisted ClassLoader classLoader) {
@@ -59,7 +59,7 @@ class StImpl implements Templates {
 	}
 
 	@AssistedInject
-	StImpl(StImplLogger logger, BundlesMap texts,
+	TemplatesImpl(TemplatesImplLogger logger, BundlesMap texts,
 			TemplateResourceFactory textResourceFactory,
 			@Named("st-default-properties") Properties defaultProperties,
 			@Assisted String baseName, @Assisted ResourceBundle.Control control) {
@@ -68,7 +68,7 @@ class StImpl implements Templates {
 	}
 
 	@AssistedInject
-	StImpl(StImplLogger logger, BundlesMap texts,
+	TemplatesImpl(TemplatesImplLogger logger, BundlesMap texts,
 			TemplateResourceFactory textResourceFactory,
 			@Named("st-default-properties") Properties defaultProperties,
 			@Assisted String baseName, @Assisted ClassLoader classLoader,
@@ -78,7 +78,7 @@ class StImpl implements Templates {
 						control));
 	}
 
-	private StImpl(StImplLogger logger, BundlesMap texts,
+	private TemplatesImpl(TemplatesImplLogger logger, BundlesMap texts,
 			TemplateResourceFactory textResourceFactory,
 			Properties defaultProperties, GetBundle getBundle) {
 		this.log = logger;

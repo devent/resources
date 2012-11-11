@@ -4,7 +4,7 @@ import org.junit.Test
 
 import com.anrisoftware.resources.st.maps.TemplatesDefaultMapsModule
 import com.anrisoftware.resources.templates.AbstractSTTemplateResourceTest
-import com.anrisoftware.resources.templates.StResourcesModule;
+import com.anrisoftware.resources.templates.templates.TemplatesResourcesModule;
 
 /**
  * Creates the ST template resources and runs functionality tests.

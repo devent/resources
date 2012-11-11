@@ -4,7 +4,7 @@ import org.junit.Test
 
 import com.anrisoftware.globalpom.utils.TestUtils
 import com.anrisoftware.propertiesutils.ContextPropertiesFactory
-import com.anrisoftware.resources.templates.worker.STTemplateWorkerFactory;
+import com.anrisoftware.resources.templates.api.TemplateWorkerFactory;
 import com.anrisoftware.resources.templates.worker.STWorkerModule;
 import com.google.inject.Guice
 import com.google.inject.Injector
@@ -13,7 +13,7 @@ class STTemplateWorkerTest extends TestUtils {
 
 	static Injector injector = Guice.createInjector(new STWorkerModule())
 
-	static STTemplateWorkerFactory factory = injector.getInstance STTemplateWorkerFactory
+	static TemplateWorkerFactory factory = injector.getInstance TemplateWorkerFactory
 
 	def templateName = "test"
 	

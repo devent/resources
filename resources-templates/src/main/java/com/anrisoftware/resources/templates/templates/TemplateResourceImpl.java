@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.templates;
+package com.anrisoftware.resources.templates.templates;
 
 import java.io.Serializable;
 import java.net.URL;
@@ -11,24 +11,26 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.templates.api.TemplateResource;
-import com.anrisoftware.resources.templates.worker.STTemplateWorkerFactory;
-import com.anrisoftware.resources.templates.worker.TemplateWorker;
+import com.anrisoftware.resources.templates.api.TemplateWorker;
+import com.anrisoftware.resources.templates.api.TemplateWorkerFactory;
 import com.google.inject.assistedinject.Assisted;
 
 /**
- * Serializable template resource.
+ * Serializable template resource. Uses a template worker to process the
+ * templates.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
+ * @see TemplateWorker
  * @since 1.0
  */
-class StResourceImpl implements TemplateResource, Serializable {
+class TemplateResourceImpl implements TemplateResource, Serializable {
 
 	/**
 	 * @since 1.0
 	 */
 	private static final long serialVersionUID = -8844751640256590067L;
 
-	private StResourceImplLogger log;
+	private TemplateResourceImplLogger log;
 
 	private String text;
 
@@ -42,12 +44,12 @@ class StResourceImpl implements TemplateResource, Serializable {
 	 * For serialization.
 	 */
 	@Deprecated
-	public StResourceImpl() {
+	public TemplateResourceImpl() {
 	}
 
 	@Inject
-	StResourceImpl(StResourceImplLogger logger,
-			STTemplateWorkerFactory workerFactory, @Assisted String name,
+	TemplateResourceImpl(TemplateResourceImplLogger logger,
+			TemplateWorkerFactory workerFactory, @Assisted String name,
 			@Assisted Locale locale, @Assisted URL url,
 			@Assisted Properties properties) {
 		this.name = name;

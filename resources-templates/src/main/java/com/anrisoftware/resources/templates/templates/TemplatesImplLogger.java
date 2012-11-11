@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.templates;
+package com.anrisoftware.resources.templates.templates;
 
 import java.net.URL;
 import java.util.Locale;
@@ -11,18 +11,18 @@ import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.templates.api.TemplateResource;
 
 /**
- * Logging messages for {@link StImpl}.
+ * Logging messages for {@link TemplatesImpl}.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-class StImplLogger extends AbstractLogger {
+class TemplatesImplLogger extends AbstractLogger {
 
 	/**
-	 * Creates a logger for {@link StImpl}.
+	 * Creates a logger for {@link TemplatesImpl}.
 	 */
-	StImplLogger() {
-		super(StImpl.class);
+	TemplatesImplLogger() {
+		super(TemplatesImpl.class);
 	}
 
 	void checkTemplateLoaded(boolean haveTemplate, ResourceBundle bundle,

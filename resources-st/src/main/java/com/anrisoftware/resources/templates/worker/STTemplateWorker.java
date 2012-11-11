@@ -1,8 +1,8 @@
 package com.anrisoftware.resources.templates.worker;
 
-import static com.anrisoftware.resources.templates.worker.STTemplateWorkerFactory.DELIMITER_START_CHAR_PROPERTY;
-import static com.anrisoftware.resources.templates.worker.STTemplateWorkerFactory.DELIMITER_STOP_CHAR_PROPERTY;
-import static com.anrisoftware.resources.templates.worker.STTemplateWorkerFactory.ENCODING_PROPERTY;
+import static com.anrisoftware.resources.templates.api.TemplateWorkerFactory.DELIMITER_START_CHAR_PROPERTY;
+import static com.anrisoftware.resources.templates.api.TemplateWorkerFactory.DELIMITER_STOP_CHAR_PROPERTY;
+import static com.anrisoftware.resources.templates.api.TemplateWorkerFactory.ENCODING_PROPERTY;
 
 import java.io.ObjectStreamException;
 import java.net.URL;
@@ -16,6 +16,7 @@ import org.stringtemplate.v4.misc.STMessage;
 
 import com.anrisoftware.propertiesutils.ContextProperties;
 import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.templates.api.TemplateWorker;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 

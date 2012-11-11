@@ -3,6 +3,9 @@ package com.anrisoftware.resources.templates.worker;
 import java.net.URL;
 import java.util.Properties;
 
+import com.anrisoftware.resources.templates.api.TemplateWorker;
+import com.anrisoftware.resources.templates.api.TemplateWorkerFactory;
+
 /**
  * Factory to create a new template worker that is using a <a
  * href=http://www.antlr.org/wiki/display/ST4/StringTemplate+4+Wiki+Home>String
@@ -11,7 +14,7 @@ import java.util.Properties;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-public interface STTemplateWorkerFactory {
+public interface STTemplateWorkerFactory extends TemplateWorkerFactory {
 
 	static final String DELIMITER_STOP_CHAR_PROPERTY = "template_delimiter_stop_character";
 
@@ -39,5 +42,6 @@ public interface STTemplateWorkerFactory {
 	 * 
 	 * @return the {@link TemplateWorker}.
 	 */
+	@Override
 	TemplateWorker create(URL templateUrl, Properties properties);
 }
