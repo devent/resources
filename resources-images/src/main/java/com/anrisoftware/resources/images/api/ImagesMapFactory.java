@@ -9,7 +9,9 @@ package com.anrisoftware.resources.images.api;
 public interface ImagesMapFactory {
 
 	/**
-	 * Creates a new {@link ImagesMap}.
+	 * Creates a new images map.
+	 * 
+	 * @return the {@link ImagesMap}.
 	 */
 	ImagesMap create();
 }

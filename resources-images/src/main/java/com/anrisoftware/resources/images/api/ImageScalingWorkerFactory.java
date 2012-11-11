@@ -1,61 +1,45 @@
 /*
  * Copyright 2012 Erwin Müller <erwin.mueller@deventm.org>
- * 
+ *
  * This file is part of resources-api.
- * 
+ *
  * resources-api is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or (at your
  * option) any later version.
- * 
+ *
  * resources-api is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-api. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.api;
+package com.anrisoftware.resources.images.api;
+
+import java.awt.Dimension;
+import java.awt.Image;
 
 /**
- * The default sizes for an {@link ImageResource}.
+ * Factory to create a new image scaling worker.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-public enum IconSize {
+public interface ImageScalingWorkerFactory {
 
 	/**
-	 * Size 16x16.
+	 * Creates a new image scaling worker.
+	 * 
+	 * @param image
+	 *            the {@link Image} to scale.
+	 * 
+	 * @param sizePx
+	 *            the new {@link Dimension} width and height of the image in
+	 *            pixels.
+	 * 
+	 * @return the {@link ImageScalingWorker}.
 	 */
-	SMALL(16),
-
-	/**
-	 * Size 22x22.
-	 */
-	MEDIUM(22),
-
-	/**
-	 * Size 32x32.
-	 */
-	LARGE(32),
-
-	/**
-	 * Size 48x48.
-	 */
-	HUGE(48);
-
-	private final int size;
-
-	private IconSize(int size) {
-		this.size = size;
-	}
-
-	/**
-	 * Returns the size in pixels.
-	 */
-	public int getSize() {
-		return size;
-	}
+	ImageScalingWorker create(Image image, Dimension sizePx);
 }

@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-api. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.api;
+package com.anrisoftware.resources.images.api;
 
 import java.util.ResourceBundle;
 

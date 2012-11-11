@@ -4,8 +4,8 @@ import static com.anrisoftware.resources.api.ImageResolution.*
 
 import org.junit.Test
 
-import com.anrisoftware.resources.images.ResourcesImagesModule
 import com.anrisoftware.resources.images.api.ImagesMapFactory
+import com.anrisoftware.resources.images.images.ResourcesImagesModule;
 import com.anrisoftware.resources.images.scaling.ResourcesSmoothScalingModule
 
 /**

@@ -1,7 +1,7 @@
 package com.anrisoftware.resources.images.resource;
 
-import com.anrisoftware.resources.api.ImageResource;
-import com.anrisoftware.resources.api.ImageResourceFactory;
+import com.anrisoftware.resources.images.api.ImageResource;
+import com.anrisoftware.resources.images.api.ImageResourceFactory;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 

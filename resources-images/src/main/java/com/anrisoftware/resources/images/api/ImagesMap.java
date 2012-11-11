@@ -2,14 +2,12 @@ package com.anrisoftware.resources.images.api;
 
 import java.awt.Dimension;
 
-import com.anrisoftware.resources.api.ImageResolution;
-import com.anrisoftware.resources.api.ImageResource;
 import com.anrisoftware.resources.api.ResourcesException;
 
 /**
- * Puts {@link ImageResource}s and retrieve them. The images are identified by
- * their name, resolution and size. Image resources with the name, resolution
- * and size that are already in the map are not added.
+ * Puts image resources and retrieve them. The images are identified by their
+ * name, resolution and size. Image resources with the name, resolution and size
+ * that are already in the map are not added.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
@@ -17,14 +15,11 @@ import com.anrisoftware.resources.api.ResourcesException;
 public interface ImagesMap {
 
 	/**
-	 * <p>
 	 * Add new image to the map.
-	 * </p>
 	 * <p>
 	 * It will be only one image with the same name, size and resolution in the
 	 * map. That means that if an image resource with the same name, size and
 	 * resolution is already in the map, the image resource will not be added.
-	 * </p>
 	 * 
 	 * @param image
 	 *            the {@link ImageResource} that should be added.
@@ -38,14 +33,15 @@ public interface ImagesMap {
 	 * @param name
 	 *            the name of the image.
 	 * 
-	 * @param size
-	 *            the {@link Dimension} with the width and height of the image.
+	 * @param sizePx
+	 *            the {@link Dimension} with the width and height of the image
+	 *            in pixels.
 	 * 
 	 * @return the {@link ImageResource}, the image with the best resolution and
 	 *         the nearest size or <code>null</code> if no such image was found
 	 *         in the map.
 	 */
-	ImageResource getImage(String name, Dimension size);
+	ImageResource getImage(String name, Dimension sizePx);
 
 	/**
 	 * Returns the image from the map.
@@ -53,8 +49,9 @@ public interface ImagesMap {
 	 * @param name
 	 *            the name of the image.
 	 * 
-	 * @param size
-	 *            the {@link Dimension} with the width and height of the image.
+	 * @param sizePx
+	 *            the {@link Dimension} with the width and height of the image
+	 *            in pixels.
 	 * 
 	 * @param resolution
 	 *            the {@link ImageResolution} of the image.
@@ -62,7 +59,7 @@ public interface ImagesMap {
 	 * @return the {@link ImageResource}, the nearest image to the size give or
 	 *         <code>null</code> if no such image was found in the map.
 	 */
-	ImageResource getImage(String name, Dimension size,
+	ImageResource getImage(String name, Dimension sizePx,
 			ImageResolution resolution);
 
 	/**

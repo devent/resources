@@ -7,7 +7,7 @@ import java.awt.Image;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.api.ImageScalingWorker;
+import com.anrisoftware.resources.images.api.ImageScalingWorker;
 import com.google.inject.assistedinject.Assisted;
 
 /**

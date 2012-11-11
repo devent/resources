@@ -15,9 +15,9 @@ import javax.swing.ImageIcon;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.anrisoftware.resources.api.ImageResolution;
-import com.anrisoftware.resources.api.ImageResource;
 import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.images.api.ImageResolution;
+import com.anrisoftware.resources.images.api.ImageResource;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
 
@@ -133,7 +133,7 @@ class ImageResourceImpl implements ImageResource {
 	}
 
 	@Override
-	public int getHeight() throws ResourcesException {
+	public int getHeightPx() throws ResourcesException {
 		if (size.height == HEIGHT_WIDTH_NOT_SET) {
 			synchronized (getImage()) {
 				size.height = determineHeight();
@@ -161,7 +161,7 @@ class ImageResourceImpl implements ImageResource {
 	}
 
 	@Override
-	public int getWidth() throws ResourcesException {
+	public int getWidthPx() throws ResourcesException {
 		if (size.width == HEIGHT_WIDTH_NOT_SET) {
 			synchronized (getImage()) {
 				size.width = determineWidth();
@@ -189,12 +189,12 @@ class ImageResourceImpl implements ImageResource {
 	}
 
 	@Override
-	public Dimension getSize() {
+	public Dimension getSizePx() {
 		if (size.height == HEIGHT_WIDTH_NOT_SET) {
-			getHeight();
+			getHeightPx();
 		}
 		if (size.width == HEIGHT_WIDTH_NOT_SET) {
-			getWidth();
+			getWidthPx();
 		}
 		return size;
 	}

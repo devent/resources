@@ -4,9 +4,9 @@ import static com.anrisoftware.resources.api.ImageResolution.*
 
 import org.junit.Test
 
-import com.anrisoftware.resources.api.ImageResource
-import com.anrisoftware.resources.api.ImagesFactory
-import com.anrisoftware.resources.images.ResourcesImagesModule
+import com.anrisoftware.resources.images.api.ImageResource;
+import com.anrisoftware.resources.images.api.ImagesFactory;
+import com.anrisoftware.resources.images.images.ResourcesImagesModule;
 import com.anrisoftware.resources.images.maps.ResourcesImagesMapsModule
 import com.anrisoftware.resources.images.scaling.ResourcesSmoothScalingModule
 import com.google.inject.Injector

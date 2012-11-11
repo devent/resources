@@ -10,9 +10,9 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.api.ImageResolution;
-import com.anrisoftware.resources.api.ImageResource;
 import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.images.api.ImageResolution;
+import com.anrisoftware.resources.images.api.ImageResource;
 import com.anrisoftware.resources.images.api.ImagesMap;
 
 /**
@@ -57,7 +57,7 @@ class ImagesMapImpl implements ImagesMap {
 		Map<ImageResolution, Map<Dimension, ImageResource>> resolutions = resolutionsMap(name);
 		Map<Dimension, ImageResource> resources = resourcesMap(resolutions,
 				resolution);
-		Dimension dimension = image.getSize();
+		Dimension dimension = image.getSizePx();
 		if (!resources.containsKey(dimension)) {
 			resources.put(dimension, image);
 		} else {

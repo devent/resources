@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.images;
+package com.anrisoftware.resources.images.images;
 
 import java.awt.Dimension;
 import java.util.Locale;
@@ -9,12 +9,12 @@ import com.anrisoftware.resources.GetBundle;
 import com.anrisoftware.resources.GetBundleWithClassLoader;
 import com.anrisoftware.resources.GetBundleWithClassLoaderAndControl;
 import com.anrisoftware.resources.GetBundleWithControl;
-import com.anrisoftware.resources.api.IconSize;
-import com.anrisoftware.resources.api.ImageResolution;
-import com.anrisoftware.resources.api.ImageResource;
-import com.anrisoftware.resources.api.Images;
 import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.images.api.BundlesMap;
+import com.anrisoftware.resources.images.api.IconSize;
+import com.anrisoftware.resources.images.api.ImageResolution;
+import com.anrisoftware.resources.images.api.ImageResource;
+import com.anrisoftware.resources.images.api.Images;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
 
@@ -86,7 +86,7 @@ class ImagesImpl implements Images {
 	public ImageResource getResource(String name, Locale locale, IconSize size)
 			throws ResourcesException {
 		return getResource(name, locale,
-				new Dimension(size.getSize(), size.getSize()));
+				new Dimension(size.getSizePx(), size.getSizePx()));
 	}
 
 	@Override

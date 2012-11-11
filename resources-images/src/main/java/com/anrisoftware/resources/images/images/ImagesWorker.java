@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.images;
+package com.anrisoftware.resources.images.images;
 
 import static java.lang.String.format;
 
@@ -12,12 +12,12 @@ import java.util.ResourceBundle;
 import javax.inject.Inject;
 
 import com.anrisoftware.resources.GetBundle;
-import com.anrisoftware.resources.api.ImageResolution;
-import com.anrisoftware.resources.api.ImageResource;
-import com.anrisoftware.resources.api.ImageResourceFactory;
-import com.anrisoftware.resources.api.ImageScalingWorkerFactory;
 import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.images.api.BundlesMap;
+import com.anrisoftware.resources.images.api.ImageResolution;
+import com.anrisoftware.resources.images.api.ImageResource;
+import com.anrisoftware.resources.images.api.ImageResourceFactory;
+import com.anrisoftware.resources.images.api.ImageScalingWorkerFactory;
 import com.anrisoftware.resources.images.api.ImagesMap;
 import com.google.inject.assistedinject.Assisted;
 
@@ -176,7 +176,7 @@ class ImagesWorker {
 
 	private ImageResource resizeIfNeeded(ImagesMap map,
 			ImageResolution resolution, ImageResource res) {
-		if (res.getSize().equals(size)) {
+		if (res.getSizePx().equals(size)) {
 			return res;
 		}
 		Image image = resizeImage(name, res.getImage());

@@ -1,7 +1,7 @@
 package com.anrisoftware.resources.images.scaling;
 
-import com.anrisoftware.resources.api.ImageScalingWorker;
-import com.anrisoftware.resources.api.ImageScalingWorkerFactory;
+import com.anrisoftware.resources.images.api.ImageScalingWorker;
+import com.anrisoftware.resources.images.api.ImageScalingWorkerFactory;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 

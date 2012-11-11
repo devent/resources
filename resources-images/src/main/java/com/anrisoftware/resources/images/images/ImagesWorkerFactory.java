@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.images;
+package com.anrisoftware.resources.images.images;
 
 import java.awt.Dimension;
 import java.util.Locale;

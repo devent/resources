@@ -16,46 +16,25 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-api. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.api;
+package com.anrisoftware.resources.images.api;
+
+import java.awt.Image;
+import java.util.concurrent.Callable;
 
 /**
- * The resolutions for an {@link ImageResource}.
+ * Scales an image to a new size.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-public enum ImageResolution {
+public interface ImageScalingWorker extends Callable<Image> {
 
 	/**
-	 * Low resolution.
+	 * Scale the image to the set width and height.
+	 * 
+	 * @return the scaled {@link Image}.
 	 */
-	LOW("ldpi"),
+	@Override
+	Image call() throws Exception;
 
-	/**
-	 * Medium resolution.
-	 */
-	MEDIUM("mdpi"),
-
-	/**
-	 * High resolution.
-	 */
-	HIGH("hdpi"),
-
-	/**
-	 * Very high resolution.
-	 */
-	EXTRA_HIGH("xhdpi");
-
-	private final String name;
-
-	private ImageResolution(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * Returns the name of this resolution.
-	 */
-	public String getName() {
-		return name;
-	}
 }

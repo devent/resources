@@ -2,7 +2,7 @@ package com.anrisoftware.resources.images.resource
 
 import org.junit.Test
 
-import com.anrisoftware.resources.images.ResourcesImagesModule
+import com.anrisoftware.resources.images.images.ResourcesImagesModule;
 import com.anrisoftware.resources.images.maps.ResourcesImagesMapsModule
 import com.anrisoftware.resources.images.scaling.ResourcesSmoothScalingModule
 

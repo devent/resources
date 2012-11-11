@@ -1,7 +1,7 @@
 package com.anrisoftware.resources.images.maps;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
-import com.anrisoftware.resources.api.ImageResource;
+import com.anrisoftware.resources.images.api.ImageResource;
 import com.anrisoftware.resources.images.api.ImagesMap;
 
 /**
