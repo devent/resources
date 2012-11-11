@@ -72,6 +72,11 @@
 				<artifactId>globalpom-groovytestutils</artifactId>
 				<version>1.10</version>
 			</dependency>
+			<dependency>
+				<groupId>com.anrisoftware.propertiesutils</groupId>
+				<artifactId>propertiesutils-contextproperties</artifactId>
+				<version>1.2</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
