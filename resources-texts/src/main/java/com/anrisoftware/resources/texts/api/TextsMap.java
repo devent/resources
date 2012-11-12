@@ -1,9 +1,8 @@
 package com.anrisoftware.resources.texts.api;
 
-
 /**
- * Puts {@link TextResource}s and retrieves them. The text resources are
- * identified by their name and locale. Duplicate entries are discarded.
+ * Puts text resources and retrieves them. The text resources are identified by
+ * their name and locale. Duplicate entries are discarded.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1

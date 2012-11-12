@@ -33,14 +33,11 @@ public interface TextResource extends Resource {
 	String getText() throws ResourcesException;
 
 	/**
-	 * <p>
-	 * Returns a formatted text {@link String} of the resource.
-	 * </p>
+	 * Returns a formatted text of the resource.
 	 * <p>
 	 * The string is formatted as in
 	 * {@link String#format(Locale, String, Object...)} with the current text as
 	 * the format string and the current locale as the locale.
-	 * </p>
 	 * 
 	 * @param args
 	 *            the arguments.

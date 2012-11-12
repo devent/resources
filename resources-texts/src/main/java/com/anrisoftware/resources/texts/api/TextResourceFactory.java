@@ -5,7 +5,7 @@ import java.nio.charset.Charset;
 import java.util.Locale;
 
 /**
- * Factory to create a new {@link TextResource}.
+ * Factory to create a new text resource.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
@@ -13,7 +13,7 @@ import java.util.Locale;
 public interface TextResourceFactory {
 
 	/**
-	 * Creates a new {@link TextResource} which will load the text from the url.
+	 * Creates a new text resource which will load the text from the URL.
 	 * 
 	 * @param name
 	 *            the name {@link String} of this resource.
