@@ -29,9 +29,9 @@ import com.google.inject.AbstractModule;
  * used if no character set is specified in the text resource.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
+ * @since 1.3
  */
-public class ResourcesTextsCharsetModule extends AbstractModule {
+public class TextsResourcesCharsetModule extends AbstractModule {
 
 	private final Charset defaultCharset;
 
@@ -40,10 +40,8 @@ public class ResourcesTextsCharsetModule extends AbstractModule {
 	 * for text resources.
 	 * 
 	 * @see Charset#defaultCharset()
-	 * 
-	 * @since 1.3
 	 */
-	public ResourcesTextsCharsetModule() {
+	public TextsResourcesCharsetModule() {
 		this(Charset.defaultCharset());
 	}
 
@@ -53,7 +51,7 @@ public class ResourcesTextsCharsetModule extends AbstractModule {
 	 * 
 	 * @param charset
 	 */
-	public ResourcesTextsCharsetModule(Charset charset) {
+	public TextsResourcesCharsetModule(Charset charset) {
 		this.defaultCharset = charset;
 	}
 

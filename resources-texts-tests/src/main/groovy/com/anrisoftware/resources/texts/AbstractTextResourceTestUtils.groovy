@@ -42,6 +42,7 @@ abstract class AbstractTextResourceTestUtils {
 	Injector createInjector() {
 		Guice.createInjector(textsModule,
 						textsMapModule,
+						characterSetModule,
 						binariesModule,
 						binariesMapModule)
 	}
@@ -62,6 +63,14 @@ abstract class AbstractTextResourceTestUtils {
 	 * Returns the module that binds the texts map.
 	 */
 	abstract getTextsMapModule()
+
+	/**
+	 * Returns the module that binds the default character set for
+	 * text resources.
+	 *
+	 * @since 1.2
+	 */
+	abstract getCharacterSetModule()
 
 	/**
 	 * Returns the module that binds the binaries resources.
