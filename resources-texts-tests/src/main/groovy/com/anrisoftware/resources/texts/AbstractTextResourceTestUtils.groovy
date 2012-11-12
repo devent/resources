@@ -1,58 +1,57 @@
 package com.anrisoftware.resources.texts
 
-import java.nio.charset.Charset
+import static com.anrisoftware.globalpom.utils.TestUtils.*
 
-import org.apache.log4j.Level
-import org.apache.log4j.Logger
 import org.junit.Before
+import org.junit.BeforeClass
 
-import com.anrisoftware.globalpom.utils.TestUtils
-import com.anrisoftware.resources.api.TextResource
-import com.anrisoftware.resources.api.Texts
-import com.anrisoftware.resources.api.TextsFactory
-import com.anrisoftware.resources.binary.BinariesResourcesModule
+import com.anrisoftware.resources.binary.binaries.BinariesResourcesModule
 import com.anrisoftware.resources.binary.maps.BinariesDefaultMapsModule
-import com.google.common.base.Charsets
-import com.google.inject.AbstractModule
 import com.google.inject.Guice
 import com.google.inject.Injector
-import com.google.inject.name.Names
 
 /**
- * Creates the environment to unit test the texts resources.
- * 
+ * Creates the environment to unit test the texts resources. Adds binary
+ * resources modules.
+ *
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-abstract class AbstractTextResourceTestUtils extends TestUtils {
-
-	def modules
+abstract class AbstractTextResourceTestUtils {
 
 	Injector injector
 
-	TextsFactory factory
+	def factory
+
+	@BeforeClass
+	static void setupToStringStyle() {
+		toStringStyle
+	}
 
 	@Before
-	void before() {
-		modules = lazyCreateModules()
-		injector = injector == null ? Guice.createInjector(modules) : injector
-		factory = injector.getInstance(TextsFactory)
+	void createFactories() {
+		injector = createInjector()
+		factory = createFactory()
 	}
 
 	/**
 	 * Creates the needed modules if they are not already have been created.
+	 *
+	 * @since 1.2
 	 */
-	def lazyCreateModules() {
-		modules == null ?
-				[
-					textsModule,
-					textsMapModule,
-					binariesModule,
-					binariesMapModule,
-					characterSetModule,
-				].flatten()
-				: modules
+	Injector createInjector() {
+		Guice.createInjector(textsModule,
+						textsMapModule,
+						binariesModule,
+						binariesMapModule)
 	}
+
+	/**
+	 * Create the texts resources factory.
+	 *
+	 * @since 1.2
+	 */
+	abstract createFactory()
 
 	/**
 	 * Returns the module that binds the texts resources.
@@ -60,7 +59,7 @@ abstract class AbstractTextResourceTestUtils extends TestUtils {
 	abstract getTextsModule()
 
 	/**
-	 * Returns the module that binds the texts map. 
+	 * Returns the module that binds the texts map.
 	 */
 	abstract getTextsMapModule()
 
@@ -76,55 +75,5 @@ abstract class AbstractTextResourceTestUtils extends TestUtils {
 	 */
 	def getBinariesMapModule() {
 		new BinariesDefaultMapsModule()
-	}
-
-	/**
-	 * Returns the module that binds the default character set for texts.
-	 */
-	def getCharacterSetModule() {
-		new AbstractModule() {
-					@Override
-					protected void configure() {
-						bind(Charset).annotatedWith(Names.named("texts-default-charset")) toInstance Charsets.UTF_8
-					}
-				}
-	}
-
-	void "micro-benchmark get the same text resource for different languages"() {
-		Logger.getLogger(TextsImpl).setLevel(Level.INFO)
-		Locale german = Locale.GERMAN
-		Locale russian = new Locale("ru")
-		Locale english = Locale.ENGLISH
-		def baseName = "TextsWithDefaultCharset"
-		def classLoader = getClass().classLoader
-		Texts texts = factory.create baseName, classLoader
-
-		TextResource text
-		long current
-		long now
-		int max = 1
-
-		printf "Lookup first time, difference languages:%n"
-		Thread.sleep 1000
-		current = System.currentTimeMillis()
-		text = texts.getResource "hello", german
-		text = texts.getResource "hello", russian
-		text = texts.getResource "hello", english
-		now = System.currentTimeMillis()
-		printf "system time : %.3f%n", (now-current) / 3
-
-		printf "Lookup second time, difference languages:%n"
-		(0..10).each {
-			Thread.sleep 1000
-			current = System.currentTimeMillis()
-			(0..max).each {
-				text = texts.getResource "hello", german
-				text = texts.getResource "hello", russian
-				text = texts.getResource "hello", english
-			}
-			now = System.currentTimeMillis()
-			printf "system time (%d): %.3f%n", max, (now-current) / max / 3
-			max *= 2
-		}
 	}
 }

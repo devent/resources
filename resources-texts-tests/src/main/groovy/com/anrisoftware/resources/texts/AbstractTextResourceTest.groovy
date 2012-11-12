@@ -1,15 +1,12 @@
 package com.anrisoftware.resources.texts
 
-import java.nio.charset.Charset
+import static com.anrisoftware.globalpom.utils.TestUtils.*
 
-import com.anrisoftware.resources.api.TextResource
-import com.anrisoftware.resources.api.Texts
-import com.anrisoftware.resources.api.TextsFactory
 import com.google.inject.Injector
 
 /**
  * Test for functionality of the texts resources.
- * 
+ *
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
@@ -18,10 +15,10 @@ abstract class AbstractTextResourceTest extends AbstractTextResourceTestUtils {
 	void "load plain text with defined locale"() {
 		def baseName = "TextsWithDefaultCharset"
 		def classLoader = getClass().classLoader
-		Texts texts = factory.create baseName, classLoader
+		def texts = factory.create baseName, classLoader
 
 		Locale locale = Locale.GERMAN
-		TextResource text = texts.getResource "hello", locale
+		def text = texts.getResource "hello", locale
 		assertStringContent text.text, "Hallo Welt - German"
 		assert text.locale == locale
 		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/texts/de/hello.txt"
