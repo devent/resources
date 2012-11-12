@@ -3,6 +3,7 @@ package com.anrisoftware.resources.texts
 import java.nio.charset.Charset
 
 import com.anrisoftware.resources.texts.api.Texts;
+import com.anrisoftware.resources.texts.texts.ResourcesTextsCharsetModule;
 
 /**
  * Test the text resources with an automatically set default charset.

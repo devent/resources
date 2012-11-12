@@ -3,6 +3,7 @@ package com.anrisoftware.resources.texts
 import org.junit.Test
 
 import com.anrisoftware.resources.texts.maps.TextsDefaultMapsModule
+import com.anrisoftware.resources.texts.texts.TextsResourcesModule;
 
 class SerializeTextResourceTest extends AbstractSerializationTest {
 

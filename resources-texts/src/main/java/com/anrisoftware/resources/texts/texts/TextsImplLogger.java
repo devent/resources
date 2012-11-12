@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.texts;
+package com.anrisoftware.resources.texts.texts;
 
 import java.net.URL;
 import java.util.Locale;

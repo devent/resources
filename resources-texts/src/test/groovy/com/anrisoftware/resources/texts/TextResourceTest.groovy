@@ -7,6 +7,7 @@ import org.junit.Test
 
 import com.anrisoftware.resources.texts.api.TextsFactory;
 import com.anrisoftware.resources.texts.maps.TextsDefaultMapsModule
+import com.anrisoftware.resources.texts.texts.TextsResourcesModule;
 import com.google.inject.Injector
 
 /**
