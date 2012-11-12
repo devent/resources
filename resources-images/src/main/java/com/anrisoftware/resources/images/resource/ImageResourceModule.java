@@ -9,9 +9,9 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
  * Binds the image resource implementation.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.1
+ * @since 1.3
  */
-public class ResourcesImagesResourceModule extends AbstractModule {
+public class ImageResourceModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
