@@ -6,7 +6,7 @@
     <artifactId>resources-bundle</artifactId>
     <packaging>pom</packaging>
     <name>Resources Bundle POM</name>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <description>Contains the modules of the resources project.</description>
 
     <modules>
@@ -18,9 +18,9 @@
         <module>resources-images-tests</module>
         <module>resources-parent</module>
         <module>resources-st</module>
+        <module>resources-templates</module>
         <module>resources-templates-tests</module>
         <module>resources-texts</module>
-        <module>resources-texts-cached</module>
         <module>resources-texts-tests</module>
   </modules>
 
