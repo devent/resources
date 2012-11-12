@@ -17,10 +17,10 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.anrisoftware.resources.api.BinaryResource;
-import com.anrisoftware.resources.api.BinaryResourceFactory;
 import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.api.TextResource;
+import com.anrisoftware.resources.binary.api.BinaryResource;
+import com.anrisoftware.resources.binary.api.BinaryResourceFactory;
 import com.google.common.io.CharStreams;
 import com.google.inject.assistedinject.Assisted;
 
@@ -31,8 +31,12 @@ import com.google.inject.assistedinject.Assisted;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-@SuppressWarnings("serial")
 class TextResourceImpl implements TextResource, Serializable {
+
+	/**
+	 * @since 1.0
+	 */
+	private static final long serialVersionUID = -2425350301703068585L;
 
 	/**
 	 * Wrapper around a character set to make the character set serializable.
@@ -85,22 +89,15 @@ class TextResourceImpl implements TextResource, Serializable {
 
 	}
 
-	private TextResourceImplLogger log;
+	private final TextResourceImplLogger log;
 
-	private BinaryResource binary;
+	private final BinaryResource binary;
 
-	private SerializableCharsetWrapper charsetWrapper;
+	private final SerializableCharsetWrapper charsetWrapper;
 
 	private String text;
 
 	private String formattedText;
-
-	/**
-	 * @deprecated Used only for serialization.
-	 */
-	@Deprecated
-	public TextResourceImpl() {
-	}
 
 	/**
 	 * Sets the needed properties of the text resource.
