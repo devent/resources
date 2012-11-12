@@ -5,24 +5,21 @@ import static com.google.inject.name.Names.named;
 import javax.cache.CacheBuilder;
 import javax.cache.CacheManager;
 
-import com.anrisoftware.resources.api.TextResource;
+import com.anrisoftware.resources.texts.api.TextResource;
 import com.google.inject.AbstractModule;
 
 /**
- * <p>
  * Helper module to bind the cache for the texts map.
- * </p>
  * <p>
  * It will lazy create a new cache from a specified cache builder if the cache
  * is not already present in the cache manager.
- * </p>
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.2
+ * @since 1.0
  * @see CacheManager
  * @see CacheBuilder
  */
-public class TextsCachedModule extends AbstractModule {
+public class TextsResourcesCacheModule extends AbstractModule {
 
 	public interface BuilderFactory {
 		CacheBuilder<String, TextResource> create(CacheManager manager,
@@ -50,7 +47,8 @@ public class TextsCachedModule extends AbstractModule {
 	 * @param builder
 	 *            the {@link CacheBuilder}.
 	 */
-	public TextsCachedModule(CacheManager manager, BuilderFactory builderFactory) {
+	public TextsResourcesCacheModule(CacheManager manager,
+			BuilderFactory builderFactory) {
 		this.manager = manager;
 		this.builderFactory = builderFactory;
 	}

@@ -1,135 +1,81 @@
 package com.anrisoftware.resources.texts
 
-import java.nio.charset.Charset
+import javax.cache.CacheManager
+import javax.cache.Caching
+import javax.cache.event.CacheEntryCreatedListener
+import javax.cache.event.NotificationScope
 
-
-import org.apache.log4j.Level
-import org.apache.log4j.Logger
-import org.junit.Before
 import org.junit.Test
 
-import com.anrisoftware.globalpom.utils.TestUtils
-import com.anrisoftware.resources.api.TextResource
-import com.anrisoftware.resources.api.Texts
-import com.anrisoftware.resources.api.TextsFactory
-import com.anrisoftware.resources.texts.maps.TextsDefaultMapsModule
-import com.google.common.base.Charsets
-import com.google.inject.AbstractModule
+import com.anrisoftware.resources.texts.api.TextsFactory
+import com.anrisoftware.resources.texts.cached.TextsResourcesCacheModule
+import com.anrisoftware.resources.texts.cached.TextsResourcesCachedModule
+import com.anrisoftware.resources.texts.cached.TextsResourcesCacheModule.BuilderFactory
+import com.anrisoftware.resources.texts.texts.TextsResourcesCharsetModule
+import com.anrisoftware.resources.texts.texts.TextsResourcesModule
 import com.google.inject.Guice
 import com.google.inject.Injector
-import com.google.inject.name.Names
 
 /**
  * Creates the text resources and runs functionality tests.
- * 
+ *
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-class TextResourceTest extends TestUtils {
+class TextResourceTest extends AbstractTextResourceTest {
 
-	def modules
-
-	Injector injector
-
-	TextsFactory factory
-
-	@Before
-	void before() {
-		modules = lazyCreateModules()
-		injector = lazyCreateInjector()
-		factory = injector.getInstance(TextsFactory)
+	@Override
+	@Test
+	void "load plain text with defined locale"() {
+		super."load plain text with defined locale"()
 	}
 
-	def lazyCreateModules() {
-		modules == null ?
-				[
-					resourcesTextsModule,
-					characterSetModule,
-				].flatten()
-				: modules
+	@Override
+	Injector createInjector() {
+		Guice.createInjector(textsModule,
+						textsMapModule,
+						characterSetModule,
+						textsCacheModule,
+						binariesModule,
+						binariesMapModule)
 	}
 
-	def getResourcesTextsModule() {
-		[
-			new TextsResourcesModule(),
-			new TextsDefaultMapsModule()
-		]
+	@Override
+	def createFactory() {
+		injector.getInstance(TextsFactory)
+	}
+
+	@Override
+	def getTextsModule() {
+		new TextsResourcesModule()
+	}
+
+	@Override
+	def getTextsMapModule() {
+		new TextsResourcesCachedModule()
 	}
 
 	def getCharacterSetModule() {
-		new AbstractModule() {
-					@Override
-					protected void configure() {
-						bind(Charset).annotatedWith(Names.named("texts-default-charset")) toInstance Charsets.UTF_8
-					}
-				}
+		new TextsResourcesCharsetModule()
 	}
 
-	def lazyCreateInjector() {
-		injector == null ? Guice.createInjector(modules) : injector
-	}
+	def getTextsCacheModule() {
+		CacheManager manager = Caching.getCacheManager()
+		def builderFactory = {
+			m, name ->
+			def builder = manager.createCacheBuilder name
+			builder.setStoreByValue(true)
+			//builder.setReadThrough(true)
+			//builder.setWriteThrough(false)
+			builder.setStatisticsEnabled(false)
+			//builder.setTransactionEnabled(IsolationLevel.NONE, Mode.NONE)
+			builder.registerCacheEntryListener([
+				entryCreated: { event -> println "entry created $event" },
+				entriesCreated: { event -> println "entry created $event" }
+			]as CacheEntryCreatedListener, NotificationScope.LOCAL, false)
 
-	@Test
-	void "load plain text with defined locale"() {
-		def baseName = "TextsWithDefaultCharset"
-		def classLoader = getClass().classLoader
-		Texts texts = factory.create baseName, classLoader
 
-		Locale locale = Locale.GERMAN
-		TextResource text = texts.getResource "hello", locale
-		assertStringContent text.text, "Hallo Welt - German"
-		assert text.locale == locale
-		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/texts/de/hello.txt"
-
-		locale = new Locale("ru")
-		text = texts.getResource "hello", locale
-		assertStringContent text.text, "привет мир - Russian"
-		assert text.locale == locale
-		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/texts/ru/hello.txt"
-
-		locale = Locale.ENGLISH
-		text = texts.getResource "hello", Locale.ENGLISH
-		assertStringContent text.text, "Hello World - English Default"
-		assert text.locale.toString() == ""
-		assert text.URL.toString() =~ "com/anrisoftware/resources/texts/texts/hello.txt"
-	}
-
-	@Test
-	void "micro-benchmark get the same text resource for different languages"() {
-		Logger.getLogger(TextsImpl).setLevel(Level.INFO)
-		Locale german = Locale.GERMAN
-		Locale russian = new Locale("ru")
-		Locale english = Locale.ENGLISH
-		def baseName = "TextsWithDefaultCharset"
-		def classLoader = getClass().classLoader
-		Texts texts = factory.create baseName, classLoader
-
-		TextResource text
-		long current
-		long now
-		int max = 1
-
-		printf "Lookup first time, difference languages:%n"
-		Thread.sleep 1000
-		current = System.currentTimeMillis()
-		text = texts.getResource "hello", german
-		text = texts.getResource "hello", russian
-		text = texts.getResource "hello", english
-		now = System.currentTimeMillis()
-		printf "system time : %.3f%n", (now-current) / 3
-
-		printf "Lookup second time, difference languages:%n"
-		(0..10).each {
-			Thread.sleep 1000
-			current = System.currentTimeMillis()
-			(0..max).each {
-				text = texts.getResource "hello", german
-				text = texts.getResource "hello", russian
-				text = texts.getResource "hello", english
-			}
-			now = System.currentTimeMillis()
-			printf "system time (%d): %.3f%n", max, (now-current) / max / 3
-			max *= 2
-		}
+		}as BuilderFactory
+		new TextsResourcesCacheModule(manager, builderFactory)
 	}
 }

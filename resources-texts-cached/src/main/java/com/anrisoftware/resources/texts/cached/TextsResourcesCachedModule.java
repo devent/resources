@@ -7,17 +7,12 @@ import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 /**
- * <p>
- * Binds the text resources texts maps.
- * </p>
- * <p>
- * This implementation is using a JSR107 cache.
- * </p>
+ * Binds the text resources texts maps using a JSR107 (JCache) cache.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.2
+ * @since 1.0
  */
-public class ResourcesTextsCachedModule extends AbstractModule {
+public class TextsResourcesCachedModule extends AbstractModule {
 
 	@Override
 	protected void configure() {

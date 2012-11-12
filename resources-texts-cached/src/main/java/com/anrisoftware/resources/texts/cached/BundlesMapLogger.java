@@ -6,7 +6,7 @@ import com.anrisoftware.globalpom.log.AbstractLogger;
  * Logging messages for {@link BundlesMapImpl}.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.2
+ * @since 1.0
  */
 class BundlesMapLogger extends AbstractLogger {
 

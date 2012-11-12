@@ -1,11 +1,10 @@
 package com.anrisoftware.resources.texts.cached;
 
-import static com.anrisoftware.resources.texts.cached.TextsCachedModule.TEXTS_MAP_CACHE_BUILDER;
-import static com.anrisoftware.resources.texts.cached.TextsCachedModule.TEXTS_MAP_CACHE_MANAGER;
-import static com.anrisoftware.resources.texts.cached.TextsCachedModule.TEXTS_MAP_CACHE_NAME;
+import static com.anrisoftware.resources.texts.cached.TextsResourcesCacheModule.TEXTS_MAP_CACHE_BUILDER;
+import static com.anrisoftware.resources.texts.cached.TextsResourcesCacheModule.TEXTS_MAP_CACHE_MANAGER;
+import static com.anrisoftware.resources.texts.cached.TextsResourcesCacheModule.TEXTS_MAP_CACHE_NAME;
 import static java.lang.String.format;
 
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -15,20 +14,18 @@ import javax.cache.CacheManager;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.anrisoftware.resources.api.TextResource;
 import com.anrisoftware.resources.texts.api.BundlesMap;
+import com.anrisoftware.resources.texts.api.TextResource;
 import com.anrisoftware.resources.texts.api.TextsMap;
 import com.anrisoftware.resources.texts.api.TextsMapFactory;
-import com.anrisoftware.resources.texts.cached.TextsCachedModule.BuilderFactory;
+import com.anrisoftware.resources.texts.cached.TextsResourcesCacheModule.BuilderFactory;
 import com.google.common.collect.Maps;
 
 /**
- * <p>
- * Uses a {@link HashMap} to store the texts for each resource bundle.
- * </p>
+ * Uses a Java hash map to store the texts for each resource bundle.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.1
+ * @since 1.0
  */
 class BundlesMapImpl implements BundlesMap {
 

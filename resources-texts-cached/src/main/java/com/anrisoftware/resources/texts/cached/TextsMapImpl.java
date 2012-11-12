@@ -3,16 +3,14 @@ package com.anrisoftware.resources.texts.cached;
 import javax.cache.Cache;
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.api.TextResource;
+import com.anrisoftware.resources.texts.api.TextResource;
 import com.anrisoftware.resources.texts.api.TextsMap;
 
 /**
- * <p>
- * Uses a {@link Cache} to store the text resources identified by their name.
- * </p>
+ * Uses a cache to store the text resources identified by their name.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.2
+ * @since 1.0
  */
 class TextsMapImpl implements TextsMap {
 
