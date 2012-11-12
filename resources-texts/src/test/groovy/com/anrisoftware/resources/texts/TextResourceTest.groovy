@@ -5,7 +5,7 @@ import java.nio.charset.Charset
 
 import org.junit.Test
 
-import com.anrisoftware.resources.api.TextsFactory
+import com.anrisoftware.resources.texts.api.TextsFactory;
 import com.anrisoftware.resources.texts.maps.TextsDefaultMapsModule
 import com.google.inject.Injector
 

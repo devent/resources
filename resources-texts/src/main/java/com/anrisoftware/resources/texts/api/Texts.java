@@ -16,10 +16,12 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-api. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.api;
+package com.anrisoftware.resources.texts.api;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+
+import com.anrisoftware.resources.api.ResourcesException;
 
 /**
  * <p>

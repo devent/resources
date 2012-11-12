@@ -1,4 +1,4 @@
-package com.anrisoftware.resources.api;
+package com.anrisoftware.resources.texts.api;
 
 import java.net.URL;
 import java.nio.charset.Charset;

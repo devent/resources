@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.api.ResourcesException;
-import com.anrisoftware.resources.api.TextResource;
+import com.anrisoftware.resources.texts.api.TextResource;
 
 /**
  * Logging messages for {@link TextsImpl}.

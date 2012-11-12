@@ -1,7 +1,10 @@
-package com.anrisoftware.resources.api;
+package com.anrisoftware.resources.texts.api;
 
 import java.nio.charset.Charset;
 import java.util.Locale;
+
+import com.anrisoftware.resources.api.Resource;
+import com.anrisoftware.resources.api.ResourcesException;
 
 /**
  * Text resource.

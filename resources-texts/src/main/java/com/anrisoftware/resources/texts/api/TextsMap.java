@@ -1,6 +1,5 @@
 package com.anrisoftware.resources.texts.api;
 
-import com.anrisoftware.resources.api.TextResource;
 
 /**
  * Puts {@link TextResource}s and retrieves them. The text resources are

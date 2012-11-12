@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.api.TextResource;
+import com.anrisoftware.resources.texts.api.TextResource;
 import com.anrisoftware.resources.texts.api.TextsMap;
 import com.google.common.collect.Maps;
 

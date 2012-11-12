@@ -1,9 +1,9 @@
 package com.anrisoftware.resources.texts;
 
-import com.anrisoftware.resources.api.TextResource;
-import com.anrisoftware.resources.api.TextResourceFactory;
-import com.anrisoftware.resources.api.Texts;
-import com.anrisoftware.resources.api.TextsFactory;
+import com.anrisoftware.resources.texts.api.TextResource;
+import com.anrisoftware.resources.texts.api.TextResourceFactory;
+import com.anrisoftware.resources.texts.api.Texts;
+import com.anrisoftware.resources.texts.api.TextsFactory;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
