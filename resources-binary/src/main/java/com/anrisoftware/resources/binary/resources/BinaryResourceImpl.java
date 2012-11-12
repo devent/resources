@@ -1,5 +1,7 @@
 package com.anrisoftware.resources.binary.resources;
 
+import static org.apache.commons.io.IOUtils.readFully;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +15,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.binary.api.BinaryResource;
-import com.google.common.io.ByteStreams;
 import com.google.inject.assistedinject.Assisted;
 
 /**
@@ -105,7 +106,7 @@ class BinaryResourceImpl implements BinaryResource, Serializable {
 
 	private void readStreamToBuffer(InputStream stream, byte[] buffer) {
 		try {
-			ByteStreams.readFully(stream, buffer);
+			readFully(stream, buffer);
 		} catch (IOException e) {
 			throw log.errorReadStreamToBuffer(e, this);
 		}
