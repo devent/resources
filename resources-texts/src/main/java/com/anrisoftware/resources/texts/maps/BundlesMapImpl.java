@@ -9,12 +9,9 @@ import javax.inject.Inject;
 import com.anrisoftware.resources.texts.api.BundlesMap;
 import com.anrisoftware.resources.texts.api.TextsMap;
 import com.anrisoftware.resources.texts.api.TextsMapFactory;
-import com.google.common.collect.Maps;
 
 /**
- * <p>
- * Uses a {@link HashMap} to store the texts for each resource bundle.
- * </p>
+ * Uses a Java hash map to store the texts for each resource bundle.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
@@ -27,7 +24,7 @@ class BundlesMapImpl implements BundlesMap {
 
 	@Inject
 	BundlesMapImpl(TextsMapFactory textsFactory) {
-		this.map = Maps.newHashMap();
+		this.map = new HashMap<ResourceBundle, TextsMap>();
 		this.textsFactory = textsFactory;
 	}
 

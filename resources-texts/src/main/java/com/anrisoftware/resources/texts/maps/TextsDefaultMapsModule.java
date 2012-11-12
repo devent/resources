@@ -7,12 +7,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 /**
- * <p>
- * Binds the text resources texts maps.
- * </p>
- * <p>
- * This implementation is using Java hash map.
- * </p>
+ * Binds the text resources that is using Java hash map for the texts maps.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1

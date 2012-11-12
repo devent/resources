@@ -7,12 +7,9 @@ import javax.inject.Inject;
 
 import com.anrisoftware.resources.texts.api.TextResource;
 import com.anrisoftware.resources.texts.api.TextsMap;
-import com.google.common.collect.Maps;
 
 /**
- * <p>
- * Uses a {@link HashMap} to store the text resources identified by their name.
- * </p>
+ * Uses the Java hash map to store the text resources identified by their name.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
@@ -26,7 +23,7 @@ class TextsMapImpl implements TextsMap {
 	@Inject
 	TextsMapImpl(TextsMapLogger logger) {
 		this.log = logger;
-		this.texts = Maps.newHashMap();
+		this.texts = new HashMap<String, TextResource>();
 	}
 
 	/**
