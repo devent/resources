@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import com.anrisoftware.resources.images.api.BundlesMap;
 import com.anrisoftware.resources.images.api.ImagesMap;
 import com.anrisoftware.resources.images.api.ImagesMapFactory;
-import com.google.common.collect.Maps;
 
 /**
  * Uses a {@link HashMap} to store the images for each resource bundle.
@@ -25,7 +24,7 @@ class BundlesMapImpl implements BundlesMap {
 
 	@Inject
 	BundlesMapImpl(ImagesMapFactory imagesFactory) {
-		this.map = Maps.newHashMap();
+		this.map = new HashMap<ResourceBundle, ImagesMap>();
 		this.factory = imagesFactory;
 	}
 
