@@ -3,6 +3,7 @@ package com.anrisoftware.resources.templates.worker;
 import static com.anrisoftware.resources.templates.worker.STTemplateWorkerFactory.DELIMITER_START_CHAR_PROPERTY;
 import static com.anrisoftware.resources.templates.worker.STTemplateWorkerFactory.DELIMITER_STOP_CHAR_PROPERTY;
 import static com.anrisoftware.resources.templates.worker.STTemplateWorkerFactory.ENCODING_PROPERTY;
+import static org.apache.commons.lang3.ArrayUtils.remove;
 
 import java.io.ObjectStreamException;
 import java.net.URL;
@@ -107,6 +108,20 @@ class STTemplateWorker implements TemplateWorker {
 		return templateUrl;
 	}
 
+	/**
+	 * @param name
+	 *            the template group name and the template name if the
+	 *            conditions apply: a) the specified data array is empty or b)
+	 *            the data array contains only attribute name-value pairs.
+	 * 
+	 * @param data
+	 *            the data array containing attribute-name-value pairs. The
+	 *            first element {@code data[0]} can contain the name of the
+	 *            template in the template group. If so, then the amount of
+	 *            elements in the array must be odd. If the amount of elements
+	 *            in the array is not odd then the data array does not contain
+	 *            the template name as the first element.
+	 */
 	@Override
 	public String process(String name, Object... data)
 			throws ResourcesException {
@@ -118,13 +133,31 @@ class STTemplateWorker implements TemplateWorker {
 
 	private ST createTemplate(String templateName, Object... data)
 			throws ResourcesException {
+		templateName = getTemplateName(templateName, data);
 		ST template = groupFile.getInstanceOf(templateName);
 		log.checkTemplateCreated(template, templateName);
 		throwErrors();
+		setupTemplateAttributes(template, data);
+		return template;
+	}
+
+	private void setupTemplateAttributes(ST template, Object[] data) {
+		if (data.length % 2 != 0) {
+			data = remove(data, 0);
+		}
 		for (int i = 0; i < data.length; i++) {
 			template.add(data[i].toString(), data[++i]);
 		}
-		return template;
+	}
+
+	private String getTemplateName(String templateName, Object[] data) {
+		if (data.length == 0) {
+			return templateName;
+		} else if (data.length % 2 == 0) {
+			return templateName;
+		} else {
+			return data[0].toString();
+		}
 	}
 
 	private String renderTemplate(ST template) throws ResourcesException {

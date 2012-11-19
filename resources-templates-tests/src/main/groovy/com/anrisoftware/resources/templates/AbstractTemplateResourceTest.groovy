@@ -14,6 +14,17 @@ abstract class AbstractTemplateResourceTest extends AbstractTemplateResourceTest
 	void "load template"() {
 		String[] args = ["arg1", "one", "arg2", "two"]
 		def baseName = "Templates"
+		def templates = factory.create baseName
+		def template = templates.getResource "test"
+
+		assertStringContent template.getText(args), "${args[1]}:${args[3]}"
+		assert template.locale.toString() == ""
+		assert template.URL.toString() =~ ".+"
+	}
+
+	void "load template with set class loader"() {
+		String[] args = ["arg1", "one", "arg2", "two"]
+		def baseName = "Templates"
 		def classLoader = getClass().classLoader
 		def templates = factory.create baseName, classLoader
 		def template = templates.getResource "test"
@@ -42,8 +53,7 @@ abstract class AbstractTemplateResourceTest extends AbstractTemplateResourceTest
 	void "load template with same data"() {
 		String[] args = ["arg1", "one", "arg2", "two"]
 		def baseName = "Templates"
-		def classLoader = getClass().classLoader
-		def templates = factory.create baseName, classLoader
+		def templates = factory.create baseName
 		def template = templates.getResource "test"
 
 		StopWatch stopWatch = new LoggingStopWatch("get text from template")

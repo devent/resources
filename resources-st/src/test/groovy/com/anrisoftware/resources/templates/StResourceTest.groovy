@@ -3,6 +3,7 @@ package com.anrisoftware.resources.templates
 import org.junit.Test
 
 import com.anrisoftware.resources.templates.api.TemplateResourceFactory
+import com.anrisoftware.resources.templates.api.Templates
 import com.anrisoftware.resources.templates.api.TemplatesFactory
 import com.anrisoftware.resources.templates.maps.TemplatesDefaultMapsModule
 import com.anrisoftware.resources.templates.templates.TemplatesResourcesModule
@@ -23,6 +24,11 @@ class StResourceTest extends AbstractTemplateResourceTest {
 	}
 
 	@Test
+	void "load template with set class loader"() {
+		super."load template with set class loader"()
+	}
+
+	@Test
 	void "serialize resource"() {
 		super."serialize resource"()
 	}
@@ -30,6 +36,50 @@ class StResourceTest extends AbstractTemplateResourceTest {
 	@Test
 	void "load ST template with same data"() {
 		super."load template with same data"()
+	}
+
+	@Test
+	void "load ST template in a template group"() {
+		String[] args = [
+			"st",
+			"arg1",
+			"one",
+			"arg2",
+			"two"
+		]
+		def baseName = "Templates"
+		def templates = factory.create baseName
+		def template = templates.getResource "stttemplate"
+
+		assertStringContent template.getText(args), "${args[2]}:${args[4]}"
+		assert template.locale.toString() == ""
+		assert template.URL.toString() =~ ".+"
+	}
+
+	@Test
+	void "load multiple ST template in same template group"() {
+		String[] args = [
+			"foo",
+			"arg1",
+			"foo1",
+			"arg2",
+			"foo2"
+		]
+		def baseName = "Templates"
+		Templates templates = factory.create baseName
+		def template = templates.getResource "multipletemplates"
+
+		assertStringContent template.getText(args), "${args[2]}:${args[4]}"
+
+		args = [
+			"bar",
+			"arg1",
+			"bar1",
+			"arg2",
+			"bar2"
+		]
+		template.invalidate()
+		assertStringContent template.getText(args), "${args[2]}:${args[4]}"
 	}
 
 	def getTemplatesModule() {
