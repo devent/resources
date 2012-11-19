@@ -6,7 +6,7 @@ import com.anrisoftware.resources.templates.api.TemplateResourceFactory
 import com.anrisoftware.resources.templates.api.TemplatesFactory
 import com.anrisoftware.resources.templates.maps.TemplatesDefaultMapsModule
 import com.anrisoftware.resources.templates.templates.TemplatesResourcesModule
-import com.anrisoftware.resources.templates.worker.STTemplateDefaultPropertiesModule
+import com.anrisoftware.resources.templates.worker.STDefaultPropertiesModule
 import com.anrisoftware.resources.templates.worker.STWorkerModule
 
 /**
@@ -46,7 +46,7 @@ class StResourceTest extends AbstractTemplateResourceTest {
 
 	@Override
 	def getPropertiesModule() {
-		new STTemplateDefaultPropertiesModule()
+		new STDefaultPropertiesModule()
 	}
 
 	@Override

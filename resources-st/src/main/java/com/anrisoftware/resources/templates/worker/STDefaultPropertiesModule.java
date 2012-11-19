@@ -41,11 +41,11 @@ import com.google.inject.Provides;
  * @see STTemplateWorkerFactory#DELIMITER_STOP_CHAR_PROPERTY
  * @see STTemplateWorkerFactory#ENCODING_PROPERTY
  * @see System#getProperties()
- * @since 1.0
+ * @since 1.2
  */
-public class STTemplateDefaultPropertiesModule extends AbstractModule {
+public class STDefaultPropertiesModule extends AbstractModule {
 
-	static final URL PROPERTIES_URL = STTemplateDefaultPropertiesModule.class
+	static final URL PROPERTIES_URL = STDefaultPropertiesModule.class
 			.getResource("stringtemplate.properties");
 
 	@Override
