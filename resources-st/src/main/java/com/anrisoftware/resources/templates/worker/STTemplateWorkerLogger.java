@@ -1,6 +1,6 @@
 package com.anrisoftware.resources.templates.worker;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static org.apache.commons.lang3.Validate.notNull;
 
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.compiler.STException;
@@ -43,7 +43,7 @@ class STTemplateWorkerLogger extends AbstractSerializedLogger {
 	}
 
 	void checkTemplateCreated(ST template, String name) {
-		checkNotNull(template, "Could not load the template ``%s''.", name);
+		notNull(template, "Could not load the template ``%s''.", name);
 	}
 
 }
