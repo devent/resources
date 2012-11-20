@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>resources-templates</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>Resources :: Templates</name>
 	<description>Templates resources.</description>
 	<inceptionYear>2012</inceptionYear>
