@@ -6,7 +6,8 @@
 	<parent>
 		<groupId>com.anrisoftware.resources</groupId>
 		<artifactId>resources-parent</artifactId>
-		<version>1.3-SNAPSHOT</version>
+		<version>1.3</version>
+		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-templates</artifactId>
@@ -16,19 +17,23 @@
 	<inceptionYear>2012</inceptionYear>
 
 	<dependencies>
+
+		<!-- own modules dependencies -->
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>1.4-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.inject.extensions</groupId>
-			<artifactId>guice-assistedinject</artifactId>
+			<version>1.4</version>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>1.2-SNAPSHOT</version>
+			<version>1.2</version>
+		</dependency>
+
+		<!-- compile dependencies -->
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-assistedinject</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.globalpom</groupId>
