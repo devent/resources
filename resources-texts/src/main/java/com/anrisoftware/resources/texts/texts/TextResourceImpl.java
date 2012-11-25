@@ -15,13 +15,13 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.binary.api.BinaryResource;
 import com.anrisoftware.resources.binary.api.BinaryResourceFactory;
 import com.anrisoftware.resources.texts.api.TextResource;
-import com.google.common.io.CharStreams;
 import com.google.inject.assistedinject.Assisted;
 
 /**
@@ -165,7 +165,7 @@ class TextResourceImpl implements TextResource, Serializable {
 		Charset charset = charsetWrapper.getCharset();
 		InputStreamReader reader = new InputStreamReader(stream, charset);
 		try {
-			text = CharStreams.toString(reader);
+			text = IOUtils.toString(reader);
 		} catch (IOException e) {
 			throw log.errorLoadText(this, e);
 		}
