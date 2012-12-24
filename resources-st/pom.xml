@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>com.anrisoftware.resources</groupId>
 		<artifactId>resources-parent</artifactId>
-		<version>1.3</version>
+		<version>1.4-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-st</artifactId>
-	<version>1.2</version>
+	<version>1.3-SNAPSHOT</version>
 	<name>Resources :: Templates :: ST</name>
 	<description>Loads and caches String Template resources.</description>
 	<inceptionYear>2012</inceptionYear>
