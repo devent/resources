@@ -46,6 +46,26 @@ public interface TemplateResource extends Resource {
 	String getText(Object... data) throws ResourcesException;
 
 	/**
+	 * Process the template and returns the text.
+	 * <p>
+	 * The processed text is cached and is returned for the same data.
+	 * 
+	 * @param invalidate
+	 *            set to {@code true} to invalidate the cache before processing
+	 *            the text.
+	 * 
+	 * @param data
+	 *            the data for the template.
+	 * 
+	 * @throws ResourcesException
+	 *             if there was an error loading the text.
+	 * 
+	 * @since 1.1
+	 */
+	String getText(boolean invalidate, Object... data)
+			throws ResourcesException;
+
+	/**
 	 * Invalidate the template resource. Delete the cached resource so a
 	 * subsequent call of {@link #getText(Object...)} will process the template.
 	 * <p>

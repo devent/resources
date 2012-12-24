@@ -92,6 +92,15 @@ class TemplateResourceImpl implements TemplateResource, Serializable {
 	}
 
 	@Override
+	public String getText(boolean invalidate, Object... data)
+			throws ResourcesException {
+		if (invalidate) {
+			invalidate();
+		}
+		return getText(data);
+	}
+
+	@Override
 	public String getText(Object... data) throws ResourcesException {
 		if (text == null) {
 			log.processTemplate(this);
