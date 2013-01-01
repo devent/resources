@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>globalpom-groovy</artifactId>
 		<groupId>com.anrisoftware.globalpom</groupId>
-		<version>1.15-SNAPSHOT</version>
+		<version>1.15</version>
 		<relativePath />
 	</parent>
 
@@ -66,17 +66,17 @@
 			<dependency>
 				<groupId>com.anrisoftware.globalpom</groupId>
 				<artifactId>globalpom-log</artifactId>
-				<version>1.8-SNAPSHOT</version>
+				<version>1.8</version>
 			</dependency>
 			<dependency>
 				<groupId>com.anrisoftware.globalpom</groupId>
 				<artifactId>globalpom-groovytestutils</artifactId>
-				<version>1.13-SNAPSHOT</version>
+				<version>1.13</version>
 			</dependency>
 			<dependency>
 				<groupId>com.anrisoftware.propertiesutils</groupId>
 				<artifactId>propertiesutils-contextproperties</artifactId>
-				<version>1.5-SNAPSHOT</version>
+				<version>1.5</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
