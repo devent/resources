@@ -13,7 +13,7 @@
 	<artifactId>resources-binary</artifactId>
 	<name>Resources :: Binary</name>
 	<description>Binary resources.</description>
-	<version>1.4-SNAPSHOT</version>
+	<version>1.4</version>
 	<inceptionYear>2012</inceptionYear>
 
 	<dependencies>
