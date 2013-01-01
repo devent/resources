@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>resources-st</artifactId>
-	<version>1.3-SNAPSHOT</version>
+	<version>1.3</version>
 	<name>Resources :: Templates :: ST</name>
 	<description>Loads and caches String Template resources.</description>
 	<inceptionYear>2012</inceptionYear>
