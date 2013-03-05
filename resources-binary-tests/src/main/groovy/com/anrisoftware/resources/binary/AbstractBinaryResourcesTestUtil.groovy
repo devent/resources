@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Erwin Müller <erwin.mueller@deventm.org>
+ * Copyright 2012-2013 Erwin Müller <erwin.mueller@deventm.org>
  *
  * This file is part of resources-binary-tests.
  *
@@ -23,7 +23,6 @@ import static com.anrisoftware.globalpom.utils.TestUtils.*
 import org.junit.Before
 import org.junit.BeforeClass
 
-import com.google.common.io.Resources
 import com.google.inject.Guice
 import com.google.inject.Injector
 
@@ -64,20 +63,24 @@ abstract class AbstractBinaryResourcesTestUtil {
 		]
 		outputs = [
 			[baseName: "Zipfiles", resources: [
-					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
-					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-1.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
-					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-2.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
-					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-3.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
-					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-4.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
-					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-5.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
-					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-6.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
-					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-7.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
-					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-8.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
-					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-9.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
-					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/ru/Lorem ipsum.html.zip"), locale: new Locale("ru"), availableBytes: 71906],
-					[url: Resources.getResource("com/anrisoftware/resources/binary/zipfiles/Lorem ipsum.html.zip"), locale: Locale.getDefault(), availableBytes: 71573],
+					[url: resource("/com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: resource("/com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-1.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: resource("/com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-2.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: resource("/com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-3.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: resource("/com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-4.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: resource("/com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-5.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: resource("/com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-6.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: resource("/com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-7.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: resource("/com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-8.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: resource("/com/anrisoftware/resources/binary/zipfiles/de/Lorem ipsum-9.html.zip"), locale: Locale.GERMAN, availableBytes: 71639],
+					[url: resource("/com/anrisoftware/resources/binary/zipfiles/ru/Lorem ipsum.html.zip"), locale: new Locale("ru"), availableBytes: 71906],
+					[url: resource("/com/anrisoftware/resources/binary/zipfiles/Lorem ipsum.html.zip"), locale: Locale.getDefault(), availableBytes: 71573],
 				]],
 		]
+	}
+
+	static URL resource(String name) {
+		AbstractBinaryResourcesTestUtil.class.getResource(name)
 	}
 
 	Injector injector
@@ -91,9 +94,6 @@ abstract class AbstractBinaryResourcesTestUtil {
 	}
 
 	Injector createInjector() {
-		if (injector != null) {
-			injector
-		}
 		Guice.createInjector(resourcesModule, mapModule)
 	}
 
