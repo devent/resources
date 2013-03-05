@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.4</version>
+		<version>1.5-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
@@ -15,5 +15,10 @@
 	<description>The public API of the resources project.</description>
 	<version>1.6-SNAPSHOT</version>
 	<inceptionYear>2012</inceptionYear>
+
+	<issueManagement>
+		<system>Redmine</system>
+		<url>https://www.anr-institute.com/projects/projects/resources-api</url>
+	</issueManagement>
 
 </project>
