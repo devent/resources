@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Erwin Müller <erwin.mueller@deventm.org>
+ * Copyright 2012-2013 Erwin Müller <erwin.mueller@deventm.org>
  *
  * This file is part of resources-images-tests.
  *
@@ -21,7 +21,6 @@ package com.anrisoftware.resources.images
 import java.awt.Dimension
 
 import com.anrisoftware.globalpom.utils.ShowImagesFrame
-import com.google.common.io.Resources
 
 /**
  * Create tests to test the image resource.
@@ -31,7 +30,7 @@ import com.google.common.io.Resources
  */
 abstract class AbstractImageResourceTest extends AbstractImageResourcesTestUtils {
 
-	public static imageLowURL = Resources.getResource("com/anrisoftware/resources/images/logos/xx/ldpi/x-mail-distribution-list.png")
+	public static imageLowURL = AbstractImageResourceTest.class.getResource("/com/anrisoftware/resources/images/logos/xx/ldpi/x-mail-distribution-list.png")
 
 	static IMAGE_NAME = "logo"
 

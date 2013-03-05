@@ -6,31 +6,36 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.4</version>
+		<version>1.5</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-images-tests</artifactId>
-	<version>1.3</version>
+	<version>1.4-SNAPSHOT</version>
 	<name>Resources :: Image Tests</name>
 	<description>Bundles test resources and unit tests for the image resources.</description>
 	<inceptionYear>2012</inceptionYear>
 
+	<issueManagement>
+		<system>Redmine</system>
+		<url>https://www.anr-institute.com/projects/projects/resources-images-tests</url>
+	</issueManagement>
+
 	<dependencies>
 
-        <!-- compile dependencies -->
-        <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-assistedinject</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.anrisoftware.globalpom</groupId>
-            <artifactId>globalpom-groovytestutils</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
+		<!-- compile dependencies -->
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-assistedinject</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.anrisoftware.globalpom</groupId>
+			<artifactId>globalpom-groovytestutils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
