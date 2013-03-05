@@ -6,35 +6,40 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.4</version>
+		<version>1.5-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-binary-tests</artifactId>
-	<version>1.3</version>
+	<version>1.4-SNAPSHOT</version>
 	<name>Resources :: Binary Tests</name>
 	<description>Tests package for binary resources.</description>
 	<inceptionYear>2012</inceptionYear>
 
+	<issueManagement>
+		<system>Redmine</system>
+		<url>https://www.anr-institute.com/projects/projects/resources-binary-tests</url>
+	</issueManagement>
+
 	<dependencies>
 
-        <!-- compile dependency -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.anrisoftware.globalpom</groupId>
-            <artifactId>globalpom-groovytestutils</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-        	<groupId>org.perfidix</groupId>
-        	<artifactId>perfidix</artifactId>
-        </dependency>
+		<!-- compile dependency -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.anrisoftware.globalpom</groupId>
+			<artifactId>globalpom-groovytestutils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.perfidix</groupId>
+			<artifactId>perfidix</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
