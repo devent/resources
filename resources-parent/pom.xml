@@ -18,6 +18,10 @@
 	<description>The parent POM of the resources project. Defines the group ID, source control management, project properties.</description>
 	<inceptionYear>2012</inceptionYear>
 
+	<properties>
+		<project.custom.current.year>2013</project.custom.current.year>
+	</properties>
+
 	<developers>
 		<developer>
 			<id>EM</id>
@@ -39,10 +43,6 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
-
-	<properties>
-		<project.custom.year>${project.inceptionYear}</project.custom.year>
-	</properties>
 
 	<scm>
 		<connection>scm:git:${custom.gitpublic.url}resources.git</connection>
