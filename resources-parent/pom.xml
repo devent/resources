@@ -6,13 +6,13 @@
 	<parent>
 		<artifactId>globalpom-groovy</artifactId>
 		<groupId>com.anrisoftware.globalpom</groupId>
-		<version>1.15</version>
+		<version>1.16</version>
 		<relativePath />
 	</parent>
 
 	<groupId>com.anrisoftware.resources</groupId>
 	<artifactId>resources-parent</artifactId>
-	<version>1.4</version>
+	<version>1.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Resources :: Parent POM</name>
 	<description>The parent POM of the resources project. Defines the group ID, source control management, project properties.</description>
@@ -50,6 +50,11 @@
 		<url>scm:git:${custom.gitpublic.url}resources.git</url>
 	</scm>
 
+	<issueManagement>
+		<system>Redmine</system>
+		<url>https://www.anr-institute.com/projects/projects/resources-parent</url>
+	</issueManagement>
+
 	<distributionManagement>
 		<repository>
 			<id>${custom.repository.anrispublic.id}</id>
@@ -71,7 +76,7 @@
 			<dependency>
 				<groupId>com.anrisoftware.globalpom</groupId>
 				<artifactId>globalpom-groovytestutils</artifactId>
-				<version>1.13</version>
+				<version>1.14</version>
 			</dependency>
 			<dependency>
 				<groupId>com.anrisoftware.propertiesutils</groupId>
