@@ -12,7 +12,7 @@
 
 	<artifactId>resources-images</artifactId>
 	<name>Resources :: Image</name>
-	<version>1.5-SNAPSHOT</version>
+	<version>1.5</version>
 	<description>Image resources.</description>
 	<inceptionYear>2012</inceptionYear>
 
