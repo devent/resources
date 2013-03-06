@@ -42,7 +42,7 @@ import com.google.inject.assistedinject.Assisted;
 /**
  * Returns the image resource with the desired name, locale, resolution and
  * size. It will scale the image if necessary and add the scaled image resource
- * the the images map.
+ * to the images map.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
@@ -54,12 +54,6 @@ class ImagesWorker {
 	private final ImageResourceFactory imageResourceFactory;
 
 	private final ImageScalingWorkerFactory scalingWorkerFactory;
-
-	private final String name;
-
-	private final Locale locale;
-
-	private final Dimension size;
 
 	private final GetBundle getBundle;
 
@@ -80,16 +74,6 @@ class ImagesWorker {
 	 *            the {@link ImageScalingWorkerFactory} to create a new worker
 	 *            that will scale the image.
 	 * 
-	 * @param name
-	 *            the {@link String} name of the image resource we want to get.
-	 * 
-	 * @param locale
-	 *            the {@link Locale} of the image resource we want to get.
-	 * 
-	 * @param size
-	 *            the {@link Dimension} width and height of the image resource
-	 *            we want to get.
-	 * 
 	 * @param getBundle
 	 *            the {@link GetBundle} that returns the resource bundle for the
 	 *            locale.
@@ -101,15 +85,10 @@ class ImagesWorker {
 	ImagesWorker(ImagesWorkerLogger logger,
 			ImageResourceFactory imageResourceFactory,
 			ImageScalingWorkerFactory scalingWorkerFactory,
-			@Assisted String name, @Assisted Locale locale,
-			@Assisted Dimension size, @Assisted GetBundle getBundle,
-			@Assisted BundlesMap bundles) {
+			@Assisted GetBundle getBundle, @Assisted BundlesMap bundles) {
 		this.log = logger;
 		this.imageResourceFactory = imageResourceFactory;
 		this.scalingWorkerFactory = scalingWorkerFactory;
-		this.name = name;
-		this.locale = locale;
-		this.size = size;
 		this.getBundle = getBundle;
 		this.bundles = bundles;
 	}
@@ -118,23 +97,36 @@ class ImagesWorker {
 	 * Returns the image resource with the desired name, locale and size. It
 	 * will choose the best available resolution for scaling.
 	 * 
+	 * @param name
+	 *            the {@link String} name of the image resource we want to get.
+	 * 
+	 * @param locale
+	 *            the {@link Locale} of the image resource we want to get.
+	 * 
+	 * @param size
+	 *            the {@link Dimension} width and height of the image resource
+	 *            we want to get.
+	 * 
 	 * @return a {@link ImageResource}.
 	 */
-	public ImageResource imageResource() {
+	public ImageResource imageResource(String name, Locale locale,
+			Dimension size) {
 		ResourceBundle bundle = getBundle.bundleFor(locale);
 		ImagesMap map = bundles.getImages(bundle);
 		log.loadedResourceBundle(name, bundle);
-		lazyLoadImagesForAvailableResolutions(map, bundle);
+		lazyLoadImagesForAvailableResolutions(name, locale, map, bundle);
 		log.checkImageLoaded(map.haveImage(name), name);
 		ImageResource image = map.getImage(name, size);
-		image = resizeIfNeeded(map, image.getResolution(), image);
+		ImageResolution resolution = image.getResolution();
+		image = resizeIfNeeded(name, locale, size, map, resolution, image);
 		return image;
 	}
 
-	private void lazyLoadImagesForAvailableResolutions(ImagesMap map,
-			ResourceBundle bundle) throws ResourcesException {
+	private void lazyLoadImagesForAvailableResolutions(String name,
+			Locale locale, ImagesMap map, ResourceBundle bundle)
+			throws ResourcesException {
 		for (ImageResolution resolution : ImageResolution.values()) {
-			lazyLoadImagesForResolution(map, bundle, resolution);
+			lazyLoadImagesForResolution(name, locale, map, bundle, resolution);
 		}
 	}
 
@@ -142,24 +134,35 @@ class ImagesWorker {
 	 * Returns the image resource with the desired name, locale and size. It
 	 * will use the specified resolution for scaling.
 	 * 
+	 * @param name
+	 *            the {@link String} name of the image resource we want to get.
+	 * 
+	 * @param locale
+	 *            the {@link Locale} of the image resource we want to get.
+	 * 
+	 * @param size
+	 *            the {@link Dimension} width and height of the image resource
+	 *            we want to get.
+	 * 
 	 * @param resolution
 	 *            the specified {@link ImageResolution}.
 	 * 
 	 * @return a {@link ImageResource}.
 	 */
-	public ImageResource imageResource(ImageResolution resolution) {
+	public ImageResource imageResource(String name, Locale locale,
+			Dimension size, ImageResolution resolution) {
 		ResourceBundle bundle = getBundle.bundleFor(locale);
 		ImagesMap map = bundles.getImages(bundle);
 		log.loadedResourceBundle(name, bundle);
-		lazyLoadImagesForResolution(map, bundle, resolution);
+		lazyLoadImagesForResolution(name, locale, map, bundle, resolution);
 		log.checkImageLoaded(map.haveImage(name), name);
 		ImageResource image = map.getImage(name, size, resolution);
-		image = resizeIfNeeded(map, resolution, image);
+		image = resizeIfNeeded(name, locale, size, map, resolution, image);
 		return image;
 	}
 
-	private void lazyLoadImagesForResolution(ImagesMap map,
-			ResourceBundle bundle, ImageResolution resolution)
+	private void lazyLoadImagesForResolution(String name, Locale locale,
+			ImagesMap map, ResourceBundle bundle, ImageResolution resolution)
 			throws ResourcesException {
 		if (map.haveImage(name, resolution)) {
 			return;
@@ -192,19 +195,20 @@ class ImagesWorker {
 		log.addedImageResource(image);
 	}
 
-	private ImageResource resizeIfNeeded(ImagesMap map,
-			ImageResolution resolution, ImageResource res) {
+	private ImageResource resizeIfNeeded(String name, Locale locale,
+			Dimension size, ImagesMap map, ImageResolution resolution,
+			ImageResource res) {
 		if (res.getSizePx().equals(size)) {
 			return res;
 		}
-		Image image = resizeImage(name, res.getImage());
+		Image image = resizeImage(name, size, res.getImage());
 		res = imageResourceFactory.create(name, locale, resolution, image);
 		map.putImage(res);
 		log.resizedImage(res);
 		return res;
 	}
 
-	private Image resizeImage(String name, Image image)
+	private Image resizeImage(String name, Dimension size, Image image)
 			throws ResourcesException {
 		try {
 			return scalingWorkerFactory.create(image, size).call();

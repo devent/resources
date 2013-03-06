@@ -44,11 +44,9 @@ import com.google.inject.assistedinject.AssistedInject;
  */
 class ImagesImpl implements Images {
 
-	private final BundlesMap bundles;
-
 	private final GetBundle getBundle;
 
-	private final ImagesWorkerFactory workerFactory;
+	private final ImagesWorker worker;
 
 	@AssistedInject
 	ImagesImpl(ImagesWorkerFactory workerFactory, BundlesMap bundles,
@@ -80,8 +78,7 @@ class ImagesImpl implements Images {
 
 	private ImagesImpl(ImagesWorkerFactory workerFactory, BundlesMap bundles,
 			GetBundle getBundle) {
-		this.workerFactory = workerFactory;
-		this.bundles = bundles;
+		this.worker = workerFactory.create(getBundle, bundles);
 		this.getBundle = getBundle;
 	}
 
@@ -116,8 +113,7 @@ class ImagesImpl implements Images {
 	@Override
 	public ImageResource getResource(String name, Locale locale, Dimension size)
 			throws ResourcesException {
-		return workerFactory.create(name, locale, size, getBundle, bundles)
-				.imageResource();
+		return worker.imageResource(name, locale, size);
 	}
 
 	@Override
@@ -131,7 +127,6 @@ class ImagesImpl implements Images {
 	public ImageResource getResource(String name, Locale locale,
 			Dimension size, ImageResolution resolution)
 			throws ResourcesException {
-		return workerFactory.create(name, locale, size, getBundle, bundles)
-				.imageResource(resolution);
+		return worker.imageResource(name, locale, size, resolution);
 	}
 }

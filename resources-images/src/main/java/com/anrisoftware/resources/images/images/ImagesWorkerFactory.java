@@ -18,9 +18,6 @@
  */
 package com.anrisoftware.resources.images.images;
 
-import java.awt.Dimension;
-import java.util.Locale;
-
 import com.anrisoftware.resources.GetBundle;
 import com.anrisoftware.resources.images.api.BundlesMap;
 
@@ -35,16 +32,6 @@ interface ImagesWorkerFactory {
 	/**
 	 * Creates a new {@link ImagesWorker}.
 	 * 
-	 * @param name
-	 *            the {@link String} name of the image resource we want to get.
-	 * 
-	 * @param locale
-	 *            the {@link Locale} of the image resource we want to get.
-	 * 
-	 * @param size
-	 *            the {@link Dimension} width and height of the image resource
-	 *            we want to get.
-	 * 
 	 * @param getBundle
 	 *            the {@link GetBundle} that returns the resource bundle for the
 	 *            locale.
@@ -52,6 +39,5 @@ interface ImagesWorkerFactory {
 	 * @param bundles
 	 *            the map of bundles with their images maps.
 	 */
-	ImagesWorker create(String name, Locale locale, Dimension size,
-			GetBundle getBundle, BundlesMap bundles);
+	ImagesWorker create(GetBundle getBundle, BundlesMap bundles);
 }
