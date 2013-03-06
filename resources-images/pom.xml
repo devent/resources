@@ -16,17 +16,22 @@
 	<description>Image resources.</description>
 	<inceptionYear>2012</inceptionYear>
 
+	<issueManagement>
+		<system>Redmine</system>
+		<url>https://www.anr-institute.com/projects/projects/resources-images</url>
+	</issueManagement>
+
 	<dependencies>
 
-        <!-- test dependencies -->
-        <dependency>
-            <groupId>com.anrisoftware.resources</groupId>
-            <artifactId>resources-images-tests</artifactId>
-            <version>1.4</version>
-            <scope>test</scope>
-        </dependency>
+		<!-- test dependencies -->
+		<dependency>
+			<groupId>com.anrisoftware.resources</groupId>
+			<artifactId>resources-images-tests</artifactId>
+			<version>1.4</version>
+			<scope>test</scope>
+		</dependency>
 
-        <!-- own modules dependencies -->
+		<!-- own modules dependencies -->
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
@@ -43,10 +48,10 @@
 			<groupId>com.google.inject.extensions</groupId>
 			<artifactId>guice-assistedinject</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.globalpom</groupId>
 			<artifactId>globalpom-log</artifactId>
