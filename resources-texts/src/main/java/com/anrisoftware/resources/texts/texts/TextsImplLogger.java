@@ -18,6 +18,8 @@
  */
 package com.anrisoftware.resources.texts.texts;
 
+import static java.lang.String.format;
+
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -43,13 +45,15 @@ class TextsImplLogger extends AbstractLogger {
 		super(TextsImpl.class);
 	}
 
-	void checkTextLoaded(boolean haveText, ResourceBundle bundle, String name)
-			throws ResourcesException {
+	void checkTextLoaded(boolean haveText, String name, Locale locale,
+			ResourceBundle bundle) throws ResourcesException {
 		if (!haveText) {
-			ResourcesException ex = new ResourcesException(bundle.getClass()
-					.getName(), name, "No text resource loaded for ``%s''",
-					name);
-			log.error(ex.getMessage());
+			String message = format("No text resource loaded '%s' (%s)", name,
+					locale);
+			ResourcesException ex = new ResourcesException(message, bundle
+					.getClass().getName(), name);
+			ex.addContext("locale", locale);
+			logException(message, ex);
 			throw ex;
 		}
 	}
@@ -61,14 +65,15 @@ class TextsImplLogger extends AbstractLogger {
 		return url;
 	}
 
-	void checkHaveResource(TextResource text, ResourceBundle bundle,
-			String name, Locale locale) throws ResourcesException {
+	void checkHaveResource(TextResource text, String name, Locale locale,
+			ResourceBundle bundle) throws ResourcesException {
 		if (text == null) {
-			ResourcesException ex = new ResourcesException(bundle.getClass()
-					.getName(), name,
-					"No text resource ``%s'' available for the locale %s",
+			String message = format("No text resource available '%s' (%s)",
 					name, locale);
-			log.error(ex.getMessage());
+			ResourcesException ex = new ResourcesException(message, bundle
+					.getClass().getName(), name);
+			ex.addContext("locale", locale);
+			logException(message, ex);
 			throw ex;
 		}
 	}

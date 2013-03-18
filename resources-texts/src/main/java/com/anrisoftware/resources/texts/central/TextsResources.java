@@ -18,7 +18,6 @@ import java.util.Map;
 import java.util.MissingResourceException;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 import javax.swing.KeyStroke;
 
 import org.apache.commons.lang3.event.EventListenerSupport;
@@ -34,16 +33,15 @@ import com.anrisoftware.resources.texts.api.TextsFactory;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.4
  */
-@Singleton
 public class TextsResources {
 
-	private final Texts texts;
+	private Texts texts;
 
-	private final Texts actions;
+	private Texts actions;
 
-	private final Texts mnemonics;
+	private Texts mnemonics;
 
-	private final Texts accelerators;
+	private Texts accelerators;
 
 	private Reference<Map<String, Integer>> keyCodes;
 
@@ -62,8 +60,48 @@ public class TextsResources {
 		this.locale = Locale.getDefault();
 	}
 
+	public void setTexts(Texts texts) {
+		Texts oldValue = this.texts;
+		this.texts = texts;
+		if (oldValue != texts) {
+			fireUpdateLocale();
+		}
+	}
+
+	public void setActions(Texts actions) {
+		Texts oldValue = this.actions;
+		this.actions = actions;
+		if (oldValue != actions) {
+			fireUpdateLocale();
+		}
+	}
+
+	public void setMnemonics(Texts mnemonics) {
+		Texts oldValue = this.mnemonics;
+		this.mnemonics = mnemonics;
+		if (oldValue != mnemonics) {
+			fireUpdateLocale();
+		}
+	}
+
+	public void setAccelerators(Texts accelerators) {
+		Texts oldValue = this.accelerators;
+		this.accelerators = accelerators;
+		if (oldValue != accelerators) {
+			fireUpdateLocale();
+		}
+	}
+
 	public void setLocale(Locale locale) {
 		this.locale = locale;
+		fireUpdateLocale();
+	}
+
+	public Locale getLocale() {
+		return locale;
+	}
+
+	private void fireUpdateLocale() {
 		localeListeners.fire().updateLocale(locale);
 	}
 
@@ -208,4 +246,5 @@ public class TextsResources {
 	public void removeTextsLocaleListeners(LocaleListener l) {
 		localeListeners.removeListener(l);
 	}
+
 }

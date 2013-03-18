@@ -18,6 +18,8 @@
  */
 package com.anrisoftware.resources.texts.texts;
 
+import static java.lang.String.format;
+
 import java.io.IOException;
 
 import com.anrisoftware.globalpom.log.AbstractSerializedLogger;
@@ -34,21 +36,19 @@ class TextResourceImplLogger extends AbstractSerializedLogger {
 	/**
 	 * Creates a logger for {@link TextResourceImpl}.
 	 * 
-	 * @deprecated public scope needed for serialization.
 	 * @since 1.2
 	 */
-	@Deprecated
 	public TextResourceImplLogger() {
 		super(TextResourceImpl.class);
 	}
 
 	ResourcesException errorLoadText(TextResourceImpl res, IOException e) {
-		ResourcesException ex = new ResourcesException(
-				"",
-				res.getName(),
-				"Error loading the text resource ``%s'' with the locale %s: %s",
-				res.getName(), res.getLocale(), e.getMessage());
-		log.error(ex.getMessage());
+		String message = format("Error loading text resource '%s' (%s)",
+				res.getName(), res.getLocale());
+		ResourcesException ex = new ResourcesException(e, message, null,
+				res.getName());
+		ex.addContext("locale", res.getLocale());
+		logException(message, ex);
 		return ex;
 	}
 

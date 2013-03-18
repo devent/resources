@@ -225,7 +225,7 @@ class TextsImpl implements Texts {
 		ResourceBundle bundle = getBundle.bundleFor(locale);
 		log.loadedResourceBundle(name, bundle);
 		TextResource text = lazyLoadResource(name, bundle);
-		log.checkHaveResource(text, bundle, name, locale);
+		log.checkHaveResource(text, name, locale, bundle);
 		return text;
 	}
 
@@ -247,7 +247,7 @@ class TextsImpl implements Texts {
 		URL url = parseUrl(tokens);
 		Locale locale = bundle.getLocale();
 		TextResource text = loadText(locale, map, name, charset, url);
-		log.checkTextLoaded(map.haveText(name), bundle, name);
+		log.checkTextLoaded(map.haveText(name), name, locale, bundle);
 		return text;
 	}
 
