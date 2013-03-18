@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>resources-st</artifactId>
-	<version>1.4-SNAPSHOT</version>
+	<version>1.4</version>
 	<name>Resources :: Templates :: ST</name>
 	<description>Loads and caches String Template resources.</description>
 	<url>https://www.anr-institute.com/projects/projects/resources-st</url>
