@@ -18,9 +18,10 @@
  */
 package com.anrisoftware.resources.api;
 
-import static java.lang.String.format;
-
+import java.util.Map;
 import java.util.MissingResourceException;
+
+import com.anrisoftware.globalpom.exceptions.Context;
 
 /**
  * Exception that is thrown if there was an error loading a resource.
@@ -31,65 +32,61 @@ import java.util.MissingResourceException;
 @SuppressWarnings("serial")
 public class ResourcesException extends MissingResourceException {
 
+	private final Context<ResourcesException> context;
+
 	/**
-	 * Sets the cause for this exception with a message.
+	 * @see MissingResourceException#MissingResourceException(String, String,
+	 *      String)
 	 * 
-	 * @param cause
-	 *            the {@link Throwable} cause.
-	 * 
-	 * @param key
-	 *            the {@link String} key for the missing resource.
-	 * 
-	 * @param format
-	 *            a format {@link String} for the exception message.
-	 * 
-	 * @param args
-	 *            the optional {@link Object}s for the format message.
+	 * @since 1.7
 	 */
-	public ResourcesException(Throwable cause, String key, String format,
-			Object... args) {
-		super(format("%s: %s", cause.getMessage(), format(format, args)), "",
-				key);
+	public ResourcesException(String s, String className, String key) {
+		super(s, className, key);
+		this.context = new Context<ResourcesException>(this);
+		addContext("key", key);
 	}
 
 	/**
-	 * Sets the class name, key and a formatted messsage.
+	 * Adds the context with the specified name.
 	 * 
-	 * @param className
-	 *            the {@link String} name of the resource class
+	 * @param name
+	 *            the name of the context.
 	 * 
-	 * @param key
-	 *            the {@link String} key for the missing resource.
+	 * @param value
+	 *            the context value.
 	 * 
-	 * @param format
-	 *            a format {@link String} for the exception message.
+	 * @return the context {@link Exception}.
 	 * 
-	 * @param args
-	 *            the optional {@link Object}s for the format message.
+	 * @since 1.7
 	 */
-	public ResourcesException(String className, String key, String format,
-			Object... args) {
-		super(format(format, args), className, key);
+	public ResourcesException addContext(String name, Object value) {
+		return context.addContext(name, value);
 	}
 
+	/**
+	 * Returns the context of the exception.
+	 * 
+	 * @return an unmodifiable {@link Map} with the context.
+	 * 
+	 * @since 1.7
+	 */
+	public Map<String, Object> getContext() {
+		return context.getContext();
+	}
+
+	/**
+	 * Output the exception message and the context:
+	 * 
+	 * <pre>
+	 * Message of the exception, context:
+	 * Aaa := bbb
+	 * Ccc := ddd
+	 * </pre>
+	 * 
+	 * @since 1.7
+	 */
 	@Override
-	public String getMessage() {
-		return hasCause() ? createMessageWithCause() : createMessage();
+	public String toString() {
+		return context.toString();
 	}
-
-	private boolean hasCause() {
-		return getCause() != null;
-	}
-
-	private String createMessageWithCause() {
-		String message = super.getMessage();
-		String causeMessage = getCause().getMessage();
-		return format("%s: %s.", message, causeMessage);
-	}
-
-	private String createMessage() {
-		String message = super.getMessage();
-		return format("%s.", message);
-	}
-
 }
