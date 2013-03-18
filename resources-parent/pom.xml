@@ -6,21 +6,17 @@
 	<parent>
 		<artifactId>globalpom-groovy</artifactId>
 		<groupId>com.anrisoftware.globalpom</groupId>
-		<version>1.16</version>
+		<version>1.17</version>
 		<relativePath />
 	</parent>
 
 	<groupId>com.anrisoftware.resources</groupId>
 	<artifactId>resources-parent</artifactId>
-	<version>1.5</version>
+	<version>1.6-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Resources :: Parent POM</name>
 	<description>The parent POM of the resources project. Defines the group ID, source control management, project properties.</description>
 	<inceptionYear>2012</inceptionYear>
-
-	<properties>
-		<project.custom.current.year>2013</project.custom.current.year>
-	</properties>
 
 	<developers>
 		<developer>
@@ -47,7 +43,7 @@
 	<scm>
 		<connection>scm:git:${custom.gitpublic.url}resources.git</connection>
 		<developerConnection>scm:git:${custom.gitpublic.url}resources.git</developerConnection>
-		<url>scm:git:${custom.gitpublic.url}resources.git</url>
+		<url>https://www.anr-institute.com/gitpublic/resources.git/</url>
 	</scm>
 
 	<issueManagement>
@@ -71,12 +67,12 @@
 			<dependency>
 				<groupId>com.anrisoftware.globalpom</groupId>
 				<artifactId>globalpom-log</artifactId>
-				<version>1.8</version>
+				<version>1.9</version>
 			</dependency>
 			<dependency>
 				<groupId>com.anrisoftware.globalpom</groupId>
 				<artifactId>globalpom-groovytestutils</artifactId>
-				<version>1.15.1</version>
+				<version>1.16</version>
 			</dependency>
 			<dependency>
 				<groupId>com.anrisoftware.propertiesutils</groupId>
