@@ -20,10 +20,9 @@ package com.anrisoftware.resources.texts
 
 import static com.anrisoftware.globalpom.utils.TestUtils.*
 
+import org.apache.commons.io.Charsets
 import org.junit.Before
 
-import com.google.common.base.Charsets
-import com.google.common.io.Resources
 import com.google.inject.Injector
 
 /**
@@ -39,7 +38,7 @@ abstract class AbstractSerializationTest extends AbstractTextResourceTestUtils {
 	void "serialize text resource"() {
 		def name = "Text Resource A"
 		def locale = Locale.ENGLISH
-		def url = Resources.getResource "com/anrisoftware/resources/texts/texts/hello.txt"
+		def url = helloText
 		def charset = Charsets.UTF_8
 
 		def resource = textFactory.create name, locale, url, charset
@@ -63,4 +62,6 @@ abstract class AbstractSerializationTest extends AbstractTextResourceTestUtils {
 	 * @since 1.2
 	 */
 	abstract createTextFactory()
+
+	static final URL helloText = AbstractSerializationTest.class.getResource("/com/anrisoftware/resources/texts/texts/hello.txt")
 }
