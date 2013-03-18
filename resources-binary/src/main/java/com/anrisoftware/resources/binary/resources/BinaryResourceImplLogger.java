@@ -18,6 +18,8 @@
  */
 package com.anrisoftware.resources.binary.resources;
 
+import static java.lang.String.format;
+
 import java.io.IOException;
 
 import com.anrisoftware.globalpom.log.AbstractSerializedLogger;
@@ -39,17 +41,19 @@ class BinaryResourceImplLogger extends AbstractSerializedLogger {
 	}
 
 	ResourcesException errorOpenStream(IOException e, BinaryResourceImpl res) {
-		ResourcesException ex = new ResourcesException(e, res.getName(),
-				"Error opening the binary resource %s", res);
-		log.error(e.getMessage());
+		String name = res.getName();
+		String message = format("Error opening the binary resource %s", name);
+		ResourcesException ex = new ResourcesException(e, message, null, name);
+		logException(message, ex);
 		return ex;
 	}
 
 	ResourcesException errorReadStreamToBuffer(IOException e,
 			BinaryResourceImpl res) {
-		ResourcesException ex = new ResourcesException(e, res.getName(),
-				"Error read the binary resource %s", res);
-		log.error(e.getMessage());
+		String name = res.getName();
+		String message = format("Error read the binary resource %s", name);
+		ResourcesException ex = new ResourcesException(e, message, null, name);
+		logException(message, ex);
 		return ex;
 	}
 

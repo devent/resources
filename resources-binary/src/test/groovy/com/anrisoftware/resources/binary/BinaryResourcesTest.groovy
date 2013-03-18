@@ -20,6 +20,7 @@ package com.anrisoftware.resources.binary
 
 import org.junit.Test
 
+import com.anrisoftware.resources.api.ResourcesException
 import com.anrisoftware.resources.binary.api.BinariesFactory
 import com.anrisoftware.resources.binary.binaries.BinariesResourcesModule
 import com.anrisoftware.resources.binary.maps.BinariesDefaultMapsModule
@@ -40,6 +41,11 @@ class BinaryResourcesTest extends AbstractBinaryResourcesTest {
 	@Test
 	void "test serialize binary resource"() {
 		super."test serialize binary resource"()
+	}
+
+	@Test(expected = ResourcesException)
+	void "load missing resource"() {
+		super."load missing resource"()
 	}
 
 	@Override

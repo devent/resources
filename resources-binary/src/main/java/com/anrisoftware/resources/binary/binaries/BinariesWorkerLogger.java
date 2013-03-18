@@ -18,6 +18,8 @@
  */
 package com.anrisoftware.resources.binary.binaries;
 
+import static java.lang.String.format;
+
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -57,13 +59,15 @@ class BinariesWorkerLogger extends AbstractLogger {
 		log.debug("Add new binary resouce {}.", resource);
 	}
 
-	void checkBinaryLoaded(boolean haveResource, String name, Locale locale)
-			throws ResourcesException {
+	void checkBinaryLoaded(boolean haveResource, String name, Locale locale,
+			ResourceBundle bundle) throws ResourcesException {
 		if (!haveResource) {
-			ResourcesException ex = new ResourcesException("", name,
-					"No binary resource loaded for ``%s'' for locale %s", name,
+			String message = format("No binary resource found '%s' (%s)", name,
 					locale);
-			log.error(ex.getMessage());
+			ResourcesException ex = new ResourcesException(message, bundle
+					.getClass().toString(), name);
+			ex.addContext("locale", locale);
+			logException(message, ex);
 			throw ex;
 		}
 	}

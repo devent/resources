@@ -44,6 +44,13 @@ abstract class AbstractBinaryResourcesTest extends AbstractBinaryResourcesTestUt
 		testBinaryArgs(binaryB, [name: resource.name, locale: output.locale, url: output.url, size: output.availableBytes])
 	}
 
+	void "load missing resource"() {
+		def binaries = factory.create("Missing")
+		def name = "none"
+		def locale = Locale.ENGLISH
+		def binary = binaries.getResource name, locale
+	}
+
 	def testBinaries(def baseName, def resources, def output) {
 		def binaries = factory.create(baseName)
 		resources.eachWithIndex { it, i ->

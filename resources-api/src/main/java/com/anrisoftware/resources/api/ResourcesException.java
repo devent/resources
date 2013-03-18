@@ -18,6 +18,8 @@
  */
 package com.anrisoftware.resources.api;
 
+import static org.apache.commons.lang3.StringUtils.isEmpty;
+
 import java.util.Map;
 import java.util.MissingResourceException;
 
@@ -34,16 +36,41 @@ public class ResourcesException extends MissingResourceException {
 
 	private final Context<ResourcesException> context;
 
+	private final Throwable cause;
+
 	/**
 	 * @see MissingResourceException#MissingResourceException(String, String,
 	 *      String)
 	 * 
 	 * @since 1.7
 	 */
-	public ResourcesException(String s, String className, String key) {
-		super(s, className, key);
+	public ResourcesException(String message, String className, String key) {
+		this(null, message, className, key);
+	}
+
+	/**
+	 * @param cause
+	 *            the {@link Throwable} cause of the exception.
+	 * 
+	 * @see MissingResourceException#MissingResourceException(String, String,
+	 *      String)
+	 * 
+	 * @since 1.7
+	 */
+	public ResourcesException(Throwable cause, String message,
+			String className, String key) {
+		super(message, className, key);
 		this.context = new Context<ResourcesException>(this);
-		addContext("key", key);
+		this.cause = cause;
+		if (cause != null) {
+			addContext("cause", cause);
+		}
+		if (!isEmpty(key)) {
+			addContext("key", key);
+		}
+		if (!isEmpty(className)) {
+			addContext("class name", className);
+		}
 	}
 
 	/**
@@ -72,6 +99,11 @@ public class ResourcesException extends MissingResourceException {
 	 */
 	public Map<String, Object> getContext() {
 		return context.getContext();
+	}
+
+	@Override
+	public synchronized Throwable getCause() {
+		return (cause == this ? null : cause);
 	}
 
 	/**
