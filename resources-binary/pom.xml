@@ -6,15 +6,16 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.5</version>
+		<version>1.6-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-binary</artifactId>
 	<name>Resources :: Binary</name>
 	<description>Binary resources.</description>
-	<version>1.5</version>
+	<version>1.6-SNAPSHOT</version>
 	<inceptionYear>2012</inceptionYear>
+	<url>https://www.anr-institute.com/projects/projects/resources-binary</url>
 
 	<issueManagement>
 		<system>Redmine</system>
@@ -27,7 +28,7 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-binary-tests</artifactId>
-			<version>1.4</version>
+			<version>1.5-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -40,7 +41,7 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>1.4</version>
+			<version>1.5-SNAPSHOT</version>
 		</dependency>
 
 		<!-- compile dependencies -->
