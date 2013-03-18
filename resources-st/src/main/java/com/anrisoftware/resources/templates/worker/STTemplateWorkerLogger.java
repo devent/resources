@@ -18,7 +18,9 @@
  */
 package com.anrisoftware.resources.templates.worker;
 
-import static org.apache.commons.lang3.Validate.notNull;
+import static java.lang.String.format;
+
+import java.net.URL;
 
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.compiler.STException;
@@ -49,19 +51,29 @@ class STTemplateWorkerLogger extends AbstractSerializedLogger {
 		return ex;
 	}
 
-	ResourcesException errorProcessTemplate(STMessage errorMessage) {
-		ResourcesException ex = new ResourcesException("", "",
-				"Error process the template: %s", errorMessage);
-		log.error(ex.getMessage());
+	ResourcesException errorProcessTemplate(STMessage message, URL url) {
+		String msg = format("Error process the template: %s", message);
+		ResourcesException ex = new ResourcesException(message.cause, msg,
+				null, null);
+		ex.addContext("message", message);
+		ex.addContext("url", url);
+		logException(msg, ex);
 		return ex;
 	}
 
 	void templateProcessed(String name) {
-		log.debug("Processed the template ``{}''.", name);
+		log.debug("Processed template '{}'.", name);
 	}
 
-	void checkTemplateCreated(ST template, String name) {
-		notNull(template, "Could not load the template ``%s''.", name);
+	void checkTemplateCreated(ST template, String name, URL url) {
+		if (template == null) {
+			String msg = format("Template not found: '%s' in %s", name, url);
+			ResourcesException ex = new ResourcesException(msg, null, null);
+			ex.addContext("template name", name);
+			ex.addContext("url", url);
+			logException(msg, ex);
+			throw ex;
+		}
 	}
 
 }

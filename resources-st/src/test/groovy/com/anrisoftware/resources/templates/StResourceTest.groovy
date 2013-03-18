@@ -20,6 +20,7 @@ package com.anrisoftware.resources.templates
 
 import org.junit.Test
 
+import com.anrisoftware.resources.api.ResourcesException
 import com.anrisoftware.resources.templates.api.TemplateResourceFactory
 import com.anrisoftware.resources.templates.api.Templates
 import com.anrisoftware.resources.templates.api.TemplatesFactory
@@ -98,6 +99,35 @@ class StResourceTest extends AbstractTemplateResourceTest {
 		]
 		template.invalidate()
 		assertStringContent template.getText(args), "${args[2]}:${args[4]}"
+	}
+
+	@Test(expected = ResourcesException)
+	void "load missng template"() {
+		String[] args = [
+			"arg1",
+			"one",
+			"arg2",
+			"two"
+		]
+		def baseName = "Templates"
+		def templates = factory.create baseName
+		def template = templates.getResource "errorstemplate"
+		template.getText(args)
+	}
+
+	@Test(expected = ResourcesException)
+	void "load template with errors"() {
+		String[] args = [
+			"test",
+			"arg1",
+			"one",
+			"arg2",
+			"two"
+		]
+		def baseName = "Templates"
+		def templates = factory.create baseName
+		def template = templates.getResource "errorstemplate"
+		template.getText(args)
 	}
 
 	def getTemplatesModule() {

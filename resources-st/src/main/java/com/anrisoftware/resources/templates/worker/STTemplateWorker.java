@@ -81,22 +81,22 @@ class STTemplateWorker implements TemplateWorker {
 
 			@Override
 			public void runTimeError(STMessage msg) {
-				error = log.errorProcessTemplate(msg);
+				error = log.errorProcessTemplate(msg, templateUrl);
 			}
 
 			@Override
 			public void internalError(STMessage msg) {
-				error = log.errorProcessTemplate(msg);
+				error = log.errorProcessTemplate(msg, templateUrl);
 			}
 
 			@Override
 			public void compileTimeError(STMessage msg) {
-				error = log.errorProcessTemplate(msg);
+				error = log.errorProcessTemplate(msg, templateUrl);
 			}
 
 			@Override
 			public void IOError(STMessage msg) {
-				error = log.errorProcessTemplate(msg);
+				error = log.errorProcessTemplate(msg, templateUrl);
 			}
 		});
 	}
@@ -153,7 +153,7 @@ class STTemplateWorker implements TemplateWorker {
 			throws ResourcesException {
 		templateName = getTemplateName(templateName, data);
 		ST template = groupFile.getInstanceOf(templateName);
-		log.checkTemplateCreated(template, templateName);
+		log.checkTemplateCreated(template, templateName, templateUrl);
 		throwErrors();
 		setupTemplateAttributes(template, data);
 		return template;
