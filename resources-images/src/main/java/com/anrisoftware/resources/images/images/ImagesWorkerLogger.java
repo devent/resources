@@ -18,7 +18,10 @@
  */
 package com.anrisoftware.resources.images.images;
 
+import static java.lang.String.format;
+
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -56,12 +59,15 @@ class ImagesWorkerLogger extends AbstractLogger {
 		log.debug("Add new image resouce {}.", image);
 	}
 
-	void checkImageLoaded(boolean haveImage, String name)
-			throws ResourcesException {
+	void checkImageLoaded(boolean haveImage, String name, Locale locale,
+			ResourceBundle bundle) throws ResourcesException {
 		if (!haveImage) {
-			ResourcesException ex = new ResourcesException("", name,
-					"No image resource loaded for ``%s''", name);
-			log.error(ex.getMessage());
+			String message = format("No image resource found '%s' (%s)", name,
+					locale);
+			ResourcesException ex = new ResourcesException(message, bundle
+					.getClass().toString(), name);
+			ex.addContext("locale", locale);
+			logException(message, ex);
 			throw ex;
 		}
 	}
@@ -73,9 +79,12 @@ class ImagesWorkerLogger extends AbstractLogger {
 		return url;
 	}
 
-	ResourcesException errorResizeImage(Exception e, String name) {
-		ResourcesException ex = new ResourcesException(e, name,
-				"Error resize image");
+	ResourcesException errorResizeImage(Exception e, String name,
+			Locale locale, ResourceBundle bundle) {
+		String message = format("Error resize image '%s' (%s)", name, locale);
+		ResourcesException ex = new ResourcesException(e, message, bundle
+				.getClass().toString(), name);
+		ex.addContext("locale", locale);
 		log.error(ex.getMessage());
 		return ex;
 	}

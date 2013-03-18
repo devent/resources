@@ -18,6 +18,8 @@
  */
 package com.anrisoftware.resources.images.resource;
 
+import static java.lang.String.format;
+
 import java.io.IOException;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
@@ -35,11 +37,11 @@ class ImageResourceImplLogger extends AbstractLogger {
 		super(ImageResourceImpl.class);
 	}
 
-	ResourcesException errorLoadingImage(ImageResourceImpl resource,
-			IOException e) {
-		ResourcesException ex = new ResourcesException(e, resource.getName(),
-				"Error loading the image resource %s", resource);
-		log.error(e.getMessage());
+	ResourcesException errorLoadingImage(ImageResourceImpl res, IOException e) {
+		String name = res.getName();
+		String message = format("Error loading the image resource '%s'", name);
+		ResourcesException ex = new ResourcesException(e, message, null, name);
+		logException(message, ex);
 		return ex;
 	}
 
@@ -52,14 +54,10 @@ class ImageResourceImplLogger extends AbstractLogger {
 	}
 
 	void waitForHeight(ImageResourceImpl resource) {
-		log.debug(
-				"Wait until the image height is available for image resource {}.",
-				resource);
+		log.debug("Wait until image height available for {}.", resource);
 	}
 
 	void waitForWidth(ImageResourceImpl resource) {
-		log.debug(
-				"Wait until the image width is available for image resource {}.",
-				resource);
+		log.debug("Wait until image width available for {}.", resource);
 	}
 }

@@ -115,10 +115,11 @@ class ImagesWorker {
 		ImagesMap map = bundles.getImages(bundle);
 		log.loadedResourceBundle(name, bundle);
 		lazyLoadImagesForAvailableResolutions(name, locale, map, bundle);
-		log.checkImageLoaded(map.haveImage(name), name);
+		log.checkImageLoaded(map.haveImage(name), name, locale, bundle);
 		ImageResource image = map.getImage(name, size);
 		ImageResolution resolution = image.getResolution();
-		image = resizeIfNeeded(name, locale, size, map, resolution, image);
+		image = resizeIfNeeded(name, locale, size, map, resolution, image,
+				bundle);
 		return image;
 	}
 
@@ -155,9 +156,10 @@ class ImagesWorker {
 		ImagesMap map = bundles.getImages(bundle);
 		log.loadedResourceBundle(name, bundle);
 		lazyLoadImagesForResolution(name, locale, map, bundle, resolution);
-		log.checkImageLoaded(map.haveImage(name), name);
+		log.checkImageLoaded(map.haveImage(name), name, locale, bundle);
 		ImageResource image = map.getImage(name, size, resolution);
-		image = resizeIfNeeded(name, locale, size, map, resolution, image);
+		image = resizeIfNeeded(name, locale, size, map, resolution, image,
+				bundle);
 		return image;
 	}
 
@@ -197,23 +199,23 @@ class ImagesWorker {
 
 	private ImageResource resizeIfNeeded(String name, Locale locale,
 			Dimension size, ImagesMap map, ImageResolution resolution,
-			ImageResource res) {
+			ImageResource res, ResourceBundle bundle) {
 		if (res.getSizePx().equals(size)) {
 			return res;
 		}
-		Image image = resizeImage(name, size, res.getImage());
+		Image image = resizeImage(name, size, res.getImage(), locale, bundle);
 		res = imageResourceFactory.create(name, locale, resolution, image);
 		map.putImage(res);
 		log.resizedImage(res);
 		return res;
 	}
 
-	private Image resizeImage(String name, Dimension size, Image image)
-			throws ResourcesException {
+	private Image resizeImage(String name, Dimension size, Image image,
+			Locale locale, ResourceBundle bundle) throws ResourcesException {
 		try {
 			return scalingWorkerFactory.create(image, size).call();
 		} catch (Exception e) {
-			throw log.errorResizeImage(e, name);
+			throw log.errorResizeImage(e, name, locale, bundle);
 		}
 	}
 
