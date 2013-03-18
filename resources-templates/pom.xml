@@ -6,15 +6,21 @@
 	<parent>
 		<groupId>com.anrisoftware.resources</groupId>
 		<artifactId>resources-parent</artifactId>
-		<version>1.4</version>
+		<version>1.6</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-templates</artifactId>
-	<version>1.1</version>
+	<version>1.2-SNAPSHOT</version>
 	<name>Resources :: Templates</name>
 	<description>Templates resources.</description>
+	<url>https://www.anr-institute.com/projects/projects/resources-templates</url>
 	<inceptionYear>2012</inceptionYear>
+
+	<issueManagement>
+		<system>Redmine</system>
+		<url>https://www.anr-institute.com/projects/projects/resources-templates</url>
+	</issueManagement>
 
 	<dependencies>
 
@@ -22,12 +28,12 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>1.5</version>
+			<version>1.7</version>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>1.3</version>
+			<version>1.5</version>
 		</dependency>
 
 		<!-- compile dependencies -->

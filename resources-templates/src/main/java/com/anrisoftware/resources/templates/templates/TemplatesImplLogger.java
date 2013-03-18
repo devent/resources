@@ -18,6 +18,8 @@
  */
 package com.anrisoftware.resources.templates.templates;
 
+import static java.lang.String.format;
+
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -43,40 +45,42 @@ class TemplatesImplLogger extends AbstractLogger {
 		super(TemplatesImpl.class);
 	}
 
-	void checkTemplateLoaded(boolean haveTemplate, ResourceBundle bundle,
-			String name) throws ResourcesException {
+	void checkTemplateLoaded(boolean haveTemplate, String name, Locale locale,
+			ResourceBundle bundle) throws ResourcesException {
 		if (!haveTemplate) {
-			ResourcesException ex = new ResourcesException(bundle.getClass()
-					.getName(), name, "No template resource loaded for ``%s''",
-					name);
-			log.error(ex.getMessage());
+			String message = format("No template resource found '%s' (%s)",
+					name, locale);
+			ResourcesException ex = new ResourcesException(message, bundle
+					.getClass().toString(), name);
+			ex.addContext("locale", locale);
+			logException(message, ex);
 			throw ex;
 		}
 	}
 
 	public URL checkResourceURL(URL url, String urlString) {
 		if (url == null) {
-			log.warn("The resource URL ``{}'' could not be found.", urlString);
+			log.warn("Could not find resource URL '{}'.", urlString);
 		}
 		return url;
 	}
 
-	void checkHaveResource(TemplateResource res, ResourceBundle bundle,
-			String name, Locale locale) throws ResourcesException {
+	void checkHaveResource(TemplateResource res, String name, Locale locale,
+			ResourceBundle bundle) throws ResourcesException {
 		if (res == null) {
-			ResourcesException ex = new ResourcesException(bundle.getClass()
-					.getName(), name,
-					"No template resource ``%s'' available for the locale %s",
+			String message = format("No template resource available '%s' (%s)",
 					name, locale);
-			log.error(ex.getMessage());
+			ResourcesException ex = new ResourcesException(message, bundle
+					.getClass().toString(), name);
+			ex.addContext("locale", locale);
+			logException(message, ex);
 			throw ex;
 		}
 	}
 
 	void loadedResourceBundle(String name, ResourceBundle bundle) {
 		if (log.isDebugEnabled()) {
-			log.debug(
-					"Loaded the resource bundle {} for the text resource ``{}''.",
+			log.debug("Loaded resource bundle {} for '{}'.",
 					bundleToString(bundle), name);
 		}
 	}

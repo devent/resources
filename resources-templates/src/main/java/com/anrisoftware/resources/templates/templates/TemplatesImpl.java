@@ -132,7 +132,7 @@ class TemplatesImpl implements Templates {
 		ResourceBundle bundle = getBundle.bundleFor(locale);
 		log.loadedResourceBundle(name, bundle);
 		TemplateResource res = lazyLoadResource(name, bundle);
-		log.checkHaveResource(res, bundle, name, locale);
+		log.checkHaveResource(res, name, locale, bundle);
 		return res;
 	}
 
@@ -152,7 +152,7 @@ class TemplatesImpl implements Templates {
 		URL url = parseURL(value);
 		Locale locale = bundle.getLocale();
 		TemplateResource text = loadTemplate(locale, map, name, url);
-		log.checkTemplateLoaded(map.haveText(name), bundle, name);
+		log.checkTemplateLoaded(map.haveText(name), name, locale, bundle);
 		return text;
 	}
 
