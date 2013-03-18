@@ -6,12 +6,12 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.6-SNAPSHOT</version>
+		<version>1.6</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-binary-tests</artifactId>
-	<version>1.5-SNAPSHOT</version>
+	<version>1.5</version>
 	<name>Resources :: Binary Tests</name>
 	<description>Tests package for binary resources.</description>
 	<inceptionYear>2012</inceptionYear>
