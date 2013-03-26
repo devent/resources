@@ -38,6 +38,14 @@ import com.anrisoftware.resources.texts.api.TextResource;
  */
 class TextsImplLogger extends AbstractLogger {
 
+	private static final String RESOURCE_URL_NOT_FOUND = "The resource URL ``{}'' could not be found.";
+
+	private static final String LOADED_RESOURCE_BUNDLE = "Loaded the resource bundle {} for the text resource ``{}''.";
+
+	private static final String NO_TEXT_RESOURCE_AVAILABLE = "No text resource available '%s' (%s)";
+
+	private static final String NO_TEXT_RESOURCE_LOADED = "No text resource loaded '%s' (%s)";
+
 	/**
 	 * Creates a logger for {@link TextsImpl}.
 	 */
@@ -48,19 +56,18 @@ class TextsImplLogger extends AbstractLogger {
 	void checkTextLoaded(boolean haveText, String name, Locale locale,
 			ResourceBundle bundle) throws ResourcesException {
 		if (!haveText) {
-			String message = format("No text resource loaded '%s' (%s)", name,
-					locale);
+			String message = format(NO_TEXT_RESOURCE_LOADED, name, locale);
 			ResourcesException ex = new ResourcesException(message, bundle
 					.getClass().getName(), name);
 			ex.addContext("locale", locale);
-			logException(message, ex);
+			logException(ex, message);
 			throw ex;
 		}
 	}
 
 	public URL checkResourceURL(URL url, String urlString) {
 		if (url == null) {
-			log.warn("The resource URL ``{}'' could not be found.", urlString);
+			log.warn(RESOURCE_URL_NOT_FOUND, urlString);
 		}
 		return url;
 	}
@@ -68,21 +75,18 @@ class TextsImplLogger extends AbstractLogger {
 	void checkHaveResource(TextResource text, String name, Locale locale,
 			ResourceBundle bundle) throws ResourcesException {
 		if (text == null) {
-			String message = format("No text resource available '%s' (%s)",
-					name, locale);
+			String message = format(NO_TEXT_RESOURCE_AVAILABLE, name, locale);
 			ResourcesException ex = new ResourcesException(message, bundle
 					.getClass().getName(), name);
 			ex.addContext("locale", locale);
-			logException(message, ex);
+			logException(ex, message);
 			throw ex;
 		}
 	}
 
 	void loadedResourceBundle(String name, ResourceBundle bundle) {
 		if (log.isDebugEnabled()) {
-			log.debug(
-					"Loaded the resource bundle {} for the text resource ``{}''.",
-					bundleToString(bundle), name);
+			log.debug(LOADED_RESOURCE_BUNDLE, bundleToString(bundle), name);
 		}
 	}
 

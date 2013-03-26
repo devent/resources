@@ -22,7 +22,7 @@ import static java.lang.String.format;
 
 import java.io.IOException;
 
-import com.anrisoftware.globalpom.log.AbstractSerializedLogger;
+import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.api.ResourcesException;
 
 /**
@@ -31,7 +31,9 @@ import com.anrisoftware.resources.api.ResourcesException;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-class TextResourceImplLogger extends AbstractSerializedLogger {
+class TextResourceImplLogger extends AbstractLogger {
+
+	private static final String ERROR_LOAD_TEXT = "Error loading text resource '%s' (%s)";
 
 	/**
 	 * Creates a logger for {@link TextResourceImpl}.
@@ -43,12 +45,11 @@ class TextResourceImplLogger extends AbstractSerializedLogger {
 	}
 
 	ResourcesException errorLoadText(TextResourceImpl res, IOException e) {
-		String message = format("Error loading text resource '%s' (%s)",
-				res.getName(), res.getLocale());
-		ResourcesException ex = new ResourcesException(e, message, null,
-				res.getName());
+		String name = res.getName();
+		String message = format(ERROR_LOAD_TEXT, name, res.getLocale());
+		ResourcesException ex = new ResourcesException(e, message, null, name);
 		ex.addContext("locale", res.getLocale());
-		logException(message, ex);
+		logException(ex, message);
 		return ex;
 	}
 

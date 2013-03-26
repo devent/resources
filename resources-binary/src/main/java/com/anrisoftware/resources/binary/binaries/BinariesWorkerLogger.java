@@ -38,15 +38,21 @@ import com.anrisoftware.resources.binary.api.BinaryResource;
  */
 class BinariesWorkerLogger extends AbstractLogger {
 
+	private static final String RESOURCE_URL_NOT_FOUND = "The resource URL ``{}'' could not be found.";
+
+	private static final String NO_BINARY_RESOURCE_FOUND = "No binary resource found '%s' (%s)";
+
+	private static final String ADD_NEW_BINARY_RESOUCE = "Add new binary resouce {}.";
+
+	private static final String LOADED_RESOURCE_BUNDLE = "Loaded the resource bundle {} for the binary resource ``{}''.";
+
 	BinariesWorkerLogger() {
 		super(BinariesImpl.class);
 	}
 
 	void loadedResourceBundle(String name, ResourceBundle bundle) {
 		if (log.isDebugEnabled()) {
-			log.debug(
-					"Loaded the resource bundle {} for the binary resource ``{}''.",
-					bundleToString(bundle), name);
+			log.debug(LOADED_RESOURCE_BUNDLE, bundleToString(bundle), name);
 		}
 	}
 
@@ -56,25 +62,24 @@ class BinariesWorkerLogger extends AbstractLogger {
 	}
 
 	void addedBinaryResource(BinaryResource resource) {
-		log.debug("Add new binary resouce {}.", resource);
+		log.debug(ADD_NEW_BINARY_RESOUCE, resource);
 	}
 
 	void checkBinaryLoaded(boolean haveResource, String name, Locale locale,
 			ResourceBundle bundle) throws ResourcesException {
 		if (!haveResource) {
-			String message = format("No binary resource found '%s' (%s)", name,
-					locale);
+			String message = format(NO_BINARY_RESOURCE_FOUND, name, locale);
 			ResourcesException ex = new ResourcesException(message, bundle
 					.getClass().toString(), name);
 			ex.addContext("locale", locale);
-			logException(message, ex);
+			logException(ex, message);
 			throw ex;
 		}
 	}
 
 	URL checkResourceURL(URL url, String value) {
 		if (url == null) {
-			log.warn("The resource URL ``{}'' could not be found.", value);
+			log.warn(RESOURCE_URL_NOT_FOUND, value);
 		}
 		return url;
 	}

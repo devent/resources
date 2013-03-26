@@ -22,7 +22,7 @@ import static java.lang.String.format;
 
 import java.io.IOException;
 
-import com.anrisoftware.globalpom.log.AbstractSerializedLogger;
+import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.api.ResourcesException;
 
 /**
@@ -31,7 +31,13 @@ import com.anrisoftware.resources.api.ResourcesException;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-class BinaryResourceImplLogger extends AbstractSerializedLogger {
+class BinaryResourceImplLogger extends AbstractLogger {
+
+	private static final String LOADED_BINARY_BUFFER = "Loaded the binary buffer in resource {}.";
+
+	private static final String ERROR_READ_RESOURCE = "Error read the binary resource %s";
+
+	private static final String ERROR_OPENING_RESOURCE = "Error opening the binary resource %s";
 
 	/**
 	 * Creates the logger for {@link BinaryResourceImpl}.
@@ -42,22 +48,22 @@ class BinaryResourceImplLogger extends AbstractSerializedLogger {
 
 	ResourcesException errorOpenStream(IOException e, BinaryResourceImpl res) {
 		String name = res.getName();
-		String message = format("Error opening the binary resource %s", name);
+		String message = format(ERROR_OPENING_RESOURCE, name);
 		ResourcesException ex = new ResourcesException(e, message, null, name);
-		logException(message, ex);
+		logException(ex, message);
 		return ex;
 	}
 
 	ResourcesException errorReadStreamToBuffer(IOException e,
 			BinaryResourceImpl res) {
 		String name = res.getName();
-		String message = format("Error read the binary resource %s", name);
+		String message = format(ERROR_READ_RESOURCE, name);
 		ResourcesException ex = new ResourcesException(e, message, null, name);
-		logException(message, ex);
+		logException(ex, message);
 		return ex;
 	}
 
 	void loadedBuffer(BinaryResourceImpl res) {
-		log.trace("Loaded the binary buffer in resource {}.", res);
+		log.trace(LOADED_BINARY_BUFFER, res);
 	}
 }
