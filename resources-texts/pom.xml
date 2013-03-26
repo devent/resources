@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>resources-texts</artifactId>
-    <version>1.4</version>
+    <version>1.5-SNAPSHOT</version>
 	<name>Resources :: Text</name>
 	<description>Text resources.</description>
     <inceptionYear>2012</inceptionYear>
