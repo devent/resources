@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>resources-texts-tests</artifactId>
-	<version>1.5-SNAPSHOT</version>
+	<version>1.5</version>
 	<name>Resources :: Text :: Tests</name>
 	<description>Bundles test resources and unit tests for the text resources.</description>
 	<url>https://www.anr-institute.com/projects/projects/resources-texts-tests</url>
