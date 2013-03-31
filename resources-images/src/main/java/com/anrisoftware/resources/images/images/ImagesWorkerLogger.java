@@ -18,8 +18,6 @@
  */
 package com.anrisoftware.resources.images.images;
 
-import static java.lang.String.format;
-
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -38,59 +36,61 @@ import com.anrisoftware.resources.images.api.ImageResource;
  */
 class ImagesWorkerLogger extends AbstractLogger {
 
+	private static final String ADD_RESIZED_IMAGE = "Add resized image resouce {}.";
+	private static final String ERROR_RESIZE_IMAGE = "Error resize image";
+	private static final String ERROR_RESIZE_IMAGE_MESSAGE = "Error resize image '%s' (%s)";
+	private static final String RESOURCE_URL_COULD_NOT_FOUND = "Resource ``{}'' could not be found.";
+	private static final String NO_IMAGE_RESOURCE_FOUND = "No image resource found";
+	private static final String NO_IMAGE_RESOURCE_FOUND_MESSAGE = "No image resource found '%s' (%s)";
+	private static final String ADD_NEW_IMAGE_RESOUCE = "Add new image resouce {}.";
+	private static final String LOCALE = "locale";
+	private static final String LOADED_RESOURCE_BUNDLE = "Loaded resource bundle {} for the image resource ``{}''.";
+
 	ImagesWorkerLogger() {
 		super(ImagesImpl.class);
 	}
 
 	void loadedResourceBundle(String name, ResourceBundle bundle) {
 		if (log.isDebugEnabled()) {
-			log.debug(
-					"Loaded the resource bundle {} for the image resource ``{}''.",
-					bundleToString(bundle), name);
+			log.debug(LOADED_RESOURCE_BUNDLE, bundleToString(bundle), name);
 		}
 	}
 
 	private String bundleToString(ResourceBundle bundle) {
-		return new ToStringBuilder(bundle).append("locale", bundle.getLocale())
+		return new ToStringBuilder(bundle).append(LOCALE, bundle.getLocale())
 				.toString();
 	}
 
 	void addedImageResource(ImageResource image) {
-		log.debug("Add new image resouce {}.", image);
+		log.debug(ADD_NEW_IMAGE_RESOUCE, image);
 	}
 
 	void checkImageLoaded(boolean haveImage, String name, Locale locale,
 			ResourceBundle bundle) throws ResourcesException {
-		if (!haveImage) {
-			String message = format("No image resource found '%s' (%s)", name,
-					locale);
-			ResourcesException ex = new ResourcesException(message, bundle
-					.getClass().toString(), name);
-			ex.addContext("locale", locale);
-			logException(message, ex);
-			throw ex;
+		if (haveImage) {
+			return;
 		}
+		throw logException(new ResourcesException(NO_IMAGE_RESOURCE_FOUND,
+				bundle.getClass().toString(), name).addContext(LOCALE, locale),
+				NO_IMAGE_RESOURCE_FOUND_MESSAGE, name, locale);
 	}
 
 	URL checkResourceURL(URL url, String value) {
 		if (url == null) {
-			log.warn("The resource URL ``{}'' could not be found.", value);
+			log.warn(RESOURCE_URL_COULD_NOT_FOUND, value);
 		}
 		return url;
 	}
 
 	ResourcesException errorResizeImage(Exception e, String name,
 			Locale locale, ResourceBundle bundle) {
-		String message = format("Error resize image '%s' (%s)", name, locale);
-		ResourcesException ex = new ResourcesException(e, message, bundle
-				.getClass().toString(), name);
-		ex.addContext("locale", locale);
-		log.error(ex.getMessage());
-		return ex;
+		return logException(new ResourcesException(e, ERROR_RESIZE_IMAGE,
+				bundle.getClass().toString(), name).addContext(LOCALE, locale),
+				ERROR_RESIZE_IMAGE_MESSAGE, name, locale);
 	}
 
 	void resizedImage(ImageResource image) {
-		log.debug("Add resized image resouce {}.", image);
+		log.debug(ADD_RESIZED_IMAGE, image);
 	}
 
 }
