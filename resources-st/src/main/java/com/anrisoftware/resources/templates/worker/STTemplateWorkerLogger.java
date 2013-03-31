@@ -26,7 +26,7 @@ import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.compiler.STException;
 import org.stringtemplate.v4.misc.STMessage;
 
-import com.anrisoftware.globalpom.log.AbstractSerializedLogger;
+import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.api.ResourcesException;
 
 /**
@@ -35,7 +35,18 @@ import com.anrisoftware.resources.api.ResourcesException;
  * @author Erwin Müller, erwin.mueller@deventm.org
  * @since 1.0
  */
-class STTemplateWorkerLogger extends AbstractSerializedLogger {
+class STTemplateWorkerLogger extends AbstractLogger {
+
+	private static final String URL = "url";
+	private static final String TEMPLATE_NAME = "template name";
+	private static final String TEMPLATE_NOT_FOUND = "Template not found";
+	private static final String TEMPLATE_NOT_FOUND_MESSAGE = "Template not found: '%s' in %s";
+	private static final String PROCESSED_TEMPLATE = "Processed template '{}'.";
+	private static final String MESSAGE = "message";
+	private static final String ERROR_PROCESS_TEMPLATE = "Error process the template: %s";
+	private static final String ERROR_PROCESS_TEMPLATE_MESSAGE = "Error process the template %s: %s";
+	private static final String ERROR_OPEN_GROUP_FILE = "Error open ST group file";
+	private static final String ERROR_OPEN_GROUP_FILE_MESSAGE = "Error open ST group file: %s.";
 
 	/**
 	 * Creates a logger for {@link STTemplateWorker}.
@@ -45,35 +56,30 @@ class STTemplateWorkerLogger extends AbstractSerializedLogger {
 	}
 
 	ResourcesException errorOpenGroupFile(STException e) {
-		ResourcesException ex = new ResourcesException(e, "", "",
-				"Error open the string template group file");
-		log.error(ex.getMessage());
-		return ex;
+		return logException(new ResourcesException(e, "", "",
+				ERROR_OPEN_GROUP_FILE), ERROR_OPEN_GROUP_FILE_MESSAGE,
+				e.getMessage());
 	}
 
 	ResourcesException errorProcessTemplate(STMessage message, URL url) {
-		String msg = format("Error process the template: %s", message);
-		ResourcesException ex = new ResourcesException(message.cause, msg,
-				null, null);
-		ex.addContext("message", message);
-		ex.addContext("url", url);
-		logException(msg, ex);
-		return ex;
+		throw logException(
+				new ResourcesException(message.cause, format(
+						ERROR_PROCESS_TEMPLATE, message), null, null)
+						.addContext(MESSAGE, message).addContext(URL, url),
+				ERROR_PROCESS_TEMPLATE_MESSAGE, url, message);
 	}
 
 	void templateProcessed(String name) {
-		log.debug("Processed template '{}'.", name);
+		log.debug(PROCESSED_TEMPLATE, name);
 	}
 
 	void checkTemplateCreated(ST template, String name, URL url) {
-		if (template == null) {
-			String msg = format("Template not found: '%s' in %s", name, url);
-			ResourcesException ex = new ResourcesException(msg, null, null);
-			ex.addContext("template name", name);
-			ex.addContext("url", url);
-			logException(msg, ex);
-			throw ex;
+		if (template != null) {
+			return;
 		}
+		throw logException(new ResourcesException(TEMPLATE_NOT_FOUND, null,
+				null).addContext(TEMPLATE_NAME, name).addContext(URL, url),
+				TEMPLATE_NOT_FOUND_MESSAGE, name, url);
 	}
 
 }
