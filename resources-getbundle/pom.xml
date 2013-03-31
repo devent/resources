@@ -6,12 +6,12 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.7-SNAPSHOT</version>
+		<version>1.7</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-getbundle</artifactId>
-	<version>1.6-SNAPSHOT</version>
+	<version>1.6</version>
 	<name>Resources :: Get Bundle</name>
 	<description>Offers an object oriented way to create ResourceBundle depending on the given parameter.</description>
 	<inceptionYear>2012</inceptionYear>
