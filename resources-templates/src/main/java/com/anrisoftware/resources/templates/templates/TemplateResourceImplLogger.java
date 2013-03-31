@@ -18,7 +18,7 @@
  */
 package com.anrisoftware.resources.templates.templates;
 
-import com.anrisoftware.globalpom.log.AbstractSerializedLogger;
+import com.anrisoftware.globalpom.log.AbstractLogger;
 
 /**
  * Logging messages for {@link TemplateResourceImpl}.
@@ -26,7 +26,11 @@ import com.anrisoftware.globalpom.log.AbstractSerializedLogger;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-class TemplateResourceImplLogger extends AbstractSerializedLogger {
+class TemplateResourceImplLogger extends AbstractLogger {
+
+	private static final String INVALIDATE_RESOURCE = "Invalidate resource {}.";
+
+	private static final String PROCESS_TEMPLATE = "Process the template for {}.";
 
 	/**
 	 * Creates a logger for {@link TemplateResourceImpl}.
@@ -39,11 +43,11 @@ class TemplateResourceImplLogger extends AbstractSerializedLogger {
 	}
 
 	void processTemplate(TemplateResourceImpl resource) {
-		log.trace("Process the template for {}.", resource);
+		log.debug(PROCESS_TEMPLATE, resource);
 	}
 
 	void resourceInvalidated(TemplateResourceImpl resource) {
-		log.trace("Invalidate resource {}.", resource);
+		log.debug(INVALIDATE_RESOURCE, resource);
 	}
 
 }

@@ -38,6 +38,12 @@ import com.anrisoftware.resources.templates.api.TemplateResource;
  */
 class TemplatesImplLogger extends AbstractLogger {
 
+	private static final String LOADED_RESOURCE_BUNDLE = "Loaded resource bundle {} for '{}'.";
+	private static final String NO_TEMPLATE_AVAILABLE = "No template resource available '%s' (%s)";
+	private static final String NOT_FIND_RESOURCE_URL = "Could not find resource URL '{}'.";
+	private static final String LOCALE = "locale";
+	private static final String TEMPLATE_RESOURCE_NOT_FOUND = "No template resource found '%s' (%s)";
+
 	/**
 	 * Creates a logger for {@link TemplatesImpl}.
 	 */
@@ -47,46 +53,39 @@ class TemplatesImplLogger extends AbstractLogger {
 
 	void checkTemplateLoaded(boolean haveTemplate, String name, Locale locale,
 			ResourceBundle bundle) throws ResourcesException {
-		if (!haveTemplate) {
-			String message = format("No template resource found '%s' (%s)",
-					name, locale);
-			ResourcesException ex = new ResourcesException(message, bundle
-					.getClass().toString(), name);
-			ex.addContext("locale", locale);
-			logException(message, ex);
-			throw ex;
+		if (haveTemplate) {
+			return;
 		}
+		String message = format(TEMPLATE_RESOURCE_NOT_FOUND, name, locale);
+		throw logException(new ResourcesException(message, bundle.getClass()
+				.toString(), name).addContext(LOCALE, locale), message);
 	}
 
 	public URL checkResourceURL(URL url, String urlString) {
 		if (url == null) {
-			log.warn("Could not find resource URL '{}'.", urlString);
+			log.warn(NOT_FIND_RESOURCE_URL, urlString);
 		}
 		return url;
 	}
 
 	void checkHaveResource(TemplateResource res, String name, Locale locale,
 			ResourceBundle bundle) throws ResourcesException {
-		if (res == null) {
-			String message = format("No template resource available '%s' (%s)",
-					name, locale);
-			ResourcesException ex = new ResourcesException(message, bundle
-					.getClass().toString(), name);
-			ex.addContext("locale", locale);
-			logException(message, ex);
-			throw ex;
+		if (res != null) {
+			return;
 		}
+		String message = format(NO_TEMPLATE_AVAILABLE, name, locale);
+		throw logException(new ResourcesException(message, bundle.getClass()
+				.toString(), name).addContext(LOCALE, locale), message);
 	}
 
 	void loadedResourceBundle(String name, ResourceBundle bundle) {
 		if (log.isDebugEnabled()) {
-			log.debug("Loaded resource bundle {} for '{}'.",
-					bundleToString(bundle), name);
+			log.debug(LOADED_RESOURCE_BUNDLE, bundleToString(bundle), name);
 		}
 	}
 
 	private String bundleToString(ResourceBundle bundle) {
-		return new ToStringBuilder(bundle).append("locale", bundle.getLocale())
+		return new ToStringBuilder(bundle).append(LOCALE, bundle.getLocale())
 				.toString();
 	}
 
