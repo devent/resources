@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>resources-templates</artifactId>
-	<version>1.3-SNAPSHOT</version>
+	<version>1.3</version>
 	<name>Resources :: Templates</name>
 	<description>Templates resources.</description>
 	<url>https://www.anr-institute.com/projects/projects/resources-templates</url>
