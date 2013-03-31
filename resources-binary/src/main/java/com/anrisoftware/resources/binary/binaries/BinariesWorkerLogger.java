@@ -67,14 +67,12 @@ class BinariesWorkerLogger extends AbstractLogger {
 
 	void checkBinaryLoaded(boolean haveResource, String name, Locale locale,
 			ResourceBundle bundle) throws ResourcesException {
-		if (!haveResource) {
-			String message = format(NO_BINARY_RESOURCE_FOUND, name, locale);
-			ResourcesException ex = new ResourcesException(message, bundle
-					.getClass().toString(), name);
-			ex.addContext("locale", locale);
-			logException(ex, message);
-			throw ex;
+		if (haveResource) {
+			return;
 		}
+		String message = format(NO_BINARY_RESOURCE_FOUND, name, locale);
+		throw logException(new ResourcesException(message, bundle.getClass()
+				.toString(), name).addContext("locale", locale), message);
 	}
 
 	URL checkResourceURL(URL url, String value) {
