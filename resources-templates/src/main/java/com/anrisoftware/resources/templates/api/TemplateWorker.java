@@ -20,6 +20,7 @@ package com.anrisoftware.resources.templates.api;
 
 import java.io.Serializable;
 import java.net.URL;
+import java.util.Map;
 import java.util.Properties;
 
 import com.anrisoftware.resources.api.ResourcesException;
@@ -45,6 +46,15 @@ public interface TemplateWorker extends Serializable {
 	 * @return the {@link Properties} of the template.
 	 */
 	Properties getProperties();
+
+	/**
+	 * Returns the attributes for the template engine.
+	 * 
+	 * @return the attributes {@link Map}.
+	 * 
+	 * @since 1.4
+	 */
+	Map<Serializable, Serializable> getAttributes();
 
 	/**
 	 * Process the template and return the text.

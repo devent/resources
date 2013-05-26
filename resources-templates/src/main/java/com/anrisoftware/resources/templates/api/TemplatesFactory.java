@@ -18,12 +18,15 @@
  */
 package com.anrisoftware.resources.templates.api;
 
+import java.io.Serializable;
+import java.util.Map;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 /**
  * Factory to create a new templates resources with the specified resource
  * bundle base name and optional class loader and resource bundle control.
+ * Additional attributes can be passed to the underlying template engine.
  * <p>
  * The class {@link PropertyResourceBundle} is used to load the right property
  * file for the specified locale. The factory offers methods to create template
@@ -34,7 +37,8 @@ import java.util.ResourceBundle;
  * 
  * <pre>
  * TemplatesFactory templatesFactory;
- * Templates templates = templatesFactory.create(&quot;Templates&quot;);
+ * Map attr;
+ * Templates templates = templatesFactory.create(&quot;Templates&quot;, attr);
  * // ...
  * Locale locale = Locale.GERMAN;
  * TemplatesResource t = templates.getResource(&quot;hello&quot;, locale);
@@ -62,6 +66,20 @@ public interface TemplatesFactory {
 
 	/**
 	 * Creates a new {@link Templates} with the resource bundle base name and
+	 * the caller's class loader.
+	 * 
+	 * @param baseName
+	 *            the base name {@link String}.
+	 * 
+	 * @param attributes
+	 *            the attributes {@link Map} for the template.
+	 * 
+	 * @since 1.4
+	 */
+	Templates create(String baseName, Map<Serializable, Serializable> attributes);
+
+	/**
+	 * Creates a new {@link Templates} with the resource bundle base name and
 	 * the class loader.
 	 * 
 	 * @param baseName
@@ -74,6 +92,24 @@ public interface TemplatesFactory {
 
 	/**
 	 * Creates a new {@link Templates} with the resource bundle base name and
+	 * the class loader.
+	 * 
+	 * @param baseName
+	 *            the base name {@link String}.
+	 * 
+	 * @param attributes
+	 *            the attributes {@link Map} for the template.
+	 * 
+	 * @param classLoader
+	 *            the {@link ClassLoader}.
+	 * 
+	 * @since 1.4
+	 */
+	Templates create(String baseName,
+			Map<Serializable, Serializable> attributes, ClassLoader classLoader);
+
+	/**
+	 * Creates a new {@link Templates} with the resource bundle base name and
 	 * the control.
 	 * 
 	 * @param baseName
@@ -83,6 +119,25 @@ public interface TemplatesFactory {
 	 *            the {@link ResourceBundle.Control}.
 	 */
 	Templates create(String baseName, ResourceBundle.Control control);
+
+	/**
+	 * Creates a new {@link Templates} with the resource bundle base name and
+	 * the control.
+	 * 
+	 * @param baseName
+	 *            the base name {@link String}.
+	 * 
+	 * @param attributes
+	 *            the attributes {@link Map} for the template.
+	 * 
+	 * @param control
+	 *            the {@link ResourceBundle.Control}.
+	 * 
+	 * @since 1.4
+	 */
+	Templates create(String baseName,
+			Map<Serializable, Serializable> attributes,
+			ResourceBundle.Control control);
 
 	/**
 	 * Creates a new {@link Templates} with the resource bundle base name, the
@@ -99,5 +154,27 @@ public interface TemplatesFactory {
 	 */
 	Templates create(String baseName, ClassLoader classLoader,
 			ResourceBundle.Control control);
+
+	/**
+	 * Creates a new {@link Templates} with the resource bundle base name, the
+	 * class loader and the control.
+	 * 
+	 * @param baseName
+	 *            the base name {@link String}.
+	 * 
+	 * @param attributes
+	 *            the attributes {@link Map} for the template.
+	 * 
+	 * @param classLoader
+	 *            the {@link ClassLoader}.
+	 * 
+	 * @param control
+	 *            the {@link ResourceBundle.Control}.
+	 * 
+	 * @since 1.4
+	 */
+	Templates create(String baseName,
+			Map<Serializable, Serializable> attributes,
+			ClassLoader classLoader, ResourceBundle.Control control);
 
 }

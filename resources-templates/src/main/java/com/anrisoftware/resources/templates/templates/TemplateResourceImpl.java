@@ -20,18 +20,20 @@ package com.anrisoftware.resources.templates.templates;
 
 import java.io.Serializable;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
-
-import javax.inject.Inject;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.templates.api.TemplateResource;
+import com.anrisoftware.resources.templates.api.TemplateResourceFactory;
 import com.anrisoftware.resources.templates.api.TemplateWorker;
 import com.anrisoftware.resources.templates.api.TemplateWorkerFactory;
 import com.google.inject.assistedinject.Assisted;
+import com.google.inject.assistedinject.AssistedInject;
 
 /**
  * Serializable template resource. Uses a template worker to process the
@@ -41,12 +43,10 @@ import com.google.inject.assistedinject.Assisted;
  * @see TemplateWorker
  * @since 1.0
  */
+@SuppressWarnings("serial")
 class TemplateResourceImpl implements TemplateResource, Serializable {
 
-	/**
-	 * @since 1.0
-	 */
-	private static final long serialVersionUID = -8844751640256590067L;
+	private static final Map<Serializable, Serializable> EMPTY_ATTRIBUTES = new HashMap<Serializable, Serializable>();
 
 	private TemplateResourceImplLogger log;
 
@@ -65,14 +65,38 @@ class TemplateResourceImpl implements TemplateResource, Serializable {
 	public TemplateResourceImpl() {
 	}
 
-	@Inject
+	/**
+	 * @see TemplateResourceFactory#create(String, Locale, URL, Properties)
+	 */
+	@AssistedInject
 	TemplateResourceImpl(TemplateResourceImplLogger logger,
 			TemplateWorkerFactory workerFactory, @Assisted String name,
 			@Assisted Locale locale, @Assisted URL url,
 			@Assisted Properties properties) {
+		this(logger, workerFactory, name, locale, url, properties,
+				EMPTY_ATTRIBUTES, true);
+	}
+
+	/**
+	 * @see TemplateResourceFactory#create(String, Locale, URL, Properties, Map)
+	 */
+	@AssistedInject
+	TemplateResourceImpl(TemplateResourceImplLogger logger,
+			TemplateWorkerFactory workerFactory, @Assisted String name,
+			@Assisted Locale locale, @Assisted URL url,
+			@Assisted Properties properties,
+			@Assisted Map<Serializable, Serializable> attributes) {
+		this(logger, workerFactory, name, locale, url, properties, attributes,
+				true);
+	}
+
+	private TemplateResourceImpl(TemplateResourceImplLogger logger,
+			TemplateWorkerFactory workerFactory, String name, Locale locale,
+			URL url, Properties properties,
+			Map<Serializable, Serializable> attributes, boolean differentCtor) {
 		this.name = name;
 		this.locale = locale;
-		this.worker = workerFactory.create(url, properties);
+		this.worker = workerFactory.create(url, properties, attributes);
 		this.log = logger;
 	}
 
@@ -118,6 +142,11 @@ class TemplateResourceImpl implements TemplateResource, Serializable {
 	@Override
 	public Properties getProperties() {
 		return worker.getProperties();
+	}
+
+	@Override
+	public Map<Serializable, Serializable> getAttributes() {
+		return worker.getAttributes();
 	}
 
 	@Override

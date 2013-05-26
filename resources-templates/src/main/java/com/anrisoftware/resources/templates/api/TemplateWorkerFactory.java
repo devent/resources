@@ -18,7 +18,9 @@
  */
 package com.anrisoftware.resources.templates.api;
 
+import java.io.Serializable;
 import java.net.URL;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -38,7 +40,13 @@ public interface TemplateWorkerFactory {
 	 * @param properties
 	 *            the {@link Properties} for the template.
 	 * 
+	 * @param attributes
+	 *            the attributes {@link Map} for the template.
+	 * 
 	 * @return the {@link TemplateWorker}.
+	 * 
+	 * @since 1.4
 	 */
-	TemplateWorker create(URL templateUrl, Properties properties);
+	TemplateWorker create(URL templateUrl, Properties properties,
+			Map<Serializable, Serializable> attributes);
 }

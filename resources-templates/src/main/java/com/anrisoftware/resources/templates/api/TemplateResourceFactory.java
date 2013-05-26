@@ -18,8 +18,10 @@
  */
 package com.anrisoftware.resources.templates.api;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -51,4 +53,31 @@ public interface TemplateResourceFactory {
 	 */
 	TemplateResource create(String name, Locale locale, URL url,
 			Properties properties);
+
+	/**
+	 * Creates a new template resource with the specified name, locale, URL and
+	 * template properties.
+	 * 
+	 * @param name
+	 *            the name {@link String} of the template.
+	 * 
+	 * @param locale
+	 *            the {@link Locale} the template.
+	 * 
+	 * @param url
+	 *            the {@link URL} of the resource.
+	 * 
+	 * @param properties
+	 *            the template {@link Properties} which specify additional
+	 *            parameter for the template.
+	 * 
+	 * @param attributes
+	 *            the attributes {@link Map} for the template.
+	 * 
+	 * @return the new {@link TemplateResource}.
+	 * 
+	 * @since 1.4
+	 */
+	TemplateResource create(String name, Locale locale, URL url,
+			Properties properties, Map<Serializable, Serializable> attributes);
 }

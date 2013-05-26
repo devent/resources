@@ -18,9 +18,12 @@
  */
 package com.anrisoftware.resources.templates.templates;
 
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
@@ -36,6 +39,7 @@ import com.anrisoftware.resources.templates.api.BundlesMap;
 import com.anrisoftware.resources.templates.api.TemplateResource;
 import com.anrisoftware.resources.templates.api.TemplateResourceFactory;
 import com.anrisoftware.resources.templates.api.Templates;
+import com.anrisoftware.resources.templates.api.TemplatesFactory;
 import com.anrisoftware.resources.templates.api.TemplatesMap;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
@@ -48,6 +52,8 @@ import com.google.inject.assistedinject.AssistedInject;
  */
 class TemplatesImpl implements Templates {
 
+	private static final Map<Serializable, Serializable> EMPTY_ATTRIBUTES = new HashMap<Serializable, Serializable>();
+
 	private final TemplatesImplLogger log;
 
 	private final BundlesMap texts;
@@ -58,33 +64,89 @@ class TemplatesImpl implements Templates {
 
 	private final Properties properties;
 
+	private final Map<Serializable, Serializable> attributes;
+
+	/**
+	 * @see TemplatesFactory#create(String)
+	 */
 	@AssistedInject
 	TemplatesImpl(TemplatesImplLogger logger, BundlesMap texts,
 			TemplateResourceFactory textResourceFactory,
 			@Named("st-default-properties") Properties defaultProperties,
 			@Assisted String baseName) {
 		this(logger, texts, textResourceFactory, defaultProperties,
+				EMPTY_ATTRIBUTES, new GetBundle(baseName));
+	}
+
+	/**
+	 * @see TemplatesFactory#create(String, Map)
+	 */
+	@AssistedInject
+	TemplatesImpl(TemplatesImplLogger logger, BundlesMap texts,
+			TemplateResourceFactory textResourceFactory,
+			@Named("st-default-properties") Properties defaultProperties,
+			@Assisted String baseName,
+			@Assisted Map<Serializable, Serializable> attributes) {
+		this(logger, texts, textResourceFactory, defaultProperties, attributes,
 				new GetBundle(baseName));
 	}
 
+	/**
+	 * @see TemplatesFactory#create(String, ClassLoader)
+	 */
 	@AssistedInject
 	TemplatesImpl(TemplatesImplLogger logger, BundlesMap texts,
 			TemplateResourceFactory textResourceFactory,
 			@Named("st-default-properties") Properties defaultProperties,
 			@Assisted String baseName, @Assisted ClassLoader classLoader) {
 		this(logger, texts, textResourceFactory, defaultProperties,
+				EMPTY_ATTRIBUTES, new GetBundleWithClassLoader(baseName,
+						classLoader));
+	}
+
+	/**
+	 * @see TemplatesFactory#create(String, Map, ClassLoader)
+	 */
+	@AssistedInject
+	TemplatesImpl(TemplatesImplLogger logger, BundlesMap texts,
+			TemplateResourceFactory textResourceFactory,
+			@Named("st-default-properties") Properties defaultProperties,
+			@Assisted String baseName,
+			@Assisted Map<Serializable, Serializable> attributes,
+			@Assisted ClassLoader classLoader) {
+		this(logger, texts, textResourceFactory, defaultProperties, attributes,
 				new GetBundleWithClassLoader(baseName, classLoader));
 	}
 
+	/**
+	 * @see TemplatesFactory#create(String, Control)
+	 */
 	@AssistedInject
 	TemplatesImpl(TemplatesImplLogger logger, BundlesMap texts,
 			TemplateResourceFactory textResourceFactory,
 			@Named("st-default-properties") Properties defaultProperties,
 			@Assisted String baseName, @Assisted ResourceBundle.Control control) {
 		this(logger, texts, textResourceFactory, defaultProperties,
+				EMPTY_ATTRIBUTES, new GetBundleWithControl(baseName, control));
+	}
+
+	/**
+	 * @see TemplatesFactory#create(String, Map, Control)
+	 */
+	@AssistedInject
+	TemplatesImpl(TemplatesImplLogger logger, BundlesMap texts,
+			TemplateResourceFactory textResourceFactory,
+			@Named("st-default-properties") Properties defaultProperties,
+			@Assisted String baseName,
+			@Assisted Map<Serializable, Serializable> attributes,
+			@Assisted ResourceBundle.Control control) {
+		this(logger, texts, textResourceFactory, defaultProperties, attributes,
 				new GetBundleWithControl(baseName, control));
 	}
 
+	/**
+	 * @see TemplatesFactory#create(String, ClassLoader, Control)
+	 */
 	@AssistedInject
 	TemplatesImpl(TemplatesImplLogger logger, BundlesMap texts,
 			TemplateResourceFactory textResourceFactory,
@@ -92,18 +154,36 @@ class TemplatesImpl implements Templates {
 			@Assisted String baseName, @Assisted ClassLoader classLoader,
 			@Assisted ResourceBundle.Control control) {
 		this(logger, texts, textResourceFactory, defaultProperties,
+				EMPTY_ATTRIBUTES, new GetBundleWithClassLoaderAndControl(
+						baseName, classLoader, control));
+	}
+
+	/**
+	 * @see TemplatesFactory#create(String, Map, ClassLoader, Control)
+	 */
+	@AssistedInject
+	TemplatesImpl(TemplatesImplLogger logger, BundlesMap texts,
+			TemplateResourceFactory textResourceFactory,
+			@Named("st-default-properties") Properties defaultProperties,
+			@Assisted String baseName,
+			@Assisted Map<Serializable, Serializable> attributes,
+			@Assisted ClassLoader classLoader,
+			@Assisted ResourceBundle.Control control) {
+		this(logger, texts, textResourceFactory, defaultProperties, attributes,
 				new GetBundleWithClassLoaderAndControl(baseName, classLoader,
 						control));
 	}
 
 	private TemplatesImpl(TemplatesImplLogger logger, BundlesMap texts,
 			TemplateResourceFactory textResourceFactory,
-			Properties defaultProperties, GetBundle getBundle) {
+			Properties defaultProperties,
+			Map<Serializable, Serializable> attributes, GetBundle getBundle) {
 		this.log = logger;
 		this.texts = texts;
 		this.resourceFactory = textResourceFactory;
 		this.properties = defaultProperties;
 		this.getBundle = getBundle;
+		this.attributes = attributes;
 	}
 
 	@Override
@@ -169,7 +249,8 @@ class TemplatesImpl implements Templates {
 			String name, URL url) {
 		if (url != null) {
 			TemplateResource text;
-			text = resourceFactory.create(name, locale, url, properties);
+			text = resourceFactory.create(name, locale, url, properties,
+					attributes);
 			map.putTemplate(name, text);
 			return text;
 		} else {

@@ -24,7 +24,10 @@ import static com.anrisoftware.resources.templates.worker.STTemplateWorkerFactor
 import static org.apache.commons.lang3.ArrayUtils.remove;
 
 import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.net.URL;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.stringtemplate.v4.ST;
@@ -35,6 +38,7 @@ import org.stringtemplate.v4.misc.STMessage;
 
 import com.anrisoftware.propertiesutils.ContextProperties;
 import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.templates.api.AttributeRenderer;
 import com.anrisoftware.resources.templates.api.TemplateWorker;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
@@ -47,9 +51,8 @@ import com.google.inject.assistedinject.Assisted;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
+@SuppressWarnings("serial")
 class STTemplateWorker implements TemplateWorker {
-
-	private static final long serialVersionUID = -7497653988923573560L;
 
 	private final STTemplateWorkerLogger log;
 
@@ -57,16 +60,24 @@ class STTemplateWorker implements TemplateWorker {
 
 	private final URL templateUrl;
 
+	private final Map<Serializable, Serializable> attributes;
+
 	private transient STGroupFile groupFile;
 
 	private transient ResourcesException error;
 
+	/**
+	 * @see STTemplateWorkerFactory#create(URL, Properties, Map)
+	 */
 	@Inject
 	STTemplateWorker(STTemplateWorkerLogger logger, @Assisted URL templateUrl,
-			@Assisted Properties properties) throws ResourcesException {
+			@Assisted Properties properties,
+			@Assisted Map<Serializable, Serializable> attributes)
+			throws ResourcesException {
 		this.log = logger;
 		this.templateUrl = templateUrl;
 		this.properties = new ContextProperties(this, properties);
+		this.attributes = attributes;
 		createGroupFile();
 	}
 
@@ -77,6 +88,7 @@ class STTemplateWorker implements TemplateWorker {
 
 	private void createGroupFile() {
 		this.groupFile = openGroupFile(templateUrl);
+		setupRenderers(groupFile);
 		groupFile.setListener(new STErrorListener() {
 
 			@Override
@@ -101,6 +113,18 @@ class STTemplateWorker implements TemplateWorker {
 		});
 	}
 
+	private void setupRenderers(STGroupFile group) {
+		if (!attributes.containsKey(STTemplateWorkerFactory.RENDERERS_KEY)) {
+			return;
+		}
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		List<AttributeRenderer> renderers = (List) attributes
+				.get(STTemplateWorkerFactory.RENDERERS_KEY);
+		for (AttributeRenderer renderer : renderers) {
+			group.registerRenderer(renderer.getAttributeType(), renderer);
+		}
+	}
+
 	private STGroupFile openGroupFile(URL templateUrl)
 			throws ResourcesException {
 		String encoding;
@@ -119,6 +143,11 @@ class STTemplateWorker implements TemplateWorker {
 	@Override
 	public Properties getProperties() {
 		return properties;
+	}
+
+	@Override
+	public Map<Serializable, Serializable> getAttributes() {
+		return attributes;
 	}
 
 	@Override

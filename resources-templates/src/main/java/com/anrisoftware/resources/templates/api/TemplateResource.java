@@ -18,6 +18,8 @@
  */
 package com.anrisoftware.resources.templates.api;
 
+import java.io.Serializable;
+import java.util.Map;
 import java.util.Properties;
 
 import com.anrisoftware.resources.api.Resource;
@@ -79,4 +81,13 @@ public interface TemplateResource extends Resource {
 	 * @return the {@link Properties}.
 	 */
 	Properties getProperties();
+
+	/**
+	 * Returns the attributes for the template engine.
+	 * 
+	 * @return the attributes {@link Map}.
+	 * 
+	 * @since 1.4
+	 */
+	Map<Serializable, Serializable> getAttributes();
 }

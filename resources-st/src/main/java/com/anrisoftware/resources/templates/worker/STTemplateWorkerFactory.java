@@ -18,9 +18,12 @@
  */
 package com.anrisoftware.resources.templates.worker;
 
+import java.io.Serializable;
 import java.net.URL;
+import java.util.Map;
 import java.util.Properties;
 
+import com.anrisoftware.resources.templates.api.AttributeRenderer;
 import com.anrisoftware.resources.templates.api.TemplateWorker;
 import com.anrisoftware.resources.templates.api.TemplateWorkerFactory;
 
@@ -41,6 +44,13 @@ public interface STTemplateWorkerFactory extends TemplateWorkerFactory {
 	static final String ENCODING_PROPERTY = "template_encoding";
 
 	/**
+	 * The map key for the attribute renderers.
+	 * 
+	 * @see AttributeRenderer
+	 */
+	static final String RENDERERS_KEY = "renderers";
+
+	/**
 	 * Creates a new template worker that is using a <a
 	 * href=http://www.antlr.org
 	 * /wiki/display/ST4/StringTemplate+4+Wiki+Home>String Template</a> template
@@ -58,8 +68,14 @@ public interface STTemplateWorkerFactory extends TemplateWorkerFactory {
 	 *            <li>{@value #DELIMITER_STOP_CHAR_PROPERTY}</li>
 	 *            </ul>
 	 * 
+	 * @param attributes
+	 *            the attributes {@link Map} for the template. Can contain the
+	 *            attribute renderers in the map key {@link RENDERERS_KEY}.
+	 * 
+	 * 
 	 * @return the {@link TemplateWorker}.
 	 */
 	@Override
-	TemplateWorker create(URL templateUrl, Properties properties);
+	TemplateWorker create(URL templateUrl, Properties properties,
+			Map<Serializable, Serializable> attributes);
 }
