@@ -29,8 +29,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
+import java.util.Properties;
 
-import javax.inject.Inject;
 import javax.swing.KeyStroke;
 
 import org.apache.commons.lang3.event.EventListenerSupport;
@@ -39,6 +39,8 @@ import com.anrisoftware.resources.api.LocaleListener;
 import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.texts.api.Texts;
 import com.anrisoftware.resources.texts.api.TextsFactory;
+import com.google.inject.assistedinject.Assisted;
+import com.google.inject.assistedinject.AssistedInject;
 
 /**
  * Centralized access to all text resources.
@@ -47,6 +49,26 @@ import com.anrisoftware.resources.texts.api.TextsFactory;
  * @since 1.4
  */
 public class TextsResources {
+
+	/**
+	 * Action accelerator keys resource bundle.
+	 */
+	public static final String ACTION_ACCELERATORS_PROPERTY = "action_accelerators";
+
+	/**
+	 * Action mnemonics resource bundle.
+	 */
+	public static final String ACTION_MNEMONICS_PROPERTY = "action_mnemonics";
+
+	/**
+	 * Action names resource bundle.
+	 */
+	public static final String ACTIONS_PROPERTY = "actions";
+
+	/**
+	 * Texts resource bundle.
+	 */
+	public static final String TEXTS_PROPERTY = "texts";
 
 	private Texts texts;
 
@@ -62,14 +84,50 @@ public class TextsResources {
 
 	private Locale locale;
 
-	@Inject
+	/**
+	 * Sets default properties.
+	 * 
+	 * @since 1.6
+	 */
+	@AssistedInject
 	TextsResources(TextsFactory textsFactory) {
+		this(textsFactory, createDefaultProperties());
+	}
+
+	private static Properties createDefaultProperties() {
+		Properties p = new Properties();
+		p.setProperty(TEXTS_PROPERTY, "Texts");
+		p.setProperty(ACTIONS_PROPERTY, "Actions");
+		p.setProperty(ACTION_MNEMONICS_PROPERTY, "ActionMnemonics");
+		p.setProperty(ACTION_ACCELERATORS_PROPERTY, "ActionAccelerators");
+		return p;
+	}
+
+	/**
+	 * @see TextsResourcesFactory#create(Properties)
+	 * 
+	 * @since 1.6
+	 */
+	@AssistedInject
+	TextsResources(TextsFactory textsFactory, @Assisted Properties properties) {
+		if (properties.containsKey(TEXTS_PROPERTY)) {
+			this.texts = textsFactory.create(properties
+					.getProperty(TEXTS_PROPERTY));
+		}
+		if (properties.containsKey(ACTIONS_PROPERTY)) {
+			this.actions = textsFactory.create(properties
+					.getProperty(ACTIONS_PROPERTY));
+		}
+		if (properties.containsKey(ACTION_MNEMONICS_PROPERTY)) {
+			this.mnemonics = textsFactory.create(properties
+					.getProperty(ACTION_MNEMONICS_PROPERTY));
+		}
+		if (properties.containsKey(ACTION_ACCELERATORS_PROPERTY)) {
+			this.accelerators = textsFactory.create(properties
+					.getProperty(ACTION_ACCELERATORS_PROPERTY));
+		}
 		this.localeListeners = new EventListenerSupport<LocaleListener>(
 				LocaleListener.class);
-		this.texts = textsFactory.create("Texts");
-		this.actions = textsFactory.create("Actions");
-		this.mnemonics = textsFactory.create("ActionMnemonics");
-		this.accelerators = textsFactory.create("ActionAccelerators");
 		this.locale = Locale.getDefault();
 	}
 
@@ -81,12 +139,20 @@ public class TextsResources {
 		}
 	}
 
+	public Texts getTexts() {
+		return texts;
+	}
+
 	public void setActions(Texts actions) {
 		Texts oldValue = this.actions;
 		this.actions = actions;
 		if (oldValue != actions) {
 			fireUpdateLocale();
 		}
+	}
+
+	public Texts getActions() {
+		return actions;
 	}
 
 	public void setMnemonics(Texts mnemonics) {
@@ -97,12 +163,20 @@ public class TextsResources {
 		}
 	}
 
+	public Texts getMnemonics() {
+		return mnemonics;
+	}
+
 	public void setAccelerators(Texts accelerators) {
 		Texts oldValue = this.accelerators;
 		this.accelerators = accelerators;
 		if (oldValue != accelerators) {
 			fireUpdateLocale();
 		}
+	}
+
+	public Texts getAccelerators() {
+		return accelerators;
 	}
 
 	public void setLocale(Locale locale) {
