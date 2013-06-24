@@ -18,16 +18,7 @@
  */
 package com.anrisoftware.resources.texts.central;
 
-import static java.lang.reflect.Modifier.isStatic;
-import static org.apache.commons.lang3.StringUtils.split;
-
-import java.awt.event.KeyEvent;
-import java.lang.ref.Reference;
-import java.lang.ref.SoftReference;
-import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Properties;
 
@@ -35,6 +26,10 @@ import javax.swing.KeyStroke;
 
 import org.apache.commons.lang3.event.EventListenerSupport;
 
+import com.anrisoftware.globalpom.mnemonic.Accelerator;
+import com.anrisoftware.globalpom.mnemonic.AcceleratorFactory;
+import com.anrisoftware.globalpom.mnemonic.Mnemonic;
+import com.anrisoftware.globalpom.mnemonic.MnemonicFactory;
 import com.anrisoftware.resources.api.LocaleListener;
 import com.anrisoftware.resources.api.ResourcesException;
 import com.anrisoftware.resources.texts.api.Texts;
@@ -70,6 +65,12 @@ public class TextsResources {
 	 */
 	public static final String TEXTS_PROPERTY = "texts";
 
+	private final EventListenerSupport<LocaleListener> localeListeners;
+
+	private final MnemonicFactory mnemonicFactory;
+
+	private final AcceleratorFactory acceleratorFactory;
+
 	private Texts texts;
 
 	private Texts actions;
@@ -77,10 +78,6 @@ public class TextsResources {
 	private Texts mnemonics;
 
 	private Texts accelerators;
-
-	private Reference<Map<String, Integer>> keyCodes;
-
-	private final EventListenerSupport<LocaleListener> localeListeners;
 
 	private Locale locale;
 
@@ -90,8 +87,10 @@ public class TextsResources {
 	 * @since 1.6
 	 */
 	@AssistedInject
-	TextsResources(TextsFactory textsFactory) {
-		this(textsFactory, createDefaultProperties());
+	TextsResources(TextsFactory textsFactory, MnemonicFactory mnemonicFactory,
+			AcceleratorFactory acceleratorFactory) {
+		this(textsFactory, mnemonicFactory, acceleratorFactory,
+				createDefaultProperties());
 	}
 
 	private static Properties createDefaultProperties() {
@@ -109,7 +108,9 @@ public class TextsResources {
 	 * @since 1.6
 	 */
 	@AssistedInject
-	TextsResources(TextsFactory textsFactory, @Assisted Properties properties) {
+	TextsResources(TextsFactory textsFactory, MnemonicFactory mnemonicFactory,
+			AcceleratorFactory acceleratorFactory,
+			@Assisted Properties properties) {
 		if (properties.containsKey(TEXTS_PROPERTY)) {
 			this.texts = textsFactory.create(properties
 					.getProperty(TEXTS_PROPERTY));
@@ -129,6 +130,8 @@ public class TextsResources {
 		this.localeListeners = new EventListenerSupport<LocaleListener>(
 				LocaleListener.class);
 		this.locale = Locale.getDefault();
+		this.mnemonicFactory = mnemonicFactory;
+		this.acceleratorFactory = acceleratorFactory;
 	}
 
 	public void setTexts(Texts texts) {
@@ -208,122 +211,56 @@ public class TextsResources {
 	/**
 	 * Loads a mnemonic text resource with the specified name and returns the
 	 * mnemonic key code.
-	 * <p>
-	 * The resource can contain a key code name or the character.
-	 * <ul>
-	 * <li>{@code VK_A}</li>
-	 * <li>{@code a}</li>
-	 * </ul>
+	 * 
+	 * @see Mnemonic#getMnemonic()
 	 * 
 	 * @param name
-	 * @return
+	 *            the mnemonic text resource name.
+	 * 
 	 * @throws ResourcesException
+	 *             if there was an error loading the text resource.
 	 */
 	public int getMnemonic(String name) throws ResourcesException {
 		String keyname = mnemonics.getResource(name, locale).getText();
-		String[] keynames = split(keyname, ",");
-		return getKeyCode(keynames[0]);
+		return mnemonicFactory.create(keyname).getMnemonic();
 	}
 
 	/**
 	 * Loads a mnemonic text resource with the specified name and returns the
 	 * displayed mnemonic index if such index was set in the resource.
-	 * <p>
-	 * To set the index, the mnemonic character and the index must be specified
-	 * and separated with a comma:
 	 * 
-	 * <ul>
-	 * <li>{@code VK_A,5}</li>
-	 * <li>{@code a,5}</li>
-	 * </ul>
+	 * @see Mnemonic#getMnemonicIndex()
 	 * 
 	 * @param name
 	 *            the mnemonic text resource name.
 	 * 
-	 * @return displayed mnemonic index or -1. The value -1 means no index was
-	 *         specified.
-	 * 
 	 * @throws ResourcesException
+	 *             if there was an error loading the text resource.
 	 */
 	public int getMnemonicIndex(String name) throws ResourcesException {
 		String keyname = mnemonics.getResource(name, locale).getText();
-		String[] keynames = split(keyname, ",");
-		if (keynames.length == 2) {
-			return Integer.valueOf(keynames[1]);
-		} else {
-			return -1;
-		}
+		return mnemonicFactory.create(keyname).getMnemonicIndex();
 	}
 
 	/**
 	 * Loads a accelerator text resource with the specified name and returns the
 	 * accelerator key for an action.
-	 * <p>
-	 * The accelerator can be just a key character or the key code name. In
-	 * addition, the modifiers can be set as the modifiers names.
 	 * 
-	 * <ul>
-	 * <li>{@code VK_A,ALT_DOWN_MASK,CTRL_DOWN_MASK}</li>
-	 * <li>{@code a,ALT_DOWN_MASK,CTRL_DOWN_MASK}</li>
-	 * </ul>
+	 * @see Accelerator#getAccelerator()
 	 * 
 	 * @param name
 	 *            the accelerator text resource name.
 	 * 
-	 * @return accelerator {@link KeyStroke} or {@code null} if no accelerator
-	 *         key was specified.
-	 * 
 	 * @throws ResourcesException
+	 *             if there was an error loading the text resource.
 	 */
 	public KeyStroke getAccelerator(String name) {
 		try {
 			String keyname = accelerators.getResource(name, locale).getText();
-			String[] keynames = split(keyname, ",");
-			int keycode = getKeyCode(keynames[0]);
-			int modifiers = 0;
-			for (int i = 1; i < keynames.length; i++) {
-				modifiers |= getKeyCode(keynames[i]);
-			}
-			return KeyStroke.getKeyStroke(keycode, modifiers);
+			return acceleratorFactory.create(keyname).getAccelerator();
 		} catch (MissingResourceException e) {
 			return null;
 		}
-	}
-
-	private int getKeyCode(String keynames) {
-		if (keynames.startsWith("VK_")) {
-			Map<String, Integer> codes = getKeyCodes();
-			return codes.get(keynames);
-		}
-		if (keynames.endsWith("_MASK")) {
-			Map<String, Integer> codes = getKeyCodes();
-			return codes.get(keynames);
-		}
-		return KeyEvent.getExtendedKeyCodeForChar(keynames.charAt(0));
-	}
-
-	private Map<String, Integer> getKeyCodes() {
-		if (keyCodes == null || keyCodes.get() == null) {
-			keyCodes = new SoftReference<Map<String, Integer>>(findKeys());
-		}
-		return keyCodes.get();
-	}
-
-	private Map<String, Integer> findKeys() {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		for (Field field : KeyEvent.class.getFields()) {
-			if (isStatic(field.getModifiers())) {
-				if (field.getName().startsWith("VK_")
-						|| field.getName().endsWith("_MASK")) {
-					try {
-						map.put(field.getName(), field.getInt(null));
-					} catch (IllegalArgumentException e) {
-					} catch (IllegalAccessException e) {
-					}
-				}
-			}
-		}
-		return map;
 	}
 
 	public void addTextsLocaleListeners(LocaleListener l) {
