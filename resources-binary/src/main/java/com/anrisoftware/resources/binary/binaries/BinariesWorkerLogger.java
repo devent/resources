@@ -1,24 +1,16 @@
 /*
- * Copyright 2012-2013 Erwin Müller <erwin.mueller@deventm.org>
- *
- * This file is part of resources-binary.
- *
- * resources-binary is free software: you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or (at your
- * option) any later version.
- *
- * resources-binary is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with resources-binary. If not, see <http://www.gnu.org/licenses/>.
+ * Copyright 2012-2013 Erwin Müller <erwin.mueller@deventm.org> This file is
+ * part of resources-binary. resources-binary is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU Lesser General
+ * Public License as published by the Free Software Foundation, either version 3
+ * of the License, or (at your option) any later version. resources-binary is
+ * distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE. See the GNU General Public License for more details. You
+ * should have received a copy of the GNU Lesser General Public License along
+ * with resources-binary. If not, see <http://www.gnu.org/licenses/>.
  */
 package com.anrisoftware.resources.binary.binaries;
-
-import static java.lang.String.format;
 
 import java.net.URL;
 import java.util.Locale;
@@ -38,13 +30,11 @@ import com.anrisoftware.resources.binary.api.BinaryResource;
  */
 class BinariesWorkerLogger extends AbstractLogger {
 
-	private static final String RESOURCE_URL_NOT_FOUND = "The resource URL ``{}'' could not be found.";
-
-	private static final String NO_BINARY_RESOURCE_FOUND = "No binary resource found '%s' (%s)";
-
-	private static final String ADD_NEW_BINARY_RESOUCE = "Add new binary resouce {}.";
-
-	private static final String LOADED_RESOURCE_BUNDLE = "Loaded the resource bundle {} for the binary resource ``{}''.";
+	private static final String RESOURCE_URL_NOT_FOUND = "Resource URL not found '{}'.";
+	private static final String NO_RESOURCE = "Binary resource not found";
+	private static final String NO_RESOURCE_MESSAGE = "Binary resource not found '{}' ({}).";
+	private static final String ADD_NEW_BINARY_RESOUCE = "Binary resouce {} added.";
+	private static final String LOADED_RESOURCE_BUNDLE = "Resource bundle {} loaded for '{}'.";
 
 	BinariesWorkerLogger() {
 		super(BinariesImpl.class);
@@ -67,12 +57,12 @@ class BinariesWorkerLogger extends AbstractLogger {
 
 	void checkBinaryLoaded(boolean haveResource, String name, Locale locale,
 			ResourceBundle bundle) throws ResourcesException {
-		if (haveResource) {
-			return;
+		if (!haveResource) {
+			throw logException(new ResourcesException(NO_RESOURCE, bundle
+					.getClass().toString(), name).addContext("name", name)
+					.addContext("locale", locale), NO_RESOURCE_MESSAGE, name,
+					locale);
 		}
-		String message = format(NO_BINARY_RESOURCE_FOUND, name, locale);
-		throw logException(new ResourcesException(message, bundle.getClass()
-				.toString(), name).addContext("locale", locale), message);
 	}
 
 	URL checkResourceURL(URL url, String value) {
