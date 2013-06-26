@@ -6,12 +6,11 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.7</version>
+		<version>1.9-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-texts-tests</artifactId>
-	<version>1.5</version>
 	<name>Resources :: Text :: Tests</name>
 	<description>Bundles test resources and unit tests for the text resources.</description>
 	<url>https://www.anr-institute.com/projects/projects/resources-texts-tests</url>
@@ -28,7 +27,7 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-binary</artifactId>
-			<version>1.7</version>
+			<version>1.9-SNAPSHOT</version>
 		</dependency>
 
 		<!-- compile dependencies -->
