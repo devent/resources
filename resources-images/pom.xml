@@ -6,13 +6,12 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.7</version>
+		<version>1.9-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-images</artifactId>
 	<name>Resources :: Image</name>
-	<version>1.7</version>
 	<description>Image resources.</description>
 	<url>https://www.anr-institute.com/projects/projects/resources-images</url>
 	<inceptionYear>2012</inceptionYear>
@@ -28,7 +27,7 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-images-tests</artifactId>
-			<version>1.6</version>
+			<version>1.9-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -36,12 +35,12 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>1.8</version>
+			<version>1.9-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>1.6</version>
+			<version>1.9-SNAPSHOT</version>
 		</dependency>
 
 		<!-- other dependencies -->
