@@ -6,14 +6,13 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.7</version>
+		<version>1.9-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-api</artifactId>
 	<name>Resources :: API</name>
 	<description>The public API of the resources project.</description>
-	<version>1.8</version>
 	<inceptionYear>2012</inceptionYear>
 	<url>https://www.anr-institute.com/projects/projects/resources-api</url>
 
@@ -28,4 +27,5 @@
 			<artifactId>globalpom-utils</artifactId>
 		</dependency>
 	</dependencies>
+
 </project>
