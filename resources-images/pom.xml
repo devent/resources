@@ -21,13 +21,19 @@
 		<url>https://www.anr-institute.com/projects/projects/resources-images</url>
 	</issueManagement>
 
+	<scm>
+		<connection>scm:git:${custom.gitpublic.url}resources.git</connection>
+		<developerConnection>scm:git:${custom.gitpublic.url}resources.git</developerConnection>
+		<url>https://www.anr-institute.com/gitpublic/resources.git/</url>
+	</scm>
+
 	<dependencies>
 
 		<!-- test dependencies -->
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-images-tests</artifactId>
-			<version>1.9-SNAPSHOT</version>
+			<version>1.9</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -35,12 +41,12 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>1.9-SNAPSHOT</version>
+			<version>1.9</version>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>1.9-SNAPSHOT</version>
+			<version>1.9</version>
 		</dependency>
 
 		<!-- other dependencies -->
