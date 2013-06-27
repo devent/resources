@@ -16,6 +16,12 @@
 	<url>https://www.anr-institute.com/projects/projects/resources-templates</url>
 	<inceptionYear>2012</inceptionYear>
 
+	<scm>
+		<connection>scm:git:${custom.gitpublic.url}resources.git</connection>
+		<developerConnection>scm:git:${custom.gitpublic.url}resources.git</developerConnection>
+		<url>https://www.anr-institute.com/gitpublic/resources.git/</url>
+	</scm>
+
 	<issueManagement>
 		<system>Redmine</system>
 		<url>https://www.anr-institute.com/projects/projects/resources-templates</url>
@@ -27,12 +33,12 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>1.9-SNAPSHOT</version>
+			<version>1.9</version>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>1.9-SNAPSHOT</version>
+			<version>1.9</version>
 		</dependency>
 
 		<!-- compile dependencies -->
