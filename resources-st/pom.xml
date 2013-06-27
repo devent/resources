@@ -21,6 +21,12 @@
 		<url>https://www.anr-institute.com/projects/projects/resources-st</url>
 	</issueManagement>
 
+	<scm>
+		<connection>scm:git:${custom.gitpublic.url}resources.git</connection>
+		<developerConnection>scm:git:${custom.gitpublic.url}resources.git</developerConnection>
+		<url>https://www.anr-institute.com/gitpublic/resources.git/</url>
+	</scm>
+
 	<dependencies>
 
 		<!-- test dependencies -->
