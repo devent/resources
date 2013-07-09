@@ -1,2 +1,0 @@
-com.anrisoftware.resources:resources-getbundle:jar:1.9
-+- org.slf4j:slf4j-api:jar:1.7.5:compile
