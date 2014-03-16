@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.10</version>
+		<version>1.11-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
