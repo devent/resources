@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.11</version>
+		<version>1.12-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-binary-tests</artifactId>
-			<version>1.11</version>
+			<version>1.12-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -41,12 +41,12 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>1.11</version>
+			<version>1.12-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>1.11</version>
+			<version>1.12-SNAPSHOT</version>
 		</dependency>
 
 		<!-- compile dependencies -->

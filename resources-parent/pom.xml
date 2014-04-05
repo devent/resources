@@ -12,7 +12,7 @@
 
 	<groupId>com.anrisoftware.resources</groupId>
 	<artifactId>resources-parent</artifactId>
-	<version>1.11</version>
+	<version>1.12-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Resources :: Parent POM</name>
 	<description>The parent POM of the resources project. Defines the group ID, source control management, project properties.</description>
@@ -68,7 +68,7 @@
 			<dependency>
 				<groupId>com.anrisoftware.globalpom</groupId>
 				<artifactId>globalpom-log</artifactId>
-				<version>1.15</version>
+				<version>1.16</version>
 			</dependency>
 			<dependency>
 				<groupId>com.anrisoftware.globalpom</groupId>
@@ -82,8 +82,8 @@
 			</dependency>
 			<dependency>
 				<groupId>com.anrisoftware.globalpom</groupId>
-				<artifactId>globalpom-utils</artifactId>
-				<version>1.10</version>
+				<artifactId>globalpomutils-core</artifactId>
+				<version>2.0-SNAPSHOT</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
