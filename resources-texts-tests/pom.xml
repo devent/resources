@@ -6,25 +6,25 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.12</version>
+		<version>1.13-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-texts-tests</artifactId>
 	<name>Resources :: Text :: Tests</name>
 	<description>Bundles test resources and unit tests for the text resources.</description>
-	<url>https://www.anr-institute.com/projects/projects/resources-texts-tests</url>
+	<url>https://anrisoftware.com/projects/projects/resources-texts-tests</url>
 	<inceptionYear>2012</inceptionYear>
 
 	<issueManagement>
 		<system>Redmine</system>
-		<url>https://www.anr-institute.com/projects/projects/resources-texts-tests</url>
+		<url>https://anrisoftware.com/projects/projects/resources-texts-tests</url>
 	</issueManagement>
 
 	<scm>
 		<connection>scm:git:${custom.gitpublic.url}resources.git</connection>
 		<developerConnection>scm:git:${custom.gitpublic.url}resources.git</developerConnection>
-		<url>https://www.anr-institute.com/gitpublic/resources.git/</url>
+		<url>https://anrisoftware.com/gitpublic/resources.git/</url>
 	</scm>
 
 	<dependencies>
@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-binary</artifactId>
-			<version>1.12</version>
+			<version>1.13-SNAPSHOT</version>
 		</dependency>
 
 		<!-- compile dependencies -->

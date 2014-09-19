@@ -6,25 +6,25 @@
 	<parent>
 		<groupId>com.anrisoftware.resources</groupId>
 		<artifactId>resources-parent</artifactId>
-		<version>1.12</version>
+		<version>1.13-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-st</artifactId>
 	<name>Resources :: Templates :: ST</name>
 	<description>Loads and caches String Template resources.</description>
-	<url>https://www.anr-institute.com/projects/projects/resources-st</url>
+	<url>https://anrisoftware.com/projects/projects/resources-st</url>
 	<inceptionYear>2012</inceptionYear>
 
 	<issueManagement>
 		<system>Redmine</system>
-		<url>https://www.anr-institute.com/projects/projects/resources-st</url>
+		<url>https://anrisoftware.com/projects/projects/resources-st</url>
 	</issueManagement>
 
 	<scm>
 		<connection>scm:git:${custom.gitpublic.url}resources.git</connection>
 		<developerConnection>scm:git:${custom.gitpublic.url}resources.git</developerConnection>
-		<url>https://www.anr-institute.com/gitpublic/resources.git/</url>
+		<url>https://anrisoftware.com/gitpublic/resources.git/</url>
 	</scm>
 
 	<dependencies>
@@ -38,7 +38,7 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-templates-tests</artifactId>
-			<version>1.12</version>
+			<version>1.13-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -46,17 +46,17 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>1.12</version>
+			<version>1.13-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>1.12</version>
+			<version>1.13-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-templates</artifactId>
-			<version>1.12</version>
+			<version>1.13-SNAPSHOT</version>
 		</dependency>
 
 		<!-- compile dependencies -->
