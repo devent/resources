@@ -6,19 +6,19 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.13-SNAPSHOT</version>
+		<version>1.13</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-templates-tests</artifactId>
 	<name>Resources :: Templates :: Tests</name>
 	<description>Bundles test resources and unit tests for the template resources.</description>
-	<url>https://anrisoftware.com/projects/projects/resources-templates-tests</url>
+	<url>https://anrisoftware.com/projects/resources-templates-tests</url>
 	<inceptionYear>2012</inceptionYear>
 
 	<issueManagement>
 		<system>Redmine</system>
-		<url>https://anrisoftware.com/projects/projects/resources-templates-tests</url>
+		<url>https://anrisoftware.com/projects/resources-templates-tests</url>
 	</issueManagement>
 
 	<scm>

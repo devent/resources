@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.13-SNAPSHOT</version>
+		<version>1.13</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
@@ -14,11 +14,11 @@
 	<name>Resources :: Binary</name>
 	<description>Binary resources.</description>
 	<inceptionYear>2012</inceptionYear>
-	<url>https://anrisoftware.com/projects/projects/resources-binary</url>
+	<url>https://anrisoftware.com/projects/resources-binary</url>
 
 	<issueManagement>
 		<system>Redmine</system>
-		<url>https://anrisoftware.com/projects/projects/resources-binary</url>
+		<url>https://anrisoftware.com/projects/resources-binary</url>
 	</issueManagement>
 
 	<scm>
@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-binary-tests</artifactId>
-			<version>1.13-SNAPSHOT</version>
+			<version>1.13</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -41,12 +41,12 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>1.13-SNAPSHOT</version>
+			<version>1.13</version>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>1.13-SNAPSHOT</version>
+			<version>1.13</version>
 		</dependency>
 
 		<!-- compile dependencies -->

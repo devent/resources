@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.13-SNAPSHOT</version>
+		<version>1.13</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
@@ -14,11 +14,11 @@
 	<name>Resources :: Image Tests</name>
 	<description>Bundles test resources and unit tests for the image resources.</description>
 	<inceptionYear>2012</inceptionYear>
-	<url>https://anrisoftware.com/projects/projects/resources-images-tests</url>
+	<url>https://anrisoftware.com/projects/resources-images-tests</url>
 
 	<issueManagement>
 		<system>Redmine</system>
-		<url>https://anrisoftware.com/projects/projects/resources-images-tests</url>
+		<url>https://anrisoftware.com/projects/resources-images-tests</url>
 	</issueManagement>
 
     <scm>
