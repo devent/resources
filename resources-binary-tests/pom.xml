@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.13</version>
+		<version>1.14-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
@@ -14,18 +14,18 @@
 	<name>Resources :: Binary Tests</name>
 	<description>Tests package for binary resources.</description>
 	<inceptionYear>2012</inceptionYear>
-	<url>https://anrisoftware.com/projects/resources-binary-tests</url>
-
-	<issueManagement>
-		<system>Redmine</system>
-		<url>https://anrisoftware.com/projects/resources-binary-tests</url>
-	</issueManagement>
+	<url>https://anrisoftware.com/projects/projects/resources-binary-tests</url>
 
     <scm>
         <connection>scm:git:${custom.gitpublic.url}resources.git</connection>
         <developerConnection>scm:git:${custom.gitpublic.url}resources.git</developerConnection>
         <url>https://anrisoftware.com/gitpublic/resources.git/</url>
     </scm>
+
+    <issueManagement>
+        <system>Redmine</system>
+        <url>https://anrisoftware.com/projects/projects/resources-binary-tests</url>
+    </issueManagement>
 
 	<dependencies>
 

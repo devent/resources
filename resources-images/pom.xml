@@ -6,26 +6,26 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.13</version>
+		<version>1.14-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-images</artifactId>
 	<name>Resources :: Image</name>
 	<description>Image resources.</description>
-	<url>https://anrisoftware.com/projects/resources-images</url>
+	<url>https://anrisoftware.com/projects/projects/resources-images</url>
 	<inceptionYear>2012</inceptionYear>
+
+    <scm>
+        <connection>scm:git:${custom.gitpublic.url}resources.git</connection>
+        <developerConnection>scm:git:${custom.gitpublic.url}resources.git</developerConnection>
+        <url>https://anrisoftware.com/gitpublic/resources.git/</url>
+    </scm>
 
 	<issueManagement>
 		<system>Redmine</system>
-		<url>https://anrisoftware.com/projects/resources-images</url>
+		<url>https://anrisoftware.com/projects/projects/resources-images</url>
 	</issueManagement>
-
-	<scm>
-		<connection>scm:git:${custom.gitpublic.url}resources.git</connection>
-		<developerConnection>scm:git:${custom.gitpublic.url}resources.git</developerConnection>
-		<url>https://anrisoftware.com/gitpublic/resources.git/</url>
-	</scm>
 
 	<dependencies>
 
@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-images-tests</artifactId>
-			<version>1.13</version>
+			<version>1.14-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -41,12 +41,12 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>1.13</version>
+			<version>1.14-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>1.13</version>
+			<version>1.14-SNAPSHOT</version>
 		</dependency>
 
 		<!-- other dependencies -->

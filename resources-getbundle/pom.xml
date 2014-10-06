@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>1.13</version>
+		<version>1.14-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
@@ -14,17 +14,17 @@
 	<name>Resources :: Get Bundle</name>
 	<description>Offers an object oriented way to create ResourceBundle depending on the given parameter.</description>
 	<inceptionYear>2012</inceptionYear>
-	<url>https://anrisoftware.com/projects/resources-getbundle</url>
-
-	<issueManagement>
-		<system>Redmine</system>
-		<url>https://anrisoftware.com/projects/resources-getbundle</url>
-	</issueManagement>
+	<url>https://anrisoftware.com/projects/projects/resources-getbundle</url>
 
 	<scm>
 		<connection>scm:git:${custom.gitpublic.url}resources.git</connection>
 		<developerConnection>scm:git:${custom.gitpublic.url}resources.git</developerConnection>
 		<url>https://anrisoftware.com/gitpublic/resources.git/</url>
 	</scm>
+
+    <issueManagement>
+        <system>Redmine</system>
+        <url>https://anrisoftware.com/projects/projects/resources-getbundle</url>
+    </issueManagement>
 
 </project>
