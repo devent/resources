@@ -6,13 +6,13 @@
 	<parent>
 		<artifactId>globalpom-groovy</artifactId>
 		<groupId>com.anrisoftware.globalpom</groupId>
-		<version>1.24</version>
+		<version>1.25</version>
 		<relativePath />
 	</parent>
 
 	<groupId>com.anrisoftware.resources</groupId>
 	<artifactId>resources-parent</artifactId>
-	<version>1.14</version>
+	<version>1.15-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Resources :: Parent POM</name>
 	<description>The parent POM of the resources project. Defines the group ID, source control management, project properties.</description>
@@ -42,9 +42,9 @@
 	</licenses>
 
 	<scm>
-		<connection>scm:git:${custom.gitpublic.url}resources.git</connection>
-		<developerConnection>scm:git:${custom.gitpublic.url}resources.git</developerConnection>
-		<url>https://anrisoftware.com/gitpublic/resources.git/</url>
+		<connection>scm:git:git@anrisoftware.com:resources.git</connection>
+		<developerConnection>scm:git:git@anrisoftware.com:resources.git</developerConnection>
+		<url>https://anrisoftware.com/projects/projects/resources-parent/repository</url>
 	</scm>
 
 	<issueManagement>
@@ -53,6 +53,10 @@
 	</issueManagement>
 
 	<distributionManagement>
+        <site>
+          <id>anrisoftware</id>
+          <url>dav:https://anrisoftware.com/javadoc/${project.groupId}/${project.artifactId}</url>
+        </site>
         <repository>
             <id>osssonatype</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
@@ -68,22 +72,22 @@
 			<dependency>
 				<groupId>com.anrisoftware.globalpom</groupId>
 				<artifactId>globalpom-log</artifactId>
-				<version>1.18</version>
+				<version>1.20</version>
 			</dependency>
 			<dependency>
 				<groupId>com.anrisoftware.globalpom</groupId>
 				<artifactId>globalpom-groovytestutils</artifactId>
-				<version>1.24</version>
+				<version>1.25</version>
 			</dependency>
 			<dependency>
 				<groupId>com.anrisoftware.propertiesutils</groupId>
 				<artifactId>propertiesutils-contextproperties</artifactId>
-				<version>1.12</version>
+				<version>1.13</version>
 			</dependency>
 			<dependency>
 				<groupId>com.anrisoftware.globalpom</groupId>
 				<artifactId>globalpomutils-core</artifactId>
-				<version>2.2</version>
+				<version>2.4</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

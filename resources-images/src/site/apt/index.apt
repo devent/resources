@@ -1,0 +1,85 @@
+~~
+~~ Copyright 2012-2015 Erwin Müller <erwin.mueller@deventm.org>
+~~
+~~ This file is part of resources-images.
+~~
+~~ resources-images is free software: you can redistribute it and/or modify it
+~~ under the terms of the GNU Lesser General Public License as published by the
+~~ Free Software Foundation, either version 3 of the License, or (at your
+~~ option) any later version.
+~~
+~~ resources-images is distributed in the hope that it will be useful, but
+~~ WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+~~ FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+~~ details.
+~~
+~~ You should have received a copy of the GNU Lesser General Public License
+~~ along with resources-images. If not, see <http://www.gnu.org/licenses/>.
+~~
+
+  Image resources.
+
+Anrisoftware.com SCM
+
+  * {{{https://anrisoftware.com/projects/projects/resources-images/repository}Repository}}
+
+  * git@anrisoftware.com:resources.git
+
+GitHub SCM
+
+  * {{{https://github.com/devent/resources}Repository}}
+
+  * git@github.com:devent/resources.git
+
+Maven Module
+
+---
+<dependency>
+    <groupId>com.anrisoftware.resources</groupId>
+    <artifactId>resources-images</artifactId>
+    <version>1.15</version>
+</dependency>
+---
+
+Examples
+
+---
+// Foo.class
+public class Foo {
+
+    private Images images;
+
+    private ImageResolution imageFoo;
+
+    private ImageResolution imageBar;
+
+    @Inject
+    public void setImages(ImagesFactory factory) {
+        this.images = factory.create("Foo");
+        this.imageFoo = images.getResource("foo", Locale.ENGLISH, IconSize.SMALL);
+        this.imageBar = images.getResource("bar", Locale.ENGLISH, IconSize.SMALL);
+    }
+
+    public void useResources() {
+        Image image = imageFoo.getImage();
+    }
+}
+---
+
+---
+# Foo.properties
+foo = com/anrisoftware/resources/images/en/foo.png
+bar = com/anrisoftware/resources/images/en/bar.png
+---
+
+---
+# Foo_de.properties
+foo = com/anrisoftware/resources/images/de/foo.png
+bar = com/anrisoftware/resources/images/de/bar.png
+---
+
+---
+# Foo_ru.properties
+foo = com/anrisoftware/resources/images/ru/foo.png
+bar = com/anrisoftware/resources/images/ru/bar.png
+---

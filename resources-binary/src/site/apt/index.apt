@@ -1,0 +1,85 @@
+~~
+~~ Copyright 2012-2015 Erwin Müller <erwin.mueller@deventm.org>
+~~
+~~ This file is part of resources-binary.
+~~
+~~ resources-binary is free software: you can redistribute it and/or modify it
+~~ under the terms of the GNU Lesser General Public License as published by the
+~~ Free Software Foundation, either version 3 of the License, or (at your
+~~ option) any later version.
+~~
+~~ resources-binary is distributed in the hope that it will be useful, but
+~~ WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+~~ FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+~~ details.
+~~
+~~ You should have received a copy of the GNU Lesser General Public License
+~~ along with resources-binary. If not, see <http://www.gnu.org/licenses/>.
+~~
+
+  Binary resources.
+
+Anrisoftware.com SCM
+
+  * {{{https://anrisoftware.com/projects/projects/resources-binary/repository}Repository}}
+
+  * git@anrisoftware.com:resources.git
+
+GitHub SCM
+
+  * {{{https://github.com/devent/resources}Repository}}
+
+  * git@github.com:devent/resources.git
+
+Maven Module
+
+---
+<dependency>
+    <groupId>com.anrisoftware.resources</groupId>
+    <artifactId>resources-binary</artifactId>
+    <version>1.15</version>
+</dependency>
+---
+
+Examples
+
+---
+// Foo.class
+public class Foo {
+
+    private Binaries binaries;
+
+    private BinaryResource binaryFoo;
+
+    private BinaryResource binaryBar;
+
+    @Inject
+    public void setBinaries(BinariesFactory factory) {
+        this.binaries = factory.create("Foo");
+        this.binaryFoo = binaries.getResource("foo");
+        this.binaryBar = binaries.getResource("bar");
+    }
+
+    public void useResources() {
+        InputStream stream = binaryFoo.getStream();
+    }
+}
+---
+
+---
+# Foo.properties
+foo = com/anrisoftware/resources/binary/en/foo.bin
+bar = com/anrisoftware/resources/binary/en/bar.bin
+---
+
+---
+# Foo_de.properties
+foo = com/anrisoftware/resources/binary/de/foo.bin
+bar = com/anrisoftware/resources/binary/de/bar.bin
+---
+
+---
+# Foo_ru.properties
+foo = com/anrisoftware/resources/binary/ru/foo.bin
+bar = com/anrisoftware/resources/binary/ru/bar.bin
+---

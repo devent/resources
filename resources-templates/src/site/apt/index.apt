@@ -1,0 +1,85 @@
+~~
+~~ Copyright 2012-2015 Erwin Müller <erwin.mueller@deventm.org>
+~~
+~~ This file is part of resources-templates.
+~~
+~~ resources-templates is free software: you can redistribute it and/or modify it
+~~ under the terms of the GNU Lesser General Public License as published by the
+~~ Free Software Foundation, either version 3 of the License, or (at your
+~~ option) any later version.
+~~
+~~ resources-templates is distributed in the hope that it will be useful, but
+~~ WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+~~ FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+~~ details.
+~~
+~~ You should have received a copy of the GNU Lesser General Public License
+~~ along with resources-templates. If not, see <http://www.gnu.org/licenses/>.
+~~
+
+  Templates resources.
+
+Anrisoftware.com SCM
+
+  * {{{https://anrisoftware.com/projects/projects/resources-templates/repository}Repository}}
+
+  * git@anrisoftware.com:resources.git
+
+GitHub SCM
+
+  * {{{https://github.com/devent/resources}Repository}}
+
+  * git@github.com:devent/resources.git
+
+Maven Module
+
+---
+<dependency>
+    <groupId>com.anrisoftware.resources</groupId>
+    <artifactId>resources-templates</artifactId>
+    <version>1.15</version>
+</dependency>
+---
+
+Examples
+
+---
+// Foo.class
+public class Foo {
+
+    private Templates templates;
+
+    private TemplateResource templateFoo;
+
+    private TemplateResource templateBar;
+
+    @Inject
+    public void setTemplates(TemplatesFactory factory) {
+        this.templates = factory.create("Foo");
+        this.templateFoo = templates.getResource("foo");
+        this.templateBar = templates.getResource("bar");
+    }
+
+    public void useResources() {
+        String text = templateFoo.getText(true, "args", args);
+    }
+}
+---
+
+---
+# Foo.properties
+foo = com/anrisoftware/resources/template/en/foo.stg
+bar = com/anrisoftware/resources/template/en/bar.stg
+---
+
+---
+# Foo_de.properties
+foo = com/anrisoftware/resources/template/de/foo.stg
+bar = com/anrisoftware/resources/template/de/bar.stg
+---
+
+---
+# Foo_ru.properties
+foo = com/anrisoftware/resources/template/ru/foo.stg
+bar = com/anrisoftware/resources/template/ru/bar.stg
+---
