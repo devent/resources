@@ -16,31 +16,31 @@
 	<inceptionYear>2012</inceptionYear>
 	<url>https://anrisoftware.com/projects/projects/resources-images-tests</url>
 
-    <scm>
-        <connection>scm:git:git@anrisoftware.com:resources.git</connection>
-        <developerConnection>scm:git:git@anrisoftware.com:resources.git</developerConnection>
-        <url>https://anrisoftware.com/projects/projects/resources-images-tests/repository</url>
-    </scm>
+	<scm>
+		<connection>scm:git:git@anrisoftware.com:resources.git</connection>
+		<developerConnection>scm:git:git@anrisoftware.com:resources.git</developerConnection>
+		<url>https://anrisoftware.com/projects/projects/resources-images-tests/repository</url>
+	</scm>
 
-    <issueManagement>
-        <system>Redmine</system>
-        <url>https://anrisoftware.com/projects/projects/resources-images-tests</url>
-    </issueManagement>
+	<issueManagement>
+		<system>Redmine</system>
+		<url>https://anrisoftware.com/projects/projects/resources-images-tests</url>
+	</issueManagement>
 
-    <distributionManagement>
-        <site>
-          <id>anrisoftware</id>
-          <url>dav:https://anrisoftware.com/javadoc/${project.groupId}/${project.artifactId}</url>
-        </site>
-        <repository>
-            <id>osssonatype</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-        </repository>
-        <snapshotRepository>
-            <id>osssonatype_snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
+	<distributionManagement>
+		<site>
+			<id>anrisoftware</id>
+			<url>dav:https://anrisoftware.com/javadoc/${project.groupId}/${project.artifactId}</url>
+		</site>
+		<repository>
+			<id>osssonatype</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+		<snapshotRepository>
+			<id>osssonatype_snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<dependencies>
 
@@ -58,5 +58,24 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.bluetrainsoftware.maven</groupId>
+				<artifactId>groovydoc-maven-plugin</artifactId>
+				<version>1.3</version>
+				<executions>
+					<execution>
+						<id>attach-docs</id>
+						<phase>package</phase>
+						<goals>
+							<goal>attach-docs</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
