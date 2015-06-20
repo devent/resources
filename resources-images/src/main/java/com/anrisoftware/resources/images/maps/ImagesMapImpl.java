@@ -35,7 +35,7 @@ import com.anrisoftware.resources.images.api.ImagesMap;
 
 /**
  * Uses a Java hash map to store the image resources.
- * 
+ *
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
  */
@@ -43,16 +43,16 @@ class ImagesMapImpl implements ImagesMap {
 
 	private final ImagesMapLogger log;
 
-	/**
-	 * Saves the loaded image resources.
-	 * <p>
-	 * The image resources are stored for each name, for each resolution and for
-	 * each image size, i.e.:
-	 * 
-	 * <pre>
-	 * [&lt;name:{@link String}&gt; = [&lt;resolution:{@link ImageResolution}&gt; = [&lt;size:{@link Dimension}&gt; = {@link ImageResource}]]]
-	 * </pre>
-	 */
+	    /**
+     * Saves the loaded image resources.
+     * <p>
+     * The image resources are stored for each name, for each resolution and for
+     * each image size, i.e.:
+     *
+     * <pre>
+     * [&lt;name:{@link String}&gt; = [&lt;resolution:{@link ImageResolution}&gt; = [&lt;size:{@link Dimension}&gt; = {@link ImageResource}]]]
+     * </pre>
+     */
 	private final Map<String, Map<ImageResolution, Map<Dimension, ImageResource>>> images;
 
 	/**
@@ -155,12 +155,12 @@ class ImagesMapImpl implements ImagesMap {
 		return image;
 	}
 
-	/**
-	 * Find the nearest image resource.
-	 * 
-	 * @author Erwin Mueller, erwin.mueller@deventm.org
-	 * @since 1.0
-	 */
+	    /**
+     * Find the nearest image resource.
+     *
+     * @author Erwin Mueller, erwin.mueller@deventm.org
+     * @since 1.0
+     */
 	private static class FindNearest {
 
 		private final int searchArea;
@@ -169,29 +169,29 @@ class ImagesMapImpl implements ImagesMap {
 
 		private ImageResource image;
 
-		/**
-		 * Set the size what we search for.
-		 * 
-		 * @param searchSize
-		 *            the {@link Dimension} that is the size.
-		 */
+		        /**
+         * Set the size what we search for.
+         *
+         * @param searchSize
+         *            the {@link Dimension} that is the size.
+         */
 		public FindNearest(Dimension searchSize) {
 			this.searchArea = searchSize.width * searchSize.height;
 			this.difference = Integer.MAX_VALUE;
 		}
 
-		/**
-		 * Find the next nearest image to the give size.
-		 * 
-		 * @param resources
-		 *            the {@link Map} of the {@link ImageResource}s with the
-		 *            {@link Dimension} size that are in the map.
-		 * 
-		 * @return the nearest {@link ImageResource} that is found. If the size
-		 *         is smaller then the smallest image in the map, we return the
-		 *         smallest image. If the size is larger then the biggest image
-		 *         in the map, we return the biggest image.
-		 */
+		        /**
+         * Find the next nearest image to the give size.
+         *
+         * @param resources
+         *            the {@link Map} of the {@link ImageResource}s with the
+         *            {@link Dimension} size that are in the map.
+         *
+         * @return the nearest {@link ImageResource} that is found. If the size
+         *         is smaller then the smallest image in the map, we return the
+         *         smallest image. If the size is larger then the biggest image
+         *         in the map, we return the biggest image.
+         */
 		public ImageResource findNearest(Map<Dimension, ImageResource> resources) {
 			for (Map.Entry<Dimension, ImageResource> entry : resources
 					.entrySet()) {

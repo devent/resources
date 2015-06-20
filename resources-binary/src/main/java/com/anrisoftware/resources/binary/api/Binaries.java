@@ -24,70 +24,70 @@ import java.util.ResourceBundle;
 import com.anrisoftware.resources.api.ResourcesException;
 
 /**
- * Gives binary data resources.
- * 
+ * Binary data resources bundle.
+ *
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
  * @see BinaryResource
  */
 public interface Binaries {
 
-	/**
-	 * Returns the used resource bundle base name.
-	 * 
-	 * @return the used base name {@link String}.
-	 */
-	String getBaseName();
+    /**
+     * Returns the used resource bundle base name.
+     *
+     * @return the used base name {@link String}.
+     */
+    String getBaseName();
 
-	/**
-	 * Returns the used resource bundle class loader.
-	 * 
-	 * @return the used {@link ClassLoader}.
-	 */
-	ClassLoader getClassLoader();
+    /**
+     * Returns the used resource bundle class loader.
+     *
+     * @return the used {@link ClassLoader}.
+     */
+    ClassLoader getClassLoader();
 
-	/**
-	 * Returns the used resource bundle control.
-	 * 
-	 * @return the used {@link ResourceBundle.Control}.
-	 */
-	ResourceBundle.Control getControl();
+    /**
+     * Returns the used resource bundle control.
+     *
+     * @return the used {@link ResourceBundle.Control}.
+     */
+    ResourceBundle.Control getControl();
 
-	/**
-	 * Returns the binary resource with the specified name and language.
-	 * 
-	 * @param name
-	 *            the name of the resource.
-	 * 
-	 * @param locale
-	 *            the {@link Locale} of the resource or <code>null</code>. If
-	 *            the locale is <code>null</code> the default locale as in
-	 *            {@link Locale#getDefault()} is used.
-	 * 
-	 * @return the {@link BinaryResource}.
-	 * 
-	 * @throws ResourcesException
-	 *             if the resource is not available.
-	 * 
-	 * @since 1.2
-	 */
-	BinaryResource getResource(String name, Locale locale)
-			throws ResourcesException;
+    /**
+     * Returns the binary resource with the specified name and language.
+     *
+     * @param name
+     *            the name of the resource.
+     *
+     * @param locale
+     *            the {@link Locale} of the resource or <code>null</code>. If
+     *            the locale is <code>null</code> the default locale as in
+     *            {@link Locale#getDefault()} is used.
+     *
+     * @return the {@link BinaryResource}.
+     *
+     * @throws ResourcesException
+     *             if the resource is not available.
+     *
+     * @since 1.2
+     */
+    BinaryResource getResource(String name, Locale locale)
+            throws ResourcesException;
 
-	/**
-	 * Returns the binary resource with the specified name and the default
-	 * locale as in {@link Locale#getDefault()}.
-	 * 
-	 * @param name
-	 *            the name of the resource.
-	 * 
-	 * @return the {@link BinaryResource}.
-	 * 
-	 * @throws ResourcesException
-	 *             if the resource is not available.
-	 * 
-	 * @since 1.2
-	 */
-	BinaryResource getResource(String name) throws ResourcesException;
+    /**
+     * Returns the binary resource with the specified name and the default
+     * locale as in {@link Locale#getDefault()}.
+     *
+     * @param name
+     *            the name of the resource.
+     *
+     * @return the {@link BinaryResource}.
+     *
+     * @throws ResourcesException
+     *             if the resource is not available.
+     *
+     * @since 1.2
+     */
+    BinaryResource getResource(String name) throws ResourcesException;
 
 }
