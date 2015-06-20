@@ -23,12 +23,12 @@ import static java.awt.image.ImageObserver.WIDTH;
 
 import java.awt.Dimension;
 import java.awt.Image;
-import java.awt.MediaTracker;
-import java.io.IOException;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.net.URL;
 import java.util.Locale;
 
-import javax.imageio.ImageIO;
+import javax.inject.Inject;
 import javax.swing.ImageIcon;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -42,185 +42,198 @@ import com.google.inject.assistedinject.AssistedInject;
 /**
  * Image resource with lazy loading. Two image resources are equals if the
  * resource URL is the same.
- * 
+ *
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
 class ImageResourceImpl implements ImageResource {
 
-	private static final int HEIGHT_WIDTH_NOT_SET = -1;
+    private static final int HEIGHT_WIDTH_NOT_SET = -1;
 
-	private final ImageResourceImplLogger log;
+    private final ImageResourceImplLogger log;
 
-	private final String name;
+    private final String name;
 
-	private final Locale locale;
+    private final Locale locale;
 
-	private final Dimension size;
+    private final Dimension size;
 
-	private final ImageResolution resolution;
+    private final ImageResolution resolution;
 
-	private final URL url;
+    private final URL url;
 
-	private Image image;
+    @Inject
+    private ImageLoadWorker imageLoadWorker;
 
-	private ImageIcon imageLoader;
+    @Inject
+    private ImageGetterWorker imageGetterWorker;
 
-	@AssistedInject
-	ImageResourceImpl(ImageResourceImplLogger logger, @Assisted String name,
-			@Assisted Locale locale, @Assisted ImageResolution resolution,
-			@Assisted URL url) {
-		this(logger, name, locale, resolution, url, null);
-	}
+    @Inject
+    private ImageBufferedWorker imageBufferedWorker;
 
-	@AssistedInject
-	ImageResourceImpl(ImageResourceImplLogger logger, @Assisted String name,
-			@Assisted Locale locale, @Assisted ImageResolution resolution,
-			@Assisted Image image) {
-		this(logger, name, locale, resolution, null, image);
-	}
+    private Image image;
 
-	private ImageResourceImpl(ImageResourceImplLogger logger, String name,
-			Locale locale, ImageResolution resolution, URL url, Image image) {
-		this.log = logger;
-		this.name = name;
-		this.locale = locale;
-		this.resolution = resolution;
-		this.url = url;
-		this.image = image;
-		this.size = new Dimension(HEIGHT_WIDTH_NOT_SET, HEIGHT_WIDTH_NOT_SET);
-	}
+    private BufferedImage bufferedImage;
 
-	@Override
-	public String getName() {
-		return name;
-	}
+    private boolean imageLoaded;
 
-	@Override
-	public Locale getLocale() {
-		return locale;
-	}
+    @AssistedInject
+    ImageResourceImpl(ImageResourceImplLogger logger, @Assisted String name,
+            @Assisted Locale locale, @Assisted ImageResolution resolution,
+            @Assisted URL url) {
+        this(logger, name, locale, resolution, url, null);
+    }
 
-	@Override
-	public URL getURL() {
-		return url;
-	}
+    @AssistedInject
+    ImageResourceImpl(ImageResourceImplLogger logger, @Assisted String name,
+            @Assisted Locale locale, @Assisted ImageResolution resolution,
+            @Assisted Image image) {
+        this(logger, name, locale, resolution, null, image);
+    }
 
-	@Override
-	public ImageResolution getResolution() {
-		return resolution;
-	}
+    private ImageResourceImpl(ImageResourceImplLogger logger, String name,
+            Locale locale, ImageResolution resolution, URL url, Image image) {
+        this.log = logger;
+        this.name = name;
+        this.locale = locale;
+        this.resolution = resolution;
+        this.url = url;
+        this.image = image;
+        this.size = new Dimension(HEIGHT_WIDTH_NOT_SET, HEIGHT_WIDTH_NOT_SET);
+        this.imageLoaded = image != null;
+    }
 
-	@Override
-	public Image getImage() throws ResourcesException {
-		if (image == null) {
-			image = loadImage();
-		}
-		return getLoadedImage(image);
-	}
+    @Override
+    public String getName() {
+        return name;
+    }
 
-	private Image loadImage() throws ResourcesException {
-		try {
-			return ImageIO.read(url);
-		} catch (IOException e) {
-			throw log.errorLoadingImage(this, e);
-		}
-	}
+    @Override
+    public Locale getLocale() {
+        return locale;
+    }
 
-	private Image getLoadedImage(Image image) {
-		if (imageLoader == null || !isImageLoaded()) {
-			imageLoader = waitUntilImageIsLoaded(image);
-		}
-		return imageLoader.getImage();
-	}
+    @Override
+    public URL getURL() {
+        return url;
+    }
 
-	private ImageIcon waitUntilImageIsLoaded(Image image) {
-		if (imageLoader == null) {
-			imageLoader = new ImageIcon(image);
-		}
-		log.imageIsLoaded(this, isImageLoaded());
-		while (!isImageLoaded()) {
-			Thread.yield();
-		}
-		return imageLoader;
-	}
+    @Override
+    public ImageResolution getResolution() {
+        return resolution;
+    }
 
-	private boolean isImageLoaded() {
-		return imageLoader.getImageLoadStatus() != MediaTracker.LOADING
-				|| imageLoader.getImageLoadStatus() != MediaTracker.COMPLETE;
-	}
+    @Override
+    public synchronized Image getImage() throws ResourcesException {
+        if (!imageLoaded) {
+            Image image;
+            image = imageLoadWorker.loadImage(this, log, url);
+            ImageIcon loader;
+            loader = imageGetterWorker.getImage(this, log, image);
+            image = loader.getImage();
+            imageLoaded = true;
+            this.image = image;
+            return image;
+        }
+        if (bufferedImage != null) {
+            return bufferedImage;
+        } else {
+            return image;
+        }
+    }
 
-	@Override
-	public int getHeightPx() throws ResourcesException {
-		if (size.height == HEIGHT_WIDTH_NOT_SET) {
-			synchronized (getImage()) {
-				size.height = determineHeight();
-			}
-		}
-		return size.height;
-	}
+    @Override
+    public Image getImage(ImageObserver observer) throws ResourcesException {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	private Integer determineHeight() throws ResourcesException {
-		ImageResourceObserver observer = new ImageResourceObserver(HEIGHT);
-		int height = getImage().getHeight(observer);
-		height = waitForHeight(observer, height);
-		return height;
-	}
+    @Override
+    public synchronized BufferedImage getBufferedImage(int imageType)
+            throws ResourcesException {
+        if (bufferedImage == null) {
+            BufferedImage image = imageBufferedWorker.toBuffered(getImage(),
+                    getWidthPx(), getHeightPx(), imageType);
+            this.bufferedImage = image;
+            this.image = null;
+        }
+        return bufferedImage;
+    }
 
-	private int waitForHeight(ImageResourceObserver observer, int height) {
-		if (height < 0) {
-			log.waitForHeight(this);
-			while (!observer.isDone()) {
-				Thread.yield();
-			}
-			height = observer.getHeight();
-		}
-		return height;
-	}
+    @Override
+    public BufferedImage getBufferedImage(int imageType, ImageObserver observer)
+            throws ResourcesException {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	@Override
-	public int getWidthPx() throws ResourcesException {
-		if (size.width == HEIGHT_WIDTH_NOT_SET) {
-			synchronized (getImage()) {
-				size.width = determineWidth();
-			}
-		}
-		return size.width;
-	}
+    @Override
+    public synchronized int getHeightPx() throws ResourcesException {
+        if (size.height == HEIGHT_WIDTH_NOT_SET) {
+            size.height = determineHeight();
+        }
+        return size.height;
+    }
 
-	private int determineWidth() throws ResourcesException {
-		ImageResourceObserver observer = new ImageResourceObserver(WIDTH);
-		int width = getImage().getWidth(observer);
-		width = waitForWidth(observer, width);
-		return width;
-	}
+    private Integer determineHeight() throws ResourcesException {
+        ImageResourceObserver observer = new ImageResourceObserver(HEIGHT);
+        int height = getImage().getHeight(observer);
+        height = waitForHeight(observer, height);
+        return height;
+    }
 
-	private int waitForWidth(ImageResourceObserver observer, int width) {
-		if (width < 0) {
-			log.waitForWidth(this);
-			while (!observer.isDone()) {
-				Thread.yield();
-			}
-			width = observer.getWidth();
-		}
-		return width;
-	}
+    private int waitForHeight(ImageResourceObserver observer, int height) {
+        if (height < 0) {
+            log.waitForHeight(this);
+            while (!observer.isDone()) {
+                Thread.yield();
+            }
+            height = observer.getHeight();
+        }
+        return height;
+    }
 
-	@Override
-	public Dimension getSizePx() {
-		if (size.height == HEIGHT_WIDTH_NOT_SET) {
-			getHeightPx();
-		}
-		if (size.width == HEIGHT_WIDTH_NOT_SET) {
-			getWidthPx();
-		}
-		return size;
-	}
+    @Override
+    public synchronized int getWidthPx() throws ResourcesException {
+        if (size.width == HEIGHT_WIDTH_NOT_SET) {
+            size.width = determineWidth();
+        }
+        return size.width;
+    }
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append(name).append(locale)
-				.append(resolution).toString();
-	}
+    private int determineWidth() throws ResourcesException {
+        ImageResourceObserver observer = new ImageResourceObserver(WIDTH);
+        int width = getImage().getWidth(observer);
+        width = waitForWidth(observer, width);
+        return width;
+    }
+
+    private int waitForWidth(ImageResourceObserver observer, int width) {
+        if (width < 0) {
+            log.waitForWidth(this);
+            while (!observer.isDone()) {
+                Thread.yield();
+            }
+            width = observer.getWidth();
+        }
+        return width;
+    }
+
+    @Override
+    public synchronized Dimension getSizePx() {
+        if (size.height == HEIGHT_WIDTH_NOT_SET) {
+            getHeightPx();
+        }
+        if (size.width == HEIGHT_WIDTH_NOT_SET) {
+            getWidthPx();
+        }
+        return size;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).append(name).append(locale)
+                .append(resolution).toString();
+    }
 
 }

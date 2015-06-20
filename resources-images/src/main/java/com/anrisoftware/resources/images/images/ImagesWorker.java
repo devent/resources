@@ -201,6 +201,7 @@ class ImagesWorker {
             Dimension size, ImagesMap map, ImageResolution resolution,
             ImageResource res, ResourceBundle bundle) {
         if (res.getSizePx().equals(size)) {
+            System.out.println("no resize " + size);
             return res;
         }
         Image image = resizeImage(name, size, res.getImage(), locale, bundle);
