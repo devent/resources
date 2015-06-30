@@ -120,6 +120,22 @@ public interface ImageResource extends Resource {
     int getWidthPx() throws ResourcesException;
 
     /**
+     * Returns the width of the image. The specified observer is notified when
+     * the width is available.
+     *
+     * @param observer
+     *            the {@link ImageObserver}.
+     *
+     * @return the width of the image in pixels.
+     *
+     * @throws ResourcesException
+     *             if the loading of the resource is failed.
+     *
+     * @since 1.16
+     */
+    int getWidthPx(ImageObserver observer) throws ResourcesException;
+
+    /**
      * Returns the height of the image. The method will block until the height
      * is available from the image.
      *
@@ -131,6 +147,22 @@ public interface ImageResource extends Resource {
      * @since 1.3
      */
     int getHeightPx() throws ResourcesException;
+
+    /**
+     * Returns the height of the image. The specified observer is notified when
+     * the height is available.
+     *
+     * @param observer
+     *            the {@link ImageObserver}.
+     *
+     * @return the height of the image in pixels.
+     *
+     * @throws ResourcesException
+     *             if the loading of the resource is failed.
+     *
+     * @since 1.16
+     */
+    int getHeightPx(ImageObserver observer) throws ResourcesException;
 
     /**
      * Returns the width and height of the image. The method will block until
@@ -145,5 +177,22 @@ public interface ImageResource extends Resource {
      * @since 1.3
      */
     Dimension getSizePx() throws ResourcesException;
+
+    /**
+     * Returns the width and height of the image. The method will block until
+     * the height is available from the image.
+     *
+     * @param observer
+     *            the {@link ImageObserver}.
+     *
+     * @return the {@link Dimension} containing the width and height of the
+     *         image in pixels.
+     *
+     * @throws ResourcesException
+     *             if the loading of the resource is failed.
+     *
+     * @since 1.16
+     */
+    Dimension getSizePx(ImageObserver observer) throws ResourcesException;
 
 }

@@ -129,7 +129,7 @@ class ImageResourceImpl implements ImageResource {
             Image image;
             image = imageLoadWorker.loadImage(this, log, url);
             ImageIcon loader;
-            loader = imageGetterWorker.getImage(this, log, image);
+            loader = imageGetterWorker.getImage(this, log, image, null);
             image = loader.getImage();
             imageLoaded = true;
             this.image = image;
@@ -144,8 +144,21 @@ class ImageResourceImpl implements ImageResource {
 
     @Override
     public Image getImage(ImageObserver observer) throws ResourcesException {
-        // TODO Auto-generated method stub
-        return null;
+        if (!imageLoaded) {
+            Image image;
+            image = imageLoadWorker.loadImage(this, log, url);
+            ImageIcon loader;
+            loader = imageGetterWorker.getImage(this, log, image, observer);
+            image = loader.getImage();
+            imageLoaded = true;
+            this.image = image;
+            return image;
+        }
+        if (bufferedImage != null) {
+            return bufferedImage;
+        } else {
+            return image;
+        }
     }
 
     @Override
@@ -163,8 +176,14 @@ class ImageResourceImpl implements ImageResource {
     @Override
     public BufferedImage getBufferedImage(int imageType, ImageObserver observer)
             throws ResourcesException {
-        // TODO Auto-generated method stub
-        return null;
+        if (bufferedImage == null) {
+            BufferedImage image = imageBufferedWorker.toBuffered(
+                    getImage(observer), getWidthPx(observer),
+                    getHeightPx(observer), imageType);
+            this.bufferedImage = image;
+            this.image = null;
+        }
+        return bufferedImage;
     }
 
     @Override
@@ -190,6 +209,13 @@ class ImageResourceImpl implements ImageResource {
             }
             height = observer.getHeight();
         }
+        return height;
+    }
+
+    @Override
+    public int getHeightPx(ImageObserver observer) throws ResourcesException {
+        int height = getImage(observer).getHeight(observer);
+        size.height = height;
         return height;
     }
 
@@ -220,12 +246,31 @@ class ImageResourceImpl implements ImageResource {
     }
 
     @Override
-    public synchronized Dimension getSizePx() {
+    public int getWidthPx(ImageObserver observer) throws ResourcesException {
+        int width = getImage(observer).getWidth(observer);
+        size.width = width;
+        return width;
+    }
+
+    @Override
+    public synchronized Dimension getSizePx() throws ResourcesException {
         if (size.height == HEIGHT_WIDTH_NOT_SET) {
             getHeightPx();
         }
         if (size.width == HEIGHT_WIDTH_NOT_SET) {
             getWidthPx();
+        }
+        return size;
+    }
+
+    @Override
+    public Dimension getSizePx(ImageObserver observer)
+            throws ResourcesException {
+        if (size.height == HEIGHT_WIDTH_NOT_SET) {
+            getHeightPx(observer);
+        }
+        if (size.width == HEIGHT_WIDTH_NOT_SET) {
+            getWidthPx(observer);
         }
         return size;
     }
