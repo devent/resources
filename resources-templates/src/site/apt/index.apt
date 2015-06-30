@@ -17,15 +17,19 @@
 ~~ along with resources-templates. If not, see <http://www.gnu.org/licenses/>.
 ~~
 
+Description
+
   Templates resources.
 
-Anrisoftware.com SCM
+SCM
 
-  * {{{https://anrisoftware.com/projects/projects/resources-templates/repository}Repository}}
+* Main
+
+  * {{{https://anrisoftware.com/projects/projects/resources/repository}Repository}}
 
   * git@anrisoftware.com:resources.git
 
-GitHub SCM
+* GitHub
 
   * {{{https://github.com/devent/resources}Repository}}
 
@@ -37,49 +41,6 @@ Maven Module
 <dependency>
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources-templates</artifactId>
-    <version>1.15</version>
+    <version>1.16</version>
 </dependency>
----
-
-Examples
-
----
-// Foo.class
-public class Foo {
-
-    private Templates templates;
-
-    private TemplateResource templateFoo;
-
-    private TemplateResource templateBar;
-
-    @Inject
-    public void setTemplates(TemplatesFactory factory) {
-        this.templates = factory.create("Foo");
-        this.templateFoo = templates.getResource("foo");
-        this.templateBar = templates.getResource("bar");
-    }
-
-    public void useResources() {
-        String text = templateFoo.getText(true, "args", args);
-    }
-}
----
-
----
-# Foo.properties
-foo = com/anrisoftware/resources/template/en/foo.stg
-bar = com/anrisoftware/resources/template/en/bar.stg
----
-
----
-# Foo_de.properties
-foo = com/anrisoftware/resources/template/de/foo.stg
-bar = com/anrisoftware/resources/template/de/bar.stg
----
-
----
-# Foo_ru.properties
-foo = com/anrisoftware/resources/template/ru/foo.stg
-bar = com/anrisoftware/resources/template/ru/bar.stg
 ---

@@ -17,15 +17,19 @@
 ~~ along with resources-binary. If not, see <http://www.gnu.org/licenses/>.
 ~~
 
+Description
+
   Binary resources.
 
-Anrisoftware.com SCM
+SCM
 
-  * {{{https://anrisoftware.com/projects/projects/resources-binary/repository}Repository}}
+* Main
+
+  * {{{https://anrisoftware.com/projects/projects/resources/repository}Repository}}
 
   * git@anrisoftware.com:resources.git
 
-GitHub SCM
+* GitHub
 
   * {{{https://github.com/devent/resources}Repository}}
 
@@ -37,49 +41,6 @@ Maven Module
 <dependency>
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources-binary</artifactId>
-    <version>1.15</version>
+    <version>1.16</version>
 </dependency>
----
-
-Examples
-
----
-// Foo.class
-public class Foo {
-
-    private Binaries binaries;
-
-    private BinaryResource binaryFoo;
-
-    private BinaryResource binaryBar;
-
-    @Inject
-    public void setBinaries(BinariesFactory factory) {
-        this.binaries = factory.create("Foo");
-        this.binaryFoo = binaries.getResource("foo");
-        this.binaryBar = binaries.getResource("bar");
-    }
-
-    public void useResources() {
-        InputStream stream = binaryFoo.getStream();
-    }
-}
----
-
----
-# Foo.properties
-foo = com/anrisoftware/resources/binary/en/foo.bin
-bar = com/anrisoftware/resources/binary/en/bar.bin
----
-
----
-# Foo_de.properties
-foo = com/anrisoftware/resources/binary/de/foo.bin
-bar = com/anrisoftware/resources/binary/de/bar.bin
----
-
----
-# Foo_ru.properties
-foo = com/anrisoftware/resources/binary/ru/foo.bin
-bar = com/anrisoftware/resources/binary/ru/bar.bin
 ---

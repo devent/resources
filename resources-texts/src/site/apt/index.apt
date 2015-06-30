@@ -17,15 +17,19 @@
 ~~ along with resources-texts. If not, see <http://www.gnu.org/licenses/>.
 ~~
 
+Description
+
   Text resources.
 
-Anrisoftware.com SCM
+SCM
 
-  * {{{https://anrisoftware.com/projects/projects/resources-texts/repository}Repository}}
+* Main
+
+  * {{{https://anrisoftware.com/projects/projects/resources/repository}Repository}}
 
   * git@anrisoftware.com:resources.git
 
-GitHub SCM
+* GitHub
 
   * {{{https://github.com/devent/resources}Repository}}
 
@@ -37,49 +41,6 @@ Maven Module
 <dependency>
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources-texts</artifactId>
-    <version>1.15</version>
+    <version>1.16</version>
 </dependency>
----
-
-Examples
-
----
-// Foo.class
-public class Foo {
-
-    private Texts texts;
-
-    private TextResource textFoo;
-
-    private TextResource textBar;
-
-    @Inject
-    public void setTexts(TextsFactory factory) {
-        this.texts = factory.create("Foo");
-        this.textFoo = binaries.getResource("foo");
-        this.textBar = binaries.getResource("bar");
-    }
-
-    public void useResources() {
-        String text = textFoo.getText();
-    }
-}
----
-
----
-# Foo.properties
-foo = com/anrisoftware/resources/texts/en/foo.txt
-bar = com/anrisoftware/resources/texts/en/bar.txt
----
-
----
-# Foo_de.properties
-foo = com/anrisoftware/resources/texts/de/foo.txt
-bar = com/anrisoftware/resources/texts/de/bar.txt
----
-
----
-# Foo_ru.properties
-foo = com/anrisoftware/resources/texts/ru/foo.txt
-bar = com/anrisoftware/resources/texts/ru/bar.txt
 ---

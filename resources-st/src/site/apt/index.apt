@@ -17,15 +17,19 @@
 ~~ along with resources-st. If not, see <http://www.gnu.org/licenses/>.
 ~~
 
+Description
+
   Loads and caches ST4 resources.
 
-Anrisoftware.com SCM
+SCM
 
-  * {{{https://anrisoftware.com/projects/projects/resources-st/repository}Repository}}
+* Main
+
+  * {{{https://anrisoftware.com/projects/projects/resources/repository}Repository}}
 
   * git@anrisoftware.com:resources.git
 
-GitHub SCM
+* GitHub
 
   * {{{https://github.com/devent/resources}Repository}}
 
@@ -37,6 +41,6 @@ Maven Module
 <dependency>
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources-st</artifactId>
-    <version>1.15</version>
+    <version>1.16</version>
 </dependency>
 ---

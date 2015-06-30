@@ -17,15 +17,20 @@
 ~~ along with resources-getbundle. If not, see <http://www.gnu.org/licenses/>.
 ~~
 
-  Offers an object oriented way to create ResourceBundle depending on the given parameter.
+Description
 
-Anrisoftware.com SCM
+  Offers an object oriented way to create ResourceBundle depending on the
+given parameter.
 
-  * {{{https://anrisoftware.com/projects/projects/resources-getbundle/repository}Repository}}
+SCM
+
+* Main
+
+  * {{{https://anrisoftware.com/projects/projects/resources/repository}Repository}}
 
   * git@anrisoftware.com:resources.git
 
-GitHub SCM
+* GitHub
 
   * {{{https://github.com/devent/resources}Repository}}
 
@@ -37,6 +42,6 @@ Maven Module
 <dependency>
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources-getbundle</artifactId>
-    <version>1.15</version>
+    <version>1.16</version>
 </dependency>
 ---

@@ -17,15 +17,19 @@
 ~~ along with resources-images. If not, see <http://www.gnu.org/licenses/>.
 ~~
 
+Description
+
   Image resources.
 
-Anrisoftware.com SCM
+SCM
 
-  * {{{https://anrisoftware.com/projects/projects/resources-images/repository}Repository}}
+* Main
+
+  * {{{https://anrisoftware.com/projects/projects/resources/repository}Repository}}
 
   * git@anrisoftware.com:resources.git
 
-GitHub SCM
+* GitHub
 
   * {{{https://github.com/devent/resources}Repository}}
 
@@ -37,49 +41,6 @@ Maven Module
 <dependency>
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources-images</artifactId>
-    <version>1.15</version>
+    <version>1.16</version>
 </dependency>
----
-
-Examples
-
----
-// Foo.class
-public class Foo {
-
-    private Images images;
-
-    private ImageResolution imageFoo;
-
-    private ImageResolution imageBar;
-
-    @Inject
-    public void setImages(ImagesFactory factory) {
-        this.images = factory.create("Foo");
-        this.imageFoo = images.getResource("foo", Locale.ENGLISH, IconSize.SMALL);
-        this.imageBar = images.getResource("bar", Locale.ENGLISH, IconSize.SMALL);
-    }
-
-    public void useResources() {
-        Image image = imageFoo.getImage();
-    }
-}
----
-
----
-# Foo.properties
-foo = com/anrisoftware/resources/images/en/foo.png
-bar = com/anrisoftware/resources/images/en/bar.png
----
-
----
-# Foo_de.properties
-foo = com/anrisoftware/resources/images/de/foo.png
-bar = com/anrisoftware/resources/images/de/bar.png
----
-
----
-# Foo_ru.properties
-foo = com/anrisoftware/resources/images/ru/foo.png
-bar = com/anrisoftware/resources/images/ru/bar.png
 ---
