@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-images. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.images.maps;
+package com.anrisoftware.resources.images.mapcached;
 
 import static java.lang.Math.abs;
 
@@ -117,12 +117,12 @@ class ImagesMapImpl implements ImagesMap {
 
         int diff = Integer.MAX_VALUE;
         ImageResource foundImage = null;
-        for (Map<Dimension, ImageResource> resolution : resolutions.values()) {
-            ImageResource image = resolution.get(size);
+        for (Map<Dimension, ImageResource> sizesmap : resolutions.values()) {
+            ImageResource image = sizesmap.get(size);
             if (image != null) {
                 return image;
             }
-            findNearest.findNearest(resolution);
+            findNearest.findNearest(sizesmap);
             int newdiff = findNearest.getDifference();
             if (newdiff < 0 && abs(newdiff) < abs(diff)) {
                 foundImage = findNearest.getImage();
@@ -234,6 +234,18 @@ class ImagesMapImpl implements ImagesMap {
         resolutions = images.get(name);
         return resolutions == null ? false : resolutions
                 .containsKey(resolution);
+    }
+
+    @Override
+    public boolean haveImage(String name, ImageResolution resolution,
+            Dimension size) {
+        Map<ImageResolution, Map<Dimension, ImageResource>> resolutions;
+        resolutions = images.get(name);
+        if (resolutions == null) {
+            return false;
+        }
+        Map<Dimension, ImageResource> sizes = resolutions.get(size);
+        return sizes == null ? false : sizes.containsKey(size);
     }
 
     @Override

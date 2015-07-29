@@ -30,33 +30,37 @@ import com.anrisoftware.resources.images.mapcached.ResourcesImagesCachedMapModul
 import com.anrisoftware.resources.images.scaling.ResourcesSmoothScalingModule
 
 /**
- * Test the images map.
+ * Test the image resources with a cached sizes map.
  *
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
+ * @since 1.17
  */
-class ImagesMapTest extends AbstractImagesMapTest {
+class ImageResourcesCachedMapTest extends AbstractImageResourcesTest {
 
     @Test
-    void "put images to map without dublicates"() {
-        super."put images to map without dublicates"()
+    void "load image with no resize and ldpi"() {
+        super."load image with no resize and ldpi"()
     }
 
     @Test
-    void "put images to map with dublicates"() {
-        super."put images to map with dublicates"()
+    void "load image with resize and ldpi"() {
+        super."load image with resize and ldpi"()
     }
 
     @Test
-    void "return custom sizes of images"() {
-        super."return custom sizes of images"()
+    void "load image with resize and xhdpi"() {
+        super."load image with resize and xhdpi"()
     }
 
     @Test
-    void "return custom sizes of images with auto resolution"() {
-        super."return custom sizes of images with auto resolution"()
+    void "same image with different sizes"() {
+        super."same image with different sizes"()
     }
 
+    @Test
+    void "same image with different sizes and auto-resolution"() {
+        super."same image with different sizes and auto-resolution"()
+    }
 
     @Override
     def createFactory() {

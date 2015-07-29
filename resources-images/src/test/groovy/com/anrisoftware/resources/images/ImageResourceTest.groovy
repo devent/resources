@@ -26,7 +26,7 @@ import com.anrisoftware.resources.images.api.ImageResourceFactory
 import com.anrisoftware.resources.images.api.ImagesFactory
 import com.anrisoftware.resources.images.api.ImagesMapFactory
 import com.anrisoftware.resources.images.images.ImagesResourcesModule
-import com.anrisoftware.resources.images.maps.ResourcesImagesMapsModule
+import com.anrisoftware.resources.images.mapcached.ResourcesImagesCachedMapModule
 import com.anrisoftware.resources.images.scaling.ResourcesSmoothScalingModule
 
 /**
@@ -64,7 +64,7 @@ class ImageResourceTest extends AbstractImageResourceTest {
 
     @Override
     def getMapModule() {
-        new ResourcesImagesMapsModule()
+        new ResourcesImagesCachedMapModule()
     }
 
     @Override

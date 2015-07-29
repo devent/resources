@@ -16,43 +16,33 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-images. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.images.maps;
+package com.anrisoftware.resources.images.mapcached;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
-
-import javax.inject.Inject;
-
-import com.anrisoftware.resources.images.api.BundlesMap;
+import com.anrisoftware.globalpom.log.AbstractLogger;
+import com.anrisoftware.resources.images.api.ImageResource;
 import com.anrisoftware.resources.images.api.ImagesMap;
-import com.anrisoftware.resources.images.api.ImagesMapFactory;
 
 /**
- * Uses a {@link HashMap} to store the images for each resource bundle.
+ * Logger messages for the {@link ImagesMapImpl}.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.1
+ * @since 1.0
  */
-class BundlesMapImpl implements BundlesMap {
+class ImagesMapLogger extends AbstractLogger {
 
-	private final Map<ResourceBundle, ImagesMap> map;
+	private static final String NO_IMAGE = "Image resource '{}' with the size not found in the map, returning the next nearest.";
+	private static final String ALREADY_MAP = "Image resource {} already in map {}.";
 
-	private final ImagesMapFactory factory;
-
-	@Inject
-	BundlesMapImpl(ImagesMapFactory imagesFactory) {
-		this.map = new HashMap<ResourceBundle, ImagesMap>();
-		this.factory = imagesFactory;
+	ImagesMapLogger() {
+		super(ImagesMapImpl.class);
 	}
 
-	@Override
-	public ImagesMap getImages(ResourceBundle bundle) {
-		ImagesMap images = map.get(bundle);
-		if (images == null) {
-			images = factory.create();
-			map.put(bundle, images);
-		}
-		return images;
+	void imageAlreadyInMap(ImagesMap imagesMap, ImageResource image) {
+		log.warn(ALREADY_MAP, image, imagesMap);
 	}
+
+	void noImageReturningNearest(ImagesMap imagesMap, String name) {
+		log.warn(NO_IMAGE, name);
+	}
+
 }
