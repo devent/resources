@@ -16,28 +16,43 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-images. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.images.mapcachedresolutions;
+package com.anrisoftware.resources.images.mapcachedbounded;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ResourceBundle;
+
+import javax.inject.Inject;
 
 import com.anrisoftware.resources.images.api.BundlesMap;
 import com.anrisoftware.resources.images.api.ImagesMap;
 import com.anrisoftware.resources.images.api.ImagesMapFactory;
-import com.google.inject.AbstractModule;
-import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 /**
- * Binds the Java hash map as the image resources map. The map caches only
- * images with different resolutions.
+ * Uses a {@link HashMap} to store the images for each resource bundle.
  *
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.17
+ * @since 1.1
  */
-public class ResourcesImagesCachedResolutionsMapModule extends AbstractModule {
+class BundlesMapImpl implements BundlesMap {
 
-    @Override
-    protected void configure() {
-        bind(BundlesMap.class).to(BundlesMapImpl.class);
-        install(new FactoryModuleBuilder().implement(ImagesMap.class,
-                ImagesMapImpl.class).build(ImagesMapFactory.class));
+    private final Map<ResourceBundle, ImagesMap> map;
+
+    private final ImagesMapFactory factory;
+
+    @Inject
+    BundlesMapImpl(ImagesMapFactory imagesFactory) {
+        this.map = new HashMap<ResourceBundle, ImagesMap>();
+        this.factory = imagesFactory;
     }
 
+    @Override
+    public ImagesMap getImages(ResourceBundle bundle) {
+        ImagesMap images = map.get(bundle);
+        if (images == null) {
+            images = factory.create();
+            map.put(bundle, images);
+        }
+        return images;
+    }
 }

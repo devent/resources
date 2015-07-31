@@ -16,28 +16,33 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-images. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.images.mapcachedresolutions;
+package com.anrisoftware.resources.images.mapcachedbounded;
 
-import com.anrisoftware.resources.images.api.BundlesMap;
+import com.anrisoftware.globalpom.log.AbstractLogger;
+import com.anrisoftware.resources.images.api.ImageResource;
 import com.anrisoftware.resources.images.api.ImagesMap;
-import com.anrisoftware.resources.images.api.ImagesMapFactory;
-import com.google.inject.AbstractModule;
-import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 /**
- * Binds the Java hash map as the image resources map. The map caches only
- * images with different resolutions.
- *
+ * Logger messages for the {@link ImagesMapImpl}.
+ * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.17
+ * @since 1.0
  */
-public class ResourcesImagesCachedResolutionsMapModule extends AbstractModule {
+class ImagesMapLogger extends AbstractLogger {
 
-    @Override
-    protected void configure() {
-        bind(BundlesMap.class).to(BundlesMapImpl.class);
-        install(new FactoryModuleBuilder().implement(ImagesMap.class,
-                ImagesMapImpl.class).build(ImagesMapFactory.class));
-    }
+	private static final String NO_IMAGE = "Image resource '{}' with the size not found in the map, returning the next nearest.";
+	private static final String ALREADY_MAP = "Image resource {} already in map {}.";
+
+	ImagesMapLogger() {
+		super(ImagesMapImpl.class);
+	}
+
+	void imageAlreadyInMap(ImagesMap imagesMap, ImageResource image) {
+		log.warn(ALREADY_MAP, image, imagesMap);
+	}
+
+	void noImageReturningNearest(ImagesMap imagesMap, String name) {
+		log.warn(NO_IMAGE, name);
+	}
 
 }

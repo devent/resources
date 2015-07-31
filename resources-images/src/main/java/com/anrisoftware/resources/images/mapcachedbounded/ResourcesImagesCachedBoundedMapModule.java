@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-images. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.images.mapcachedresolutions;
+package com.anrisoftware.resources.images.mapcachedbounded;
 
 import com.anrisoftware.resources.images.api.BundlesMap;
 import com.anrisoftware.resources.images.api.ImagesMap;
@@ -25,13 +25,13 @@ import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 /**
- * Binds the Java hash map as the image resources map. The map caches only
- * images with different resolutions.
+ * Binds the Java hash map as the image resources map, removes the oldest
+ * entries if it's over maximum cache size.
  *
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.17
  */
-public class ResourcesImagesCachedResolutionsMapModule extends AbstractModule {
+public class ResourcesImagesCachedBoundedMapModule extends AbstractModule {
 
     @Override
     protected void configure() {
