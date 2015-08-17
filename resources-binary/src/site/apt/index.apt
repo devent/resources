@@ -21,6 +21,8 @@ Description
 
   Binary resources.
 
+  * {{{http://www.mueller-public.de/2015/06/resources-management-project/#Binary_Resources}User Manual}}
+
 SCM
 
 * Main
@@ -41,6 +43,6 @@ Maven Module
 <dependency>
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources-binary</artifactId>
-    <version>1.16</version>
+    <version>1.17</version>
 </dependency>
 ---

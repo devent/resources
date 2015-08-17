@@ -43,6 +43,7 @@ xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache
         </links>
         <menu name="Overview">
             <item name="Home" href="/index.html" />
+            <item name="User Manual" href="http://www.mueller-public.de/2015/06/resources-management-project/#Binary_Resources" />
             <item name="Download" href="https://anrisoftware.com/l/43" />
             <item name="Javadoc" href="https://anrisoftware.com/javadoc/com.anrisoftware.resources/resources-binary/apidocs/index.html" />
             <item name="Source code" href="https://anrisoftware.com/l/42" />
