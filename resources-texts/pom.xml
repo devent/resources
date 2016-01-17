@@ -86,12 +86,6 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 		</dependency>
-		<!-- for central -->
-		<dependency>
-			<groupId>com.anrisoftware.globalpom</groupId>
-			<artifactId>globalpomutils-core</artifactId>
-			<optional>true</optional>
-		</dependency>
 	</dependencies>
 
 </project>
