@@ -38,7 +38,7 @@ import com.google.inject.assistedinject.AssistedInject;
 /**
  * Serializable template resource. Uses a template worker to process the
  * templates.
- * 
+ *
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @see TemplateWorker
  * @since 1.0
@@ -150,6 +150,11 @@ class TemplateResourceImpl implements TemplateResource, Serializable {
 	}
 
 	@Override
+    public <T> T getTemplate() {
+        return worker.getTemplate();
+    }
+
+    @Override
 	public String toString() {
 		return new ToStringBuilder(this).append("locale", getLocale())
 				.append("name", getName()).append("url", getURL()).toString();
