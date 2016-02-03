@@ -32,6 +32,7 @@ import java.util.Properties;
 
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STErrorListener;
+import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
 import org.stringtemplate.v4.compiler.STException;
 import org.stringtemplate.v4.misc.STMessage;
@@ -89,6 +90,7 @@ class STTemplateWorker implements TemplateWorker {
     private void createGroupFile() {
         this.groupFile = openGroupFile(templateUrl);
         setupRenderers(groupFile);
+        setupImports(groupFile);
         groupFile.setListener(new STErrorListener() {
 
             @Override
@@ -111,6 +113,18 @@ class STTemplateWorker implements TemplateWorker {
                 error = log.errorProcessTemplate(msg, templateUrl);
             }
         });
+    }
+
+    private void setupImports(STGroupFile group) {
+        if (!attributes.containsKey(STTemplateWorkerFactory.IMPORTS_KEY)) {
+            return;
+        }
+        @SuppressWarnings({ "unchecked", "rawtypes" })
+        List<STGroup> imports = (List) attributes
+                .get(STTemplateWorkerFactory.IMPORTS_KEY);
+        for (STGroup importGroup : imports) {
+            group.importTemplates(importGroup);
+        }
     }
 
     private void setupRenderers(STGroupFile group) {
