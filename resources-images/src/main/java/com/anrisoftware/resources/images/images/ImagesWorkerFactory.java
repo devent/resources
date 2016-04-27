@@ -18,7 +18,7 @@
  */
 package com.anrisoftware.resources.images.images;
 
-import com.anrisoftware.resources.GetBundle;
+import com.anrisoftware.resources.external.GetBundle;
 import com.anrisoftware.resources.images.api.BundlesMap;
 
 /**

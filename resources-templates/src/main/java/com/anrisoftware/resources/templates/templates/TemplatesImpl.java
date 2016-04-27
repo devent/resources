@@ -30,11 +30,11 @@ import java.util.ResourceBundle.Control;
 
 import javax.inject.Named;
 
-import com.anrisoftware.resources.GetBundle;
-import com.anrisoftware.resources.GetBundleWithClassLoader;
-import com.anrisoftware.resources.GetBundleWithClassLoaderAndControl;
-import com.anrisoftware.resources.GetBundleWithControl;
-import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.external.GetBundle;
+import com.anrisoftware.resources.external.GetBundleWithClassLoader;
+import com.anrisoftware.resources.external.GetBundleWithClassLoaderAndControl;
+import com.anrisoftware.resources.external.GetBundleWithControl;
+import com.anrisoftware.resources.external.ResourcesException;
 import com.anrisoftware.resources.templates.api.BundlesMap;
 import com.anrisoftware.resources.templates.api.TemplateResource;
 import com.anrisoftware.resources.templates.api.TemplateResourceFactory;

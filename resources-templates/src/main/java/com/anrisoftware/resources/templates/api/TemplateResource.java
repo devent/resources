@@ -22,8 +22,8 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.Properties;
 
-import com.anrisoftware.resources.api.Resource;
-import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.external.Resource;
+import com.anrisoftware.resources.external.ResourcesException;
 
 /**
  * Template resource.

@@ -21,8 +21,8 @@ package com.anrisoftware.resources.texts.api;
 import java.nio.charset.Charset;
 import java.util.Locale;
 
-import com.anrisoftware.resources.api.Resource;
-import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.external.Resource;
+import com.anrisoftware.resources.external.ResourcesException;
 
 /**
  * Text resource.

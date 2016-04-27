@@ -25,7 +25,7 @@ import org.stringtemplate.v4.compiler.STException;
 import org.stringtemplate.v4.misc.STMessage;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
-import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.external.ResourcesException;
 
 /**
  * Logging messages for {@link STTemplateWorker}.

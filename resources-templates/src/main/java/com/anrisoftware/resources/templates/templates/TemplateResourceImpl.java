@@ -27,7 +27,7 @@ import java.util.Properties;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.external.ResourcesException;
 import com.anrisoftware.resources.templates.api.TemplateResource;
 import com.anrisoftware.resources.templates.api.TemplateResourceFactory;
 import com.anrisoftware.resources.templates.api.TemplateWorker;

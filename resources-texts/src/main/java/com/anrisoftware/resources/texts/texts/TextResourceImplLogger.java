@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.Locale;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
-import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.external.ResourcesException;
 
 /**
  * Logging messages for {@link TextResourceImpl}.

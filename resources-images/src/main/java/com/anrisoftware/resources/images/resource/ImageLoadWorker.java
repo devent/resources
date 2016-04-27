@@ -24,7 +24,7 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.external.ResourcesException;
 
 final class ImageLoadWorker {
 

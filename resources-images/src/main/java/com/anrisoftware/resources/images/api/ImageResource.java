@@ -23,8 +23,8 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
-import com.anrisoftware.resources.api.Resource;
-import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.external.Resource;
+import com.anrisoftware.resources.external.ResourcesException;
 
 /**
  * Image resource with lazy loading.

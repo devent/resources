@@ -20,7 +20,7 @@ package com.anrisoftware.resources.images.api;
 
 import java.awt.Dimension;
 
-import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.external.ResourcesException;
 
 /**
  * Puts image resources and retrieve them. The images are identified by their

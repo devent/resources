@@ -20,10 +20,10 @@ package com.anrisoftware.resources.binary
 
 import org.junit.Test
 
-import com.anrisoftware.resources.api.ResourcesException
-import com.anrisoftware.resources.binary.api.BinariesFactory
-import com.anrisoftware.resources.binary.binaries.BinariesResourcesModule
-import com.anrisoftware.resources.binary.maps.BinariesDefaultMapsModule
+import com.anrisoftware.resources.binary.external.BinariesFactory
+import com.anrisoftware.resources.binary.internal.binaries.BinariesResourcesModule
+import com.anrisoftware.resources.binary.internal.maps.BinariesDefaultMapsModule
+import com.anrisoftware.resources.external.ResourcesException
 
 /**
  * Test the binary resources.
@@ -33,33 +33,33 @@ import com.anrisoftware.resources.binary.maps.BinariesDefaultMapsModule
  */
 class BinaryResourcesTest extends AbstractBinaryResourcesTest {
 
-	@Test
-	void "load lorem zipfile with different locale"() {
-		super."load lorem zipfile with different locale"()
-	}
+    @Test
+    void "load lorem zipfile with different locale"() {
+        super."load lorem zipfile with different locale"()
+    }
 
-	@Test
-	void "test serialize binary resource"() {
-		super."test serialize binary resource"()
-	}
+    @Test
+    void "test serialize binary resource"() {
+        super."test serialize binary resource"()
+    }
 
-	@Test(expected = ResourcesException)
-	void "load missing resource"() {
-		super."load missing resource"()
-	}
+    @Test(expected = ResourcesException)
+    void "load missing resource"() {
+        super."load missing resource"()
+    }
 
-	@Override
-	def createFactory() {
-		injector.getInstance(BinariesFactory)
-	}
+    @Override
+    def createFactory() {
+        injector.getInstance(BinariesFactory)
+    }
 
-	@Override
-	def getResourcesModule() {
-		new BinariesResourcesModule()
-	}
+    @Override
+    def getResourcesModule() {
+        new BinariesResourcesModule()
+    }
 
-	@Override
-	def getMapModule() {
-		new BinariesDefaultMapsModule()
-	}
+    @Override
+    def getMapModule() {
+        new BinariesDefaultMapsModule()
+    }
 }

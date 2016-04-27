@@ -38,7 +38,7 @@ import org.stringtemplate.v4.compiler.STException;
 import org.stringtemplate.v4.misc.STMessage;
 
 import com.anrisoftware.propertiesutils.ContextProperties;
-import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.external.ResourcesException;
 import com.anrisoftware.resources.templates.api.AttributeRenderer;
 import com.anrisoftware.resources.templates.api.TemplateWorker;
 import com.google.inject.Inject;

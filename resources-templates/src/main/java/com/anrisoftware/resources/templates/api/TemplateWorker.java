@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
 
-import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.external.ResourcesException;
 
 /**
  * Process the calculated data and create a string for output.

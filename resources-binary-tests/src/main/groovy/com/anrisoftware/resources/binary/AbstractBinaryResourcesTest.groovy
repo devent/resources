@@ -28,46 +28,46 @@ import static com.anrisoftware.globalpom.utils.TestUtils.*
  */
 abstract class AbstractBinaryResourcesTest extends AbstractBinaryResourcesTestUtil {
 
-	void "load lorem zipfile with different locale"() {
-		inputs.eachWithIndex { it, i ->
-			testBinaries(it.baseName, it.resources, outputs[i].resources)
-		}
-	}
+    void "load lorem zipfile with different locale"() {
+        inputs.eachWithIndex { it, i ->
+            testBinaries(it.baseName, it.resources, outputs[i].resources)
+        }
+    }
 
-	void "test serialize binary resource"() {
-		def input = inputs[0]
-		def resource = input.resources[0]
-		def output = outputs[0].resources[0]
-		def binaries = factory.create(input.baseName)
-		def binary = binaries.getResource resource.name, resource.locale
-		def binaryB = reserialize(binary)
-		testBinaryArgs(binaryB, [name: resource.name, locale: output.locale, url: output.url, size: output.availableBytes])
-	}
+    void "test serialize binary resource"() {
+        def input = inputs[0]
+        def resource = input.resources[0]
+        def output = outputs[0].resources[0]
+        def binaries = createBinaries(input.baseName)
+        def binary = binaries.getResource resource.name, resource.locale
+        def binaryB = reserialize(binary)
+        testBinaryArgs(binaryB, [name: resource.name, locale: output.locale, url: output.url, size: output.availableBytes])
+    }
 
-	void "load missing resource"() {
-		def binaries = factory.create("Missing")
-		def name = "none"
-		def locale = Locale.ENGLISH
-		def binary = binaries.getResource name, locale
-	}
+    void "load missing resource"() {
+        def binaries = createBinaries("Missing")
+        def name = "none"
+        def locale = Locale.ENGLISH
+        def binary = binaries.getResource name, locale
+    }
 
-	def testBinaries(def baseName, def resources, def output) {
-		def binaries = factory.create(baseName)
-		resources.eachWithIndex { it, i ->
-			testBinary(output[i], binaries, it.name, it.locale)
-		}
-	}
+    def testBinaries(def baseName, def resources, def output) {
+        def binaries = createBinaries(baseName)
+        resources.eachWithIndex { it, i ->
+            testBinary(output[i], binaries, it.name, it.locale)
+        }
+    }
 
-	def testBinary(def output, def binaries, def name, def locale) {
-		def binary = binaries.getResource name, locale
-		testBinaryArgs(binary, [name: name, locale: output.locale, url: output.url, size: output.availableBytes])
-	}
+    def testBinary(def output, def binaries, def name, def locale) {
+        def binary = binaries.getResource name, locale
+        testBinaryArgs(binary, [name: name, locale: output.locale, url: output.url, size: output.availableBytes])
+    }
 
-	def testBinaryArgs(def binary, def args) {
-		assert binary.name == args.name
-		assert binary.locale == args.locale
-		assert binary.URL == args.url
-		assert binary.binary.size() == args.size
-		assert binary.stream.available() == args.size
-	}
+    def testBinaryArgs(def binary, def args) {
+        assert binary.name == args.name
+        assert binary.locale == args.locale
+        assert binary.URL == args.url
+        assert binary.binary.size() == args.size
+        assert binary.stream.available() == args.size
+    }
 }

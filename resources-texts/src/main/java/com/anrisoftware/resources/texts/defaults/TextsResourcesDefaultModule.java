@@ -18,8 +18,8 @@
  */
 package com.anrisoftware.resources.texts.defaults;
 
-import com.anrisoftware.resources.binary.binaries.BinariesResourcesModule;
-import com.anrisoftware.resources.binary.maps.BinariesDefaultMapsModule;
+import com.anrisoftware.resources.binary.internal.binaries.BinariesResourcesModule;
+import com.anrisoftware.resources.binary.internal.maps.BinariesDefaultMapsModule;
 import com.anrisoftware.resources.texts.maps.TextsDefaultMapsModule;
 import com.anrisoftware.resources.texts.texts.TextsResourcesCharsetModule;
 import com.anrisoftware.resources.texts.texts.TextsResourcesModule;

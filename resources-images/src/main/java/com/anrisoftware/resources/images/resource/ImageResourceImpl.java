@@ -33,7 +33,7 @@ import javax.swing.ImageIcon;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.anrisoftware.resources.api.ResourcesException;
+import com.anrisoftware.resources.external.ResourcesException;
 import com.anrisoftware.resources.images.api.ImageResolution;
 import com.anrisoftware.resources.images.api.ImageResource;
 import com.google.inject.assistedinject.Assisted;
