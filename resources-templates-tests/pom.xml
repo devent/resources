@@ -56,6 +56,7 @@
 		<dependency>
 			<groupId>com.anrisoftware.propertiesutils</groupId>
 			<artifactId>propertiesutils-contextproperties</artifactId>
+			<type>bundle</type>
 		</dependency>
 		<dependency>
 			<groupId>org.perf4j</groupId>

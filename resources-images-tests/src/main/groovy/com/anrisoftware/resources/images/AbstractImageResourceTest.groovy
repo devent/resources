@@ -36,12 +36,11 @@ abstract class AbstractImageResourceTest extends AbstractImageResourcesTestUtils
     static IMAGE_NAME = "logo"
 
     void "load image with no resize and ldpi"() {
-        def frameFactory = injector.getInstance ShowImagesFrameFactory
         def name = IMAGE_NAME
         def locale = Locale.ENGLISH
         def width = 171
         def height = 171
-        def image = imageResourceFactory.create name, locale, low, imageLowURL
+        def image = createImageResource name, locale, low, imageLowURL
         assert image.name == name
         assert image.locale == locale
         assert image.URL == imageLowURL
@@ -49,7 +48,13 @@ abstract class AbstractImageResourceTest extends AbstractImageResourcesTestUtils
         assert image.widthPx == width
         assert image.heightPx == height
         assert image.size == new Dimension(width, height)
+
+        def frameFactory = injector.getInstance ShowImagesFrameFactory
         def frame = frameFactory.create image: image.image, size: image.size
         frame()
+    }
+
+    def createImageResource(def name, def locale, def resolution, def resource) {
+        imageResourceFactory.create name, locale, resolution, resource
     }
 }

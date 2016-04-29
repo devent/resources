@@ -39,7 +39,7 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
         def resolution = low
         def baseName = "Logos"
         def locale = Locale.GERMAN
-        def images = factory.create(baseName)
+        def images = createImages(baseName)
 
         def image = images.getResource name, locale, size, resolution
         assert image.name == name
@@ -150,6 +150,15 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
             list << value.image
         })
         frame()
+    }
+
+    /**
+     * Creates the images resources.
+     *
+     * @since 2.1
+     */
+    def createImages(String baseName) {
+        factory.create(baseName)
     }
 
     def assertImage(def resource, def image, def width, def height, def url=null) {
