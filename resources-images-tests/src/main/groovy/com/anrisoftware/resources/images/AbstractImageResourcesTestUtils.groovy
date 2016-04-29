@@ -25,6 +25,8 @@ import java.awt.Dimension
 import org.junit.Before
 import org.junit.BeforeClass
 
+import com.anrisoftware.globalpom.utils.frametesting.FrameTestingModule
+import com.anrisoftware.globalpom.utils.imagetesting.ImageTestingModule
 import com.google.inject.Guice
 import com.google.inject.Injector
 
@@ -36,130 +38,129 @@ import com.google.inject.Injector
  */
 abstract class AbstractImageResourcesTestUtils {
 
-	/**
-	 * Timeout to show the images in milliseconds.
-	 */
-	static timeout = 5 * 1000
+    /**
+     * Timeout to show the images in milliseconds.
+     */
+    static timeout = 5 * 1000
 
-	def modules
+    def modules
 
-	Injector injector
+    Injector injector
 
-	def factory
+    def factory
 
-	def imageResourceFactory
+    def imageResourceFactory
 
-	@BeforeClass
-	static void setupToStringStyle() {
-		toStringStyle
-	}
+    @BeforeClass
+    static void setupToStringStyle() {
+        toStringStyle
+    }
 
-	@Before
-	void createFactories() {
-		injector = createInjector()
-		factory = createFactory()
-		imageResourceFactory = createImageResourceFactory()
-	}
+    @Before
+    void createFactories() {
+        injector = createInjector()
+        factory = createFactory()
+        imageResourceFactory = createImageResourceFactory()
+    }
 
-	Injector createInjector() {
-		if (injector != null) {
-			injector
-		}
-		Guice.createInjector(imagesModule, mapModule, scalingWorkerModule)
-	}
+    Injector createInjector() {
+        Guice.createInjector(
+                new ImageTestingModule(), new FrameTestingModule(),
+                imagesModule, mapModule, scalingWorkerModule)
+    }
 
-	/**
-	 * Create the images resources factory.
-	 *
-	 * @since 1.2
-	 */
-	abstract createFactory()
+    /**
+     * Create the images resources factory.
+     *
+     * @since 1.2
+     */
+    abstract createFactory()
 
-	/**
-	 * Create the images map factory.
-	 *
-	 * @since 1.2
-	 */
-	abstract createImagesMapFactory()
+    /**
+     * Create the images map factory.
+     *
+     * @since 1.2
+     */
+    abstract createImagesMapFactory()
 
-	/**
-	 * Create the image resorce factory.
-	 *
-	 * @since 1.2
-	 */
-	abstract createImageResourceFactory()
+    /**
+     * Create the image resorce factory.
+     *
+     * @since 1.2
+     */
+    abstract createImageResourceFactory()
 
-	/**
-	 * Returns the images module.
-	 */
-	abstract getImagesModule()
+    /**
+     * Returns the images module.
+     */
+    abstract getImagesModule()
 
-	/**
-	 * Returns the images maps module.
-	 */
-	abstract getMapModule()
+    /**
+     * Returns the images maps module.
+     */
+    abstract getMapModule()
 
-	/**
-	 * Returns the image scaling worker module.
-	 */
-	abstract getScalingWorkerModule()
+    /**
+     * Returns the image scaling worker module.
+     */
+    abstract getScalingWorkerModule()
 
-	/**
-	 * Returns the low resolution of the image resource.
-	 *
-	 * @since 1.2
-	 */
-	abstract getLow()
+    /**
+     * Returns the low resolution of the image resource.
+     *
+     * @since 1.2
+     */
+    abstract getLow()
 
-	/**
-	 * Returns the medium resolution of the image resource.
-	 *
-	 * @since 1.2
-	 */
-	abstract getMedium()
+    /**
+     * Returns the medium resolution of the image resource.
+     *
+     * @since 1.2
+     */
+    abstract getMedium()
 
-	/**
-	 * Returns the high resolution of the image resource.
-	 *
-	 * @since 1.2
-	 */
-	abstract getHigh()
+    /**
+     * Returns the high resolution of the image resource.
+     *
+     * @since 1.2
+     */
+    abstract getHigh()
 
-	/**
-	 * Returns the low resolution of the image resource.
-	 *
-	 * @since 1.2
-	 */
-	abstract getExtraHigh()
+    /**
+     * Returns the low resolution of the image resource.
+     *
+     * @since 1.2
+     */
+    abstract getExtraHigh()
 
-	/**
-	 * Converts the map to an image resource.
-	 *
-	 * @since 1.2
-	 */
-	abstract toImageResource(def map)
+    /**
+     * Converts the map to an image resource.
+     *
+     * @since 1.2
+     */
+    abstract toImageResource(Map map)
 
-	/**
-	 * Creates a stub image resource.
-	 *
-	 * @param image
-	 * 			the parameter of the image resource as a map.
-	 *
-	 * @return the image resource.
-	 *
-	 * @since 1.2
-	 */
-	def createImage(def image) {
-		toImageResource([
-			getName: { image.name },
-			getLocale: { image.locale },
-			getURL: { image.url },
-			getResolution: { image.resolution },
-			getImage: { image.image },
-			getWidthPx: { image.width },
-			getHeightPx: { image.height },
-			getSizePx: { new Dimension(image.width, image.height) },
-			toString: { "${image.name}: ${image.image}".toString() },
-		])
-	}
+    /**
+     * Creates a stub image resource.
+     *
+     * @param image
+     * 			the parameter of the image resource as a map.
+     *
+     * @return the image resource.
+     *
+     * @since 1.2
+     */
+    def createImage(Map image) {
+        toImageResource([
+            getName: { image.name },
+            getLocale: { image.locale },
+            getURL: { image.url },
+            getResolution: { image.resolution },
+            getImage: { image.image },
+            getWidthPx: { image.width },
+            getHeightPx: { image.height },
+            getSizePx: { new Dimension(image.width, image.height) },
+            toString: { "${image.name}: ${image.image}".toString() },
+        ])
+    }
 }

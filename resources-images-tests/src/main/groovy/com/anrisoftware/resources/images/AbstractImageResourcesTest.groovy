@@ -20,7 +20,8 @@ package com.anrisoftware.resources.images
 
 import java.awt.Dimension
 
-import com.anrisoftware.globalpom.utils.ShowImagesFrame
+import com.anrisoftware.globalpom.utils.imagetesting.ShowImagesFrame
+import com.anrisoftware.globalpom.utils.imagetesting.ShowImagesFrame.ShowImagesFrameFactory
 
 /**
  * Defines the image resources tests.
@@ -48,7 +49,9 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
         assert image.URL.toString() =~ "com/anrisoftware/resources/images/logos/de/ldpi/x-mail-distribution-list.png"
         assert image.getSizePx() == size
 
-        new ShowImagesFrame(images: image.image, timeout: timeout)()
+        def frameFactory = injector.getInstance ShowImagesFrameFactory
+        def frame = frameFactory.create image: image.image, size: image.size
+        frame()
     }
 
     void "load image with resize and ldpi"() {
@@ -67,7 +70,9 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
         assert image.URL == null
         assert image.getSizePx() == size
 
-        new ShowImagesFrame(images: image.image, timeout: timeout)()
+        def frameFactory = injector.getInstance ShowImagesFrameFactory
+        def frame = frameFactory.create image: image.image, size: image.size
+        frame()
     }
 
     void "load image with resize and xhdpi"() {
@@ -86,7 +91,9 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
         assert image.URL == null
         assert image.getSizePx() == size
 
-        new ShowImagesFrame(images: image.image, timeout: timeout)()
+        def frameFactory = injector.getInstance ShowImagesFrameFactory
+        def frame = frameFactory.create image: image.image, size: image.size
+        frame()
     }
 
     void "same image with different sizes"() {
@@ -104,9 +111,11 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
         assertImage res[2], null, 260, 260
         assertImage res[3], null, 455, 455, "com/anrisoftware/resources/images/logos/de/xhdpi/x-mail-distribution-list.png"
 
-        new ShowImagesFrame(images: res.inject([], { list, value ->
+        def frameFactory = injector.getInstance ShowImagesFrameFactory
+        def frame = frameFactory.create images: res.inject([], { list, value ->
             list << value.image
-        }), timeout: 5 * 1000)()
+        })
+        frame()
     }
 
     void "same image with different sizes and auto-resolution"() {
@@ -136,9 +145,11 @@ abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtil
         assertImage res[8], null, 455, 455, "com/anrisoftware/resources/images/logos/de/xhdpi/x-mail-distribution-list.png"
         assertImage res[9], null, 600, 600
 
-        new ShowImagesFrame(images: res.inject([], { list, value ->
+        def frameFactory = injector.getInstance ShowImagesFrameFactory
+        def frame = frameFactory.create images: res.inject([], { list, value ->
             list << value.image
-        }), timeout: timeout)()
+        })
+        frame()
     }
 
     def assertImage(def resource, def image, def width, def height, def url=null) {
