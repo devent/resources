@@ -16,31 +16,15 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-texts. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.texts.api;
-
-import java.util.ResourceBundle;
+package com.anrisoftware.resources.texts.external;
 
 /**
- * A map of texts for each resource bundle.
- * <p>
- * Lazy create a new texts map for a new resource bundle.
- * 
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.1
+ * Factory to create the text resources bundles map.
+ *
+ * @author Erwin Müller, erwin.mueller@deventm.de
+ * @since 2.1
  */
-public interface BundlesMap {
+public interface BundlesMapFactory {
 
-	/**
-	 * Returns the texts for the specified resource bundle.
-	 * <p>
-	 * If no texts are found for the specified resource bundle a new texts map
-	 * is created.
-	 * 
-	 * @param bundle
-	 *            the {@link ResourceBundle}.
-	 * 
-	 * @return the {@link TextsMap} for the resource bundle.
-	 */
-	TextsMap getTexts(ResourceBundle bundle);
-
+    BundlesMap create();
 }

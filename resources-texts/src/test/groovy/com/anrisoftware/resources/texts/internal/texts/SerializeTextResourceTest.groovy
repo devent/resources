@@ -16,15 +16,14 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-texts. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.texts
+package com.anrisoftware.resources.texts.internal.texts
 
 import org.junit.Test
 
-import com.anrisoftware.resources.texts.api.TextResourceFactory
-import com.anrisoftware.resources.texts.api.TextsFactory
-import com.anrisoftware.resources.texts.maps.TextsDefaultMapsModule
-import com.anrisoftware.resources.texts.texts.TextsResourcesCharsetModule
-import com.anrisoftware.resources.texts.texts.TextsResourcesModule
+import com.anrisoftware.resources.texts.AbstractSerializationTest
+import com.anrisoftware.resources.texts.external.TextResourceFactory
+import com.anrisoftware.resources.texts.external.TextsFactory
+import com.anrisoftware.resources.texts.internal.maps.TextsDefaultMapsModule
 
 /**
  * Test the serializable text resource.
@@ -34,33 +33,33 @@ import com.anrisoftware.resources.texts.texts.TextsResourcesModule
  */
 class SerializeTextResourceTest extends AbstractSerializationTest {
 
-	@Test
-	void "serialize text resource"() {
-		super."serialize text resource"()
-	}
+    @Test
+    void "serialize text resource"() {
+        super."serialize text resource"()
+    }
 
-	@Override
-	def getTextsModule() {
-		new TextsResourcesModule()
-	}
+    @Override
+    def getTextsModule() {
+        new TextsResourcesModule()
+    }
 
-	@Override
-	def getTextsMapModule() {
-		new TextsDefaultMapsModule()
-	}
+    @Override
+    def getTextsMapModule() {
+        new TextsDefaultMapsModule()
+    }
 
-	@Override
-	def createFactory() {
-		injector.getInstance(TextsFactory)
-	}
+    @Override
+    def createFactory() {
+        injector.getInstance(TextsFactory)
+    }
 
-	@Override
-	def getCharacterSetModule() {
-		new TextsResourcesCharsetModule()
-	}
+    @Override
+    def getCharacterSetModule() {
+        new TextsResourcesCharsetModule()
+    }
 
-	@Override
-	def createTextFactory() {
-		injector.getInstance(TextResourceFactory)
-	}
+    @Override
+    def createTextFactory() {
+        injector.getInstance(TextResourceFactory)
+    }
 }

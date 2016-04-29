@@ -16,27 +16,18 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-texts. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.texts.maps;
-
-import com.anrisoftware.resources.texts.api.BundlesMap;
-import com.anrisoftware.resources.texts.api.TextsMap;
-import com.anrisoftware.resources.texts.api.TextsMapFactory;
-import com.google.inject.AbstractModule;
-import com.google.inject.assistedinject.FactoryModuleBuilder;
+package com.anrisoftware.resources.texts.external;
 
 /**
- * Binds the text resources that is using Java hash map for the texts maps.
+ * Factory to create a new texts map.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
  */
-public class TextsDefaultMapsModule extends AbstractModule {
+public interface TextsMapFactory {
 
-	@Override
-	protected void configure() {
-		bind(BundlesMap.class).to(BundlesMapImpl.class);
-		install(new FactoryModuleBuilder().implement(TextsMap.class,
-				TextsMapImpl.class).build(TextsMapFactory.class));
-	}
-
+	/**
+	 * Creates a new {@link TextsMap}.
+	 */
+	TextsMap create();
 }

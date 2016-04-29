@@ -16,29 +16,31 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-texts. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.texts.texts;
+package com.anrisoftware.resources.texts.external;
 
-import com.anrisoftware.resources.texts.api.TextResource;
-import com.anrisoftware.resources.texts.api.TextResourceFactory;
-import com.anrisoftware.resources.texts.api.Texts;
-import com.anrisoftware.resources.texts.api.TextsFactory;
-import com.google.inject.AbstractModule;
-import com.google.inject.assistedinject.FactoryModuleBuilder;
+import java.util.ResourceBundle;
 
 /**
- * Binds the text resources classes.
+ * A map of texts for each resource bundle.
+ * <p>
+ * Lazy create a new texts map for a new resource bundle.
  * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
+ * @since 1.1
  */
-public class TextsResourcesModule extends AbstractModule {
+public interface BundlesMap {
 
-	@Override
-	protected void configure() {
-		install(new FactoryModuleBuilder().implement(Texts.class,
-				TextsImpl.class).build(TextsFactory.class));
-		install(new FactoryModuleBuilder().implement(TextResource.class,
-				TextResourceImpl.class).build(TextResourceFactory.class));
-	}
+	/**
+	 * Returns the texts for the specified resource bundle.
+	 * <p>
+	 * If no texts are found for the specified resource bundle a new texts map
+	 * is created.
+	 * 
+	 * @param bundle
+	 *            the {@link ResourceBundle}.
+	 * 
+	 * @return the {@link TextsMap} for the resource bundle.
+	 */
+	TextsMap getTexts(ResourceBundle bundle);
 
 }

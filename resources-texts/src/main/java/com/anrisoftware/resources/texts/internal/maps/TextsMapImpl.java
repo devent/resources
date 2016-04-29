@@ -16,15 +16,15 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-texts. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.texts.maps;
+package com.anrisoftware.resources.texts.internal.maps;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.texts.api.TextResource;
-import com.anrisoftware.resources.texts.api.TextsMap;
+import com.anrisoftware.resources.texts.external.TextResource;
+import com.anrisoftware.resources.texts.external.TextsMap;
 
 /**
  * Uses the Java hash map to store the text resources identified by their name.

@@ -16,30 +16,29 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-texts. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.texts.defaults;
+package com.anrisoftware.resources.texts.internal.maps;
 
-import com.anrisoftware.resources.binary.internal.binaries.BinariesResourcesModule;
-import com.anrisoftware.resources.binary.internal.maps.BinariesDefaultMapsModule;
-import com.anrisoftware.resources.texts.maps.TextsDefaultMapsModule;
-import com.anrisoftware.resources.texts.texts.TextsResourcesCharsetModule;
-import com.anrisoftware.resources.texts.texts.TextsResourcesModule;
+import com.anrisoftware.resources.texts.external.BundlesMap;
+import com.anrisoftware.resources.texts.external.BundlesMapFactory;
+import com.anrisoftware.resources.texts.external.TextsMap;
+import com.anrisoftware.resources.texts.external.TextsMapFactory;
 import com.google.inject.AbstractModule;
+import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 /**
- * Installs default modules for the texts resources.
- * 
+ * Binds the text resources that is using Java hash map for the texts maps.
+ *
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.5
+ * @since 1.1
  */
-public class TextsResourcesDefaultModule extends AbstractModule {
+public class TextsDefaultMapsModule extends AbstractModule {
 
-	@Override
-	protected void configure() {
-		install(new TextsResourcesModule());
-		install(new TextsResourcesCharsetModule());
-		install(new TextsDefaultMapsModule());
-		install(new BinariesResourcesModule());
-		install(new BinariesDefaultMapsModule());
-	}
+    @Override
+    protected void configure() {
+        install(new FactoryModuleBuilder().implement(TextsMap.class,
+                TextsMapImpl.class).build(TextsMapFactory.class));
+        install(new FactoryModuleBuilder().implement(BundlesMap.class,
+                BundlesMapImpl.class).build(BundlesMapFactory.class));
+    }
 
 }

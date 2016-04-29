@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-texts. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.texts.maps;
+package com.anrisoftware.resources.texts.internal.maps;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,9 +24,9 @@ import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.texts.api.BundlesMap;
-import com.anrisoftware.resources.texts.api.TextsMap;
-import com.anrisoftware.resources.texts.api.TextsMapFactory;
+import com.anrisoftware.resources.texts.external.BundlesMap;
+import com.anrisoftware.resources.texts.external.TextsMap;
+import com.anrisoftware.resources.texts.external.TextsMapFactory;
 
 /**
  * Uses a Java hash map to store the texts for each resource bundle.

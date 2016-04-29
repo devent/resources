@@ -16,46 +16,29 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-texts. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.texts
+package com.anrisoftware.resources.texts.internal.texts;
 
-import org.junit.Test
-
-import com.anrisoftware.resources.texts.api.TextsFactory
-import com.anrisoftware.resources.texts.maps.TextsDefaultMapsModule
-import com.anrisoftware.resources.texts.texts.TextsResourcesCharsetModule
-import com.anrisoftware.resources.texts.texts.TextsResourcesModule
-import com.google.inject.Injector
+import com.anrisoftware.resources.texts.external.TextResource;
+import com.anrisoftware.resources.texts.external.TextResourceFactory;
+import com.anrisoftware.resources.texts.external.Texts;
+import com.anrisoftware.resources.texts.external.TextsFactory;
+import com.google.inject.AbstractModule;
+import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 /**
- * Creates the text resources and runs functionality tests.
- *
+ * Binds the text resources classes.
+ * 
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-class TextResourceTest extends AbstractTextResourceTest {
-
-	@Test
-	void "load plain text with defined locale"() {
-		super."load plain text with defined locale"()
-	}
+public class TextsResourcesModule extends AbstractModule {
 
 	@Override
-	def getTextsModule() {
-		new TextsResourcesModule()
+	protected void configure() {
+		install(new FactoryModuleBuilder().implement(Texts.class,
+				TextsImpl.class).build(TextsFactory.class));
+		install(new FactoryModuleBuilder().implement(TextResource.class,
+				TextResourceImpl.class).build(TextResourceFactory.class));
 	}
 
-	@Override
-	def getTextsMapModule() {
-		new TextsDefaultMapsModule()
-	}
-
-	@Override
-	def createFactory() {
-		injector.getInstance(TextsFactory)
-	}
-
-	@Override
-	def getCharacterSetModule() {
-		new TextsResourcesCharsetModule()
-	}
 }

@@ -16,29 +16,14 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-texts. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.texts.maps;
-
-import com.anrisoftware.globalpom.log.AbstractLogger;
+package com.anrisoftware.resources.texts.external;
 
 /**
- * Logging messages for {@link TextsMapImpl}.
- * 
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
+ * Texts resources map service.
+ *
+ * @author Erwin Müller, erwin.mueller@deventm.de
+ * @since 2.1
  */
-class TextsMapLogger extends AbstractLogger {
-
-	private static final String CONTAINS_TEXT = "Map contains text resource '{}'.";
-
-	/**
-	 * Creates a logger for {@link TextsMapImpl}.
-	 */
-	TextsMapLogger() {
-		super(TextsMapImpl.class);
-	}
-
-	void textAlreadyInMap(String name) {
-		log.warn(CONTAINS_TEXT, name);
-	}
+public interface TextsMapService extends TextsMapFactory {
 
 }

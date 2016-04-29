@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-texts. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.texts.texts;
+package com.anrisoftware.resources.texts.internal.texts;
 
 import static java.lang.String.format;
 
@@ -28,7 +28,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.external.ResourcesException;
-import com.anrisoftware.resources.texts.api.TextResource;
+import com.anrisoftware.resources.texts.external.TextResource;
 
 /**
  * Logging messages for {@link TextsImpl}.

@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with resources-texts. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anrisoftware.resources.texts.texts;
+package com.anrisoftware.resources.texts.internal.texts;
 
 import java.io.IOException;
 import java.util.Locale;

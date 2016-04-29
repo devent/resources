@@ -12,6 +12,7 @@
 
 	<artifactId>resources-binary</artifactId>
 	<name>Resources :: Binary</name>
+    <packaging>bundle</packaging>
 	<description>Binary resources.</description>
 	<inceptionYear>2012</inceptionYear>
 	<url>https://anrisoftware.com/projects/projects/resources-binary</url>
