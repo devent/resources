@@ -12,35 +12,36 @@
 
 	<artifactId>resources-templates</artifactId>
 	<name>Resources :: Templates</name>
+	<packaging>bundle</packaging>
 	<description>Templates resources.</description>
 	<url>https://anrisoftware.com/projects/projects/resources-templates</url>
 	<inceptionYear>2012</inceptionYear>
 
-    <scm>
-        <connection>scm:git:git@anrisoftware.com:resources.git</connection>
-        <developerConnection>scm:git:git@anrisoftware.com:resources.git</developerConnection>
-        <url>https://anrisoftware.com/projects/projects/resources-templates/repository</url>
-    </scm>
+	<scm>
+		<connection>scm:git:git@anrisoftware.com:resources.git</connection>
+		<developerConnection>scm:git:git@anrisoftware.com:resources.git</developerConnection>
+		<url>https://anrisoftware.com/projects/projects/resources-templates/repository</url>
+	</scm>
 
-    <issueManagement>
-        <system>Redmine</system>
-        <url>https://anrisoftware.com/projects/projects/resources-templates</url>
-    </issueManagement>
+	<issueManagement>
+		<system>Redmine</system>
+		<url>https://anrisoftware.com/projects/projects/resources-templates</url>
+	</issueManagement>
 
-    <distributionManagement>
-        <site>
-          <id>anrisoftware</id>
-          <url>dav:https://anrisoftware.com/javadoc/${project.groupId}/${project.artifactId}</url>
-        </site>
-        <repository>
-            <id>osssonatype</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-        </repository>
-        <snapshotRepository>
-            <id>osssonatype_snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
+	<distributionManagement>
+		<site>
+			<id>anrisoftware</id>
+			<url>dav:https://anrisoftware.com/javadoc/${project.groupId}/${project.artifactId}</url>
+		</site>
+		<repository>
+			<id>osssonatype</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+		<snapshotRepository>
+			<id>osssonatype_snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<dependencies>
 
@@ -49,28 +50,50 @@
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
 			<version>2.1-SNAPSHOT</version>
-            <type>bundle</type>
+			<type>bundle</type>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
 			<version>2.1-SNAPSHOT</version>
-            <type>bundle</type>
+			<type>bundle</type>
 		</dependency>
 
 		<!-- compile dependencies -->
+		<dependency>
+			<groupId>com.anrisoftware.globalpom</groupId>
+			<artifactId>globalpom-log</artifactId>
+			<type>bundle</type>
+		</dependency>
 		<dependency>
 			<groupId>com.google.inject.extensions</groupId>
 			<artifactId>guice-assistedinject</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.anrisoftware.globalpom</groupId>
-			<artifactId>globalpom-log</artifactId>
-            <type>bundle</type>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.scr.annotations</artifactId>
+		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-scr-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate-scr-scrdescriptor</id>
+						<goals>
+							<goal>scr</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>

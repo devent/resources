@@ -32,67 +32,64 @@ import com.google.inject.Injector
  */
 abstract class AbstractTemplateResourceTestUtils extends TestUtils {
 
-	Injector injector
+    Injector injector
 
-	def factory
+    def factory
 
-	def resourceFactory
+    def resourceFactory
 
-	@Before
-	void createFactories() {
-		injector = createInjector()
-		factory = createFactory()
-		resourceFactory = createResourceFactory()
-	}
+    @Before
+    void createFactories() {
+        injector = createInjector()
+        factory = createFactory()
+        resourceFactory = createResourceFactory()
+    }
 
-	/**
-	 * Creates the needed modules if they are not already have been created.
-	 */
-	Injector createInjector() {
-		if (injector != null) {
-			injector
-		}
-		Guice.createInjector(templatesModule, templateWorkerModule,
-						templatesMapModule, propertiesModule)
-	}
+    /**
+     * Creates the needed modules if they are not already have been created.
+     */
+    Injector createInjector() {
+        Guice.createInjector(templatesModule, templateWorkerModule,
+                templatesMapModule, propertiesModule)
+    }
 
-	/**
-	 * Create the templates factory.
-	 */
-	abstract createFactory()
+    /**
+     * Create the templates factory.
+     */
+    abstract createFactory()
 
-	/**
-	 * Create the template resource factory.
-	 */
-	abstract createResourceFactory()
+    /**
+     * Create the template resource factory.
+     */
+    abstract createResourceFactory()
 
-	/**
-	 * Returns the module that binds the template resources.
-	 */
-	abstract getTemplatesModule()
+    /**
+     * Returns the module that binds the template resources.
+     */
+    abstract getTemplatesModule()
 
-	/**
-	 * Returns the module that binds the template worker.
-	 */
-	abstract getTemplateWorkerModule()
+    /**
+     * Returns the module that binds the template worker.
+     */
+    abstract getTemplateWorkerModule()
 
-	/**
-	 * Returns the module that binds the template resources maps.
-	 */
-	abstract getTemplatesMapModule()
+    /**
+     * Returns the module that binds the template resources maps.
+     */
+    abstract getTemplatesMapModule()
 
-	/**
-	 * Returns the module that binds the template properties.
-	 */
-	abstract getPropertiesModule()
+    /**
+     * Returns the URL of the template.
+     */
+    abstract getTemplateUrl()
 
-	/**
-	 * Returns the URL of the template.
-	 */
-	abstract getTemplateUrl()
+    /**
+     * Returns the template properties.
+     */
+    abstract getTemplateProperties()
 
-	/**
-	 * Returns the template properties.
-	 */
-	abstract getTemplateProperties()
+    /**
+     * Returns the module that binds the template properties.
+     */
+    abstract getPropertiesModule()
 }
