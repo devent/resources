@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
  */
-public interface BundlesMap {
+public interface BinariesBundlesMap {
 
 	/**
 	 * Returns the binaries for the specified resource bundle.

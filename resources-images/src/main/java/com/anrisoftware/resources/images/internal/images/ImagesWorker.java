@@ -28,7 +28,7 @@ import javax.inject.Inject;
 
 import com.anrisoftware.resources.external.GetBundle;
 import com.anrisoftware.resources.external.ResourcesException;
-import com.anrisoftware.resources.images.external.BundlesMap;
+import com.anrisoftware.resources.images.external.ImagesBundlesMap;
 import com.anrisoftware.resources.images.external.ImageResolution;
 import com.anrisoftware.resources.images.external.ImageResource;
 import com.anrisoftware.resources.images.external.ImageResourceFactory;
@@ -54,7 +54,7 @@ class ImagesWorker {
 
     private final GetBundle getBundle;
 
-    private final BundlesMap bundles;
+    private final ImagesBundlesMap bundles;
 
     /**
      * Injects the dependencies.
@@ -82,7 +82,7 @@ class ImagesWorker {
     ImagesWorker(ImagesWorkerLogger logger,
             ImageResourceFactory imageResourceFactory,
             ImageScalingWorkerFactory scalingWorkerFactory,
-            @Assisted GetBundle getBundle, @Assisted BundlesMap bundles) {
+            @Assisted GetBundle getBundle, @Assisted ImagesBundlesMap bundles) {
         this.log = logger;
         this.imageResourceFactory = imageResourceFactory;
         this.scalingWorkerFactory = scalingWorkerFactory;

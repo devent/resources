@@ -15,8 +15,8 @@
  */
 package com.anrisoftware.resources.templates.internal.maps;
 
-import com.anrisoftware.resources.templates.external.BundlesMap;
-import com.anrisoftware.resources.templates.external.BundlesMapFactory;
+import com.anrisoftware.resources.templates.external.TemplatesBundlesMap;
+import com.anrisoftware.resources.templates.external.TemplatesBundlesMapFactory;
 import com.anrisoftware.resources.templates.external.TemplatesMap;
 import com.anrisoftware.resources.templates.external.TemplatesMapFactory;
 import com.google.inject.AbstractModule;
@@ -34,8 +34,8 @@ public class TemplatesDefaultMapsModule extends AbstractModule {
 	protected void configure() {
 		install(new FactoryModuleBuilder().implement(TemplatesMap.class,
 				TemplatesMapImpl.class).build(TemplatesMapFactory.class));
-        install(new FactoryModuleBuilder().implement(BundlesMap.class,
-                BundlesMapImpl.class).build(BundlesMapFactory.class));
+        install(new FactoryModuleBuilder().implement(TemplatesBundlesMap.class,
+                TemplatesBundlesMapImpl.class).build(TemplatesBundlesMapFactory.class));
 	}
 
 }

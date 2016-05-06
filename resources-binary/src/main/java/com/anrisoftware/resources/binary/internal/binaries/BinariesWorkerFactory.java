@@ -17,7 +17,7 @@ package com.anrisoftware.resources.binary.internal.binaries;
 
 import java.util.Locale;
 
-import com.anrisoftware.resources.binary.external.BundlesMap;
+import com.anrisoftware.resources.binary.external.BinariesBundlesMap;
 import com.anrisoftware.resources.external.GetBundle;
 
 /**
@@ -45,5 +45,5 @@ interface BinariesWorkerFactory {
 	 *            the map of bundles with their binary resources maps.
 	 */
 	BinariesWorker create(String name, Locale locale, GetBundle getBundle,
-			BundlesMap bundles);
+			BinariesBundlesMap bundles);
 }

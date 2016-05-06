@@ -29,8 +29,8 @@ import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
 
-import com.anrisoftware.resources.templates.external.BundlesMapFactory;
-import com.anrisoftware.resources.templates.external.BundlesMapService;
+import com.anrisoftware.resources.templates.external.TemplatesBundlesMapFactory;
+import com.anrisoftware.resources.templates.external.TemplatesBundlesMapService;
 import com.anrisoftware.resources.templates.external.TemplateWorkerFactory;
 import com.anrisoftware.resources.templates.external.TemplateWorkerService;
 import com.anrisoftware.resources.templates.external.Templates;
@@ -53,7 +53,7 @@ import com.google.inject.AbstractModule;
 public class TemplatesServiceImpl implements TemplatesService {
 
     @Reference
-    private BundlesMapService bundlesMapService;
+    private TemplatesBundlesMapService bundlesMapService;
 
     @Reference
     private TemplatesMapService templatesMapService;
@@ -120,7 +120,7 @@ public class TemplatesServiceImpl implements TemplatesService {
 
             @Override
             protected void configure() {
-                bind(BundlesMapFactory.class).toProvider(of(bundlesMapService));
+                bind(TemplatesBundlesMapFactory.class).toProvider(of(bundlesMapService));
                 bind(TemplatesMapFactory.class).toProvider(
                         of(templatesMapService));
                 bind(TemplateWorkerFactory.class).toProvider(

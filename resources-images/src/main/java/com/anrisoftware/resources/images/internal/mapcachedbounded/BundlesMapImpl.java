@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.images.external.BundlesMap;
+import com.anrisoftware.resources.images.external.ImagesBundlesMap;
 import com.anrisoftware.resources.images.external.ImagesMap;
 import com.anrisoftware.resources.images.external.ImagesMapFactory;
 
@@ -31,7 +31,7 @@ import com.anrisoftware.resources.images.external.ImagesMapFactory;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
  */
-class BundlesMapImpl implements BundlesMap {
+class BundlesMapImpl implements ImagesBundlesMap {
 
     private final Map<ResourceBundle, ImagesMap> map;
 

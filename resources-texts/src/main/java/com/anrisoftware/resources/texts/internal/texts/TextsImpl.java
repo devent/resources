@@ -31,8 +31,8 @@ import com.anrisoftware.resources.external.GetBundleWithClassLoader;
 import com.anrisoftware.resources.external.GetBundleWithClassLoaderAndControl;
 import com.anrisoftware.resources.external.GetBundleWithControl;
 import com.anrisoftware.resources.external.ResourcesException;
-import com.anrisoftware.resources.texts.external.BundlesMap;
-import com.anrisoftware.resources.texts.external.BundlesMapFactory;
+import com.anrisoftware.resources.texts.external.TextsBundlesMap;
+import com.anrisoftware.resources.texts.external.TextsBundlesMapFactory;
 import com.anrisoftware.resources.texts.external.TextResource;
 import com.anrisoftware.resources.texts.external.TextResourceFactory;
 import com.anrisoftware.resources.texts.external.Texts;
@@ -50,7 +50,7 @@ class TextsImpl implements Texts {
 
     private final TextsImplLogger log;
 
-    private final BundlesMap texts;
+    private final TextsBundlesMap texts;
 
     private final TextResourceFactory textResourceFactory;
 
@@ -65,7 +65,7 @@ class TextsImpl implements Texts {
      *            the {@link TextsImplLogger} for the logging messages.
      *
      * @param texts
-     *            the {@link BundlesMapFactory} that cache the resource bundles.
+     *            the {@link TextsBundlesMapFactory} that cache the resource bundles.
      *
      * @param textResourceFactory
      *            the {@link TextResourceFactory} that creates the text
@@ -78,7 +78,7 @@ class TextsImpl implements Texts {
      *            the base name for the text resources.
      */
     @AssistedInject
-    TextsImpl(TextsImplLogger logger, BundlesMapFactory texts,
+    TextsImpl(TextsImplLogger logger, TextsBundlesMapFactory texts,
             TextResourceFactory textResourceFactory,
             @Named("texts-default-charset") Charset defaultCharset,
             @Assisted String baseName) {
@@ -94,7 +94,7 @@ class TextsImpl implements Texts {
      *            the {@link TextsImplLogger} for the logging messages.
      *
      * @param texts
-     *            the {@link BundlesMapFactory} that cache the resource bundles.
+     *            the {@link TextsBundlesMapFactory} that cache the resource bundles.
      *
      * @param textResourceFactory
      *            the {@link TextResourceFactory} that creates the text
@@ -110,7 +110,7 @@ class TextsImpl implements Texts {
      *            the {@link ClassLoader} to load the text resources.
      */
     @AssistedInject
-    TextsImpl(TextsImplLogger logger, BundlesMapFactory texts,
+    TextsImpl(TextsImplLogger logger, TextsBundlesMapFactory texts,
             TextResourceFactory textResourceFactory,
             @Named("texts-default-charset") Charset defaultCharset,
             @Assisted String baseName, @Assisted ClassLoader classLoader) {
@@ -126,7 +126,7 @@ class TextsImpl implements Texts {
      *            the {@link TextsImplLogger} for the logging messages.
      *
      * @param texts
-     *            the {@link BundlesMapFactory} that cache the resource bundles.
+     *            the {@link TextsBundlesMapFactory} that cache the resource bundles.
      *
      * @param textResourceFactory
      *            the {@link TextResourceFactory} that creates the text
@@ -142,7 +142,7 @@ class TextsImpl implements Texts {
      *            the {@link ResourceBundle.Control} for the text resources.
      */
     @AssistedInject
-    TextsImpl(TextsImplLogger logger, BundlesMapFactory texts,
+    TextsImpl(TextsImplLogger logger, TextsBundlesMapFactory texts,
             TextResourceFactory textResourceFactory,
             @Named("texts-default-charset") Charset defaultCharset,
             @Assisted String baseName, @Assisted ResourceBundle.Control control) {
@@ -158,7 +158,7 @@ class TextsImpl implements Texts {
      *            the {@link TextsImplLogger} for the logging messages.
      *
      * @param texts
-     *            the {@link BundlesMapFactory} that cache the resource bundles.
+     *            the {@link TextsBundlesMapFactory} that cache the resource bundles.
      *
      * @param textResourceFactory
      *            the {@link TextResourceFactory} that creates the text
@@ -177,7 +177,7 @@ class TextsImpl implements Texts {
      *            the {@link ResourceBundle.Control} for the text resources.
      */
     @AssistedInject
-    TextsImpl(TextsImplLogger logger, BundlesMapFactory texts,
+    TextsImpl(TextsImplLogger logger, TextsBundlesMapFactory texts,
             TextResourceFactory textResourceFactory,
             @Named("texts-default-charset") Charset defaultCharset,
             @Assisted String baseName, @Assisted ClassLoader classLoader,
@@ -187,7 +187,7 @@ class TextsImpl implements Texts {
                         control));
     }
 
-    private TextsImpl(TextsImplLogger logger, BundlesMapFactory texts,
+    private TextsImpl(TextsImplLogger logger, TextsBundlesMapFactory texts,
             TextResourceFactory textResourceFactory, Charset defaultCharset,
             GetBundle getBundle) {
         this.log = logger;

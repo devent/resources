@@ -15,8 +15,8 @@
  */
 package com.anrisoftware.resources.images.internal.mapcachedbounded;
 
-import com.anrisoftware.resources.images.external.BundlesMap;
-import com.anrisoftware.resources.images.external.BundlesMapFactory;
+import com.anrisoftware.resources.images.external.ImagesBundlesMap;
+import com.anrisoftware.resources.images.external.ImagesBundlesMapFactory;
 import com.anrisoftware.resources.images.external.ImagesMap;
 import com.anrisoftware.resources.images.external.ImagesMapFactory;
 import com.google.inject.AbstractModule;
@@ -35,8 +35,8 @@ public class ResourcesImagesCachedBoundedMapModule extends AbstractModule {
     protected void configure() {
         install(new FactoryModuleBuilder().implement(ImagesMap.class,
                 ImagesMapImpl.class).build(ImagesMapFactory.class));
-        install(new FactoryModuleBuilder().implement(BundlesMap.class,
-                BundlesMapImpl.class).build(BundlesMapFactory.class));
+        install(new FactoryModuleBuilder().implement(ImagesBundlesMap.class,
+                BundlesMapImpl.class).build(ImagesBundlesMapFactory.class));
     }
 
 }

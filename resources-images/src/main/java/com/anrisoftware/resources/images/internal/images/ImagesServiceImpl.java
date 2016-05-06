@@ -27,8 +27,8 @@ import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
 
-import com.anrisoftware.resources.images.external.BundlesMapFactory;
-import com.anrisoftware.resources.images.external.BundlesMapService;
+import com.anrisoftware.resources.images.external.ImagesBundlesMapFactory;
+import com.anrisoftware.resources.images.external.ImagesBundlesMapService;
 import com.anrisoftware.resources.images.external.ImageScalingWorkerFactory;
 import com.anrisoftware.resources.images.external.ImageScalingWorkerService;
 import com.anrisoftware.resources.images.external.Images;
@@ -49,7 +49,7 @@ import com.google.inject.AbstractModule;
 public class ImagesServiceImpl implements ImagesService {
 
     @Reference
-    private BundlesMapService bundlesMapService;
+    private ImagesBundlesMapService bundlesMapService;
 
     @Reference
     private ImagesMapService imagesMapService;
@@ -87,7 +87,7 @@ public class ImagesServiceImpl implements ImagesService {
 
             @Override
             protected void configure() {
-                bind(BundlesMapFactory.class).toProvider(of(bundlesMapService));
+                bind(ImagesBundlesMapFactory.class).toProvider(of(bundlesMapService));
                 bind(ImagesMapFactory.class).toProvider(of(imagesMapService));
                 bind(ImageScalingWorkerFactory.class).toProvider(
                         of(imageScalingWorkerService));

@@ -21,8 +21,8 @@ import java.util.ResourceBundle.Control;
 
 import com.anrisoftware.resources.binary.external.Binaries;
 import com.anrisoftware.resources.binary.external.BinaryResource;
-import com.anrisoftware.resources.binary.external.BundlesMap;
-import com.anrisoftware.resources.binary.external.BundlesMapFactory;
+import com.anrisoftware.resources.binary.external.BinariesBundlesMap;
+import com.anrisoftware.resources.binary.external.BinariesBundlesMapFactory;
 import com.anrisoftware.resources.external.GetBundle;
 import com.anrisoftware.resources.external.GetBundleWithClassLoader;
 import com.anrisoftware.resources.external.GetBundleWithClassLoaderAndControl;
@@ -33,7 +33,7 @@ import com.google.inject.assistedinject.AssistedInject;
 
 class BinariesImpl implements Binaries {
 
-    private final BundlesMap bundles;
+    private final BinariesBundlesMap bundles;
 
     private final GetBundle getBundle;
 
@@ -41,13 +41,13 @@ class BinariesImpl implements Binaries {
 
     @AssistedInject
     BinariesImpl(BinariesWorkerFactory workerFactory,
-            BundlesMapFactory bundles, @Assisted String baseName) {
+            BinariesBundlesMapFactory bundles, @Assisted String baseName) {
         this(workerFactory, bundles, new GetBundle(baseName));
     }
 
     @AssistedInject
     BinariesImpl(BinariesWorkerFactory workerFactory,
-            BundlesMapFactory bundles, @Assisted String baseName,
+            BinariesBundlesMapFactory bundles, @Assisted String baseName,
             @Assisted ClassLoader classLoader) {
         this(workerFactory, bundles, new GetBundleWithClassLoader(baseName,
                 classLoader));
@@ -55,7 +55,7 @@ class BinariesImpl implements Binaries {
 
     @AssistedInject
     BinariesImpl(BinariesWorkerFactory workerFactory,
-            BundlesMapFactory bundles, @Assisted String baseName,
+            BinariesBundlesMapFactory bundles, @Assisted String baseName,
             @Assisted ResourceBundle.Control control) {
         this(workerFactory, bundles,
                 new GetBundleWithControl(baseName, control));
@@ -63,7 +63,7 @@ class BinariesImpl implements Binaries {
 
     @AssistedInject
     BinariesImpl(BinariesWorkerFactory workerFactory,
-            BundlesMapFactory bundles, @Assisted String baseName,
+            BinariesBundlesMapFactory bundles, @Assisted String baseName,
             @Assisted ClassLoader classLoader,
             @Assisted ResourceBundle.Control control) {
         this(workerFactory, bundles, new GetBundleWithClassLoaderAndControl(
@@ -71,7 +71,7 @@ class BinariesImpl implements Binaries {
     }
 
     private BinariesImpl(BinariesWorkerFactory workerFactory,
-            BundlesMapFactory bundles, GetBundle getBundle) {
+            BinariesBundlesMapFactory bundles, GetBundle getBundle) {
         this.workerFactory = workerFactory;
         this.bundles = bundles.create();
         this.getBundle = getBundle;

@@ -23,9 +23,9 @@ import org.apache.felix.scr.annotations.Activate;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Service;
 
-import com.anrisoftware.resources.images.external.BundlesMap;
-import com.anrisoftware.resources.images.external.BundlesMapFactory;
-import com.anrisoftware.resources.images.external.BundlesMapService;
+import com.anrisoftware.resources.images.external.ImagesBundlesMap;
+import com.anrisoftware.resources.images.external.ImagesBundlesMapFactory;
+import com.anrisoftware.resources.images.external.ImagesBundlesMapService;
 import com.google.inject.AbstractModule;
 
 /**
@@ -35,14 +35,14 @@ import com.google.inject.AbstractModule;
  * @since 2.1
  */
 @Component
-@Service(BundlesMapService.class)
-public class ImagesBundlesMapCachedSingleServiceImpl implements BundlesMapService {
+@Service(ImagesBundlesMapService.class)
+public class ImagesBundlesMapCachedSingleServiceImpl implements ImagesBundlesMapService {
 
     @Inject
-    private BundlesMapFactory bundlesMapFactory;
+    private ImagesBundlesMapFactory bundlesMapFactory;
 
     @Override
-    public BundlesMap create() {
+    public ImagesBundlesMap create() {
         return bundlesMapFactory.create();
     }
 

@@ -16,7 +16,7 @@
 package com.anrisoftware.resources.images.internal.images;
 
 import com.anrisoftware.resources.external.GetBundle;
-import com.anrisoftware.resources.images.external.BundlesMap;
+import com.anrisoftware.resources.images.external.ImagesBundlesMap;
 
 /**
  * Factory to create a new images worker.
@@ -36,5 +36,5 @@ interface ImagesWorkerFactory {
 	 * @param bundles
 	 *            the map of bundles with their images maps.
 	 */
-	ImagesWorker create(GetBundle getBundle, BundlesMap bundles);
+	ImagesWorker create(GetBundle getBundle, ImagesBundlesMap bundles);
 }

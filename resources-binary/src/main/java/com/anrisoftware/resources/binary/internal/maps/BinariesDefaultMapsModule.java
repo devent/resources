@@ -17,8 +17,8 @@ package com.anrisoftware.resources.binary.internal.maps;
 
 import com.anrisoftware.resources.binary.external.BinariesMap;
 import com.anrisoftware.resources.binary.external.BinariesMapFactory;
-import com.anrisoftware.resources.binary.external.BundlesMap;
-import com.anrisoftware.resources.binary.external.BundlesMapFactory;
+import com.anrisoftware.resources.binary.external.BinariesBundlesMap;
+import com.anrisoftware.resources.binary.external.BinariesBundlesMapFactory;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
@@ -34,8 +34,8 @@ public class BinariesDefaultMapsModule extends AbstractModule {
     protected void configure() {
         install(new FactoryModuleBuilder().implement(BinariesMap.class,
                 DefaultBinariesMap.class).build(BinariesMapFactory.class));
-        install(new FactoryModuleBuilder().implement(BundlesMap.class,
-                DefaultBundlesMap.class).build(BundlesMapFactory.class));
+        install(new FactoryModuleBuilder().implement(BinariesBundlesMap.class,
+                DefaultBundlesMap.class).build(BinariesBundlesMapFactory.class));
     }
 
 }

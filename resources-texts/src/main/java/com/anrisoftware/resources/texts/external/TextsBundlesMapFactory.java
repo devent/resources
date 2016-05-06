@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.anrisoftware.resources.templates.external;
+package com.anrisoftware.resources.texts.external;
 
 /**
- * Factory to create the templates resources bundles map.
+ * Factory to create the text resources bundles map.
  *
  * @author Erwin Müller, erwin.mueller@deventm.de
  * @since 2.1
  */
-public interface BundlesMapFactory {
+public interface TextsBundlesMapFactory {
 
-    BundlesMap create();
+    TextsBundlesMap create();
 }

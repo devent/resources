@@ -26,7 +26,7 @@ import javax.inject.Inject;
 
 import com.anrisoftware.resources.binary.external.BinariesMap;
 import com.anrisoftware.resources.binary.external.BinariesMapFactory;
-import com.anrisoftware.resources.binary.external.BundlesMap;
+import com.anrisoftware.resources.binary.external.BinariesBundlesMap;
 
 /**
  * Uses Java hash map to store the binaries for each resource bundle.
@@ -35,7 +35,7 @@ import com.anrisoftware.resources.binary.external.BundlesMap;
  * @since 1.0
  */
 @ThreadSafe
-public class DefaultBundlesMap implements BundlesMap {
+public class DefaultBundlesMap implements BinariesBundlesMap {
 
     private final Map<ResourceBundle, BinariesMap> map;
 

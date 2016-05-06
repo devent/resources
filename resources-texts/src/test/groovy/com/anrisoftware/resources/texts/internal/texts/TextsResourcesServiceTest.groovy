@@ -44,7 +44,7 @@ import org.junit.Test
 
 import com.anrisoftware.resources.binary.internal.binaries.BinariesServiceImpl
 import com.anrisoftware.resources.binary.internal.maps.BinariesMapServiceImpl
-import com.anrisoftware.resources.binary.internal.maps.BundlesMapServiceImpl
+import com.anrisoftware.resources.binary.internal.maps.BinariesBundlesMapServiceImpl
 import com.anrisoftware.resources.binary.internal.resources.BinaryResourceServiceImpl
 import com.anrisoftware.resources.texts.AbstractTextResourceTest
 import com.anrisoftware.resources.texts.external.TextsService
@@ -74,7 +74,7 @@ class TextsResourcesServiceTest extends AbstractTextResourceTest {
 
     @Override
     def createFactory() {
-        context.registerInjectActivateService(new BundlesMapServiceImpl(), null)
+        context.registerInjectActivateService(new BinariesBundlesMapServiceImpl(), null)
         context.registerInjectActivateService(new BinariesMapServiceImpl(), null)
         context.registerInjectActivateService(new BinariesServiceImpl(), null)
         context.registerInjectActivateService(new BinaryResourceServiceImpl(), null)

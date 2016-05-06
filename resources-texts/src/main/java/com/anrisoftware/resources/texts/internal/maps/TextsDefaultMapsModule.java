@@ -15,8 +15,8 @@
  */
 package com.anrisoftware.resources.texts.internal.maps;
 
-import com.anrisoftware.resources.texts.external.BundlesMap;
-import com.anrisoftware.resources.texts.external.BundlesMapFactory;
+import com.anrisoftware.resources.texts.external.TextsBundlesMap;
+import com.anrisoftware.resources.texts.external.TextsBundlesMapFactory;
 import com.anrisoftware.resources.texts.external.TextsMap;
 import com.anrisoftware.resources.texts.external.TextsMapFactory;
 import com.google.inject.AbstractModule;
@@ -34,8 +34,8 @@ public class TextsDefaultMapsModule extends AbstractModule {
     protected void configure() {
         install(new FactoryModuleBuilder().implement(TextsMap.class,
                 TextsMapImpl.class).build(TextsMapFactory.class));
-        install(new FactoryModuleBuilder().implement(BundlesMap.class,
-                BundlesMapImpl.class).build(BundlesMapFactory.class));
+        install(new FactoryModuleBuilder().implement(TextsBundlesMap.class,
+                TextsBundlesMapImpl.class).build(TextsBundlesMapFactory.class));
     }
 
 }

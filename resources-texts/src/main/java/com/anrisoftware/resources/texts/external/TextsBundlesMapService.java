@@ -16,12 +16,11 @@
 package com.anrisoftware.resources.texts.external;
 
 /**
- * Factory to create the text resources bundles map.
+ * Texts resources bundles map service.
  *
  * @author Erwin Müller, erwin.mueller@deventm.de
  * @since 2.1
  */
-public interface BundlesMapFactory {
+public interface TextsBundlesMapService extends TextsBundlesMapFactory {
 
-    BundlesMap create();
 }

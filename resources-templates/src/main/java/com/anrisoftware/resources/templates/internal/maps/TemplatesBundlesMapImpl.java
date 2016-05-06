@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.templates.external.BundlesMap;
+import com.anrisoftware.resources.templates.external.TemplatesBundlesMap;
 import com.anrisoftware.resources.templates.external.TemplatesMap;
 import com.anrisoftware.resources.templates.external.TemplatesMapFactory;
 
@@ -31,14 +31,14 @@ import com.anrisoftware.resources.templates.external.TemplatesMapFactory;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
  */
-class BundlesMapImpl implements BundlesMap {
+class TemplatesBundlesMapImpl implements TemplatesBundlesMap {
 
 	private final Map<ResourceBundle, TemplatesMap> map;
 
 	private final TemplatesMapFactory textsFactory;
 
 	@Inject
-	BundlesMapImpl(TemplatesMapFactory textsFactory) {
+	TemplatesBundlesMapImpl(TemplatesMapFactory textsFactory) {
 		this.map = new HashMap<ResourceBundle, TemplatesMap>();
 		this.textsFactory = textsFactory;
 	}

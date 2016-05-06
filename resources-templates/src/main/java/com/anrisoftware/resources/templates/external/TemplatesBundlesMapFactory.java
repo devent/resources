@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.anrisoftware.resources.binary.external;
+package com.anrisoftware.resources.templates.external;
 
 /**
- * Binaries resources bundles map service.
+ * Factory to create the templates resources bundles map.
  *
  * @author Erwin Müller, erwin.mueller@deventm.de
  * @since 2.1
  */
-public interface BundlesMapService extends BundlesMapFactory {
+public interface TemplatesBundlesMapFactory {
 
+    TemplatesBundlesMap create();
 }

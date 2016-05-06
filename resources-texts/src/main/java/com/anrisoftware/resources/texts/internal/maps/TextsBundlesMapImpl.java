@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.texts.external.BundlesMap;
+import com.anrisoftware.resources.texts.external.TextsBundlesMap;
 import com.anrisoftware.resources.texts.external.TextsMap;
 import com.anrisoftware.resources.texts.external.TextsMapFactory;
 
@@ -31,14 +31,14 @@ import com.anrisoftware.resources.texts.external.TextsMapFactory;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.1
  */
-class BundlesMapImpl implements BundlesMap {
+class TextsBundlesMapImpl implements TextsBundlesMap {
 
 	private final Map<ResourceBundle, TextsMap> map;
 
 	private final TextsMapFactory textsFactory;
 
 	@Inject
-	BundlesMapImpl(TextsMapFactory textsFactory) {
+	TextsBundlesMapImpl(TextsMapFactory textsFactory) {
 		this.map = new HashMap<ResourceBundle, TextsMap>();
 		this.textsFactory = textsFactory;
 	}

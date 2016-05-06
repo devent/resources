@@ -27,7 +27,7 @@ import org.junit.Test
 import com.anrisoftware.resources.binary.external.BinariesService
 import com.anrisoftware.resources.binary.internal.binaries.BinariesServiceImpl
 import com.anrisoftware.resources.binary.internal.maps.BinariesMapServiceImpl
-import com.anrisoftware.resources.binary.internal.maps.BundlesMapServiceImpl
+import com.anrisoftware.resources.binary.internal.maps.BinariesBundlesMapServiceImpl
 import com.anrisoftware.resources.external.ResourcesException
 
 /**
@@ -66,7 +66,7 @@ class BinaryResourcesServiceTest extends AbstractBinaryResourcesTest {
 
     @Before
     void createFactories() {
-        context.registerInjectActivateService(new BundlesMapServiceImpl(), null)
+        context.registerInjectActivateService(new BinariesBundlesMapServiceImpl(), null)
         context.registerInjectActivateService(new BinariesMapServiceImpl(), null)
         this.service = context.registerInjectActivateService(new BinariesServiceImpl(), null)
     }

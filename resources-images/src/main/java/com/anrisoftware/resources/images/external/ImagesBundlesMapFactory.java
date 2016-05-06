@@ -13,31 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.anrisoftware.resources.texts.external;
-
-import java.util.ResourceBundle;
+package com.anrisoftware.resources.images.external;
 
 /**
- * A map of texts for each resource bundle.
- * <p>
- * Lazy create a new texts map for a new resource bundle.
- * 
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.1
+ * Factory to create the image resources bundles map.
+ *
+ * @author Erwin Müller, erwin.mueller@deventm.de
+ * @since 2.1
  */
-public interface BundlesMap {
+public interface ImagesBundlesMapFactory {
 
-	/**
-	 * Returns the texts for the specified resource bundle.
-	 * <p>
-	 * If no texts are found for the specified resource bundle a new texts map
-	 * is created.
-	 * 
-	 * @param bundle
-	 *            the {@link ResourceBundle}.
-	 * 
-	 * @return the {@link TextsMap} for the resource bundle.
-	 */
-	TextsMap getTexts(ResourceBundle bundle);
-
+    ImagesBundlesMap create();
 }

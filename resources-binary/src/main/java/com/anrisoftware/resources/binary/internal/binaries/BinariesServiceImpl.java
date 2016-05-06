@@ -32,8 +32,8 @@ import com.anrisoftware.resources.binary.external.BinariesFactory;
 import com.anrisoftware.resources.binary.external.BinariesMapFactory;
 import com.anrisoftware.resources.binary.external.BinariesMapService;
 import com.anrisoftware.resources.binary.external.BinariesService;
-import com.anrisoftware.resources.binary.external.BundlesMapFactory;
-import com.anrisoftware.resources.binary.external.BundlesMapService;
+import com.anrisoftware.resources.binary.external.BinariesBundlesMapFactory;
+import com.anrisoftware.resources.binary.external.BinariesBundlesMapService;
 import com.google.inject.AbstractModule;
 
 /**
@@ -47,7 +47,7 @@ import com.google.inject.AbstractModule;
 public class BinariesServiceImpl implements BinariesService {
 
     @Reference
-    private BundlesMapService bundlesMapService;
+    private BinariesBundlesMapService bundlesMapService;
 
     @Reference
     private BinariesMapService binariesMapService;
@@ -82,7 +82,7 @@ public class BinariesServiceImpl implements BinariesService {
 
             @Override
             protected void configure() {
-                bind(BundlesMapFactory.class).toProvider(of(bundlesMapService));
+                bind(BinariesBundlesMapFactory.class).toProvider(of(bundlesMapService));
                 bind(BinariesMapFactory.class).toProvider(
                         of(binariesMapService));
             }

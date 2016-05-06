@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
-public interface BundlesMap {
+public interface TemplatesBundlesMap {
 
 	/**
 	 * Returns the template resources for the specified resource bundle.

@@ -25,7 +25,7 @@ import javax.inject.Inject;
 import com.anrisoftware.resources.binary.external.BinariesMap;
 import com.anrisoftware.resources.binary.external.BinaryResource;
 import com.anrisoftware.resources.binary.external.BinaryResourceFactory;
-import com.anrisoftware.resources.binary.external.BundlesMap;
+import com.anrisoftware.resources.binary.external.BinariesBundlesMap;
 import com.anrisoftware.resources.external.GetBundle;
 import com.anrisoftware.resources.external.ResourcesException;
 import com.google.inject.assistedinject.Assisted;
@@ -46,7 +46,7 @@ class BinariesWorker {
 
 	private final GetBundle getBundle;
 
-	private final BundlesMap bundles;
+	private final BinariesBundlesMap bundles;
 
 	private final BinaryResourceFactory resourceFactory;
 
@@ -78,7 +78,7 @@ class BinariesWorker {
 	BinariesWorker(BinariesWorkerLogger logger,
 			BinaryResourceFactory resourceFactory, @Assisted String name,
 			@Assisted Locale locale, @Assisted GetBundle getBundle,
-			@Assisted BundlesMap bundles) {
+			@Assisted BinariesBundlesMap bundles) {
 		this.log = logger;
 		this.resourceFactory = resourceFactory;
 		this.name = name;

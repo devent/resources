@@ -31,8 +31,8 @@ import com.anrisoftware.resources.external.GetBundleWithClassLoader;
 import com.anrisoftware.resources.external.GetBundleWithClassLoaderAndControl;
 import com.anrisoftware.resources.external.GetBundleWithControl;
 import com.anrisoftware.resources.external.ResourcesException;
-import com.anrisoftware.resources.templates.external.BundlesMap;
-import com.anrisoftware.resources.templates.external.BundlesMapFactory;
+import com.anrisoftware.resources.templates.external.TemplatesBundlesMap;
+import com.anrisoftware.resources.templates.external.TemplatesBundlesMapFactory;
 import com.anrisoftware.resources.templates.external.TemplateResource;
 import com.anrisoftware.resources.templates.external.TemplateResourceFactory;
 import com.anrisoftware.resources.templates.external.Templates;
@@ -54,7 +54,7 @@ class TemplatesImpl implements Templates {
 
     private final TemplatesImplLogger log;
 
-    private final BundlesMap texts;
+    private final TemplatesBundlesMap texts;
 
     private final TemplateResourceFactory resourceFactory;
 
@@ -68,7 +68,7 @@ class TemplatesImpl implements Templates {
      * @see TemplatesFactory#create(String)
      */
     @AssistedInject
-    TemplatesImpl(TemplatesImplLogger logger, BundlesMapFactory texts,
+    TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
             TemplateResourceFactory textResourceFactory,
             TemplatesPropertiesFactory propertiesFactory,
             @Assisted String baseName) {
@@ -80,7 +80,7 @@ class TemplatesImpl implements Templates {
      * @see TemplatesFactory#create(String, Map)
      */
     @AssistedInject
-    TemplatesImpl(TemplatesImplLogger logger, BundlesMapFactory texts,
+    TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
             TemplateResourceFactory textResourceFactory,
             TemplatesPropertiesFactory propertiesFactory,
             @Assisted String baseName,
@@ -93,7 +93,7 @@ class TemplatesImpl implements Templates {
      * @see TemplatesFactory#create(String, ClassLoader)
      */
     @AssistedInject
-    TemplatesImpl(TemplatesImplLogger logger, BundlesMapFactory texts,
+    TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
             TemplateResourceFactory textResourceFactory,
             TemplatesPropertiesFactory propertiesFactory,
             @Assisted String baseName, @Assisted ClassLoader classLoader) {
@@ -106,7 +106,7 @@ class TemplatesImpl implements Templates {
      * @see TemplatesFactory#create(String, Map, ClassLoader)
      */
     @AssistedInject
-    TemplatesImpl(TemplatesImplLogger logger, BundlesMapFactory texts,
+    TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
             TemplateResourceFactory textResourceFactory,
             TemplatesPropertiesFactory propertiesFactory,
             @Assisted String baseName,
@@ -120,7 +120,7 @@ class TemplatesImpl implements Templates {
      * @see TemplatesFactory#create(String, Control)
      */
     @AssistedInject
-    TemplatesImpl(TemplatesImplLogger logger, BundlesMapFactory texts,
+    TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
             TemplateResourceFactory textResourceFactory,
             TemplatesPropertiesFactory propertiesFactory,
             @Assisted String baseName, @Assisted ResourceBundle.Control control) {
@@ -132,7 +132,7 @@ class TemplatesImpl implements Templates {
      * @see TemplatesFactory#create(String, Map, Control)
      */
     @AssistedInject
-    TemplatesImpl(TemplatesImplLogger logger, BundlesMapFactory texts,
+    TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
             TemplateResourceFactory textResourceFactory,
             TemplatesPropertiesFactory propertiesFactory,
             @Assisted String baseName,
@@ -146,7 +146,7 @@ class TemplatesImpl implements Templates {
      * @see TemplatesFactory#create(String, ClassLoader, Control)
      */
     @AssistedInject
-    TemplatesImpl(TemplatesImplLogger logger, BundlesMapFactory texts,
+    TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
             TemplateResourceFactory textResourceFactory,
             TemplatesPropertiesFactory propertiesFactory,
             @Assisted String baseName, @Assisted ClassLoader classLoader,
@@ -160,7 +160,7 @@ class TemplatesImpl implements Templates {
      * @see TemplatesFactory#create(String, Map, ClassLoader, Control)
      */
     @AssistedInject
-    TemplatesImpl(TemplatesImplLogger logger, BundlesMapFactory texts,
+    TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
             TemplateResourceFactory textResourceFactory,
             TemplatesPropertiesFactory propertiesFactory,
             @Assisted String baseName,
@@ -172,7 +172,7 @@ class TemplatesImpl implements Templates {
                         control));
     }
 
-    private TemplatesImpl(TemplatesImplLogger logger, BundlesMapFactory texts,
+    private TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
             TemplateResourceFactory textResourceFactory,
             TemplatesPropertiesFactory propertiesFactory,
             Map<Serializable, Serializable> attributes, GetBundle getBundle) {

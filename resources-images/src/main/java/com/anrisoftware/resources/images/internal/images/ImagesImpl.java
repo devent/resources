@@ -25,7 +25,7 @@ import com.anrisoftware.resources.external.GetBundleWithClassLoader;
 import com.anrisoftware.resources.external.GetBundleWithClassLoaderAndControl;
 import com.anrisoftware.resources.external.GetBundleWithControl;
 import com.anrisoftware.resources.external.ResourcesException;
-import com.anrisoftware.resources.images.external.BundlesMapFactory;
+import com.anrisoftware.resources.images.external.ImagesBundlesMapFactory;
 import com.anrisoftware.resources.images.external.IconSize;
 import com.anrisoftware.resources.images.external.ImageResolution;
 import com.anrisoftware.resources.images.external.ImageResource;
@@ -46,27 +46,27 @@ class ImagesImpl implements Images {
     private final ImagesWorker worker;
 
     @AssistedInject
-    ImagesImpl(ImagesWorkerFactory workerFactory, BundlesMapFactory bundles,
+    ImagesImpl(ImagesWorkerFactory workerFactory, ImagesBundlesMapFactory bundles,
             @Assisted String baseName) {
         this(workerFactory, bundles, new GetBundle(baseName));
     }
 
     @AssistedInject
-    ImagesImpl(ImagesWorkerFactory workerFactory, BundlesMapFactory bundles,
+    ImagesImpl(ImagesWorkerFactory workerFactory, ImagesBundlesMapFactory bundles,
             @Assisted String baseName, @Assisted ClassLoader classLoader) {
         this(workerFactory, bundles, new GetBundleWithClassLoader(baseName,
                 classLoader));
     }
 
     @AssistedInject
-    ImagesImpl(ImagesWorkerFactory workerFactory, BundlesMapFactory bundles,
+    ImagesImpl(ImagesWorkerFactory workerFactory, ImagesBundlesMapFactory bundles,
             @Assisted String baseName, @Assisted ResourceBundle.Control control) {
         this(workerFactory, bundles,
                 new GetBundleWithControl(baseName, control));
     }
 
     @AssistedInject
-    ImagesImpl(ImagesWorkerFactory workerFactory, BundlesMapFactory bundles,
+    ImagesImpl(ImagesWorkerFactory workerFactory, ImagesBundlesMapFactory bundles,
             @Assisted String baseName, @Assisted ClassLoader classLoader,
             @Assisted ResourceBundle.Control control) {
         this(workerFactory, bundles, new GetBundleWithClassLoaderAndControl(
@@ -74,7 +74,7 @@ class ImagesImpl implements Images {
     }
 
     private ImagesImpl(ImagesWorkerFactory workerFactory,
-            BundlesMapFactory bundles, GetBundle getBundle) {
+            ImagesBundlesMapFactory bundles, GetBundle getBundle) {
         this.worker = workerFactory.create(getBundle, bundles.create());
         this.getBundle = getBundle;
     }

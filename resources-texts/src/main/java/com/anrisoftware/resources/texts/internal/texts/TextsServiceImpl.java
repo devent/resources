@@ -33,8 +33,8 @@ import com.anrisoftware.resources.binary.external.BinariesMapService;
 import com.anrisoftware.resources.binary.external.BinariesService;
 import com.anrisoftware.resources.binary.external.BinaryResourceFactory;
 import com.anrisoftware.resources.binary.external.BinaryResourceService;
-import com.anrisoftware.resources.texts.external.BundlesMapFactory;
-import com.anrisoftware.resources.texts.external.BundlesMapService;
+import com.anrisoftware.resources.texts.external.TextsBundlesMapFactory;
+import com.anrisoftware.resources.texts.external.TextsBundlesMapService;
 import com.anrisoftware.resources.texts.external.Texts;
 import com.anrisoftware.resources.texts.external.TextsFactory;
 import com.anrisoftware.resources.texts.external.TextsMapFactory;
@@ -53,7 +53,7 @@ import com.google.inject.AbstractModule;
 public class TextsServiceImpl implements TextsService {
 
     @Reference
-    private BundlesMapService bundlesMapService;
+    private TextsBundlesMapService bundlesMapService;
 
     @Reference
     private TextsMapService textsMapService;
@@ -62,7 +62,7 @@ public class TextsServiceImpl implements TextsService {
     private BinariesService binariesService;
 
     @Reference
-    private com.anrisoftware.resources.binary.external.BundlesMapService binariesBundlesMapService;
+    private com.anrisoftware.resources.binary.external.BinariesBundlesMapService binariesBundlesMapService;
 
     @Reference
     private BinariesMapService binariesMapService;
@@ -101,11 +101,11 @@ public class TextsServiceImpl implements TextsService {
             @Override
             protected void configure() {
                 install(new TextsResourcesCharsetModule());
-                bind(BundlesMapFactory.class).toProvider(of(bundlesMapService));
+                bind(TextsBundlesMapFactory.class).toProvider(of(bundlesMapService));
                 bind(TextsMapFactory.class).toProvider(of(textsMapService));
                 bind(BinariesFactory.class).toProvider(of(binariesService));
                 bind(
-                        com.anrisoftware.resources.binary.external.BundlesMapFactory.class)
+                        com.anrisoftware.resources.binary.external.BinariesBundlesMapFactory.class)
                         .toProvider(of(binariesBundlesMapService));
                 bind(BinariesMapFactory.class).toProvider(
                         of(binariesMapService));
