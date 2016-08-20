@@ -29,11 +29,11 @@ import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
 
-import com.anrisoftware.resources.templates.external.TemplatesBundlesMapFactory;
-import com.anrisoftware.resources.templates.external.TemplatesBundlesMapService;
 import com.anrisoftware.resources.templates.external.TemplateWorkerFactory;
 import com.anrisoftware.resources.templates.external.TemplateWorkerService;
 import com.anrisoftware.resources.templates.external.Templates;
+import com.anrisoftware.resources.templates.external.TemplatesBundlesMapFactory;
+import com.anrisoftware.resources.templates.external.TemplatesBundlesMapService;
 import com.anrisoftware.resources.templates.external.TemplatesFactory;
 import com.anrisoftware.resources.templates.external.TemplatesMapFactory;
 import com.anrisoftware.resources.templates.external.TemplatesMapService;
@@ -85,7 +85,8 @@ public class TemplatesServiceImpl implements TemplatesService {
 
     @Override
     public Templates create(String baseName,
-            Map<Serializable, Serializable> attributes, ClassLoader classLoader) {
+            Map<Serializable, Serializable> attributes,
+            ClassLoader classLoader) {
         return templatesFactory.create(baseName, attributes, classLoader);
     }
 
@@ -108,8 +109,8 @@ public class TemplatesServiceImpl implements TemplatesService {
 
     @Override
     public Templates create(String baseName,
-            Map<Serializable, Serializable> attributes,
-            ClassLoader classLoader, Control control) {
+            Map<Serializable, Serializable> attributes, ClassLoader classLoader,
+            Control control) {
         return templatesFactory.create(baseName, attributes, classLoader,
                 control);
     }
@@ -120,13 +121,14 @@ public class TemplatesServiceImpl implements TemplatesService {
 
             @Override
             protected void configure() {
-                bind(TemplatesBundlesMapFactory.class).toProvider(of(bundlesMapService));
-                bind(TemplatesMapFactory.class).toProvider(
-                        of(templatesMapService));
-                bind(TemplateWorkerFactory.class).toProvider(
-                        of(templateWorkerService));
-                bind(TemplatesPropertiesFactory.class).toProvider(
-                        of(templatesPropertiesService));
+                bind(TemplatesBundlesMapFactory.class)
+                        .toProvider(of(bundlesMapService));
+                bind(TemplatesMapFactory.class)
+                        .toProvider(of(templatesMapService));
+                bind(TemplateWorkerFactory.class)
+                        .toProvider(of(templateWorkerService));
+                bind(TemplatesPropertiesFactory.class)
+                        .toProvider(of(templatesPropertiesService));
             }
         }).injectMembers(this);
     }

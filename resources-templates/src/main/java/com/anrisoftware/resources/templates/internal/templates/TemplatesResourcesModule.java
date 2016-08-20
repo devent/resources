@@ -56,13 +56,14 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
  */
 public class TemplatesResourcesModule extends AbstractModule {
 
-	@Override
-	protected void configure() {
-		install(new FactoryModuleBuilder().implement(Templates.class,
-				TemplatesImpl.class).build(TemplatesFactory.class));
-		install(new FactoryModuleBuilder().implement(TemplateResource.class,
-				TemplateResourceImpl.class)
-				.build(TemplateResourceFactory.class));
-	}
+    @Override
+    protected void configure() {
+        install(new FactoryModuleBuilder()
+                .implement(Templates.class, TemplatesImpl.class)
+                .build(TemplatesFactory.class));
+        install(new FactoryModuleBuilder()
+                .implement(TemplateResource.class, TemplateResourceImpl.class)
+                .build(TemplateResourceFactory.class));
+    }
 
 }

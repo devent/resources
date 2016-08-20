@@ -28,7 +28,7 @@ public class STDefaultPropertiesModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(TemplatesPropertiesFactory.class).to(
-                STDefaultPropertiesFactory.class);
+        bind(TemplatesPropertiesFactory.class)
+                .to(STDefaultPropertiesFactory.class);
     }
 }

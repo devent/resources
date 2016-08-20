@@ -37,8 +37,8 @@ import com.google.inject.AbstractModule;
  */
 @Component
 @Service(TemplatesPropertiesService.class)
-public class STDefaultPropertiesServiceImpl implements
-        TemplatesPropertiesService {
+public class STDefaultPropertiesServiceImpl
+        implements TemplatesPropertiesService {
 
     @Inject
     private STDefaultPropertiesFactory propertiesFactory;

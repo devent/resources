@@ -57,8 +57,8 @@ public class ResourcesException extends MissingResourceException {
      *
      * @since 1.7
      */
-    public ResourcesException(Throwable cause, String message,
-            String className, String key) {
+    public ResourcesException(Throwable cause, String message, String className,
+            String key) {
         super(message, className, key);
         this.context = new DefaultExceptionContext();
         this.cause = cause;

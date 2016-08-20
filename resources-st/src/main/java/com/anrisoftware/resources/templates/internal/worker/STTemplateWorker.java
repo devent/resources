@@ -18,6 +18,8 @@ package com.anrisoftware.resources.templates.internal.worker;
 import static com.anrisoftware.resources.templates.internal.worker.STTemplateWorkerFactory.DELIMITER_START_CHAR_PROPERTY;
 import static com.anrisoftware.resources.templates.internal.worker.STTemplateWorkerFactory.DELIMITER_STOP_CHAR_PROPERTY;
 import static com.anrisoftware.resources.templates.internal.worker.STTemplateWorkerFactory.ENCODING_PROPERTY;
+import static com.anrisoftware.resources.templates.internal.worker.STTemplateWorkerFactory.IMPORTS_KEY;
+import static com.anrisoftware.resources.templates.internal.worker.STTemplateWorkerFactory.RENDERERS_KEY;
 import static org.apache.commons.lang3.ArrayUtils.remove;
 
 import java.io.ObjectStreamException;
@@ -29,7 +31,6 @@ import java.util.Properties;
 
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STErrorListener;
-import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
 import org.stringtemplate.v4.compiler.STException;
 import org.stringtemplate.v4.misc.STMessage;
@@ -37,6 +38,7 @@ import org.stringtemplate.v4.misc.STMessage;
 import com.anrisoftware.propertiesutils.ContextProperties;
 import com.anrisoftware.resources.external.ResourcesException;
 import com.anrisoftware.resources.templates.external.AttributeRenderer;
+import com.anrisoftware.resources.templates.external.SerializiableGroup;
 import com.anrisoftware.resources.templates.external.TemplateWorker;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
@@ -113,24 +115,26 @@ class STTemplateWorker implements TemplateWorker {
     }
 
     private void setupImports(STGroupFile group) {
-        if (!attributes.containsKey(STTemplateWorkerFactory.IMPORTS_KEY)) {
+        if (!attributes.containsKey(IMPORTS_KEY)) {
             return;
         }
         @SuppressWarnings({ "unchecked", "rawtypes" })
-        List<STGroup> imports = (List) attributes
-                .get(STTemplateWorkerFactory.IMPORTS_KEY);
-        for (STGroup importGroup : imports) {
-            group.importTemplates(importGroup);
+        List<Serializable> imports = (List) attributes.get(IMPORTS_KEY);
+        for (Serializable s : imports) {
+            if (s instanceof SerializiableGroup) {
+                SerializiableGroup sgroup = (SerializiableGroup) s;
+                group.importTemplates(sgroup.group);
+            }
         }
     }
 
     private void setupRenderers(STGroupFile group) {
-        if (!attributes.containsKey(STTemplateWorkerFactory.RENDERERS_KEY)) {
+        if (!attributes.containsKey(RENDERERS_KEY)) {
             return;
         }
         @SuppressWarnings({ "unchecked", "rawtypes" })
         List<AttributeRenderer> renderers = (List) attributes
-                .get(STTemplateWorkerFactory.RENDERERS_KEY);
+                .get(RENDERERS_KEY);
         for (AttributeRenderer renderer : renderers) {
             group.registerRenderer(renderer.getAttributeType(), renderer);
         }

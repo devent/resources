@@ -25,26 +25,26 @@ import com.anrisoftware.globalpom.log.AbstractLogger;
  */
 class TemplateResourceImplLogger extends AbstractLogger {
 
-	private static final String INVALIDATE_RESOURCE = "Invalidate resource {}.";
+    private static final String INVALIDATE_RESOURCE = "Invalidate resource {}.";
 
-	private static final String PROCESS_TEMPLATE = "Process the template for {}.";
+    private static final String PROCESS_TEMPLATE = "Process the template for {}.";
 
-	/**
-	 * Creates a logger for {@link TemplateResourceImpl}.
-	 * 
-	 * @deprecated public scope needed for serialization.
-	 */
-	@Deprecated
-	public TemplateResourceImplLogger() {
-		super(TemplateResourceImpl.class);
-	}
+    /**
+     * Creates a logger for {@link TemplateResourceImpl}.
+     * 
+     * @deprecated public scope needed for serialization.
+     */
+    @Deprecated
+    public TemplateResourceImplLogger() {
+        super(TemplateResourceImpl.class);
+    }
 
-	void processTemplate(TemplateResourceImpl resource) {
-		log.debug(PROCESS_TEMPLATE, resource);
-	}
+    void processTemplate(TemplateResourceImpl resource) {
+        log.debug(PROCESS_TEMPLATE, resource);
+    }
 
-	void resourceInvalidated(TemplateResourceImpl resource) {
-		log.debug(INVALIDATE_RESOURCE, resource);
-	}
+    void resourceInvalidated(TemplateResourceImpl resource) {
+        log.debug(INVALIDATE_RESOURCE, resource);
+    }
 
 }

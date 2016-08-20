@@ -31,11 +31,11 @@ import com.anrisoftware.resources.external.GetBundleWithClassLoader;
 import com.anrisoftware.resources.external.GetBundleWithClassLoaderAndControl;
 import com.anrisoftware.resources.external.GetBundleWithControl;
 import com.anrisoftware.resources.external.ResourcesException;
-import com.anrisoftware.resources.templates.external.TemplatesBundlesMap;
-import com.anrisoftware.resources.templates.external.TemplatesBundlesMapFactory;
 import com.anrisoftware.resources.templates.external.TemplateResource;
 import com.anrisoftware.resources.templates.external.TemplateResourceFactory;
 import com.anrisoftware.resources.templates.external.Templates;
+import com.anrisoftware.resources.templates.external.TemplatesBundlesMap;
+import com.anrisoftware.resources.templates.external.TemplatesBundlesMapFactory;
 import com.anrisoftware.resources.templates.external.TemplatesFactory;
 import com.anrisoftware.resources.templates.external.TemplatesMap;
 import com.anrisoftware.resources.templates.external.TemplatesPropertiesFactory;
@@ -98,8 +98,8 @@ class TemplatesImpl implements Templates {
             TemplatesPropertiesFactory propertiesFactory,
             @Assisted String baseName, @Assisted ClassLoader classLoader) {
         this(logger, texts, textResourceFactory, propertiesFactory,
-                EMPTY_ATTRIBUTES, new GetBundleWithClassLoader(baseName,
-                        classLoader));
+                EMPTY_ATTRIBUTES,
+                new GetBundleWithClassLoader(baseName, classLoader));
     }
 
     /**
@@ -123,7 +123,8 @@ class TemplatesImpl implements Templates {
     TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
             TemplateResourceFactory textResourceFactory,
             TemplatesPropertiesFactory propertiesFactory,
-            @Assisted String baseName, @Assisted ResourceBundle.Control control) {
+            @Assisted String baseName,
+            @Assisted ResourceBundle.Control control) {
         this(logger, texts, textResourceFactory, propertiesFactory,
                 EMPTY_ATTRIBUTES, new GetBundleWithControl(baseName, control));
     }
@@ -172,7 +173,8 @@ class TemplatesImpl implements Templates {
                         control));
     }
 
-    private TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
+    private TemplatesImpl(TemplatesImplLogger logger,
+            TemplatesBundlesMapFactory texts,
             TemplateResourceFactory textResourceFactory,
             TemplatesPropertiesFactory propertiesFactory,
             Map<Serializable, Serializable> attributes, GetBundle getBundle) {
@@ -218,7 +220,8 @@ class TemplatesImpl implements Templates {
         return res;
     }
 
-    private TemplateResource lazyLoadResource(String name, ResourceBundle bundle) {
+    private TemplateResource lazyLoadResource(String name,
+            ResourceBundle bundle) {
         String location = bundle.getString(name);
         TemplatesMap map = texts.getTemplates(bundle);
         TemplateResource text = map.getTemplate(name);
