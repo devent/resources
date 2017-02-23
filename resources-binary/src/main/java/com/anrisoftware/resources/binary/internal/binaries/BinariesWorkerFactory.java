@@ -18,7 +18,7 @@ package com.anrisoftware.resources.binary.internal.binaries;
 import java.util.Locale;
 
 import com.anrisoftware.resources.binary.external.BinariesBundlesMap;
-import com.anrisoftware.resources.external.GetBundle;
+import com.anrisoftware.resources.getbundle.external.GetBundle;
 
 /**
  * Factory to create a new binary resources worker.

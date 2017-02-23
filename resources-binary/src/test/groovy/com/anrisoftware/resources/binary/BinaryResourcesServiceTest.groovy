@@ -16,19 +16,21 @@
 package com.anrisoftware.resources.binary
 
 import static com.anrisoftware.globalpom.utils.TestUtils.*
-import groovy.transform.CompileStatic
-import groovy.util.logging.Slf4j
 
 import org.apache.sling.testing.mock.osgi.junit.OsgiContext
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+import com.anrisoftware.resources.api.external.ResourcesException
 import com.anrisoftware.resources.binary.external.BinariesService
+import com.anrisoftware.resources.binary.internal.AbstractBinaryResourcesTest
 import com.anrisoftware.resources.binary.internal.binaries.BinariesServiceImpl
-import com.anrisoftware.resources.binary.internal.maps.BinariesMapServiceImpl
 import com.anrisoftware.resources.binary.internal.maps.BinariesBundlesMapServiceImpl
-import com.anrisoftware.resources.external.ResourcesException
+import com.anrisoftware.resources.binary.internal.maps.BinariesMapServiceImpl
+
+import groovy.transform.CompileStatic
+import groovy.util.logging.Slf4j
 
 /**
  *

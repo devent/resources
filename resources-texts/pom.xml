@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>2.1</version>
+		<version>2.1.1-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
@@ -16,6 +16,10 @@
 	<description>Text resources.</description>
 	<inceptionYear>2012</inceptionYear>
 	<url>https://anrisoftware.com/projects/projects/resources-texts</url>
+
+    <properties>
+        <project.custom.bundle.namespace>com.anrisoftware.resources.texts</project.custom.bundle.namespace>
+    </properties>
 
 	<scm>
 		<connection>scm:git:git@anrisoftware.com:resources.git</connection>
@@ -49,7 +53,7 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-texts-tests</artifactId>
-			<version>2.1</version>
+			<version>2.1.1-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -67,19 +71,19 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>2.1</version>
+			<version>2.1.1-SNAPSHOT</version>
 			<type>bundle</type>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>2.1</version>
+			<version>2.1.1-SNAPSHOT</version>
 			<type>bundle</type>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-binary</artifactId>
-			<version>2.1</version>
+			<version>2.1.1-SNAPSHOT</version>
 			<type>bundle</type>
 		</dependency>
 

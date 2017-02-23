@@ -19,15 +19,15 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
+import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.binary.external.Binaries;
 import com.anrisoftware.resources.binary.external.BinaryResource;
 import com.anrisoftware.resources.binary.external.BinariesBundlesMap;
 import com.anrisoftware.resources.binary.external.BinariesBundlesMapFactory;
-import com.anrisoftware.resources.external.GetBundle;
-import com.anrisoftware.resources.external.GetBundleWithClassLoader;
-import com.anrisoftware.resources.external.GetBundleWithClassLoaderAndControl;
-import com.anrisoftware.resources.external.GetBundleWithControl;
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.getbundle.external.GetBundle;
+import com.anrisoftware.resources.getbundle.external.GetBundleWithClassLoader;
+import com.anrisoftware.resources.getbundle.external.GetBundleWithClassLoaderAndControl;
+import com.anrisoftware.resources.getbundle.external.GetBundleWithControl;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
 

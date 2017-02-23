@@ -18,7 +18,7 @@ package com.anrisoftware.resources.binary.external;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
 
 /**
  * Binary data resources bundle.

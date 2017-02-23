@@ -17,10 +17,11 @@ package com.anrisoftware.resources.binary
 
 import org.junit.Test
 
+import com.anrisoftware.resources.api.external.ResourcesException
 import com.anrisoftware.resources.binary.external.BinariesFactory
+import com.anrisoftware.resources.binary.internal.AbstractBinaryResourcesTest
 import com.anrisoftware.resources.binary.internal.binaries.BinariesResourcesModule
 import com.anrisoftware.resources.binary.internal.maps.BinariesDefaultMapsModule
-import com.anrisoftware.resources.external.ResourcesException
 
 /**
  * Test the binary resources.

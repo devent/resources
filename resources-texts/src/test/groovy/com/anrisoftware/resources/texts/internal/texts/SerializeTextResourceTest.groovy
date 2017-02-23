@@ -17,9 +17,9 @@ package com.anrisoftware.resources.texts.internal.texts
 
 import org.junit.Test
 
-import com.anrisoftware.resources.texts.AbstractSerializationTest
 import com.anrisoftware.resources.texts.external.TextResourceFactory
 import com.anrisoftware.resources.texts.external.TextsFactory
+import com.anrisoftware.resources.texts.internal.AbstractSerializationTest
 import com.anrisoftware.resources.texts.internal.maps.TextsDefaultMapsModule
 
 /**

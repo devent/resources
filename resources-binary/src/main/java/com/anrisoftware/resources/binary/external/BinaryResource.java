@@ -17,8 +17,8 @@ package com.anrisoftware.resources.binary.external;
 
 import java.io.InputStream;
 
-import com.anrisoftware.resources.external.Resource;
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.Resource;
+import com.anrisoftware.resources.api.external.ResourcesException;
 
 /**
  * Binary data resource.

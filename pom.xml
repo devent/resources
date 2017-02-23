@@ -16,6 +16,7 @@
         <module>resources-getbundle</module>
         <module>resources-images</module>
         <module>resources-images-tests</module>
+        <module>resources-itest</module>
         <module>resources-parent</module>
         <module>resources-st</module>
         <module>resources-templates</module>

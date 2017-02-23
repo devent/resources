@@ -17,7 +17,7 @@ package com.anrisoftware.resources.images.internal.images
 
 import org.junit.Test
 
-import com.anrisoftware.resources.images.AbstractImageResourcesTest
+import com.anrisoftware.resources.images.internal.AbstractImageResourcesTest
 import com.anrisoftware.resources.images.external.ImageResolution
 import com.anrisoftware.resources.images.external.ImageResource
 import com.anrisoftware.resources.images.external.ImageResourceFactory

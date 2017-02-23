@@ -24,7 +24,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.images.external.ImageResolution;
 import com.anrisoftware.resources.images.external.ImageResource;
 import com.anrisoftware.resources.images.external.ImagesMap;

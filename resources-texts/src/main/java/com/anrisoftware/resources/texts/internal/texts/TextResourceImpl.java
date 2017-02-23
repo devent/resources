@@ -33,9 +33,9 @@ import javax.inject.Inject;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.binary.external.BinaryResource;
 import com.anrisoftware.resources.binary.external.BinaryResourceFactory;
-import com.anrisoftware.resources.external.ResourcesException;
 import com.anrisoftware.resources.texts.external.TextResource;
 import com.google.inject.assistedinject.Assisted;
 

@@ -17,11 +17,14 @@ package com.anrisoftware.resources.templates.internal.worker
 
 import org.junit.Test
 
-import com.anrisoftware.resources.external.ResourcesException
-import com.anrisoftware.resources.templates.AbstractTemplateResourceTest
+import com.anrisoftware.resources.api.external.ResourcesException
+import com.anrisoftware.resources.st.internal.worker.STDefaultPropertiesFactory
+import com.anrisoftware.resources.st.internal.worker.STDefaultPropertiesModule
+import com.anrisoftware.resources.st.internal.worker.STWorkerModule
 import com.anrisoftware.resources.templates.external.TemplateResourceFactory
 import com.anrisoftware.resources.templates.external.Templates
 import com.anrisoftware.resources.templates.external.TemplatesFactory
+import com.anrisoftware.resources.templates.internal.AbstractTemplateResourceTest
 import com.anrisoftware.resources.templates.internal.maps.TemplatesDefaultMapsModule
 import com.anrisoftware.resources.templates.internal.templates.TemplatesResourcesModule
 

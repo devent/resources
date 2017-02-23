@@ -17,10 +17,9 @@ package com.anrisoftware.resources.texts.internal.texts
 
 import org.junit.Test
 
-import com.anrisoftware.resources.texts.AbstractTextResourceTest
 import com.anrisoftware.resources.texts.external.TextsFactory
+import com.anrisoftware.resources.texts.internal.AbstractTextResourceTest
 import com.anrisoftware.resources.texts.internal.maps.TextsDefaultMapsModule
-import com.google.inject.Injector
 
 /**
  * Creates the text resources and runs functionality tests.

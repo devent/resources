@@ -20,11 +20,11 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
-import com.anrisoftware.resources.external.GetBundle;
-import com.anrisoftware.resources.external.GetBundleWithClassLoader;
-import com.anrisoftware.resources.external.GetBundleWithClassLoaderAndControl;
-import com.anrisoftware.resources.external.GetBundleWithControl;
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
+import com.anrisoftware.resources.getbundle.external.GetBundle;
+import com.anrisoftware.resources.getbundle.external.GetBundleWithClassLoader;
+import com.anrisoftware.resources.getbundle.external.GetBundleWithClassLoaderAndControl;
+import com.anrisoftware.resources.getbundle.external.GetBundleWithControl;
 import com.anrisoftware.resources.images.external.ImagesBundlesMapFactory;
 import com.anrisoftware.resources.images.external.IconSize;
 import com.anrisoftware.resources.images.external.ImageResolution;

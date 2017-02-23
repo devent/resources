@@ -26,8 +26,8 @@ import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.external.GetBundle;
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
+import com.anrisoftware.resources.getbundle.external.GetBundle;
 import com.anrisoftware.resources.images.external.ImagesBundlesMap;
 import com.anrisoftware.resources.images.external.ImageResolution;
 import com.anrisoftware.resources.images.external.ImageResource;

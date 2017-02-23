@@ -18,7 +18,7 @@ package com.anrisoftware.resources.templates.external;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
 
 /**
  * Gives template resources. Template resources are processed with a given data.

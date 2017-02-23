@@ -16,19 +16,22 @@
 package com.anrisoftware.resources.templates.internal.worker
 
 import static com.anrisoftware.globalpom.utils.TestUtils.*
-import groovy.transform.CompileStatic
-import groovy.util.logging.Slf4j
 
 import org.apache.sling.testing.mock.osgi.junit.OsgiContext
 import org.junit.Rule
 import org.junit.Test
 
-import com.anrisoftware.resources.templates.AbstractTemplateResourceTest
+import com.anrisoftware.resources.st.internal.worker.STDefaultPropertiesServiceImpl
+import com.anrisoftware.resources.st.internal.worker.STTemplateWorkerServiceImpl
 import com.anrisoftware.resources.templates.external.TemplatesService
+import com.anrisoftware.resources.templates.internal.AbstractTemplateResourceTest
 import com.anrisoftware.resources.templates.internal.maps.TemplatesBundlesDefaultMapServiceImpl
 import com.anrisoftware.resources.templates.internal.maps.TemplatesDefaultMapServiceImpl
 import com.anrisoftware.resources.templates.internal.templates.TemplatesServiceImpl
 import com.google.inject.Injector
+
+import groovy.transform.CompileStatic
+import groovy.util.logging.Slf4j
 
 /**
  *

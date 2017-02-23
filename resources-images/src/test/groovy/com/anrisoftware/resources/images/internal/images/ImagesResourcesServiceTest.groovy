@@ -26,7 +26,7 @@ import org.junit.Test
 
 import com.anrisoftware.globalpom.utils.frametesting.FrameTestingModule
 import com.anrisoftware.globalpom.utils.imagetesting.ImageTestingModule
-import com.anrisoftware.resources.images.AbstractImageResourcesTest
+import com.anrisoftware.resources.images.internal.AbstractImageResourcesTest
 import com.anrisoftware.resources.images.external.ImageResolution
 import com.anrisoftware.resources.images.external.ImageResource
 import com.anrisoftware.resources.images.external.ImagesService

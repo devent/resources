@@ -17,12 +17,12 @@ package com.anrisoftware.resources.images.internal.images
 
 import org.junit.Test
 
-import com.anrisoftware.resources.images.AbstractImagesMapTest
 import com.anrisoftware.resources.images.external.ImageResolution
 import com.anrisoftware.resources.images.external.ImageResource
 import com.anrisoftware.resources.images.external.ImageResourceFactory
 import com.anrisoftware.resources.images.external.ImagesFactory
 import com.anrisoftware.resources.images.external.ImagesMapFactory
+import com.anrisoftware.resources.images.internal.AbstractImagesMapTest
 import com.anrisoftware.resources.images.internal.mapcached.ResourcesImagesCachedMapModule
 import com.anrisoftware.resources.images.internal.scaling.ResourcesSmoothScalingModule
 

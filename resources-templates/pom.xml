@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.anrisoftware.resources</groupId>
 		<artifactId>resources-parent</artifactId>
-		<version>2.1</version>
+		<version>2.1.1-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
@@ -16,6 +16,10 @@
 	<description>Templates resources.</description>
 	<url>https://anrisoftware.com/projects/projects/resources-templates</url>
 	<inceptionYear>2012</inceptionYear>
+
+    <properties>
+        <project.custom.bundle.namespace>com.anrisoftware.resources.templates</project.custom.bundle.namespace>
+    </properties>
 
 	<scm>
 		<connection>scm:git:git@anrisoftware.com:resources.git</connection>
@@ -49,13 +53,13 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>2.1</version>
+			<version>2.1.1-SNAPSHOT</version>
 			<type>bundle</type>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>2.1</version>
+			<version>2.1.1-SNAPSHOT</version>
 			<type>bundle</type>
 		</dependency>
 

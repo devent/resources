@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>resources-parent</artifactId>
 		<groupId>com.anrisoftware.resources</groupId>
-		<version>2.1</version>
+		<version>2.1.1-SNAPSHOT</version>
 		<relativePath>../resources-parent</relativePath>
 	</parent>
 
@@ -15,6 +15,10 @@
 	<description>Bundles test resources and unit tests for the template resources.</description>
 	<url>https://anrisoftware.com/projects/projects/resources-templates-tests</url>
 	<inceptionYear>2012</inceptionYear>
+
+    <properties>
+        <project.custom.bundle.namespace>com.anrisoftware.resources.templates</project.custom.bundle.namespace>
+    </properties>
 
 	<scm>
 		<connection>scm:git:git@anrisoftware.com:resources.git</connection>

@@ -28,8 +28,8 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.binary.external.BinaryResource;
-import com.anrisoftware.resources.external.ResourcesException;
 import com.google.inject.assistedinject.Assisted;
 
 /**

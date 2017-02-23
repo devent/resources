@@ -18,7 +18,7 @@ package com.anrisoftware.resources.texts.external;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
 
 /**
  * Gives text resources. Text resources are either single words, line or whole

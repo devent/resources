@@ -18,7 +18,7 @@ package com.anrisoftware.resources.images.internal.resource;
 import java.io.IOException;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
 
 /**
  * Logging messages for the {@link ImageResourceImpl}.

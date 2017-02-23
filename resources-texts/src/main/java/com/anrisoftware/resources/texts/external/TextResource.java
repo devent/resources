@@ -18,8 +18,8 @@ package com.anrisoftware.resources.texts.external;
 import java.nio.charset.Charset;
 import java.util.Locale;
 
-import com.anrisoftware.resources.external.Resource;
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.Resource;
+import com.anrisoftware.resources.api.external.ResourcesException;
 
 /**
  * Text resource.

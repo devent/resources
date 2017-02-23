@@ -1,53 +1,57 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<artifactId>resources-parent</artifactId>
-		<groupId>com.anrisoftware.resources</groupId>
-		<version>2.1</version>
-		<relativePath>../resources-parent</relativePath>
-	</parent>
+    <parent>
+        <artifactId>resources-parent</artifactId>
+        <groupId>com.anrisoftware.resources</groupId>
+        <version>2.1.1-SNAPSHOT</version>
+        <relativePath>../resources-parent</relativePath>
+    </parent>
 
-	<artifactId>resources-api</artifactId>
-	<name>Resources :: API</name>
-	<packaging>bundle</packaging>
-	<description>The public API of the resources project.</description>
-	<inceptionYear>2012</inceptionYear>
-	<url>https://anrisoftware.com/projects/projects/resources-api</url>
+    <artifactId>resources-api</artifactId>
+    <name>Resources :: API</name>
+    <packaging>bundle</packaging>
+    <description>The public API of the resources project.</description>
+    <inceptionYear>2012</inceptionYear>
+    <url>https://anrisoftware.com/projects/projects/resources-api</url>
 
-	<scm>
-		<connection>scm:git:git@anrisoftware.com:resources.git</connection>
-		<developerConnection>scm:git:git@anrisoftware.com:resources.git</developerConnection>
-		<url>https://anrisoftware.com/projects/projects/resources-api/repository</url>
-	</scm>
+    <properties>
+        <project.custom.bundle.namespace>com.anrisoftware.resources.api</project.custom.bundle.namespace>
+    </properties>
 
-	<issueManagement>
-		<system>Redmine</system>
-		<url>https://anrisoftware.com/projects/projects/resources-api</url>
-	</issueManagement>
+    <scm>
+        <connection>scm:git:git@anrisoftware.com:resources.git</connection>
+        <developerConnection>scm:git:git@anrisoftware.com:resources.git</developerConnection>
+        <url>https://anrisoftware.com/projects/projects/resources-api/repository</url>
+    </scm>
 
-	<distributionManagement>
-		<site>
-			<id>anrisoftware</id>
-			<url>dav:https://anrisoftware.com/javadoc/${project.groupId}/${project.artifactId}</url>
-		</site>
-		<repository>
-			<id>osssonatype</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-		</repository>
-		<snapshotRepository>
-			<id>osssonatype_snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
+    <issueManagement>
+        <system>Redmine</system>
+        <url>https://anrisoftware.com/projects/projects/resources-api</url>
+    </issueManagement>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-	</dependencies>
+    <distributionManagement>
+        <site>
+            <id>anrisoftware</id>
+            <url>dav:https://anrisoftware.com/javadoc/${project.groupId}/${project.artifactId}</url>
+        </site>
+        <repository>
+            <id>osssonatype</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <id>osssonatype_snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

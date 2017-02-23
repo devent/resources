@@ -26,7 +26,7 @@ import javax.swing.JLabel
 import org.junit.Test
 
 import com.anrisoftware.globalpom.utils.frametesting.FrameTesting.FrameTestingFactory
-import com.anrisoftware.resources.images.AbstractImageResourcesTest
+import com.anrisoftware.resources.images.internal.AbstractImageResourcesTest
 import com.anrisoftware.resources.images.external.ImageResolution
 import com.anrisoftware.resources.images.external.ImageResource
 import com.anrisoftware.resources.images.external.ImageResourceFactory

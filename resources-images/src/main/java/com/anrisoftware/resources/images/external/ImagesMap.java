@@ -17,7 +17,7 @@ package com.anrisoftware.resources.images.external;
 
 import java.awt.Dimension;
 
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
 
 /**
  * Puts image resources and retrieve them. The images are identified by their

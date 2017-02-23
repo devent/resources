@@ -26,11 +26,11 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
-import com.anrisoftware.resources.external.GetBundle;
-import com.anrisoftware.resources.external.GetBundleWithClassLoader;
-import com.anrisoftware.resources.external.GetBundleWithClassLoaderAndControl;
-import com.anrisoftware.resources.external.GetBundleWithControl;
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
+import com.anrisoftware.resources.getbundle.external.GetBundle;
+import com.anrisoftware.resources.getbundle.external.GetBundleWithClassLoader;
+import com.anrisoftware.resources.getbundle.external.GetBundleWithClassLoaderAndControl;
+import com.anrisoftware.resources.getbundle.external.GetBundleWithControl;
 import com.anrisoftware.resources.templates.external.TemplateResource;
 import com.anrisoftware.resources.templates.external.TemplateResourceFactory;
 import com.anrisoftware.resources.templates.external.Templates;

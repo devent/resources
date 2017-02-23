@@ -15,7 +15,7 @@
  */
 package com.anrisoftware.resources.binary.external;
 
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
 
 /**
  * Puts binary resources and retrieve them. The resources are identified by

@@ -26,11 +26,11 @@ import javax.inject.Named;
 
 import org.apache.commons.lang3.text.StrTokenizer;
 
-import com.anrisoftware.resources.external.GetBundle;
-import com.anrisoftware.resources.external.GetBundleWithClassLoader;
-import com.anrisoftware.resources.external.GetBundleWithClassLoaderAndControl;
-import com.anrisoftware.resources.external.GetBundleWithControl;
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
+import com.anrisoftware.resources.getbundle.external.GetBundle;
+import com.anrisoftware.resources.getbundle.external.GetBundleWithClassLoader;
+import com.anrisoftware.resources.getbundle.external.GetBundleWithClassLoaderAndControl;
+import com.anrisoftware.resources.getbundle.external.GetBundleWithControl;
 import com.anrisoftware.resources.texts.external.TextsBundlesMap;
 import com.anrisoftware.resources.texts.external.TextsBundlesMapFactory;
 import com.anrisoftware.resources.texts.external.TextResource;

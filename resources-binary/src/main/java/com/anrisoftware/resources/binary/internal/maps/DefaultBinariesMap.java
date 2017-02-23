@@ -23,9 +23,9 @@ import java.util.Map;
 import javax.annotation.concurrent.ThreadSafe;
 import javax.inject.Inject;
 
+import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.binary.external.BinariesMap;
 import com.anrisoftware.resources.binary.external.BinaryResource;
-import com.anrisoftware.resources.external.ResourcesException;
 
 /**
  * Stores the binary resources in a Java hash map.

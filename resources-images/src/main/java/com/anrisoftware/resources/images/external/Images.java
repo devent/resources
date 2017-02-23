@@ -19,7 +19,7 @@ import java.awt.Dimension;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
 
 /**
  * Gives images resources.

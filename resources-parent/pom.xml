@@ -12,7 +12,7 @@
 
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources-parent</artifactId>
-    <version>2.1</version>
+    <version>2.1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Resources :: Parent POM</name>
     <description>The parent POM of the resources project. Defines the group ID, source control management, project properties.</description>
@@ -21,6 +21,8 @@
 
     <properties>
         <project.custom.year>2016</project.custom.year>
+        <project.custom.bundle.namespace>com.anrisoftware.resources</project.custom.bundle.namespace>
+        <project.custom.bundle.namespace.internal>${project.custom.bundle.namespace}.internal</project.custom.bundle.namespace.internal>
     </properties>
 
     <developers>
@@ -92,5 +94,30 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <_include>osgi.bnd</_include>
+                        <Export-Package>!${project.custom.bundle.namespace.internal}.*,${project.custom.bundle.namespace}.*;version="${project.version}"</Export-Package>
+                        <Private-Package>${project.custom.bundle.namespace.internal}.*</Private-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+
+            <!-- deactivate signing -->
+            <plugin>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
