@@ -105,7 +105,7 @@ class BinariesWorker {
             return;
         }
         String location = bundle.getString(name);
-        URL url = createURL(location);
+        URL url = createURL(location, getBundle.getClassLoader());
         BinaryResource resource;
         if (url != null) {
             resource = resourceFactory.create(name, locale, url);
@@ -113,11 +113,14 @@ class BinariesWorker {
         }
     }
 
-    private URL createURL(String value) {
+    private URL createURL(String value, ClassLoader classLoader) {
         try {
             return new URL(value);
         } catch (MalformedURLException e) {
-            URL url = BinariesImpl.class.getClassLoader().getResource(value);
+            if (classLoader == null) {
+                classLoader = BinariesImpl.class.getClassLoader();
+            }
+            URL url = classLoader.getResource(value);
             return log.checkResourceURL(url, value);
         }
     }
