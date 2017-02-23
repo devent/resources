@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.anrisoftware.resources.binary.internal
+package com.anrisoftware.resources.itest.internal
 
 import static org.ops4j.pax.exam.CoreOptions.*
 

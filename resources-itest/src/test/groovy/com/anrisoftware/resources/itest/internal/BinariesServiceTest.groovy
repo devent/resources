@@ -13,11 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.anrisoftware.resources.binary.internal
+package com.anrisoftware.resources.itest.internal
 
 import static org.ops4j.pax.exam.CoreOptions.*
-
-import java.awt.Dimension
 
 import javax.inject.Inject
 
@@ -28,7 +26,7 @@ import org.ops4j.pax.exam.junit.PaxExam
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy
 import org.ops4j.pax.exam.spi.reactors.PerMethod
 
-import com.anrisoftware.resources.images.external.ImagesService
+import com.anrisoftware.resources.binary.external.BinariesService
 
 /**
  *
@@ -38,26 +36,25 @@ import com.anrisoftware.resources.images.external.ImagesService
  */
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerMethod.class)
-class ImagesServiceTest extends AbstractTestPax {
+class BinariesServiceTest extends AbstractTestPax {
 
     @Inject
-    ImagesService imagesService
+    BinariesService binariesService
 
     List<Option> createConfig(List<Option> options) {
         super.createConfig options
-        options << mavenBundle("com.anrisoftware.resources", "resources-images").versionAsInProject()
+        options << mavenBundle("com.anrisoftware.resources", "resources-binary").versionAsInProject()
     }
 
     @Test
-    void "load logo"() {
-        def b = imagesService.create 'Logos', ImagesServiceTest.class.classLoader
-        def name = 'logo'
+    void "load lorem zipfile"() {
+        def b = binariesService.create 'Zipfiles', BinariesServiceTest.class.classLoader
         def locale = Locale.GERMAN
-        def size = new Dimension(171, 171)
-        def res = b.getResource 'logo', locale, size
-        assert res.name == name
+        def res = b.getResource 'lorem', locale
+        assert res.name == 'lorem'
         assert res.locale == locale
-        assert res.URL == null
-        assert res.getSizePx() == size
+        assert res.URL.toString() =~ 'bundle://.*Lorem ipsum\\.html\\.zip'
+        assert res.binary.size() == 71639
+        assert res.stream.available() == 71639
     }
 }
