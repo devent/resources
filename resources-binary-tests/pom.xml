@@ -1,66 +1,58 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<artifactId>resources-parent</artifactId>
-		<groupId>com.anrisoftware.resources</groupId>
-		<version>2.2-SNAPSHOT</version>
-		<relativePath>../resources-parent</relativePath>
-	</parent>
+    <parent>
+        <artifactId>resources-parent</artifactId>
+        <groupId>com.anrisoftware.resources</groupId>
+        <version>4.4.0-SNAPSHOT</version>
+        <relativePath>../resources-parent</relativePath>
+    </parent>
 
-	<artifactId>resources-binary-tests</artifactId>
-	<name>Resources :: Binary Tests</name>
-	<description>Tests package for binary resources.</description>
-	<inceptionYear>2012</inceptionYear>
-	<url>https://anrisoftware.com/projects/projects/resources-binary-tests</url>
+    <artifactId>resources-binary-tests</artifactId>
+    <name>Resources :: Binary Tests</name>
+    <description>Tests package for binary resources.</description>
+    <inceptionYear>2012</inceptionYear>
+    <url>https://javadoc.anrisoftware.com/${project.groupId}/${project.artifactId}/${project.version}/</url>
 
     <properties>
         <project.custom.bundle.namespace>com.anrisoftware.resources.binary</project.custom.bundle.namespace>
     </properties>
 
-	<scm>
-		<connection>scm:git:git@anrisoftware.com:resources.git</connection>
-		<developerConnection>scm:git:git@anrisoftware.com:resources.git</developerConnection>
-		<url>https://anrisoftware.com/projects/projects/resources-binary-tests/repository</url>
-	</scm>
+    <scm>
+        <connection>${project.custom.scm.pub}</connection>
+        <developerConnection>${project.custom.scm.dev}</developerConnection>
+        <url>${project.custom.scm.url}</url>
+    </scm>
 
-	<issueManagement>
-		<system>Redmine</system>
-		<url>https://anrisoftware.com/projects/projects/resources-binary-tests</url>
-	</issueManagement>
+    <distributionManagement>
+        <site>
+            <id>site-ssh</id>
+            <url>${site.ssh.url}</url>
+        </site>
+        <repository>
+            <id>public_releases</id>
+            <url>https://maven.anrisoftware.com/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>public_snapshots</id>
+            <url>https://maven.anrisoftware.com/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
-	<distributionManagement>
-		<site>
-			<id>anrisoftware</id>
-			<url>dav:https://anrisoftware.com/javadoc/${project.groupId}/${project.artifactId}</url>
-		</site>
-		<repository>
-			<id>osssonatype</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-		</repository>
-		<snapshotRepository>
-			<id>osssonatype_snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
+    <dependencies>
 
-	<dependencies>
-
-		<!-- compile dependency -->
-		<dependency>
-			<groupId>com.anrisoftware.globalpom</groupId>
-			<artifactId>globalpom-groovytestutils</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.perfidix</groupId>
-			<artifactId>perfidix</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-	</dependencies>
+        <!-- compile dependency -->
+        <dependency>
+            <groupId>com.anrisoftware.globalpom</groupId>
+            <artifactId>globalpom-groovytestutils</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.perfidix</groupId>
+            <artifactId>perfidix</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
