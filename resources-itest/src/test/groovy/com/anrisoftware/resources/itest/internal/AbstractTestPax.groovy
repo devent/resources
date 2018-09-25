@@ -64,7 +64,7 @@ abstract class AbstractTestPax {
     List<Option> createConfig(List<Option> options) {
         options << junitBundles()
         options << systemProperty('logback.configurationFile').value("file:${PathUtils.baseDir}/src/test/resources/logback-test.xml")
-        options << mavenBundle("org.apache.felix", "org.apache.felix.scr", "1.6.0")
+        options << mavenBundle("org.apache.felix", "org.apache.felix.scr", "2.1.6")
         options << mavenBundle("org.slf4j", "slf4j-api").versionAsInProject()
         options << mavenBundle("ch.qos.logback", "logback-classic").versionAsInProject()
         options << mavenBundle("ch.qos.logback", "logback-core").versionAsInProject()
