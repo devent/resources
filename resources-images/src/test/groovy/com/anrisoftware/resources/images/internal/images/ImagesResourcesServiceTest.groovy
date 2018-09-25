@@ -40,6 +40,7 @@ import org.apache.sling.testing.mock.osgi.junit5.OsgiContext
 import org.apache.sling.testing.mock.osgi.junit5.OsgiContextExtension
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty
 import org.junit.jupiter.api.extension.ExtendWith
 
 import com.anrisoftware.globalpom.utils.frametesting.FrameTestingModule
@@ -69,6 +70,7 @@ import groovy.util.logging.Slf4j
 @Slf4j
 @CompileStatic
 @ExtendWith(OsgiContextExtension.class)
+@EnabledIfSystemProperty(named = "project.custom.gui_tests", matches = "true")
 class ImagesResourcesServiceTest extends AbstractImageResourcesTest {
 
     public final OsgiContext context = new OsgiContext()
