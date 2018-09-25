@@ -15,7 +15,7 @@
  */
 package com.anrisoftware.resources.texts.internal.texts
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 import com.anrisoftware.resources.texts.external.TextResourceFactory
 import com.anrisoftware.resources.texts.external.TextsFactory

@@ -19,9 +19,8 @@ import static com.google.inject.Guice.createInjector;
 
 import javax.inject.Inject;
 
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Service;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
 
 import com.anrisoftware.resources.texts.external.TextsMap;
 import com.anrisoftware.resources.texts.external.TextsMapFactory;
@@ -34,8 +33,7 @@ import com.google.inject.AbstractModule;
  * @author Erwin Müller, erwin.mueller@deventm.de
  * @since 2.1
  */
-@Component
-@Service(TextsMapService.class)
+@Component(service = TextsMapService.class)
 public class TextsMapDefaultServiceImpl implements TextsMapService {
 
     @Inject

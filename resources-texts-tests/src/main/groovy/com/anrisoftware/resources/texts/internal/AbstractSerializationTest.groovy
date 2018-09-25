@@ -18,9 +18,7 @@ package com.anrisoftware.resources.texts.internal
 import static com.anrisoftware.globalpom.utils.TestUtils.*
 
 import org.apache.commons.io.Charsets
-import org.junit.Before
-
-import com.google.inject.Injector
+import org.junit.jupiter.api.BeforeEach
 
 /**
  * Test for serialization of the texts resources.
@@ -47,7 +45,7 @@ abstract class AbstractSerializationTest extends AbstractTextResourceTestUtils {
 		assert resourceB.charset == charset
 	}
 
-	@Before
+	@BeforeEach
 	void createFactories() {
 		super.createFactories()
 		textFactory = createTextFactory()

@@ -33,9 +33,10 @@
  */
 package com.anrisoftware.resources.texts.internal.texts
 
-import org.apache.sling.testing.mock.osgi.junit.OsgiContext
-import org.junit.Rule
-import org.junit.Test
+import org.apache.sling.testing.mock.osgi.junit5.OsgiContext
+import org.apache.sling.testing.mock.osgi.junit5.OsgiContextExtension
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 
 import com.anrisoftware.resources.binary.internal.binaries.BinariesServiceImpl
 import com.anrisoftware.resources.binary.internal.maps.BinariesBundlesMapServiceImpl
@@ -58,9 +59,9 @@ import groovy.util.logging.Slf4j
  */
 @Slf4j
 @CompileStatic
+@ExtendWith(OsgiContextExtension.class)
 class TextsResourcesServiceTest extends AbstractTextResourceTest {
 
-    @Rule
     public final OsgiContext context = new OsgiContext()
 
     @Test

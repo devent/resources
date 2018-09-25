@@ -17,8 +17,8 @@ package com.anrisoftware.resources.texts.internal
 
 import static com.anrisoftware.globalpom.utils.TestUtils.*
 
-import org.junit.Before
-import org.junit.BeforeClass
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.BeforeEach
 
 import com.anrisoftware.resources.binary.internal.binaries.BinariesResourcesModule
 import com.anrisoftware.resources.binary.internal.maps.BinariesDefaultMapsModule
@@ -38,12 +38,12 @@ abstract class AbstractTextResourceTestUtils {
 
     def factory
 
-    @BeforeClass
+    @BeforeAll
     static void setupToStringStyle() {
         toStringStyle
     }
 
-    @Before
+    @BeforeEach
     void createFactories() {
         injector = createInjector()
         factory = createFactory()
