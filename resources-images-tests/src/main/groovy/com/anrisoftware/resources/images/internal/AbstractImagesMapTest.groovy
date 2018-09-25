@@ -17,8 +17,7 @@ package com.anrisoftware.resources.images.internal
 
 import java.awt.Dimension
 
-import org.junit.Before
-
+import org.junit.jupiter.api.BeforeEach
 
 /**
  * Tests for images map.
@@ -40,7 +39,7 @@ abstract class AbstractImagesMapTest extends AbstractImageResourcesTestUtils {
 
     def customSizes
 
-    @Before
+    @BeforeEach
     void createImagesMap() {
         def factory = createImagesMapFactory()
         map = factory.create()

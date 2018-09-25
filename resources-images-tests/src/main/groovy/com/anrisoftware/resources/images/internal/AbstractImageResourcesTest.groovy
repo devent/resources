@@ -18,7 +18,7 @@ package com.anrisoftware.resources.images.internal
 import java.awt.Dimension
 
 import com.anrisoftware.globalpom.utils.imagetesting.ShowImagesFrame
-import com.anrisoftware.globalpom.utils.imagetesting.ShowImagesFrame.ShowImagesFrameFactory
+import com.anrisoftware.globalpom.utils.imagetesting.ShowImagesFrameFactory
 
 /**
  * Defines the image resources tests.

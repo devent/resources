@@ -19,8 +19,8 @@ import static com.anrisoftware.globalpom.utils.TestUtils.*
 
 import java.awt.Dimension
 
-import org.junit.Before
-import org.junit.BeforeClass
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.BeforeEach
 
 import com.anrisoftware.globalpom.utils.frametesting.FrameTestingModule
 import com.anrisoftware.globalpom.utils.imagetesting.ImageTestingModule
@@ -48,12 +48,12 @@ abstract class AbstractImageResourcesTestUtils {
 
     def imageResourceFactory
 
-    @BeforeClass
+    @BeforeAll
     static void setupToStringStyle() {
         toStringStyle
     }
 
-    @Before
+    @BeforeEach
     void createFactories() {
         injector = createInjector()
         factory = createFactory()

@@ -19,9 +19,8 @@ import static com.google.inject.Guice.createInjector;
 
 import javax.inject.Inject;
 
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Service;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
 
 import com.anrisoftware.resources.images.external.ImagesMap;
 import com.anrisoftware.resources.images.external.ImagesMapFactory;
@@ -34,8 +33,7 @@ import com.google.inject.AbstractModule;
  * @author Erwin Müller, erwin.mueller@deventm.de
  * @since 2.1
  */
-@Component
-@Service(ImagesMapService.class)
+@Component(service = ImagesMapService.class)
 public class ImagesMapCachedServiceImpl implements ImagesMapService {
 
     @Inject
@@ -48,13 +46,12 @@ public class ImagesMapCachedServiceImpl implements ImagesMapService {
 
     @Activate
     protected void start() {
-        createInjector(new ResourcesImagesCachedMapModule(),
-                new AbstractModule() {
+        createInjector(new ResourcesImagesCachedMapModule(), new AbstractModule() {
 
-                    @Override
-                    protected void configure() {
-                    }
-                }).injectMembers(this);
+            @Override
+            protected void configure() {
+            }
+        }).injectMembers(this);
     }
 
 }

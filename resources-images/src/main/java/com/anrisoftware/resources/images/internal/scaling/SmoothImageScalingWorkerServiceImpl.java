@@ -22,9 +22,8 @@ import java.awt.Image;
 
 import javax.inject.Inject;
 
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Service;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
 
 import com.anrisoftware.resources.images.external.ImageScalingWorker;
 import com.anrisoftware.resources.images.external.ImageScalingWorkerFactory;
@@ -37,10 +36,8 @@ import com.google.inject.AbstractModule;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 2.1
  */
-@Component
-@Service(ImageScalingWorkerService.class)
-public class SmoothImageScalingWorkerServiceImpl implements
-        ImageScalingWorkerService {
+@Component(service = ImageScalingWorkerService.class)
+public class SmoothImageScalingWorkerServiceImpl implements ImageScalingWorkerService {
 
     @Inject
     private ImageScalingWorkerFactory factory;
@@ -52,13 +49,12 @@ public class SmoothImageScalingWorkerServiceImpl implements
 
     @Activate
     protected void start() {
-        createInjector(new ResourcesSmoothScalingModule(),
-                new AbstractModule() {
+        createInjector(new ResourcesSmoothScalingModule(), new AbstractModule() {
 
-                    @Override
-                    protected void configure() {
-                    }
-                }).injectMembers(this);
+            @Override
+            protected void configure() {
+            }
+        }).injectMembers(this);
     }
 
 }
