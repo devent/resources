@@ -16,20 +16,19 @@
 package com.anrisoftware.resources.images.internal.images
 
 import static com.anrisoftware.globalpom.utils.TestUtils.*
-import groovy.transform.CompileStatic
-import groovy.util.logging.Slf4j
 
-import org.apache.sling.testing.mock.osgi.junit.OsgiContext
+import org.apache.sling.testing.mock.osgi.junit5.OsgiContext
+import org.apache.sling.testing.mock.osgi.junit5.OsgiContextExtension
 import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 
 import com.anrisoftware.globalpom.utils.frametesting.FrameTestingModule
 import com.anrisoftware.globalpom.utils.imagetesting.ImageTestingModule
-import com.anrisoftware.resources.images.internal.AbstractImageResourcesTest
 import com.anrisoftware.resources.images.external.ImageResolution
 import com.anrisoftware.resources.images.external.ImageResource
 import com.anrisoftware.resources.images.external.ImagesService
+import com.anrisoftware.resources.images.internal.AbstractImageResourcesTest
 import com.anrisoftware.resources.images.internal.mapcached.ImagesBundlesMapCachedServiceImpl
 import com.anrisoftware.resources.images.internal.mapcached.ImagesMapCachedServiceImpl
 import com.anrisoftware.resources.images.internal.mapcachedbounded.ImagesBundlesMapCachedBoundedServiceImpl
@@ -39,6 +38,9 @@ import com.anrisoftware.resources.images.internal.scaling.SmoothImageScalingWork
 import com.google.inject.Guice
 import com.google.inject.Injector
 
+import groovy.transform.CompileStatic
+import groovy.util.logging.Slf4j
+
 /**
  *
  *
@@ -47,9 +49,9 @@ import com.google.inject.Injector
  */
 @Slf4j
 @CompileStatic
+@ExtendWith(OsgiContextExtension.class)
 class ImagesResourcesServiceTest extends AbstractImageResourcesTest {
 
-    @Rule
     public final OsgiContext context = new OsgiContext()
 
     @Test

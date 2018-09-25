@@ -16,6 +16,7 @@
 package com.anrisoftware.resources.images.internal.images
 
 import org.junit.Test
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty
 
 import com.anrisoftware.resources.images.internal.AbstractImageResourcesTest
 import com.anrisoftware.resources.images.external.ImageResolution
@@ -32,6 +33,7 @@ import com.anrisoftware.resources.images.internal.scaling.ResourcesSmoothScaling
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.17
  */
+@EnabledIfSystemProperty(named = "project.custom.gui_tests", matches = "true")
 class ImageResourcesCachedResolutionsMapTest extends AbstractImageResourcesTest {
 
     @Test
