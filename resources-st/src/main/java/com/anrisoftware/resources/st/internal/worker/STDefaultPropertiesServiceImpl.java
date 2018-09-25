@@ -22,9 +22,8 @@ import java.util.Properties;
 
 import javax.inject.Inject;
 
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Service;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
 
 import com.anrisoftware.resources.templates.external.TemplatesPropertiesService;
 import com.google.inject.AbstractModule;
@@ -35,10 +34,8 @@ import com.google.inject.AbstractModule;
  * @author Erwin Müller, erwin.mueller@deventm.de
  * @since 2.1
  */
-@Component
-@Service(TemplatesPropertiesService.class)
-public class STDefaultPropertiesServiceImpl
-        implements TemplatesPropertiesService {
+@Component(service = TemplatesPropertiesService.class)
+public class STDefaultPropertiesServiceImpl implements TemplatesPropertiesService {
 
     @Inject
     private STDefaultPropertiesFactory propertiesFactory;

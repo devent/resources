@@ -15,7 +15,7 @@
  */
 package com.anrisoftware.resources.templates.internal
 
-import org.junit.Before
+import org.junit.jupiter.api.BeforeEach
 
 import com.anrisoftware.globalpom.utils.TestUtils
 import com.google.inject.Guice
@@ -35,7 +35,7 @@ abstract class AbstractTemplateResourceTestUtils extends TestUtils {
 
     def resourceFactory
 
-    @Before
+    @BeforeEach
     void createFactories() {
         injector = createInjector()
         factory = createFactory()

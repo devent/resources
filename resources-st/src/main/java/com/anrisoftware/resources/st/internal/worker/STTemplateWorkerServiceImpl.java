@@ -24,9 +24,8 @@ import java.util.Properties;
 
 import javax.inject.Inject;
 
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Service;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
 
 import com.anrisoftware.resources.templates.external.TemplateWorker;
 import com.anrisoftware.resources.templates.external.TemplateWorkerFactory;
@@ -39,18 +38,15 @@ import com.google.inject.AbstractModule;
  * @author Erwin Müller, erwin.mueller@deventm.de
  * @since 2.1
  */
-@Component
-@Service(TemplateWorkerService.class)
+@Component(service = TemplateWorkerService.class)
 public class STTemplateWorkerServiceImpl implements TemplateWorkerService {
 
     @Inject
     private TemplateWorkerFactory templateWorkerFactory;
 
     @Override
-    public TemplateWorker create(URL templateUrl, Properties properties,
-            Map<Serializable, Serializable> attributes) {
-        return templateWorkerFactory
-                .create(templateUrl, properties, attributes);
+    public TemplateWorker create(URL templateUrl, Properties properties, Map<Serializable, Serializable> attributes) {
+        return templateWorkerFactory.create(templateUrl, properties, attributes);
     }
 
     @Activate

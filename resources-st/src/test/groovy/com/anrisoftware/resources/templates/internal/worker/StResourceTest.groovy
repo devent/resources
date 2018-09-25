@@ -15,7 +15,8 @@
  */
 package com.anrisoftware.resources.templates.internal.worker
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
+import static org.junit.jupiter.api.Assertions.assertThrows
 
 import com.anrisoftware.resources.api.external.ResourcesException
 import com.anrisoftware.resources.st.internal.worker.STDefaultPropertiesFactory
@@ -100,7 +101,7 @@ class StResourceTest extends AbstractTemplateResourceTest {
         assertStringContent template.getText(args), "${args[2]}:${args[4]}"
     }
 
-    @Test(expected = ResourcesException)
+    @Test
     void "load missng template"() {
         String[] args = [
             "arg1",
@@ -111,10 +112,10 @@ class StResourceTest extends AbstractTemplateResourceTest {
         def baseName = "Templates"
         def templates = factory.create baseName
         def template = templates.getResource "errorstemplate"
-        template.getText(args)
+        assertThrows(ResourcesException.class, { template.getText(args) })
     }
 
-    @Test(expected = ResourcesException)
+    @Test
     void "load template with errors"() {
         String[] args = [
             "test",
@@ -126,7 +127,7 @@ class StResourceTest extends AbstractTemplateResourceTest {
         def baseName = "Templates"
         def templates = factory.create baseName
         def template = templates.getResource "errorstemplate"
-        template.getText(args)
+        assertThrows(ResourcesException.class, { template.getText(args) })
     }
 
     def getTemplatesModule() {

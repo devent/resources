@@ -17,9 +17,10 @@ package com.anrisoftware.resources.templates.internal.worker
 
 import static com.anrisoftware.globalpom.utils.TestUtils.*
 
-import org.apache.sling.testing.mock.osgi.junit.OsgiContext
-import org.junit.Rule
-import org.junit.Test
+import org.apache.sling.testing.mock.osgi.junit5.OsgiContext
+import org.apache.sling.testing.mock.osgi.junit5.OsgiContextExtension
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 
 import com.anrisoftware.resources.st.internal.worker.STDefaultPropertiesServiceImpl
 import com.anrisoftware.resources.st.internal.worker.STTemplateWorkerServiceImpl
@@ -41,9 +42,9 @@ import groovy.util.logging.Slf4j
  */
 @Slf4j
 @CompileStatic
+@ExtendWith(OsgiContextExtension.class)
 class StResourceServiceTest extends AbstractTemplateResourceTest {
 
-    @Rule
     public final OsgiContext context = new OsgiContext()
 
     TemplatesService service
