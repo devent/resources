@@ -38,7 +38,7 @@ import static com.anrisoftware.globalpom.utils.TestUtils.*
 
 import org.apache.sling.testing.mock.osgi.junit5.OsgiContext
 import org.apache.sling.testing.mock.osgi.junit5.OsgiContextExtension
-import org.junit.Before
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
@@ -115,7 +115,7 @@ class ImagesResourcesServiceTest extends AbstractImageResourcesTest {
 
     ImagesService service
 
-    @Before
+    @BeforeEach
     void createFactories() {
         injector = createInjector()
     }
