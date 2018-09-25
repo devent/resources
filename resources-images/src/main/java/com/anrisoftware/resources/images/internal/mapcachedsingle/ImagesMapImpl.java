@@ -160,9 +160,6 @@ class ImagesMapImpl implements ImagesMap {
             Dimension size) {
         Map<Dimension, ImageResource> images;
         images = imagesCache.get(name);
-        if (images == null) {
-            return false;
-        }
         return images == null ? false : images.containsKey(size);
     }
 
