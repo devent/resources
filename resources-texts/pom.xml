@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>resources-parent</artifactId>
-		<groupId>com.anrisoftware.resources</groupId>
-		<version>2.2-SNAPSHOT</version>
-		<relativePath>../resources-parent</relativePath>
+        <artifactId>resources-parent</artifactId>
+        <groupId>com.anrisoftware.resources</groupId>
+        <version>4.4.0-SNAPSHOT</version>
+        <relativePath>../resources-parent</relativePath>
 	</parent>
 
 	<artifactId>resources-texts</artifactId>
@@ -15,37 +15,32 @@
 	<packaging>bundle</packaging>
 	<description>Text resources.</description>
 	<inceptionYear>2012</inceptionYear>
-	<url>https://anrisoftware.com/projects/projects/resources-texts</url>
+    <url>https://javadoc.anrisoftware.com/${project.groupId}/${project.artifactId}/${project.version}/</url>
 
     <properties>
         <project.custom.bundle.namespace>com.anrisoftware.resources.texts</project.custom.bundle.namespace>
     </properties>
 
-	<scm>
-		<connection>scm:git:git@anrisoftware.com:resources.git</connection>
-		<developerConnection>scm:git:git@anrisoftware.com:resources.git</developerConnection>
-		<url>https://anrisoftware.com/projects/projects/resources-texts/repository</url>
-	</scm>
+    <scm>
+        <connection>${project.custom.scm.pub}</connection>
+        <developerConnection>${project.custom.scm.dev}</developerConnection>
+        <url>${project.custom.scm.url}</url>
+    </scm>
 
-	<issueManagement>
-		<system>Redmine</system>
-		<url>https://anrisoftware.com/projects/projects/resources-texts</url>
-	</issueManagement>
-
-	<distributionManagement>
-		<site>
-			<id>anrisoftware</id>
-			<url>dav:https://anrisoftware.com/javadoc/${project.groupId}/${project.artifactId}</url>
-		</site>
-		<repository>
-			<id>osssonatype</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-		</repository>
-		<snapshotRepository>
-			<id>osssonatype_snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
+    <distributionManagement>
+        <site>
+            <id>site-ssh</id>
+            <url>${site.ssh.url}</url>
+        </site>
+        <repository>
+            <id>public_releases</id>
+            <url>https://maven.anrisoftware.com/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>public_snapshots</id>
+            <url>https://maven.anrisoftware.com/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 	<dependencies>
 
@@ -53,7 +48,7 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-texts-tests</artifactId>
-			<version>2.2-SNAPSHOT</version>
+			<version>4.4.0-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -71,19 +66,19 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>2.2-SNAPSHOT</version>
+			<version>4.4.0-SNAPSHOT</version>
 			<type>bundle</type>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>2.2-SNAPSHOT</version>
+			<version>4.4.0-SNAPSHOT</version>
 			<type>bundle</type>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-binary</artifactId>
-			<version>2.2-SNAPSHOT</version>
+			<version>4.4.0-SNAPSHOT</version>
 			<type>bundle</type>
 		</dependency>
 
@@ -105,27 +100,6 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.felix</groupId>
-			<artifactId>org.apache.felix.scr.annotations</artifactId>
-		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-scr-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>generate-scr-scrdescriptor</id>
-						<goals>
-							<goal>scr</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>
