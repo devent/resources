@@ -37,9 +37,19 @@
 
     <properties>
         <project.custom.home>https://project.anrisoftware.com/projects/resources</project.custom.home>
+        <project.custom.license.image.url>https://project.anrisoftware.com/attachments/download/217/apache2.0-small.gif</project.custom.license.image.url>
+        <project.custom.central.url>https://search.maven.org/artifact/${project.groupId}/${project.artifactId}/${project.version}/pom</project.custom.central.url>
+        <project.custom.scm.repo>https://gitea.anrisoftware.com/anrisoftware.com/resources.git</project.custom.scm.repo>
+        <project.custom.scm.github>https://github.com/devent/resources</project.custom.scm.github>
         <project.custom.scm.pub>scm:git:https://gitea.anrisoftware.com/anrisoftware.com/resources.git</project.custom.scm.pub>
         <project.custom.scm.dev>scm:git:git@anrisoftware.com:anrisoftware.com/resources.git</project.custom.scm.dev>
         <project.custom.scm.url>${project.custom.home}/repository</project.custom.scm.url>
+        <project.custom.jenkins.url>https://jenkins.anrisoftware.com/job/resources/</project.custom.jenkins.url>
+        <project.custom.jenkins.build.badge.master>https://jenkins.anrisoftware.com/job/resources/job/master/badge/icon</project.custom.jenkins.build.badge.master>
+        <project.custom.jenkins.build.link.master>https://jenkins.anrisoftware.com/job/resources/master</project.custom.jenkins.build.link.master>
+        <project.custom.sonarqube.url>https://sonarqube.anrisoftware.com/dashboard?id=com.anrisoftware.resources%3Aresources-bundle</project.custom.sonarqube.url>
+        <project.custom.sonarqube.qualitygate.badge>https://sonarqube.anrisoftware.com/api/badges/gate?key=com.anrisoftware.resources%3Aresources-bundle</project.custom.sonarqube.qualitygate.badge>
+        <project.custom.sonarqube.qualitygate.link>${project.custom.sonarqube.url}</project.custom.sonarqube.qualitygate.link>
     </properties>
 
     <developers>

@@ -14,7 +14,7 @@
     <artifactId>resources-binary</artifactId>
     <name>Resources :: Binary</name>
     <packaging>bundle</packaging>
-    <description>Binary resources.</description>
+    <description>Contains the modules of the project.</description>
     <inceptionYear>2012</inceptionYear>
     <url>https://javadoc.anrisoftware.com/${project.groupId}/${project.artifactId}/${project.version}/</url>
 
