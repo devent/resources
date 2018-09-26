@@ -19,6 +19,9 @@ pipeline {
 
     stages {
 
+		/**
+		* The stage will checkout the current branch.
+		*/
         stage("Checkout Build") {
             steps {
                 container('maven') {
@@ -27,6 +30,9 @@ pipeline {
             }
         }
 
+		/**
+		* The stage will setup the container for the build.
+		*/
         stage('Setup Build') {
             steps {
                 container('maven') {
@@ -39,6 +45,9 @@ pipeline {
             }
         }
 
+		/**
+		* The stage will compile and test on all branches.
+		*/
         stage('Compile and Test') {
             steps {
                 container('maven') {
@@ -51,6 +60,9 @@ pipeline {
             }
         }
 
+		/**
+		* The stage will perform the SonarQube analysis on all branches.
+		*/
         stage('SonarQube Analysis') {
             steps {
                 container('maven') {
@@ -65,19 +77,25 @@ pipeline {
             }
         }
 
+		/**
+		* The stage will deploy the artifacts to the private repository.
+		*/
         stage('Deploy to Private') {
             steps {
                 container('maven') {
                 	configFileProvider([configFile(fileId: 'maven-settings-global', variable: 'MAVEN_SETTINGS')]) {
                     	withMaven() {
 	                        sh '/setup-ssh.sh'
-                        	sh '$MVN_CMD -s $MAVEN_SETTINGS -B deploy site:site site:deploy'
+                        	sh '$MVN_CMD -s $MAVEN_SETTINGS -B deploy'
                     	}
                     }
                 }
             }
         } // stage
 
+		/**
+		* The stage will deploy the generated site for feature branches.
+		*/
         stage('Deploy Site') {
     		when {
     			// skip if branch is master or develop.
@@ -95,6 +113,9 @@ pipeline {
             }
         } // stage
 
+		/**
+		* The stage will perform a release from the develop branch.
+		*/
         stage('Release to Private') {
     		when {
 		        branch 'develop'
@@ -117,6 +138,9 @@ pipeline {
             }
         } // stage
 
+		/**
+		* The stage will deploy the artifacts and the generated site to the public repository from the master branch.
+		*/
         stage('Publish to Public') {
     		when {
 		        branch 'master'
