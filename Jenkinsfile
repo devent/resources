@@ -78,6 +78,23 @@ pipeline {
             }
         } // stage
 
+        stage('Deploy Site') {
+    		when {
+    			// skip if branch is master or develop.
+		        branch '^(?!.*(master|develop)).*$'
+			}
+            steps {
+                container('maven') {
+                	configFileProvider([configFile(fileId: 'maven-settings-global', variable: 'MAVEN_SETTINGS')]) {
+                    	withMaven() {
+	                        sh '/setup-ssh.sh'
+                        	sh '$MVN_CMD -s $MAVEN_SETTINGS -B site:site site:deploy'
+                    	}
+                    }
+                }
+            }
+        } // stage
+
         stage('Release to Private') {
     		when {
 		        branch 'develop'
