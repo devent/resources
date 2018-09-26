@@ -46,54 +46,6 @@ pipeline {
         }
 
 		/**
-		* The stage will compile and test on all branches.
-		*/
-        stage('Compile and Test') {
-            steps {
-                container('maven') {
-                    configFileProvider([configFile(fileId: 'maven-settings-global', variable: 'MAVEN_SETTINGS')]) {
-                        withMaven() {
-                            sh '$MVN_CMD -s $MAVEN_SETTINGS clean install'
-                        }
-                    }
-                }
-            }
-        }
-
-		/**
-		* The stage will perform the SonarQube analysis on all branches.
-		*/
-        stage('SonarQube Analysis') {
-            steps {
-                container('maven') {
-					withSonarQubeEnv('sonarqube') {
-	                    configFileProvider([configFile(fileId: 'maven-settings-global', variable: 'MAVEN_SETTINGS')]) {
-	                        withMaven() {
-	                            sh '$MVN_CMD -s $MAVEN_SETTINGS sonar:sonar'
-	                        }
-	                    }
-	            	}
-                }
-            }
-        }
-
-		/**
-		* The stage will deploy the artifacts to the private repository.
-		*/
-        stage('Deploy to Private') {
-            steps {
-                container('maven') {
-                	configFileProvider([configFile(fileId: 'maven-settings-global', variable: 'MAVEN_SETTINGS')]) {
-                    	withMaven() {
-	                        sh '/setup-ssh.sh'
-                        	sh '$MVN_CMD -s $MAVEN_SETTINGS -B deploy'
-                    	}
-                    }
-                }
-            }
-        } // stage
-
-		/**
 		* The stage will deploy the generated site for feature branches.
 		*/
         stage('Deploy Site') {
