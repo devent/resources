@@ -50,8 +50,10 @@ pipeline {
 		*/
         stage('Deploy Site') {
     		when {
-    			// skip if branch is master or develop.
-		        branch '^(?!.*(master|develop)).*$'
+    			allOf {
+					not { branch 'master' }
+					not { branch 'develop' }
+				}
 			}
             steps {
                 container('maven') {
