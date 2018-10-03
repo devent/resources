@@ -2,15 +2,15 @@
  * Builds and deploys the project.
  *
  * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 4.4.0
- * @version 1.0.0
+ * @since 4.5.0
+ * @version 1.1.0
  */
 pipeline {
 
     options {
         buildDiscarder(logRotator(numToKeepStr: "3"))
         disableConcurrentBuilds()
-        timeout(time: 1, unit: "HOURS")
+        timeout(time: 60, unit: "MINUTES")
     }
 
     agent {
@@ -157,6 +157,16 @@ pipeline {
                 }
             }
         } // stage
+        
+    } // stages
 
-    }
+    post {
+        success {
+	        script {
+	        	pom = readMavenPom file: 'pom.xml'
+	            manager.createSummary("document.png").appendText("<a href='${env.JAVADOC_URL}/${pom.groupId}/${pom.artifactId}/${pom.version}/'>View Maven Site</a>", false)
+	        }
+        }
+
+    } // post
 }
