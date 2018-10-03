@@ -10,7 +10,7 @@
 
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources-bundle</artifactId>
-    <version>4.4.0</version>
+    <version>4.4.1-SNAPSHOT</version>
     <name>Resources Bundle POM</name>
     <description>Contains the modules of the resources project.</description>
     <inceptionYear>2012</inceptionYear>
@@ -88,7 +88,7 @@
         <connection>${project.custom.scm.pub}</connection>
         <developerConnection>${project.custom.scm.dev}</developerConnection>
         <url>${project.custom.scm.url}</url>
-      <tag>resources-bundle-4.4.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <distributionManagement>

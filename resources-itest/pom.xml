@@ -6,7 +6,7 @@
     <parent>
         <artifactId>resources-parent</artifactId>
         <groupId>com.anrisoftware.resources</groupId>
-        <version>4.4.0</version>
+        <version>4.4.1-SNAPSHOT</version>
         <relativePath>../resources-parent</relativePath>
     </parent>
 
@@ -26,49 +26,49 @@
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-api</artifactId>
-            <version>4.4.0</version>
+            <version>4.4.1-SNAPSHOT</version>
             <type>bundle</type>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-getbundle</artifactId>
-            <version>4.4.0</version>
+            <version>4.4.1-SNAPSHOT</version>
             <type>bundle</type>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-binary</artifactId>
-            <version>4.4.0</version>
+            <version>4.4.1-SNAPSHOT</version>
             <type>bundle</type>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-images</artifactId>
-            <version>4.4.0</version>
+            <version>4.4.1-SNAPSHOT</version>
             <type>bundle</type>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-templates</artifactId>
-            <version>4.4.0</version>
+            <version>4.4.1-SNAPSHOT</version>
             <type>bundle</type>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-st</artifactId>
-            <version>4.4.0</version>
+            <version>4.4.1-SNAPSHOT</version>
             <type>bundle</type>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-texts</artifactId>
-            <version>4.4.0</version>
+            <version>4.4.1-SNAPSHOT</version>
             <type>bundle</type>
             <scope>test</scope>
         </dependency>

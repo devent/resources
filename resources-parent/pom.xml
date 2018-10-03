@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.anrisoftware.resources</groupId>
         <artifactId>resources-bundle</artifactId>
-        <version>4.4.0</version>
+        <version>4.4.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>resources-parent</artifactId>
@@ -19,7 +19,7 @@
         <connection>${project.custom.scm.pub}</connection>
         <developerConnection>${project.custom.scm.dev}</developerConnection>
         <url>${project.custom.scm.url}</url>
-      <tag>resources-bundle-4.4.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <distributionManagement>
