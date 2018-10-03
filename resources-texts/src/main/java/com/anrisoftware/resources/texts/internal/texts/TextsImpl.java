@@ -10,9 +10,9 @@ package com.anrisoftware.resources.texts.internal.texts;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,11 +37,11 @@ import com.anrisoftware.resources.getbundle.external.GetBundle;
 import com.anrisoftware.resources.getbundle.external.GetBundleWithClassLoader;
 import com.anrisoftware.resources.getbundle.external.GetBundleWithClassLoaderAndControl;
 import com.anrisoftware.resources.getbundle.external.GetBundleWithControl;
-import com.anrisoftware.resources.texts.external.TextsBundlesMap;
-import com.anrisoftware.resources.texts.external.TextsBundlesMapFactory;
 import com.anrisoftware.resources.texts.external.TextResource;
 import com.anrisoftware.resources.texts.external.TextResourceFactory;
 import com.anrisoftware.resources.texts.external.Texts;
+import com.anrisoftware.resources.texts.external.TextsBundlesMap;
+import com.anrisoftware.resources.texts.external.TextsBundlesMapFactory;
 import com.anrisoftware.resources.texts.external.TextsMap;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
@@ -52,6 +52,7 @@ import com.google.inject.assistedinject.AssistedInject;
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 1.0
  */
+@SuppressWarnings("deprecation")
 class TextsImpl implements Texts {
 
     private final TextsImplLogger log;
@@ -67,135 +68,116 @@ class TextsImpl implements Texts {
     /**
      * Sets the default character set and the base name of the text resources.
      *
-     * @param logger
-     *            the {@link TextsImplLogger} for the logging messages.
+     * @param logger              the {@link TextsImplLogger} for the logging
+     *                            messages.
      *
-     * @param texts
-     *            the {@link TextsBundlesMapFactory} that cache the resource bundles.
+     * @param texts               the {@link TextsBundlesMapFactory} that cache the
+     *                            resource bundles.
      *
-     * @param textResourceFactory
-     *            the {@link TextResourceFactory} that creates the text
-     *            resources.
+     * @param textResourceFactory the {@link TextResourceFactory} that creates the
+     *                            text resources.
      *
-     * @param defaultCharset
-     *            the default {@link Charset} for the text resources.
+     * @param defaultCharset      the default {@link Charset} for the text
+     *                            resources.
      *
-     * @param baseName
-     *            the base name for the text resources.
+     * @param baseName            the base name for the text resources.
      */
     @AssistedInject
-    TextsImpl(TextsImplLogger logger, TextsBundlesMapFactory texts,
-            TextResourceFactory textResourceFactory,
-            @Named("texts-default-charset") Charset defaultCharset,
-            @Assisted String baseName) {
-        this(logger, texts, textResourceFactory, defaultCharset, new GetBundle(
-                baseName));
+    TextsImpl(TextsImplLogger logger, TextsBundlesMapFactory texts, TextResourceFactory textResourceFactory,
+            @Named("texts-default-charset") Charset defaultCharset, @Assisted String baseName) {
+        this(logger, texts, textResourceFactory, defaultCharset, new GetBundle(baseName));
     }
 
     /**
-     * Sets the default character set, the base name and the class loader for
-     * the text resources.
+     * Sets the default character set, the base name and the class loader for the
+     * text resources.
      *
-     * @param logger
-     *            the {@link TextsImplLogger} for the logging messages.
+     * @param logger              the {@link TextsImplLogger} for the logging
+     *                            messages.
      *
-     * @param texts
-     *            the {@link TextsBundlesMapFactory} that cache the resource bundles.
+     * @param texts               the {@link TextsBundlesMapFactory} that cache the
+     *                            resource bundles.
      *
-     * @param textResourceFactory
-     *            the {@link TextResourceFactory} that creates the text
-     *            resources.
+     * @param textResourceFactory the {@link TextResourceFactory} that creates the
+     *                            text resources.
      *
-     * @param defaultCharset
-     *            the default {@link Charset} for the text resources.
+     * @param defaultCharset      the default {@link Charset} for the text
+     *                            resources.
      *
-     * @param baseName
-     *            the base name for the text resources.
+     * @param baseName            the base name for the text resources.
      *
-     * @param classLoader
-     *            the {@link ClassLoader} to load the text resources.
+     * @param classLoader         the {@link ClassLoader} to load the text
+     *                            resources.
      */
     @AssistedInject
-    TextsImpl(TextsImplLogger logger, TextsBundlesMapFactory texts,
-            TextResourceFactory textResourceFactory,
-            @Named("texts-default-charset") Charset defaultCharset,
-            @Assisted String baseName, @Assisted ClassLoader classLoader) {
-        this(logger, texts, textResourceFactory, defaultCharset,
-                new GetBundleWithClassLoader(baseName, classLoader));
+    TextsImpl(TextsImplLogger logger, TextsBundlesMapFactory texts, TextResourceFactory textResourceFactory,
+            @Named("texts-default-charset") Charset defaultCharset, @Assisted String baseName,
+            @Assisted ClassLoader classLoader) {
+        this(logger, texts, textResourceFactory, defaultCharset, new GetBundleWithClassLoader(baseName, classLoader));
     }
 
     /**
-     * Sets the default character set, the base name and the resource bundle
-     * control for the text resources.
+     * Sets the default character set, the base name and the resource bundle control
+     * for the text resources.
      *
-     * @param logger
-     *            the {@link TextsImplLogger} for the logging messages.
+     * @param logger              the {@link TextsImplLogger} for the logging
+     *                            messages.
      *
-     * @param texts
-     *            the {@link TextsBundlesMapFactory} that cache the resource bundles.
+     * @param texts               the {@link TextsBundlesMapFactory} that cache the
+     *                            resource bundles.
      *
-     * @param textResourceFactory
-     *            the {@link TextResourceFactory} that creates the text
-     *            resources.
+     * @param textResourceFactory the {@link TextResourceFactory} that creates the
+     *                            text resources.
      *
-     * @param defaultCharset
-     *            the default {@link Charset} for the text resources.
+     * @param defaultCharset      the default {@link Charset} for the text
+     *                            resources.
      *
-     * @param baseName
-     *            the base name for the text resources.
+     * @param baseName            the base name for the text resources.
      *
-     * @param control
-     *            the {@link ResourceBundle.Control} for the text resources.
+     * @param control             the {@link ResourceBundle.Control} for the text
+     *                            resources.
      */
     @AssistedInject
-    TextsImpl(TextsImplLogger logger, TextsBundlesMapFactory texts,
-            TextResourceFactory textResourceFactory,
-            @Named("texts-default-charset") Charset defaultCharset,
-            @Assisted String baseName, @Assisted ResourceBundle.Control control) {
-        this(logger, texts, textResourceFactory, defaultCharset,
-                new GetBundleWithControl(baseName, control));
+    TextsImpl(TextsImplLogger logger, TextsBundlesMapFactory texts, TextResourceFactory textResourceFactory,
+            @Named("texts-default-charset") Charset defaultCharset, @Assisted String baseName,
+            @Assisted ResourceBundle.Control control) {
+        this(logger, texts, textResourceFactory, defaultCharset, new GetBundleWithControl(baseName, control));
     }
 
     /**
      * Sets the default character set, the base name, the class loader and the
      * resource bundle control for the text resources.
      *
-     * @param logger
-     *            the {@link TextsImplLogger} for the logging messages.
+     * @param logger              the {@link TextsImplLogger} for the logging
+     *                            messages.
      *
-     * @param texts
-     *            the {@link TextsBundlesMapFactory} that cache the resource bundles.
+     * @param texts               the {@link TextsBundlesMapFactory} that cache the
+     *                            resource bundles.
      *
-     * @param textResourceFactory
-     *            the {@link TextResourceFactory} that creates the text
-     *            resources.
+     * @param textResourceFactory the {@link TextResourceFactory} that creates the
+     *                            text resources.
      *
-     * @param defaultCharset
-     *            the default {@link Charset} for the text resources.
+     * @param defaultCharset      the default {@link Charset} for the text
+     *                            resources.
      *
-     * @param baseName
-     *            the base name for the text resources.
+     * @param baseName            the base name for the text resources.
      *
-     * @param classLoader
-     *            the {@link ClassLoader} to load the text resources.
+     * @param classLoader         the {@link ClassLoader} to load the text
+     *                            resources.
      *
-     * @param control
-     *            the {@link ResourceBundle.Control} for the text resources.
+     * @param control             the {@link ResourceBundle.Control} for the text
+     *                            resources.
      */
     @AssistedInject
-    TextsImpl(TextsImplLogger logger, TextsBundlesMapFactory texts,
-            TextResourceFactory textResourceFactory,
-            @Named("texts-default-charset") Charset defaultCharset,
-            @Assisted String baseName, @Assisted ClassLoader classLoader,
-            @Assisted ResourceBundle.Control control) {
+    TextsImpl(TextsImplLogger logger, TextsBundlesMapFactory texts, TextResourceFactory textResourceFactory,
+            @Named("texts-default-charset") Charset defaultCharset, @Assisted String baseName,
+            @Assisted ClassLoader classLoader, @Assisted ResourceBundle.Control control) {
         this(logger, texts, textResourceFactory, defaultCharset,
-                new GetBundleWithClassLoaderAndControl(baseName, classLoader,
-                        control));
+                new GetBundleWithClassLoaderAndControl(baseName, classLoader, control));
     }
 
-    private TextsImpl(TextsImplLogger logger, TextsBundlesMapFactory texts,
-            TextResourceFactory textResourceFactory, Charset defaultCharset,
-            GetBundle getBundle) {
+    private TextsImpl(TextsImplLogger logger, TextsBundlesMapFactory texts, TextResourceFactory textResourceFactory,
+            Charset defaultCharset, GetBundle getBundle) {
         this.log = logger;
         this.texts = texts.create();
         this.textResourceFactory = textResourceFactory;
@@ -224,8 +206,7 @@ class TextsImpl implements Texts {
     }
 
     @Override
-    public TextResource getResource(String name, Locale locale)
-            throws ResourcesException {
+    public TextResource getResource(String name, Locale locale) throws ResourcesException {
         ResourceBundle bundle = getBundle.bundleFor(locale);
         log.loadedResourceBundle(name, bundle);
         TextResource text = lazyLoadResource(name, bundle);
@@ -243,8 +224,8 @@ class TextsImpl implements Texts {
         return text;
     }
 
-    private TextResource loadTextResource(ResourceBundle bundle, TextsMap map,
-            String name, String value) throws ResourcesException {
+    private TextResource loadTextResource(ResourceBundle bundle, TextsMap map, String name, String value)
+            throws ResourcesException {
         StrTokenizer tokenizer = new StrTokenizer(value, ',', '\\');
         String[] tokens = tokenizer.getTokenArray();
         Charset charset = parseCharset(tokens);
@@ -281,11 +262,9 @@ class TextsImpl implements Texts {
         }
     }
 
-    private TextResource loadText(Locale locale, TextsMap map, String name,
-            Charset charset, URL url) {
+    private TextResource loadText(Locale locale, TextsMap map, String name, Charset charset, URL url) {
         if (url != null) {
-            TextResource text = textResourceFactory.create(name, locale, url,
-                    charset);
+            TextResource text = textResourceFactory.create(name, locale, url, charset);
             map.putText(name, text);
             return text;
         } else {
