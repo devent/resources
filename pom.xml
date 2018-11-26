@@ -7,12 +7,12 @@
     <parent>
         <groupId>com.anrisoftware.globalpom</groupId>
         <artifactId>globalpom-groovy-osgi</artifactId>
-        <version>4.4.0</version>
+        <version>4.5.0</version>
     </parent>
 
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources-bundle</artifactId>
-    <version>4.4.0-SNAPSHOT</version>
+    <version>4.5.0-SNAPSHOT</version>
     <name>Resources Bundle POM</name>
     <description>Contains the modules of the resources project.</description>
     <inceptionYear>2012</inceptionYear>
@@ -50,6 +50,7 @@
         <project.custom.sonarqube.url>https://sonarqube.anrisoftware.com/dashboard?id=com.anrisoftware.resources%3Aresources-bundle</project.custom.sonarqube.url>
         <project.custom.sonarqube.qualitygate.badge>https://sonarqube.anrisoftware.com/api/badges/gate?key=com.anrisoftware.resources%3Aresources-bundle</project.custom.sonarqube.qualitygate.badge>
         <project.custom.sonarqube.qualitygate.link>${project.custom.sonarqube.url}</project.custom.sonarqube.qualitygate.link>
+        <sonar.projectKey>${project.groupId}:resources</sonar.projectKey>
     </properties>
 
     <developers>
