@@ -1,6 +1,5 @@
-
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.templates.internal.worker
 
 import org.junit.jupiter.api.Test
@@ -30,12 +30,6 @@ import com.anrisoftware.resources.templates.internal.AbstractTemplateResourceTes
 import com.anrisoftware.resources.templates.internal.maps.TemplatesDefaultMapsModule
 import com.anrisoftware.resources.templates.internal.templates.TemplatesResourcesModule
 
-/**
- * Creates the ST template resources and runs functionality tests.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 class StResourceTest extends AbstractTemplateResourceTest {
 
     @Test

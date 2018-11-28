@@ -1,6 +1,5 @@
-
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.images.internal.images
 
 import static com.anrisoftware.globalpom.utils.TestUtils.*
@@ -43,12 +43,6 @@ import com.google.inject.Injector
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 
-/**
- *
- *
- * @author Erwin Müller, erwin.mueller@deventm.de
- * @since 2.1
- */
 @Slf4j
 @CompileStatic
 @ExtendWith(OsgiContextExtension.class)

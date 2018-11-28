@@ -1,6 +1,5 @@
-
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.itest.internal
 
 import static org.ops4j.pax.exam.CoreOptions.*
@@ -29,12 +29,6 @@ import org.ops4j.pax.exam.spi.reactors.PerMethod
 
 import com.anrisoftware.resources.texts.external.TextsService
 
-/**
- *
- *
- * @author Erwin Müller <erwin.mueller@deventm.de>
- * @version 2.2
- */
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerMethod.class)
 class TextsServiceTest extends AbstractTestPax {

@@ -1,6 +1,5 @@
-
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.texts.internal
 
 import static com.anrisoftware.globalpom.utils.TestUtils.*
@@ -21,12 +21,6 @@ import static com.anrisoftware.globalpom.utils.TestUtils.*
 import org.apache.commons.io.Charsets
 import org.junit.jupiter.api.BeforeEach
 
-/**
- * Test for serialization of the texts resources.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 abstract class AbstractSerializationTest extends AbstractTextResourceTestUtils {
 
 	def textFactory
