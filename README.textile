@@ -6,8 +6,8 @@ Contains the modules of the resources project.
 
 h1. Links
 
-* "Generated Site":https://javadoc.anrisoftware.com/com.anrisoftware.resources/resources-bundle/4.5.1/
-* "Download (Central)":https://search.maven.org/artifact/com.anrisoftware.resources/resources-bundle/4.5.1/pom
+* "Generated Site":https://javadoc.anrisoftware.com/com.anrisoftware.resources/resources/4.5.1/
+* "Download (Central)":https://search.maven.org/artifact/com.anrisoftware.resources/resources/4.5.1/pom
 * "Source code":https://gitea.anrisoftware.com/anrisoftware.com/resources.git
 * "Source code (Github)":https://github.com/devent/resources
 * "Project Home":https://project.anrisoftware.com/projects/resources
