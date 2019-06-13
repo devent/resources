@@ -22,10 +22,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>resources-parent</artifactId>
+        <artifactId>resources</artifactId>
         <groupId>com.anrisoftware.resources</groupId>
         <version>4.5.1-SNAPSHOT</version>
-        <relativePath>../resources-parent</relativePath>
     </parent>
 
     <artifactId>resources-binary-tests</artifactId>
