@@ -3,18 +3,18 @@
  *
  * @author Erwin Mueller, erwin.mueller@deventm.org
  * @since 4.4.0
- * @version 1.0.0
+ * @version 1.2.0
  */
 pipeline {
 
     options {
         buildDiscarder(logRotator(numToKeepStr: "3"))
         disableConcurrentBuilds()
-        timeout(time: 1, unit: "HOURS")
+        timeout(time: 60, unit: "MINUTES")
     }
 
     agent {
-        label 'maven-3-jdk-8'
+        label 'maven-3-jdk-12'
     }
 
     stages {
@@ -46,14 +46,15 @@ pipeline {
         }
 
 		/**
-		* The stage will compile and test on all branches.
+		* The stage will compile, test and deploy on all branches.
 		*/
-        stage('Compile and Test') {
+        stage('Compile, Test and Deploy') {
             steps {
                 container('maven') {
                     configFileProvider([configFile(fileId: 'maven-settings-global', variable: 'MAVEN_SETTINGS')]) {
                         withMaven() {
-                            sh '$MVN_CMD -s $MAVEN_SETTINGS clean install'
+	                        sh '/setup-ssh.sh'
+                            sh '$MVN_CMD -s $MAVEN_SETTINGS -B clean install site:site deploy'
                         }
                     }
                 }
@@ -78,22 +79,6 @@ pipeline {
         }
 
 		/**
-		* The stage will deploy the artifacts to the private repository.
-		*/
-        stage('Deploy to Private') {
-            steps {
-                container('maven') {
-                	configFileProvider([configFile(fileId: 'maven-settings-global', variable: 'MAVEN_SETTINGS')]) {
-                    	withMaven() {
-	                        sh '/setup-ssh.sh'
-                        	sh '$MVN_CMD -s $MAVEN_SETTINGS -B deploy'
-                    	}
-                    }
-                }
-            }
-        } // stage
-
-		/**
 		* The stage will deploy the generated site for feature branches.
 		*/
         stage('Deploy Site') {
@@ -108,7 +93,7 @@ pipeline {
                 	configFileProvider([configFile(fileId: 'maven-settings-global', variable: 'MAVEN_SETTINGS')]) {
                     	withMaven() {
 	                        sh '/setup-ssh.sh'
-                        	sh '$MVN_CMD -s $MAVEN_SETTINGS -B site:site site:deploy'
+                        	sh '$MVN_CMD -s $MAVEN_SETTINGS -B site:deploy'
                     	}
                     }
                 }
@@ -157,6 +142,18 @@ pipeline {
                 }
             }
         } // stage
+        
+    } // stages
 
-    }
+    post {
+        success {
+            script {
+            	pom = readMavenPom file: 'pom.xml'
+               	manager.createSummary("document.png").appendText("<a href='${env.JAVADOC_URL}/${pom.groupId}/${pom.artifactId}/${pom.version}/'>View Maven Site</a>", false)
+            }
+            timeout(time: 15, unit: 'MINUTES') {
+                waitForQualityGate abortPipeline: true
+            }
+        }
+    } // post
 }
