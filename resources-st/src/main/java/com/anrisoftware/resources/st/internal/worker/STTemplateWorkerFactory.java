@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.st.internal.worker;
 
-
 import java.io.Serializable;
 import java.net.URL;
 import java.util.Map;
@@ -53,31 +52,27 @@ public interface STTemplateWorkerFactory extends TemplateWorkerFactory {
     static final String IMPORTS_KEY = "imports";
 
     /**
-     * Creates a new template worker that is using a <a
-     * href=http://www.antlr.org
-     * /wiki/display/ST4/StringTemplate+4+Wiki+Home>String Template</a> template
-     * engine.
+     * Creates a new template worker that is using a <a href=
+     * "https://github.com/antlr/stringtemplate4/blob/master/doc/index.md">StringTemplate</a>
+     * template engine.
      *
-     * @param templateUrl
-     *            the {@link URL} of the template group file.
+     * @param templateUrl the {@link URL} of the template group file.
      *
-     * @param properties
-     *            the {@link Properties} for the template group file. Have the
-     *            properties:
-     *            <ul>
-     *            <li>{@value #ENCODING_PROPERTY}</li>
-     *            <li>{@value #DELIMITER_START_CHAR_PROPERTY}</li>
-     *            <li>{@value #DELIMITER_STOP_CHAR_PROPERTY}</li>
-     *            </ul>
+     * @param properties  the {@link Properties} for the template group file. Have
+     *                    the properties:
+     *                    <ul>
+     *                    <li>{@value #ENCODING_PROPERTY}</li>
+     *                    <li>{@value #DELIMITER_START_CHAR_PROPERTY}</li>
+     *                    <li>{@value #DELIMITER_STOP_CHAR_PROPERTY}</li>
+     *                    </ul>
      *
-     * @param attributes
-     *            the attributes {@link Map} for the template. Can contain the
-     *            attribute renderers in the map key {@link RENDERERS_KEY}.
+     * @param attributes  the attributes {@link Map} for the template. Can contain
+     *                    the attribute renderers in the map key
+     *                    {@link RENDERERS_KEY}.
      *
      *
      * @return the {@link TemplateWorker}.
      */
     @Override
-    TemplateWorker create(URL templateUrl, Properties properties,
-            Map<Serializable, Serializable> attributes);
+    TemplateWorker create(URL templateUrl, Properties properties, Map<Serializable, Serializable> attributes);
 }

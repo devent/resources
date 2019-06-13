@@ -15,7 +15,6 @@
  */
 package com.anrisoftware.resources.api.external;
 
-
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 import java.util.List;
@@ -34,6 +33,12 @@ public class ResourcesException extends MissingResourceException {
     private final Throwable cause;
 
     /**
+     * @param message   the detail message
+     *
+     * @param className the name of the resource class
+     *
+     * @param key       the key for the missing resource.
+     *
      * @see MissingResourceException#MissingResourceException(String, String,
      *      String)
      *
@@ -44,16 +49,20 @@ public class ResourcesException extends MissingResourceException {
     }
 
     /**
-     * @param cause
-     *            the {@link Throwable} cause of the exception.
+     * @param cause     the {@link Throwable} cause of the exception.
+     *
+     * @param message   the detail message
+     *
+     * @param className the name of the resource class
+     *
+     * @param key       the key for the missing resource.
      *
      * @see MissingResourceException#MissingResourceException(String, String,
      *      String)
      *
      * @since 1.7
      */
-    public ResourcesException(Throwable cause, String message, String className,
-            String key) {
+    public ResourcesException(Throwable cause, String message, String className, String key) {
         super(message, className, key);
         this.context = new DefaultExceptionContext();
         this.cause = cause;
@@ -71,11 +80,9 @@ public class ResourcesException extends MissingResourceException {
     /**
      * Adds the context with the specified name.
      *
-     * @param name
-     *            the name of the context.
+     * @param name  the name of the context.
      *
-     * @param value
-     *            the context value.
+     * @param value the context value.
      *
      * @return the context {@link Exception}.
      *

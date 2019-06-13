@@ -16,58 +16,56 @@
 
 package com.anrisoftware.resources.images.external;
 
-
 import java.util.ResourceBundle;
 
 public interface ImagesFactory {
 
-	/**
-	 * Creates a new {@link Images} with the resource bundle base name and the
-	 * caller's class loader.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 */
-	Images create(String baseName);
+    /**
+     * Creates a new {@link Images} with the resource bundle base name and the
+     * caller's class loader.
+     * 
+     * @param baseName the base name {@link String}.
+     * 
+     * @return {@link Images}
+     */
+    Images create(String baseName);
 
-	/**
-	 * Creates a new {@link Images} with the resource bundle base name and the
-	 * class loader.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 * 
-	 * @param classLoader
-	 *            the {@link ClassLoader}.
-	 */
-	Images create(String baseName, ClassLoader classLoader);
+    /**
+     * Creates a new {@link Images} with the resource bundle base name and the class
+     * loader.
+     * 
+     * @param baseName    the base name {@link String}.
+     * 
+     * @param classLoader the {@link ClassLoader}.
+     * 
+     * @return {@link Images}
+     */
+    Images create(String baseName, ClassLoader classLoader);
 
-	/**
-	 * Creates a new {@link Images} with the resource bundle base name and the
-	 * control.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 * 
-	 * @param control
-	 *            the {@link ResourceBundle.Control}.
-	 */
-	Images create(String baseName, ResourceBundle.Control control);
+    /**
+     * Creates a new {@link Images} with the resource bundle base name and the
+     * control.
+     * 
+     * @param baseName the base name {@link String}.
+     * 
+     * @param control  the {@link ResourceBundle.Control}.
+     * 
+     * @return {@link Images}
+     */
+    Images create(String baseName, ResourceBundle.Control control);
 
-	/**
-	 * Creates a new {@link Images} with the resource bundle base name, the
-	 * class loader and the control.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 * 
-	 * @param classLoader
-	 *            the {@link ClassLoader}.
-	 * 
-	 * @param control
-	 *            the {@link ResourceBundle.Control}.
-	 */
-	Images create(String baseName, ClassLoader classLoader,
-			ResourceBundle.Control control);
+    /**
+     * Creates a new {@link Images} with the resource bundle base name, the class
+     * loader and the control.
+     * 
+     * @param baseName    the base name {@link String}.
+     * 
+     * @param classLoader the {@link ClassLoader}.
+     * 
+     * @param control     the {@link ResourceBundle.Control}.
+     * 
+     * @return {@link Images}
+     */
+    Images create(String baseName, ClassLoader classLoader, ResourceBundle.Control control);
 
 }

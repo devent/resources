@@ -16,12 +16,17 @@
 
 package com.anrisoftware.resources.st.external;
 
-
 import java.util.Locale;
 
 public class AttributeRendererFactory {
 
     /**
+     * @param type     the attribute type {@link Class}.
+     *
+     * @param renderer the {@link org.stringtemplate.v4.AttributeRenderer}.
+     *
+     * @return the {@link AttributeRenderer}.
+     * 
      * @see #wrap(Class, org.stringtemplate.v4.AttributeRenderer)
      */
     public static AttributeRenderer wrapAttributeRenderer(final Class<?> type,
@@ -32,17 +37,14 @@ public class AttributeRendererFactory {
     /**
      * Wraps the ST attribute renderer with the attribute type.
      *
-     * @param type
-     *            the attribute type {@link Class}.
+     * @param type     the attribute type {@link Class}.
      *
-     * @param renderer
-     *            the {@link org.stringtemplate.v4.AttributeRenderer}.
+     * @param renderer the {@link org.stringtemplate.v4.AttributeRenderer}.
      *
      * @return the {@link AttributeRenderer}.
      */
     @SuppressWarnings("serial")
-    public static AttributeRenderer wrap(final Class<?> type,
-            final org.stringtemplate.v4.AttributeRenderer renderer) {
+    public static AttributeRenderer wrap(final Class<?> type, final org.stringtemplate.v4.AttributeRenderer renderer) {
         return new AttributeRenderer() {
 
             @Override

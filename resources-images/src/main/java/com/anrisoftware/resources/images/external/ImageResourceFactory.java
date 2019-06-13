@@ -16,51 +16,43 @@
 
 package com.anrisoftware.resources.images.external;
 
-
 import java.awt.Image;
 import java.net.URL;
 import java.util.Locale;
 
 public interface ImageResourceFactory {
 
-	/**
-	 * Creates a new image resource that will load an image from the specified
-	 * URL.
-	 * 
-	 * @param name
-	 *            the name {@link String} of this resource.
-	 * 
-	 * @param locale
-	 *            the {@link Locale} this text resource.
-	 * 
-	 * @param resolution
-	 *            the {@link ImageResolution} of the image.
-	 * 
-	 * @param url
-	 *            the resource {@link URL} of the image.
-	 * 
-	 * @since 1.1
-	 */
-	ImageResource create(String name, Locale locale,
-			ImageResolution resolution, URL url);
+    /**
+     * Creates a new image resource that will load an image from the specified URL.
+     * 
+     * @param name       the name {@link String} of this resource.
+     * 
+     * @param locale     the {@link Locale} this text resource.
+     * 
+     * @param resolution the {@link ImageResolution} of the image.
+     * 
+     * @param url        the resource {@link URL} of the image.
+     * 
+     * @return {@link ImageResource}
+     * 
+     * @since 1.1
+     */
+    ImageResource create(String name, Locale locale, ImageResolution resolution, URL url);
 
-	/**
-	 * Creates a new image resource that have an already loaded image.
-	 * 
-	 * @param name
-	 *            the name {@link String} of this resource.
-	 * 
-	 * @param locale
-	 *            the {@link Locale} this text resource.
-	 * 
-	 * @param resolution
-	 *            the {@link ImageResolution} of the image.
-	 * 
-	 * @param image
-	 *            the {@link Image} of the resource.
-	 * 
-	 * @since 1.1
-	 */
-	ImageResource create(String name, Locale locale,
-			ImageResolution resolution, Image image);
+    /**
+     * Creates a new image resource that have an already loaded image.
+     * 
+     * @param name       the name {@link String} of this resource.
+     * 
+     * @param locale     the {@link Locale} this text resource.
+     * 
+     * @param resolution the {@link ImageResolution} of the image.
+     * 
+     * @param image      the {@link Image} of the resource.
+     *
+     * @return {@link ImageResource}
+     * 
+     * @since 1.1
+     */
+    ImageResource create(String name, Locale locale, ImageResolution resolution, Image image);
 }

@@ -67,6 +67,8 @@ public interface TemplateWorker extends Serializable {
 
     /**
      * Returns the template engine of the resource.
+     * 
+     * @param <T> the type of the engine.
      *
      * @return the template engine of the resource.
      *

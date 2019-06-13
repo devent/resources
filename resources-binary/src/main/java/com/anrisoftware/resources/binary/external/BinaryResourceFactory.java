@@ -16,23 +16,21 @@
 
 package com.anrisoftware.resources.binary.external;
 
-
 import java.net.URL;
 import java.util.Locale;
 
 public interface BinaryResourceFactory {
 
-	/**
-	 * Creates a new binary resource with the specified name, locale and URL.
-	 * 
-	 * @param name
-	 *            the name {@link String} of the resource.
-	 * 
-	 * @param locale
-	 *            the {@link Locale} this the resource.
-	 * 
-	 * @param url
-	 *            the {@link URL} of the resource.
-	 */
-	BinaryResource create(String name, Locale locale, URL url);
+    /**
+     * Creates a new binary resource with the specified name, locale and URL.
+     *
+     * @param name   the name {@link String} of the resource.
+     *
+     * @param locale the {@link Locale} this the resource.
+     *
+     * @param url    the {@link URL} of the resource.
+     *
+     * @return {@link BinaryResource}
+     */
+    BinaryResource create(String name, Locale locale, URL url);
 }

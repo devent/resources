@@ -16,11 +16,12 @@
 
 package com.anrisoftware.resources.texts.external;
 
-
 public interface TextsMapFactory {
 
-	/**
-	 * Creates a new {@link TextsMap}.
-	 */
-	TextsMap create();
+    /**
+     * Creates a new texts map.
+     * 
+     * @return {@link TextsMap}
+     */
+    TextsMap create();
 }

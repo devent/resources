@@ -16,59 +16,56 @@
 
 package com.anrisoftware.resources.texts.external;
 
-
-import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 public interface TextsFactory {
 
-	/**
-	 * Creates a new {@link Texts} with the resource bundle base name and the
-	 * caller's class loader.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 */
-	Texts create(String baseName);
+    /**
+     * Creates a new {@link Texts} with the resource bundle base name and the
+     * caller's class loader.
+     * 
+     * @param baseName the base name {@link String}.
+     * 
+     * @return {@link Texts}
+     */
+    Texts create(String baseName);
 
-	/**
-	 * Creates a new {@link Texts} with the resource bundle base name and the
-	 * class loader.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 * 
-	 * @param classLoader
-	 *            the {@link ClassLoader}.
-	 */
-	Texts create(String baseName, ClassLoader classLoader);
+    /**
+     * Creates a new {@link Texts} with the resource bundle base name and the class
+     * loader.
+     * 
+     * @param baseName    the base name {@link String}.
+     * 
+     * @param classLoader the {@link ClassLoader}.
+     * 
+     * @return {@link Texts}
+     */
+    Texts create(String baseName, ClassLoader classLoader);
 
-	/**
-	 * Creates a new {@link Texts} with the resource bundle base name and the
-	 * control.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 * 
-	 * @param control
-	 *            the {@link ResourceBundle.Control}.
-	 */
-	Texts create(String baseName, ResourceBundle.Control control);
+    /**
+     * Creates a new {@link Texts} with the resource bundle base name and the
+     * control.
+     * 
+     * @param baseName the base name {@link String}.
+     * 
+     * @param control  the {@link ResourceBundle.Control}.
+     * 
+     * @return {@link Texts}
+     */
+    Texts create(String baseName, ResourceBundle.Control control);
 
-	/**
-	 * Creates a new {@link Texts} with the resource bundle base name, the class
-	 * loader and the control.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 * 
-	 * @param classLoader
-	 *            the {@link ClassLoader}.
-	 * 
-	 * @param control
-	 *            the {@link ResourceBundle.Control}.
-	 */
-	Texts create(String baseName, ClassLoader classLoader,
-			ResourceBundle.Control control);
+    /**
+     * Creates a new {@link Texts} with the resource bundle base name, the class
+     * loader and the control.
+     * 
+     * @param baseName    the base name {@link String}.
+     * 
+     * @param classLoader the {@link ClassLoader}.
+     * 
+     * @param control     the {@link ResourceBundle.Control}.
+     * 
+     * @return {@link Texts}
+     */
+    Texts create(String baseName, ClassLoader classLoader, ResourceBundle.Control control);
 
 }

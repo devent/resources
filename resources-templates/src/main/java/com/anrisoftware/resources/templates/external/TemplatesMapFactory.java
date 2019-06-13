@@ -20,7 +20,9 @@ package com.anrisoftware.resources.templates.external;
 public interface TemplatesMapFactory {
 
 	/**
-	 * Creates a new {@link TemplatesMap}.
+	 * Creates a new templates map.
+	 * 
+	 * @return {@link TemplatesMap}
 	 */
 	TemplatesMap create();
 }

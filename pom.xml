@@ -30,7 +30,7 @@
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources</artifactId>
     <version>4.5.1-SNAPSHOT</version>
-    <name>Resources Bundle POM</name>
+    <name>Resources</name>
     <description>Contains the modules of the resources project.</description>
     <inceptionYear>2012</inceptionYear>
     <packaging>pom</packaging>

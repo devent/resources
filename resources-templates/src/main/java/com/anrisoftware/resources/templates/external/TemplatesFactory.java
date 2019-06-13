@@ -16,134 +16,123 @@
 
 package com.anrisoftware.resources.templates.external;
 
-
 import java.io.Serializable;
 import java.util.Map;
-import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 public interface TemplatesFactory {
 
-	/**
-	 * Creates a new {@link Templates} with the resource bundle base name and
-	 * the caller's class loader.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 */
-	Templates create(String baseName);
+    /**
+     * Creates a new {@link Templates} with the resource bundle base name and the
+     * caller's class loader.
+     * 
+     * @param baseName the base name {@link String}.
+     * 
+     * @return {@link Templates}
+     */
+    Templates create(String baseName);
 
-	/**
-	 * Creates a new {@link Templates} with the resource bundle base name and
-	 * the caller's class loader.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 * 
-	 * @param attributes
-	 *            the attributes {@link Map} for the template.
-	 * 
-	 * @since 1.4
-	 */
-	Templates create(String baseName, Map<Serializable, Serializable> attributes);
+    /**
+     * Creates a new {@link Templates} with the resource bundle base name and the
+     * caller's class loader.
+     * 
+     * @param baseName   the base name {@link String}.
+     * 
+     * @param attributes the attributes {@link Map} for the template.
+     * 
+     * @return {@link Templates}
+     * 
+     * @since 1.4
+     */
+    Templates create(String baseName, Map<Serializable, Serializable> attributes);
 
-	/**
-	 * Creates a new {@link Templates} with the resource bundle base name and
-	 * the class loader.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 * 
-	 * @param classLoader
-	 *            the {@link ClassLoader}.
-	 */
-	Templates create(String baseName, ClassLoader classLoader);
+    /**
+     * Creates a new {@link Templates} with the resource bundle base name and the
+     * class loader.
+     * 
+     * @param baseName    the base name {@link String}.
+     * 
+     * @param classLoader the {@link ClassLoader}.
+     * 
+     * @return {@link Templates}
+     */
+    Templates create(String baseName, ClassLoader classLoader);
 
-	/**
-	 * Creates a new {@link Templates} with the resource bundle base name and
-	 * the class loader.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 * 
-	 * @param attributes
-	 *            the attributes {@link Map} for the template.
-	 * 
-	 * @param classLoader
-	 *            the {@link ClassLoader}.
-	 * 
-	 * @since 1.4
-	 */
-	Templates create(String baseName,
-			Map<Serializable, Serializable> attributes, ClassLoader classLoader);
+    /**
+     * Creates a new {@link Templates} with the resource bundle base name and the
+     * class loader.
+     * 
+     * @param baseName    the base name {@link String}.
+     * 
+     * @param attributes  the attributes {@link Map} for the template.
+     * 
+     * @param classLoader the {@link ClassLoader}.
+     * 
+     * @return {@link Templates}
+     * 
+     * @since 1.4
+     */
+    Templates create(String baseName, Map<Serializable, Serializable> attributes, ClassLoader classLoader);
 
-	/**
-	 * Creates a new {@link Templates} with the resource bundle base name and
-	 * the control.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 * 
-	 * @param control
-	 *            the {@link ResourceBundle.Control}.
-	 */
-	Templates create(String baseName, ResourceBundle.Control control);
+    /**
+     * Creates a new {@link Templates} with the resource bundle base name and the
+     * control.
+     * 
+     * @param baseName the base name {@link String}.
+     * 
+     * @param control  the {@link ResourceBundle.Control}.
+     * 
+     * @return {@link Templates}
+     */
+    Templates create(String baseName, ResourceBundle.Control control);
 
-	/**
-	 * Creates a new {@link Templates} with the resource bundle base name and
-	 * the control.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 * 
-	 * @param attributes
-	 *            the attributes {@link Map} for the template.
-	 * 
-	 * @param control
-	 *            the {@link ResourceBundle.Control}.
-	 * 
-	 * @since 1.4
-	 */
-	Templates create(String baseName,
-			Map<Serializable, Serializable> attributes,
-			ResourceBundle.Control control);
+    /**
+     * Creates a new {@link Templates} with the resource bundle base name and the
+     * control.
+     * 
+     * @param baseName   the base name {@link String}.
+     * 
+     * @param attributes the attributes {@link Map} for the template.
+     * 
+     * @param control    the {@link ResourceBundle.Control}.
+     * 
+     * @return {@link Templates}
+     * 
+     * @since 1.4
+     */
+    Templates create(String baseName, Map<Serializable, Serializable> attributes, ResourceBundle.Control control);
 
-	/**
-	 * Creates a new {@link Templates} with the resource bundle base name, the
-	 * class loader and the control.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 * 
-	 * @param classLoader
-	 *            the {@link ClassLoader}.
-	 * 
-	 * @param control
-	 *            the {@link ResourceBundle.Control}.
-	 */
-	Templates create(String baseName, ClassLoader classLoader,
-			ResourceBundle.Control control);
+    /**
+     * Creates a new {@link Templates} with the resource bundle base name, the class
+     * loader and the control.
+     * 
+     * @param baseName    the base name {@link String}.
+     * 
+     * @param classLoader the {@link ClassLoader}.
+     * 
+     * @param control     the {@link ResourceBundle.Control}.
+     * 
+     * @return {@link Templates}
+     */
+    Templates create(String baseName, ClassLoader classLoader, ResourceBundle.Control control);
 
-	/**
-	 * Creates a new {@link Templates} with the resource bundle base name, the
-	 * class loader and the control.
-	 * 
-	 * @param baseName
-	 *            the base name {@link String}.
-	 * 
-	 * @param attributes
-	 *            the attributes {@link Map} for the template.
-	 * 
-	 * @param classLoader
-	 *            the {@link ClassLoader}.
-	 * 
-	 * @param control
-	 *            the {@link ResourceBundle.Control}.
-	 * 
-	 * @since 1.4
-	 */
-	Templates create(String baseName,
-			Map<Serializable, Serializable> attributes,
-			ClassLoader classLoader, ResourceBundle.Control control);
+    /**
+     * Creates a new {@link Templates} with the resource bundle base name, the class
+     * loader and the control.
+     * 
+     * @param baseName    the base name {@link String}.
+     * 
+     * @param attributes  the attributes {@link Map} for the template.
+     * 
+     * @param classLoader the {@link ClassLoader}.
+     * 
+     * @param control     the {@link ResourceBundle.Control}.
+     * 
+     * @return {@link Templates}
+     * 
+     * @since 1.4
+     */
+    Templates create(String baseName, Map<Serializable, Serializable> attributes, ClassLoader classLoader,
+            ResourceBundle.Control control);
 
 }

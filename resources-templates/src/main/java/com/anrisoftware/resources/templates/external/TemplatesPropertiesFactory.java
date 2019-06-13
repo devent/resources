@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.templates.external;
 
-
 import java.io.IOException;
 import java.util.Properties;
 
@@ -24,8 +23,10 @@ public interface TemplatesPropertiesFactory {
 
     /**
      * Returns the templates properties.
+     * 
+     * @return {@link Properties}
      *
-     * @throws IOException
+     * @throws IOException if there was an error loading the resource.
      */
     Properties create() throws IOException;
 

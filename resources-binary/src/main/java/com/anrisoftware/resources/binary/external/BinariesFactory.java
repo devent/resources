@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.binary.external;
 
-
 import java.util.ResourceBundle;
 
 public interface BinariesFactory {
@@ -25,8 +24,9 @@ public interface BinariesFactory {
      * Creates a new {@link Binaries} with the resource bundle base name and the
      * caller's class loader.
      *
-     * @param baseName
-     *            the base name {@link String}.
+     * @param baseName the base name {@link String}.
+     *
+     * @return {@link Binaries}
      */
     Binaries create(String baseName);
 
@@ -34,11 +34,11 @@ public interface BinariesFactory {
      * Creates a new {@link Binaries} with the resource bundle base name and the
      * class loader.
      *
-     * @param baseName
-     *            the base name {@link String}.
+     * @param baseName    the base name {@link String}.
      *
-     * @param classLoader
-     *            the {@link ClassLoader}.
+     * @param classLoader the {@link ClassLoader}.
+     *
+     * @return {@link Binaries}
      */
     Binaries create(String baseName, ClassLoader classLoader);
 
@@ -46,28 +46,26 @@ public interface BinariesFactory {
      * Creates a new {@link Binaries} with the resource bundle base name and the
      * control.
      *
-     * @param baseName
-     *            the base name {@link String}.
+     * @param baseName the base name {@link String}.
      *
-     * @param control
-     *            the {@link ResourceBundle.Control}.
+     * @param control  the {@link ResourceBundle.Control}.
+     *
+     * @return {@link Binaries}
      */
     Binaries create(String baseName, ResourceBundle.Control control);
 
     /**
-     * Creates a new {@link Binaries} with the resource bundle base name, the
-     * class loader and the control.
+     * Creates a new {@link Binaries} with the resource bundle base name, the class
+     * loader and the control.
      *
-     * @param baseName
-     *            the base name {@link String}.
+     * @param baseName    the base name {@link String}.
      *
-     * @param classLoader
-     *            the {@link ClassLoader}.
+     * @param classLoader the {@link ClassLoader}.
      *
-     * @param control
-     *            the {@link ResourceBundle.Control}.
+     * @param control     the {@link ResourceBundle.Control}.
+     *
+     * @return {@link Binaries}
      */
-    Binaries create(String baseName, ClassLoader classLoader,
-            ResourceBundle.Control control);
+    Binaries create(String baseName, ClassLoader classLoader, ResourceBundle.Control control);
 
 }
