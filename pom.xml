@@ -140,7 +140,7 @@
             <dependency>
                 <groupId>com.anrisoftware.propertiesutils</groupId>
                 <artifactId>propertiesutils-contextproperties</artifactId>
-                <version>4.5.1-SNAPSHOT</version>
+                <version>4.5.1</version>
                 <type>bundle</type>
             </dependency>
         </dependencies>
