@@ -40,7 +40,7 @@ public interface TextResource extends Resource {
      * 
      * @throws ResourcesException if there was an error loading the text.
      */
-    String getText() throws ResourcesException;
+    String getText();
 
     /**
      * Returns a formatted text of the resource.
@@ -57,6 +57,6 @@ public interface TextResource extends Resource {
      * 
      * @since 1.2
      */
-    String getFormattedText(Object... args) throws ResourcesException;
+    String getFormattedText(Object... args);
 
 }

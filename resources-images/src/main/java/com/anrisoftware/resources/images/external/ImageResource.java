@@ -40,7 +40,7 @@ public interface ImageResource extends Resource {
      *
      * @throws ResourcesException if the loading of the resource is failed.
      */
-    Image getImage() throws ResourcesException;
+    Image getImage();
 
     /**
      * Returns the image of the resource. It will lazy load the resource.
@@ -54,7 +54,7 @@ public interface ImageResource extends Resource {
      *
      * @since 1.16
      */
-    Image getImage(ImageObserver observer) throws ResourcesException;
+    Image getImage(ImageObserver observer);
 
     /**
      * Returns the buffered image of the resource. It will lazy load the resource.
@@ -68,7 +68,7 @@ public interface ImageResource extends Resource {
      * @since 1.16
      * @see BufferedImage#TYPE_INT_ARGB
      */
-    BufferedImage getBufferedImage(int imageType) throws ResourcesException;
+    BufferedImage getBufferedImage(int imageType);
 
     /**
      * Returns the buffered image of the resource. It will lazy load the resource.
@@ -85,7 +85,7 @@ public interface ImageResource extends Resource {
      * @since 1.16
      * @see BufferedImage#TYPE_INT_ARGB
      */
-    BufferedImage getBufferedImage(int imageType, ImageObserver observer) throws ResourcesException;
+    BufferedImage getBufferedImage(int imageType, ImageObserver observer);
 
     /**
      * Returns the width of the image. The method will block until the width is
@@ -97,7 +97,7 @@ public interface ImageResource extends Resource {
      *
      * @since 1.3
      */
-    int getWidthPx() throws ResourcesException;
+    int getWidthPx();
 
     /**
      * Returns the width of the image. The specified observer is notified when the
@@ -111,7 +111,7 @@ public interface ImageResource extends Resource {
      *
      * @since 1.16
      */
-    int getWidthPx(ImageObserver observer) throws ResourcesException;
+    int getWidthPx(ImageObserver observer);
 
     /**
      * Returns the height of the image. The method will block until the height is
@@ -123,7 +123,7 @@ public interface ImageResource extends Resource {
      *
      * @since 1.3
      */
-    int getHeightPx() throws ResourcesException;
+    int getHeightPx();
 
     /**
      * Returns the height of the image. The specified observer is notified when the
@@ -137,7 +137,7 @@ public interface ImageResource extends Resource {
      *
      * @since 1.16
      */
-    int getHeightPx(ImageObserver observer) throws ResourcesException;
+    int getHeightPx(ImageObserver observer);
 
     /**
      * Returns the width and height of the image. The method will block until the
@@ -150,7 +150,7 @@ public interface ImageResource extends Resource {
      *
      * @since 1.3
      */
-    Dimension getSizePx() throws ResourcesException;
+    Dimension getSizePx();
 
     /**
      * Returns the width and height of the image. The method will block until the
@@ -165,6 +165,6 @@ public interface ImageResource extends Resource {
      *
      * @since 1.16
      */
-    Dimension getSizePx(ImageObserver observer) throws ResourcesException;
+    Dimension getSizePx(ImageObserver observer);
 
 }

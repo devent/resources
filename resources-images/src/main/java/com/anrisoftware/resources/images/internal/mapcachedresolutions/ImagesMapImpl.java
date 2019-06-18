@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.images.internal.mapcachedresolutions;
 
-
 import static java.lang.Math.abs;
 
 import java.awt.Dimension;
@@ -25,7 +24,6 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.images.external.ImageResolution;
 import com.anrisoftware.resources.images.external.ImageResource;
 import com.anrisoftware.resources.images.external.ImagesMap;
@@ -37,8 +35,7 @@ class ImagesMapImpl implements ImagesMap {
     /**
      * Saves the loaded image resources.
      * <p>
-     * The image resources are stored for each name and for each resolution,
-     * i.e.:
+     * The image resources are stored for each name and for each resolution, i.e.:
      *
      * <pre>
      * [&lt;name:{@link String}&gt; := [&lt;resolution:{@link ImageResolution}&gt; := {@link ImageResource}]]
@@ -56,7 +53,7 @@ class ImagesMapImpl implements ImagesMap {
     }
 
     @Override
-    public void putImage(ImageResource image) throws ResourcesException {
+    public void putImage(ImageResource image) {
         String name = image.getName();
         ImageResolution resolution = image.getResolution();
         Map<ImageResolution, ImageResource> resolutions = resolutionsMap(name);
@@ -104,8 +101,7 @@ class ImagesMapImpl implements ImagesMap {
     }
 
     @Override
-    public ImageResource getImage(String name, Dimension size,
-            ImageResolution resolution) {
+    public ImageResource getImage(String name, Dimension size, ImageResolution resolution) {
         Map<ImageResolution, ImageResource> resolutions;
         resolutions = resolutionsMap(name);
         ImageResource image = resolutions.get(resolution);
@@ -125,13 +121,11 @@ class ImagesMapImpl implements ImagesMap {
     public boolean haveImage(String name, ImageResolution resolution) {
         Map<ImageResolution, ImageResource> resolutions;
         resolutions = images.get(name);
-        return resolutions == null ? false : resolutions
-                .containsKey(resolution);
+        return resolutions == null ? false : resolutions.containsKey(resolution);
     }
 
     @Override
-    public boolean haveImage(String name, ImageResolution resolution,
-            Dimension size) {
+    public boolean haveImage(String name, ImageResolution resolution, Dimension size) {
         return haveImage(name, resolution);
     }
 

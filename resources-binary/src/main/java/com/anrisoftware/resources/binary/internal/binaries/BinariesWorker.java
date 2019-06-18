@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.binary.internal.binaries;
 
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
@@ -24,7 +23,6 @@ import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.binary.external.BinariesBundlesMap;
 import com.anrisoftware.resources.binary.external.BinariesMap;
 import com.anrisoftware.resources.binary.external.BinaryResource;
@@ -49,26 +47,22 @@ class BinariesWorker {
     /**
      * Injects the dependencies.
      * 
-     * @param logger
-     *            the {@link BinariesWorkerLogger} where the logging messages
-     *            are logged.
+     * @param logger          the {@link BinariesWorkerLogger} where the logging
+     *                        messages are logged.
      * 
-     * @param resourceFactory
-     *            the {@link BinaryResourceFactory} to create a new image
-     *            resource.
+     * @param resourceFactory the {@link BinaryResourceFactory} to create a new
+     *                        image resource.
      * 
-     * @param name
-     *            the {@link String} name of the image resource we want to get.
+     * @param name            the {@link String} name of the image resource we want
+     *                        to get.
      * 
-     * @param locale
-     *            the {@link Locale} of the image resource we want to get.
+     * @param locale          the {@link Locale} of the image resource we want to
+     *                        get.
      * 
-     * @param getBundle
-     *            the {@link GetBundle} that returns the resource bundle for the
-     *            locale.
+     * @param getBundle       the {@link GetBundle} that returns the resource bundle
+     *                        for the locale.
      * 
-     * @param bundles
-     *            the map of bundles with their binary resources maps.
+     * @param bundles         the map of bundles with their binary resources maps.
      */
     @Inject
     BinariesWorker(BinariesWorkerLogger logger, BinaryResourceFactory resourceFactory, @Assisted String name,
@@ -96,7 +90,7 @@ class BinariesWorker {
         return image;
     }
 
-    private void lazyLoadBinary(BinariesMap map, ResourceBundle bundle) throws ResourcesException {
+    private void lazyLoadBinary(BinariesMap map, ResourceBundle bundle) {
         if (map.haveBinary(name)) {
             return;
         }

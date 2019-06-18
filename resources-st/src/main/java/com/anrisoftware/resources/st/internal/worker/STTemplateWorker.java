@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.st.internal.worker;
 
-
 import static com.anrisoftware.resources.st.internal.worker.STTemplateWorkerFactory.DELIMITER_START_CHAR_PROPERTY;
 import static com.anrisoftware.resources.st.internal.worker.STTemplateWorkerFactory.DELIMITER_STOP_CHAR_PROPERTY;
 import static com.anrisoftware.resources.st.internal.worker.STTemplateWorkerFactory.ENCODING_PROPERTY;
@@ -64,10 +63,8 @@ class STTemplateWorker implements TemplateWorker {
      * @see STTemplateWorkerFactory#create(URL, Properties, Map)
      */
     @Inject
-    STTemplateWorker(STTemplateWorkerLogger logger, @Assisted URL templateUrl,
-            @Assisted Properties properties,
-            @Assisted Map<Serializable, Serializable> attributes)
-            throws ResourcesException {
+    STTemplateWorker(STTemplateWorkerLogger logger, @Assisted URL templateUrl, @Assisted Properties properties,
+            @Assisted Map<Serializable, Serializable> attributes) {
         this.log = logger;
         this.templateUrl = templateUrl;
         this.properties = new ContextProperties(this, properties);
@@ -127,15 +124,13 @@ class STTemplateWorker implements TemplateWorker {
             return;
         }
         @SuppressWarnings({ "unchecked", "rawtypes" })
-        List<AttributeRenderer> renderers = (List) attributes
-                .get(RENDERERS_KEY);
+        List<AttributeRenderer> renderers = (List) attributes.get(RENDERERS_KEY);
         for (AttributeRenderer renderer : renderers) {
             group.registerRenderer(renderer.getAttributeType(), renderer);
         }
     }
 
-    private STGroupFile openGroupFile(URL templateUrl)
-            throws ResourcesException {
+    private STGroupFile openGroupFile(URL templateUrl) {
         String encoding;
         char startChar;
         char stopChar;
@@ -171,30 +166,26 @@ class STTemplateWorker implements TemplateWorker {
     }
 
     /**
-     * @param name
-     *            the template group name and the template name if the
-     *            conditions apply: a) the specified data array is empty or b)
-     *            the data array contains only attribute name-value pairs.
+     * @param name the template group name and the template name if the conditions
+     *             apply: a) the specified data array is empty or b) the data array
+     *             contains only attribute name-value pairs.
      *
-     * @param data
-     *            the data array containing attribute-name-value pairs. The
-     *            first element {@code data[0]} can contain the name of the
-     *            template in the template group. If so, then the amount of
-     *            elements in the array must be odd. If the amount of elements
-     *            in the array is not odd then the data array does not contain
-     *            the template name as the first element.
+     * @param data the data array containing attribute-name-value pairs. The first
+     *             element {@code data[0]} can contain the name of the template in
+     *             the template group. If so, then the amount of elements in the
+     *             array must be odd. If the amount of elements in the array is not
+     *             odd then the data array does not contain the template name as the
+     *             first element.
      */
     @Override
-    public String process(String name, Object... data)
-            throws ResourcesException {
+    public String process(String name, Object... data) {
         ST template = createTemplate(name, data);
         String rendered = renderTemplate(template);
         log.templateProcessed(name);
         return rendered;
     }
 
-    private ST createTemplate(String templateName, Object... data)
-            throws ResourcesException {
+    private ST createTemplate(String templateName, Object... data) {
         templateName = getTemplateName(templateName, data);
         ST template = groupFile.getInstanceOf(templateName);
         log.checkTemplateCreated(template, templateName, templateUrl);
@@ -222,13 +213,13 @@ class STTemplateWorker implements TemplateWorker {
         }
     }
 
-    private String renderTemplate(ST template) throws ResourcesException {
+    private String renderTemplate(ST template) {
         String rendered = template.render();
         throwErrors();
         return rendered;
     }
 
-    private void throwErrors() throws ResourcesException {
+    private void throwErrors() {
         if (error != null) {
             throw error;
         }

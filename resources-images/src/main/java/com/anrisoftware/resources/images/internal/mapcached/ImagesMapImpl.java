@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.images.internal.mapcached;
 
-
 import static java.lang.Math.abs;
 
 import java.awt.Dimension;
@@ -27,7 +26,6 @@ import java.util.TreeMap;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.images.external.ImageResolution;
 import com.anrisoftware.resources.images.external.ImageResource;
 import com.anrisoftware.resources.images.external.ImagesMap;
@@ -58,7 +56,7 @@ class ImagesMapImpl implements ImagesMap {
     }
 
     @Override
-    public void putImage(ImageResource image) throws ResourcesException {
+    public void putImage(ImageResource image) {
         String name = image.getName();
         ImageResolution resolution = image.getResolution();
         Map<ImageResolution, Map<Dimension, ImageResource>> resolutions = resolutionsMap(name);

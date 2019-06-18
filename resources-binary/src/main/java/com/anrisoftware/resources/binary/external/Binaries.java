@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.binary.external;
 
-
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -48,38 +47,32 @@ public interface Binaries {
     /**
      * Returns the binary resource with the specified name and language.
      *
-     * @param name
-     *            the name of the resource.
+     * @param name   the name of the resource.
      *
-     * @param locale
-     *            the {@link Locale} of the resource or <code>null</code>. If
-     *            the locale is <code>null</code> the default locale as in
-     *            {@link Locale#getDefault()} is used.
+     * @param locale the {@link Locale} of the resource or <code>null</code>. If the
+     *               locale is <code>null</code> the default locale as in
+     *               {@link Locale#getDefault()} is used.
      *
      * @return the {@link BinaryResource}.
      *
-     * @throws ResourcesException
-     *             if the resource is not available.
+     * @throws ResourcesException if the resource is not available.
      *
      * @since 1.2
      */
-    BinaryResource getResource(String name, Locale locale)
-            throws ResourcesException;
+    BinaryResource getResource(String name, Locale locale);
 
     /**
-     * Returns the binary resource with the specified name and the default
-     * locale as in {@link Locale#getDefault()}.
+     * Returns the binary resource with the specified name and the default locale as
+     * in {@link Locale#getDefault()}.
      *
-     * @param name
-     *            the name of the resource.
+     * @param name the name of the resource.
      *
      * @return the {@link BinaryResource}.
      *
-     * @throws ResourcesException
-     *             if the resource is not available.
+     * @throws ResourcesException if the resource is not available.
      *
      * @since 1.2
      */
-    BinaryResource getResource(String name) throws ResourcesException;
+    BinaryResource getResource(String name);
 
 }

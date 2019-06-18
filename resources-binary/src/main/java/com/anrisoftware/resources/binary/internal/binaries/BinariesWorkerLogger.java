@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.binary.internal.binaries;
 
-
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -29,46 +28,42 @@ import com.anrisoftware.resources.binary.external.BinaryResource;
 
 class BinariesWorkerLogger extends AbstractLogger {
 
-	private static final String RESOURCE_URL_NOT_FOUND = "Resource URL not found '{}'.";
-	private static final String NO_RESOURCE = "Binary resource not found";
-	private static final String NO_RESOURCE_MESSAGE = "Binary resource not found '{}' ({}).";
-	private static final String ADD_NEW_BINARY_RESOUCE = "Binary resouce {} added.";
-	private static final String LOADED_RESOURCE_BUNDLE = "Resource bundle {} loaded for '{}'.";
+    private static final String RESOURCE_URL_NOT_FOUND = "Resource URL not found '{}'.";
+    private static final String NO_RESOURCE = "Binary resource not found";
+    private static final String NO_RESOURCE_MESSAGE = "Binary resource not found '{}' ({}).";
+    private static final String ADD_NEW_BINARY_RESOUCE = "Binary resouce {} added.";
+    private static final String LOADED_RESOURCE_BUNDLE = "Resource bundle {} loaded for '{}'.";
 
-	BinariesWorkerLogger() {
-		super(BinariesImpl.class);
-	}
+    BinariesWorkerLogger() {
+        super(BinariesImpl.class);
+    }
 
-	void loadedResourceBundle(String name, ResourceBundle bundle) {
-		if (log.isDebugEnabled()) {
-			log.debug(LOADED_RESOURCE_BUNDLE, bundleToString(bundle), name);
-		}
-	}
+    void loadedResourceBundle(String name, ResourceBundle bundle) {
+        if (log.isDebugEnabled()) {
+            log.debug(LOADED_RESOURCE_BUNDLE, bundleToString(bundle), name);
+        }
+    }
 
-	private String bundleToString(ResourceBundle bundle) {
-		return new ToStringBuilder(bundle).append("locale", bundle.getLocale())
-				.toString();
-	}
+    private String bundleToString(ResourceBundle bundle) {
+        return new ToStringBuilder(bundle).append("locale", bundle.getLocale()).toString();
+    }
 
-	void addedBinaryResource(BinaryResource resource) {
-		log.debug(ADD_NEW_BINARY_RESOUCE, resource);
-	}
+    void addedBinaryResource(BinaryResource resource) {
+        log.debug(ADD_NEW_BINARY_RESOUCE, resource);
+    }
 
-	void checkBinaryLoaded(boolean haveResource, String name, Locale locale,
-			ResourceBundle bundle) throws ResourcesException {
-		if (!haveResource) {
-			throw logException(new ResourcesException(NO_RESOURCE, bundle
-					.getClass().toString(), name).addContext("name", name)
-					.addContext("locale", locale), NO_RESOURCE_MESSAGE, name,
-					locale);
-		}
-	}
+    void checkBinaryLoaded(boolean haveResource, String name, Locale locale, ResourceBundle bundle) {
+        if (!haveResource) {
+            throw logException(new ResourcesException(NO_RESOURCE, bundle.getClass().toString(), name)
+                    .addContext("name", name).addContext("locale", locale), NO_RESOURCE_MESSAGE, name, locale);
+        }
+    }
 
-	URL checkResourceURL(URL url, String value) {
-		if (url == null) {
-			log.warn(RESOURCE_URL_NOT_FOUND, value);
-		}
-		return url;
-	}
+    URL checkResourceURL(URL url, String value) {
+        if (url == null) {
+            log.warn(RESOURCE_URL_NOT_FOUND, value);
+        }
+        return url;
+    }
 
 }

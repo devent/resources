@@ -71,7 +71,7 @@ public interface Images {
      * 
      * @since 1.2
      */
-    ImageResource getResource(String name, Locale locale, Dimension sizePx) throws ResourcesException;
+    ImageResource getResource(String name, Locale locale, Dimension sizePx);
 
     /**
      * Returns the image with the specified name, locale size.
@@ -92,7 +92,7 @@ public interface Images {
      * 
      * @since 1.2
      */
-    ImageResource getResource(String name, Locale locale, IconSize size) throws ResourcesException;
+    ImageResource getResource(String name, Locale locale, IconSize size);
 
     /**
      * Returns the image with the specified name, locale size.
@@ -101,13 +101,13 @@ public interface Images {
      * returned. The most nearest available image resolution will be used for
      * scaling.
      * 
-     * @param name       the name {@link String} of the resource.
+     * @param name     the name {@link String} of the resource.
      * 
-     * @param locale     the {@link Locale} of the resource.
+     * @param locale   the {@link Locale} of the resource.
      * 
-     * @param widthPx    the needed width of the image in pixels.
+     * @param widthPx  the needed width of the image in pixels.
      * 
-     * @param heightPx   the needed height of the image in pixels.
+     * @param heightPx the needed height of the image in pixels.
      * 
      * @return {@link ImageResource}
      * 
@@ -115,7 +115,7 @@ public interface Images {
      * 
      * @since 1.2
      */
-    ImageResource getResource(String name, Locale locale, int widthPx, int heightPx) throws ResourcesException;
+    ImageResource getResource(String name, Locale locale, int widthPx, int heightPx);
 
     /**
      * Returns the image with the given name, locale, size and resolution.
@@ -138,8 +138,7 @@ public interface Images {
      * 
      * @since 1.2
      */
-    ImageResource getResource(String name, Locale locale, Dimension sizePx, ImageResolution resolution)
-            throws ResourcesException;
+    ImageResource getResource(String name, Locale locale, Dimension sizePx, ImageResolution resolution);
 
     /**
      * Returns the image with the given name, locale, size and resolution.
@@ -163,7 +162,6 @@ public interface Images {
      * 
      * @since 1.2
      */
-    ImageResource getResource(String name, Locale locale, int widthPx, int heightPx, ImageResolution resolution)
-            throws ResourcesException;
+    ImageResource getResource(String name, Locale locale, int widthPx, int heightPx, ImageResolution resolution);
 
 }

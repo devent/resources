@@ -36,7 +36,7 @@ public interface TemplateResource extends Resource {
      *
      * @throws ResourcesException if there was an error loading the text.
      */
-    String getText(Object... data) throws ResourcesException;
+    String getText(Object... data);
 
     /**
      * Process the template and returns the text.
@@ -54,7 +54,7 @@ public interface TemplateResource extends Resource {
      *
      * @since 1.1
      */
-    String getText(boolean invalidate, Object... data) throws ResourcesException;
+    String getText(boolean invalidate, Object... data);
 
     /**
      * Invalidate the template resource. Delete the cached resource so a subsequent

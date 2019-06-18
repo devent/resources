@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.templates.external;
 
-
 import java.io.Serializable;
 import java.net.URL;
 import java.util.Map;
@@ -52,18 +51,16 @@ public interface TemplateWorker extends Serializable {
     /**
      * Process the template and return the text.
      *
-     * @param name
-     *            the name of the template.
+     * @param name the name of the template.
      *
-     * @param data
-     *            the data.
+     * @param data the data.
      *
      * @return the processed template as a string.
      *
-     * @throws ResourcesException
-     *             if an error has occurred while processing the template.
+     * @throws ResourcesException if an error has occurred while processing the
+     *                            template.
      */
-    String process(String name, Object... data) throws ResourcesException;
+    String process(String name, Object... data);
 
     /**
      * Returns the template engine of the resource.

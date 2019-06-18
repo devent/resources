@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.binary.internal.binaries;
 
-
 import java.util.Locale;
 
 import com.anrisoftware.resources.binary.external.BinariesBundlesMap;
@@ -24,22 +23,17 @@ import com.anrisoftware.resources.getbundle.external.GetBundle;
 
 interface BinariesWorkerFactory {
 
-	/**
-	 * Creates a new {@link BinariesWorker}.
-	 * 
-	 * @param name
-	 *            the {@link String} name of the resource we want to get.
-	 * 
-	 * @param locale
-	 *            the {@link Locale} of the resource we want to get.
-	 * 
-	 * @param getBundle
-	 *            the {@link GetBundle} that returns the resource bundle for the
-	 *            locale.
-	 * 
-	 * @param bundles
-	 *            the map of bundles with their binary resources maps.
-	 */
-	BinariesWorker create(String name, Locale locale, GetBundle getBundle,
-			BinariesBundlesMap bundles);
+    /**
+     * Creates a new {@link BinariesWorker}.
+     * 
+     * @param name      the {@link String} name of the resource we want to get.
+     * 
+     * @param locale    the {@link Locale} of the resource we want to get.
+     * 
+     * @param getBundle the {@link GetBundle} that returns the resource bundle for
+     *                  the locale.
+     * 
+     * @param bundles   the map of bundles with their binary resources maps.
+     */
+    BinariesWorker create(String name, Locale locale, GetBundle getBundle, BinariesBundlesMap bundles);
 }

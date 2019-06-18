@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.binary.internal.maps;
 
-
 import static java.util.Collections.synchronizedMap;
 
 import java.util.HashMap;
@@ -25,7 +24,6 @@ import java.util.Map;
 import javax.annotation.concurrent.ThreadSafe;
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.binary.external.BinariesMap;
 import com.anrisoftware.resources.binary.external.BinaryResource;
 
@@ -46,7 +44,7 @@ public class DefaultBinariesMap implements BinariesMap {
     }
 
     @Override
-    public void putBinary(BinaryResource resource) throws ResourcesException {
+    public void putBinary(BinaryResource resource) {
         String name = resource.getName();
         if (!map.containsKey(name)) {
             map.put(name, resource);

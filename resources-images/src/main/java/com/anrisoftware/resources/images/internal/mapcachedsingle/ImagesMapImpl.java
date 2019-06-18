@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.images.internal.mapcachedsingle;
 
-
 import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -25,7 +24,6 @@ import java.util.Map.Entry;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.images.external.ImageResolution;
 import com.anrisoftware.resources.images.external.ImageResource;
 import com.anrisoftware.resources.images.external.ImagesMap;
@@ -58,7 +56,7 @@ class ImagesMapImpl implements ImagesMap {
     }
 
     @Override
-    public void putImage(ImageResource image) throws ResourcesException {
+    public void putImage(ImageResource image) {
         String name = image.getName();
         ImageResolution resolution = image.getResolution();
         Map<ImageResolution, ImageResource> resolutions = resolutionsMap(name);
@@ -70,14 +68,12 @@ class ImagesMapImpl implements ImagesMap {
     }
 
     @SuppressWarnings("serial")
-    private Map<Dimension, ImageResource> dimensionEntry(String name,
-            ImageResource image) {
+    private Map<Dimension, ImageResource> dimensionEntry(String name, ImageResource image) {
         Map<Dimension, ImageResource> entry = imagesCache.get(name);
         if (entry == null) {
             entry = new LinkedHashMap<Dimension, ImageResource>() {
                 @Override
-                protected boolean removeEldestEntry(
-                        Map.Entry<Dimension, ImageResource> eldest) {
+                protected boolean removeEldestEntry(Map.Entry<Dimension, ImageResource> eldest) {
                     return size() > maxEntries;
                 }
             };
@@ -106,8 +102,7 @@ class ImagesMapImpl implements ImagesMap {
     }
 
     @Override
-    public ImageResource getImage(String name, Dimension size,
-            ImageResolution resolution) {
+    public ImageResource getImage(String name, Dimension size, ImageResolution resolution) {
         Map<ImageResolution, ImageResource> resolutions = resolutionsMap(name);
         ImageResource image = resolutions.get(resolution);
         if (image == null) {
@@ -126,13 +121,11 @@ class ImagesMapImpl implements ImagesMap {
     public boolean haveImage(String name, ImageResolution resolution) {
         Map<ImageResolution, ImageResource> resolutions;
         resolutions = keyImages.get(name);
-        return resolutions == null ? false : resolutions
-                .containsKey(resolution);
+        return resolutions == null ? false : resolutions.containsKey(resolution);
     }
 
     @Override
-    public boolean haveImage(String name, ImageResolution resolution,
-            Dimension size) {
+    public boolean haveImage(String name, ImageResolution resolution, Dimension size) {
         Map<Dimension, ImageResource> images;
         images = imagesCache.get(name);
         return images == null ? false : images.containsKey(size);
@@ -152,8 +145,7 @@ class ImagesMapImpl implements ImagesMap {
     }
 
     /**
-     * Returns the nearest resolution to the specified size from the key-images
-     * map.
+     * Returns the nearest resolution to the specified size from the key-images map.
      */
     private ImageResolution findNearestResolution(String name, Dimension size) {
         ImageResolution maxResolution = null;
@@ -163,8 +155,7 @@ class ImagesMapImpl implements ImagesMap {
         int max = Integer.MIN_VALUE;
         int diff;
         Map<ImageResolution, ImageResource> resolutions = keyImages.get(name);
-        for (Entry<ImageResolution, ImageResource> entry : resolutions
-                .entrySet()) {
+        for (Entry<ImageResolution, ImageResource> entry : resolutions.entrySet()) {
             diff = entry.getValue().getWidthPx() - size.width;
             if (diff > -1 && min > diff) {
                 min = diff;

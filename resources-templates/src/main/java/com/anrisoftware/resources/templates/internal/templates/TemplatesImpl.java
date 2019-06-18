@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.templates.internal.templates;
 
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.MalformedURLException;
@@ -28,7 +27,6 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
-import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.getbundle.external.GetBundle;
 import com.anrisoftware.resources.getbundle.external.GetBundleWithClassLoader;
 import com.anrisoftware.resources.getbundle.external.GetBundleWithClassLoaderAndControl;
@@ -65,11 +63,9 @@ class TemplatesImpl implements Templates {
      */
     @AssistedInject
     TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
-            TemplateResourceFactory textResourceFactory,
-            TemplatesPropertiesFactory propertiesFactory,
+            TemplateResourceFactory textResourceFactory, TemplatesPropertiesFactory propertiesFactory,
             @Assisted String baseName) {
-        this(logger, texts, textResourceFactory, propertiesFactory,
-                EMPTY_ATTRIBUTES, new GetBundle(baseName));
+        this(logger, texts, textResourceFactory, propertiesFactory, EMPTY_ATTRIBUTES, new GetBundle(baseName));
     }
 
     /**
@@ -77,12 +73,9 @@ class TemplatesImpl implements Templates {
      */
     @AssistedInject
     TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
-            TemplateResourceFactory textResourceFactory,
-            TemplatesPropertiesFactory propertiesFactory,
-            @Assisted String baseName,
-            @Assisted Map<Serializable, Serializable> attributes) {
-        this(logger, texts, textResourceFactory, propertiesFactory, attributes,
-                new GetBundle(baseName));
+            TemplateResourceFactory textResourceFactory, TemplatesPropertiesFactory propertiesFactory,
+            @Assisted String baseName, @Assisted Map<Serializable, Serializable> attributes) {
+        this(logger, texts, textResourceFactory, propertiesFactory, attributes, new GetBundle(baseName));
     }
 
     /**
@@ -90,11 +83,9 @@ class TemplatesImpl implements Templates {
      */
     @AssistedInject
     TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
-            TemplateResourceFactory textResourceFactory,
-            TemplatesPropertiesFactory propertiesFactory,
+            TemplateResourceFactory textResourceFactory, TemplatesPropertiesFactory propertiesFactory,
             @Assisted String baseName, @Assisted ClassLoader classLoader) {
-        this(logger, texts, textResourceFactory, propertiesFactory,
-                EMPTY_ATTRIBUTES,
+        this(logger, texts, textResourceFactory, propertiesFactory, EMPTY_ATTRIBUTES,
                 new GetBundleWithClassLoader(baseName, classLoader));
     }
 
@@ -103,10 +94,8 @@ class TemplatesImpl implements Templates {
      */
     @AssistedInject
     TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
-            TemplateResourceFactory textResourceFactory,
-            TemplatesPropertiesFactory propertiesFactory,
-            @Assisted String baseName,
-            @Assisted Map<Serializable, Serializable> attributes,
+            TemplateResourceFactory textResourceFactory, TemplatesPropertiesFactory propertiesFactory,
+            @Assisted String baseName, @Assisted Map<Serializable, Serializable> attributes,
             @Assisted ClassLoader classLoader) {
         this(logger, texts, textResourceFactory, propertiesFactory, attributes,
                 new GetBundleWithClassLoader(baseName, classLoader));
@@ -117,12 +106,10 @@ class TemplatesImpl implements Templates {
      */
     @AssistedInject
     TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
-            TemplateResourceFactory textResourceFactory,
-            TemplatesPropertiesFactory propertiesFactory,
-            @Assisted String baseName,
-            @Assisted ResourceBundle.Control control) {
-        this(logger, texts, textResourceFactory, propertiesFactory,
-                EMPTY_ATTRIBUTES, new GetBundleWithControl(baseName, control));
+            TemplateResourceFactory textResourceFactory, TemplatesPropertiesFactory propertiesFactory,
+            @Assisted String baseName, @Assisted ResourceBundle.Control control) {
+        this(logger, texts, textResourceFactory, propertiesFactory, EMPTY_ATTRIBUTES,
+                new GetBundleWithControl(baseName, control));
     }
 
     /**
@@ -130,10 +117,8 @@ class TemplatesImpl implements Templates {
      */
     @AssistedInject
     TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
-            TemplateResourceFactory textResourceFactory,
-            TemplatesPropertiesFactory propertiesFactory,
-            @Assisted String baseName,
-            @Assisted Map<Serializable, Serializable> attributes,
+            TemplateResourceFactory textResourceFactory, TemplatesPropertiesFactory propertiesFactory,
+            @Assisted String baseName, @Assisted Map<Serializable, Serializable> attributes,
             @Assisted ResourceBundle.Control control) {
         this(logger, texts, textResourceFactory, propertiesFactory, attributes,
                 new GetBundleWithControl(baseName, control));
@@ -144,13 +129,10 @@ class TemplatesImpl implements Templates {
      */
     @AssistedInject
     TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
-            TemplateResourceFactory textResourceFactory,
-            TemplatesPropertiesFactory propertiesFactory,
-            @Assisted String baseName, @Assisted ClassLoader classLoader,
-            @Assisted ResourceBundle.Control control) {
-        this(logger, texts, textResourceFactory, propertiesFactory,
-                EMPTY_ATTRIBUTES, new GetBundleWithClassLoaderAndControl(
-                        baseName, classLoader, control));
+            TemplateResourceFactory textResourceFactory, TemplatesPropertiesFactory propertiesFactory,
+            @Assisted String baseName, @Assisted ClassLoader classLoader, @Assisted ResourceBundle.Control control) {
+        this(logger, texts, textResourceFactory, propertiesFactory, EMPTY_ATTRIBUTES,
+                new GetBundleWithClassLoaderAndControl(baseName, classLoader, control));
     }
 
     /**
@@ -158,21 +140,15 @@ class TemplatesImpl implements Templates {
      */
     @AssistedInject
     TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
-            TemplateResourceFactory textResourceFactory,
-            TemplatesPropertiesFactory propertiesFactory,
-            @Assisted String baseName,
-            @Assisted Map<Serializable, Serializable> attributes,
-            @Assisted ClassLoader classLoader,
-            @Assisted ResourceBundle.Control control) {
+            TemplateResourceFactory textResourceFactory, TemplatesPropertiesFactory propertiesFactory,
+            @Assisted String baseName, @Assisted Map<Serializable, Serializable> attributes,
+            @Assisted ClassLoader classLoader, @Assisted ResourceBundle.Control control) {
         this(logger, texts, textResourceFactory, propertiesFactory, attributes,
-                new GetBundleWithClassLoaderAndControl(baseName, classLoader,
-                        control));
+                new GetBundleWithClassLoaderAndControl(baseName, classLoader, control));
     }
 
-    private TemplatesImpl(TemplatesImplLogger logger,
-            TemplatesBundlesMapFactory texts,
-            TemplateResourceFactory textResourceFactory,
-            TemplatesPropertiesFactory propertiesFactory,
+    private TemplatesImpl(TemplatesImplLogger logger, TemplatesBundlesMapFactory texts,
+            TemplateResourceFactory textResourceFactory, TemplatesPropertiesFactory propertiesFactory,
             Map<Serializable, Serializable> attributes, GetBundle getBundle) {
         this.log = logger;
         this.texts = texts.create();
@@ -202,13 +178,12 @@ class TemplatesImpl implements Templates {
     }
 
     @Override
-    public TemplateResource getResource(String name) throws ResourcesException {
+    public TemplateResource getResource(String name) {
         return getResource(name, Locale.getDefault());
     }
 
     @Override
-    public TemplateResource getResource(String name, Locale locale)
-            throws ResourcesException {
+    public TemplateResource getResource(String name, Locale locale) {
         ResourceBundle bundle = getBundle.bundleFor(locale);
         log.loadedResourceBundle(name, bundle);
         TemplateResource res = lazyLoadResource(name, bundle);
@@ -216,8 +191,7 @@ class TemplatesImpl implements Templates {
         return res;
     }
 
-    private TemplateResource lazyLoadResource(String name,
-            ResourceBundle bundle) {
+    private TemplateResource lazyLoadResource(String name, ResourceBundle bundle) {
         String location = bundle.getString(name);
         TemplatesMap map = texts.getTemplates(bundle);
         TemplateResource text = map.getTemplate(name);
@@ -227,9 +201,7 @@ class TemplatesImpl implements Templates {
         return text;
     }
 
-    private TemplateResource loadTextResource(ResourceBundle bundle,
-            TemplatesMap map, String name, String value)
-            throws ResourcesException {
+    private TemplateResource loadTextResource(ResourceBundle bundle, TemplatesMap map, String name, String value) {
         URL url = parseURL(value);
         Locale locale = bundle.getLocale();
         TemplateResource text = loadTemplate(locale, map, name, url);
@@ -246,12 +218,10 @@ class TemplatesImpl implements Templates {
         }
     }
 
-    private TemplateResource loadTemplate(Locale locale, TemplatesMap map,
-            String name, URL url) {
+    private TemplateResource loadTemplate(Locale locale, TemplatesMap map, String name, URL url) {
         if (url != null) {
             TemplateResource text;
-            text = resourceFactory.create(name, locale, url, properties,
-                    attributes);
+            text = resourceFactory.create(name, locale, url, properties, attributes);
             map.putTemplate(name, text);
             return text;
         } else {

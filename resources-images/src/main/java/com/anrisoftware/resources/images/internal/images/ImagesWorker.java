@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.images.internal.images;
 
-
 import static java.lang.String.format;
 
 import java.awt.Dimension;
@@ -28,7 +27,6 @@ import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.getbundle.external.GetBundle;
 import com.anrisoftware.resources.images.external.ImageResolution;
 import com.anrisoftware.resources.images.external.ImageResource;
@@ -53,24 +51,19 @@ class ImagesWorker {
     /**
      * Injects the dependencies.
      *
-     * @param logger
-     *            the {@link ImagesWorkerLogger} where the logging messages are
-     *            logged.
+     * @param logger               the {@link ImagesWorkerLogger} where the logging
+     *                             messages are logged.
      *
-     * @param imageResourceFactory
-     *            the {@link ImageResourceFactory} to create a new image
-     *            resource.
+     * @param imageResourceFactory the {@link ImageResourceFactory} to create a new
+     *                             image resource.
      *
-     * @param scalingWorkerFactory
-     *            the {@link ImageScalingWorkerFactory} to create a new worker
-     *            that will scale the image.
+     * @param scalingWorkerFactory the {@link ImageScalingWorkerFactory} to create a
+     *                             new worker that will scale the image.
      *
-     * @param getBundle
-     *            the {@link GetBundle} that returns the resource bundle for the
-     *            locale.
+     * @param getBundle            the {@link GetBundle} that returns the resource
+     *                             bundle for the locale.
      *
-     * @param bundles
-     *            the map of bundles with their images maps.
+     * @param bundles              the map of bundles with their images maps.
      */
     @Inject
     ImagesWorker(ImagesWorkerLogger logger, ImageResourceFactory imageResourceFactory,
@@ -84,18 +77,15 @@ class ImagesWorker {
     }
 
     /**
-     * Returns the image resource with the desired name, locale and size. It
-     * will choose the best available resolution for scaling.
+     * Returns the image resource with the desired name, locale and size. It will
+     * choose the best available resolution for scaling.
      *
-     * @param name
-     *            the {@link String} name of the image resource we want to get.
+     * @param name   the {@link String} name of the image resource we want to get.
      *
-     * @param locale
-     *            the {@link Locale} of the image resource we want to get.
+     * @param locale the {@link Locale} of the image resource we want to get.
      *
-     * @param size
-     *            the {@link Dimension} width and height of the image resource
-     *            we want to get.
+     * @param size   the {@link Dimension} width and height of the image resource we
+     *               want to get.
      *
      * @return a {@link ImageResource}.
      */
@@ -111,29 +101,26 @@ class ImagesWorker {
         return image;
     }
 
-    private void lazyLoadImagesForAvailableResolutions(String name, Locale locale, ImagesMap map, ResourceBundle bundle)
-            throws ResourcesException {
+    private void lazyLoadImagesForAvailableResolutions(String name, Locale locale, ImagesMap map,
+            ResourceBundle bundle) {
         for (ImageResolution resolution : ImageResolution.values()) {
             lazyLoadImagesForResolution(name, locale, map, bundle, resolution);
         }
     }
 
     /**
-     * Returns the image resource with the desired name, locale and size. It
-     * will use the specified resolution for scaling.
+     * Returns the image resource with the desired name, locale and size. It will
+     * use the specified resolution for scaling.
      *
-     * @param name
-     *            the {@link String} name of the image resource we want to get.
+     * @param name       the {@link String} name of the image resource we want to
+     *                   get.
      *
-     * @param locale
-     *            the {@link Locale} of the image resource we want to get.
+     * @param locale     the {@link Locale} of the image resource we want to get.
      *
-     * @param size
-     *            the {@link Dimension} width and height of the image resource
-     *            we want to get.
+     * @param size       the {@link Dimension} width and height of the image
+     *                   resource we want to get.
      *
-     * @param resolution
-     *            the specified {@link ImageResolution}.
+     * @param resolution the specified {@link ImageResolution}.
      *
      * @return a {@link ImageResource}.
      */
@@ -149,7 +136,7 @@ class ImagesWorker {
     }
 
     private void lazyLoadImagesForResolution(String name, Locale locale, ImagesMap map, ResourceBundle bundle,
-            ImageResolution resolution) throws ResourcesException {
+            ImageResolution resolution) {
         if (map.haveImage(name, resolution)) {
             return;
         }
@@ -197,8 +184,7 @@ class ImagesWorker {
         return res;
     }
 
-    private Image resizeImage(String name, Dimension size, Image image, Locale locale, ResourceBundle bundle)
-            throws ResourcesException {
+    private Image resizeImage(String name, Dimension size, Image image, Locale locale, ResourceBundle bundle) {
         try {
             return scalingWorkerFactory.create(image, size).call();
         } catch (Exception e) {

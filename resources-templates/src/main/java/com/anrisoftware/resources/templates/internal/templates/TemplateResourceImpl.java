@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.templates.internal.templates;
 
-
 import java.io.Serializable;
 import java.net.URL;
 import java.util.HashMap;
@@ -26,7 +25,6 @@ import java.util.Properties;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.templates.external.TemplateResource;
 import com.anrisoftware.resources.templates.external.TemplateResourceFactory;
 import com.anrisoftware.resources.templates.external.TemplateWorker;
@@ -60,31 +58,24 @@ class TemplateResourceImpl implements TemplateResource, Serializable {
      * @see TemplateResourceFactory#create(String, Locale, URL, Properties)
      */
     @AssistedInject
-    TemplateResourceImpl(TemplateResourceImplLogger logger,
-            TemplateWorkerFactory workerFactory, @Assisted String name,
-            @Assisted Locale locale, @Assisted URL url,
-            @Assisted Properties properties) {
-        this(logger, workerFactory, name, locale, url, properties,
-                EMPTY_ATTRIBUTES, true);
+    TemplateResourceImpl(TemplateResourceImplLogger logger, TemplateWorkerFactory workerFactory, @Assisted String name,
+            @Assisted Locale locale, @Assisted URL url, @Assisted Properties properties) {
+        this(logger, workerFactory, name, locale, url, properties, EMPTY_ATTRIBUTES, true);
     }
 
     /**
      * @see TemplateResourceFactory#create(String, Locale, URL, Properties, Map)
      */
     @AssistedInject
-    TemplateResourceImpl(TemplateResourceImplLogger logger,
-            TemplateWorkerFactory workerFactory, @Assisted String name,
-            @Assisted Locale locale, @Assisted URL url,
-            @Assisted Properties properties,
+    TemplateResourceImpl(TemplateResourceImplLogger logger, TemplateWorkerFactory workerFactory, @Assisted String name,
+            @Assisted Locale locale, @Assisted URL url, @Assisted Properties properties,
             @Assisted Map<Serializable, Serializable> attributes) {
-        this(logger, workerFactory, name, locale, url, properties, attributes,
-                true);
+        this(logger, workerFactory, name, locale, url, properties, attributes, true);
     }
 
-    private TemplateResourceImpl(TemplateResourceImplLogger logger,
-            TemplateWorkerFactory workerFactory, String name, Locale locale,
-            URL url, Properties properties,
-            Map<Serializable, Serializable> attributes, boolean differentCtor) {
+    private TemplateResourceImpl(TemplateResourceImplLogger logger, TemplateWorkerFactory workerFactory, String name,
+            Locale locale, URL url, Properties properties, Map<Serializable, Serializable> attributes,
+            boolean differentCtor) {
         this.name = name;
         this.locale = locale;
         this.worker = workerFactory.create(url, properties, attributes);
@@ -107,8 +98,7 @@ class TemplateResourceImpl implements TemplateResource, Serializable {
     }
 
     @Override
-    public String getText(boolean invalidate, Object... data)
-            throws ResourcesException {
+    public String getText(boolean invalidate, Object... data) {
         if (invalidate) {
             invalidate();
         }
@@ -116,7 +106,7 @@ class TemplateResourceImpl implements TemplateResource, Serializable {
     }
 
     @Override
-    public String getText(Object... data) throws ResourcesException {
+    public String getText(Object... data) {
         if (text == null) {
             log.processTemplate(this);
             text = worker.process(name, data);
@@ -147,8 +137,8 @@ class TemplateResourceImpl implements TemplateResource, Serializable {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("locale", getLocale())
-                .append("name", getName()).append("url", getURL()).toString();
+        return new ToStringBuilder(this).append("locale", getLocale()).append("name", getName()).append("url", getURL())
+                .toString();
     }
 
 }

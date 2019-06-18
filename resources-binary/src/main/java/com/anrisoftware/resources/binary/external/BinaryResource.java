@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.binary.external;
 
-
 import java.io.InputStream;
 
 import com.anrisoftware.resources.api.external.Resource;
@@ -32,31 +31,28 @@ public interface BinaryResource extends Resource {
      *
      * @return a byte array of the data.
      *
-     * @throws ResourcesException
-     *             if there was an error loading the binary data.
+     * @throws ResourcesException if there was an error loading the binary data.
      */
-    byte[] getBinary() throws ResourcesException;
+    byte[] getBinary();
 
     /**
      * Opens an input stream that reads the binary data.
      * <p>
-     * The binary data can't be stored for quick access because it is red
-     * sequential from the stream.
+     * The binary data can't be stored for quick access because it is red sequential
+     * from the stream.
      *
      * @return an {@link InputStream} that reads the binary data.
      *
-     * @throws ResourcesException
-     *             if there was an error opening the binary data.
+     * @throws ResourcesException if there was an error opening the binary data.
      */
-    InputStream getStream() throws ResourcesException;
+    InputStream getStream();
 
     /**
      * Discards the binary data of this resource.
      * <p>
      * Use this method if the binary data is no longer needed.
      *
-     * @throws ResourcesException
-     *             if there was an error discarding the data.
+     * @throws ResourcesException if there was an error discarding the data.
      */
-    void discardBinary() throws ResourcesException;
+    void discardBinary();
 }

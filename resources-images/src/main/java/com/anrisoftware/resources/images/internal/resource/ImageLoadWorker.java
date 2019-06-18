@@ -16,19 +16,15 @@
 
 package com.anrisoftware.resources.images.internal.resource;
 
-
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-import com.anrisoftware.resources.api.external.ResourcesException;
-
 final class ImageLoadWorker {
 
-    public Image loadImage(ImageResourceImpl resource,
-            ImageResourceImplLogger log, URL url) throws ResourcesException {
+    public Image loadImage(ImageResourceImpl resource, ImageResourceImplLogger log, URL url) {
         try {
             return ImageIO.read(url);
         } catch (IOException e) {
