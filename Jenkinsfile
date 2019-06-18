@@ -107,10 +107,6 @@ pipeline {
 				}
 			}
             steps {
-            	timeout(time: 5, unit: 'MINUTES') {
-		            sleep 10
-                	waitForQualityGate abortPipeline: true
-            	}
                 container('maven') {
                 	configFileProvider([configFile(fileId: 'maven-settings-global', variable: 'MAVEN_SETTINGS')]) {
                     	withMaven() {
