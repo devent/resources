@@ -25,11 +25,11 @@ public class AttributeRendererFactory {
      *
      * @param renderer the {@link org.stringtemplate.v4.AttributeRenderer}.
      *
-     * @return the {@link AttributeRenderer}.
+     * @return the {@link StAttributeRenderer}.
      * 
      * @see #wrap(Class, org.stringtemplate.v4.AttributeRenderer)
      */
-    public static AttributeRenderer wrapAttributeRenderer(final Class<?> type,
+    public static StAttributeRenderer wrapAttributeRenderer(final Class<?> type,
             final org.stringtemplate.v4.AttributeRenderer renderer) {
         return wrap(type, renderer);
     }
@@ -41,11 +41,11 @@ public class AttributeRendererFactory {
      *
      * @param renderer the {@link org.stringtemplate.v4.AttributeRenderer}.
      *
-     * @return the {@link AttributeRenderer}.
+     * @return the {@link StAttributeRenderer}.
      */
     @SuppressWarnings("serial")
-    public static AttributeRenderer wrap(final Class<?> type, final org.stringtemplate.v4.AttributeRenderer renderer) {
-        return new AttributeRenderer() {
+    public static StAttributeRenderer wrap(final Class<?> type, final org.stringtemplate.v4.AttributeRenderer renderer) {
+        return new StAttributeRenderer() {
 
             @Override
             public String toString(Object o, String formatString, Locale locale) {

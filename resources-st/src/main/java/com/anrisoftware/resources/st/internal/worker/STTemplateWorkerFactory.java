@@ -23,7 +23,7 @@ import java.util.Properties;
 
 import org.stringtemplate.v4.STGroup;
 
-import com.anrisoftware.resources.st.external.AttributeRenderer;
+import com.anrisoftware.resources.st.external.StAttributeRenderer;
 import com.anrisoftware.resources.templates.external.TemplateWorker;
 import com.anrisoftware.resources.templates.external.TemplateWorkerFactory;
 
@@ -38,7 +38,7 @@ public interface STTemplateWorkerFactory extends TemplateWorkerFactory {
     /**
      * The map key for the attribute renderers.
      *
-     * @see AttributeRenderer
+     * @see StAttributeRenderer
      */
     static final String RENDERERS_KEY = "renderers";
 

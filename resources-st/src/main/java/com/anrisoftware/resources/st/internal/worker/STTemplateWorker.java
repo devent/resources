@@ -38,7 +38,7 @@ import org.stringtemplate.v4.misc.STMessage;
 
 import com.anrisoftware.propertiesutils.ContextProperties;
 import com.anrisoftware.resources.api.external.ResourcesException;
-import com.anrisoftware.resources.st.external.AttributeRenderer;
+import com.anrisoftware.resources.st.external.StAttributeRenderer;
 import com.anrisoftware.resources.st.external.SerializiableGroup;
 import com.anrisoftware.resources.templates.external.TemplateWorker;
 import com.google.inject.Inject;
@@ -124,8 +124,8 @@ class STTemplateWorker implements TemplateWorker {
             return;
         }
         @SuppressWarnings({ "unchecked", "rawtypes" })
-        List<AttributeRenderer> renderers = (List) attributes.get(RENDERERS_KEY);
-        for (AttributeRenderer renderer : renderers) {
+        List<StAttributeRenderer> renderers = (List) attributes.get(RENDERERS_KEY);
+        for (StAttributeRenderer renderer : renderers) {
             group.registerRenderer(renderer.getAttributeType(), renderer);
         }
     }
