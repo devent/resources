@@ -28,7 +28,6 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 
 import com.anrisoftware.resources.templates.external.TemplatesPropertiesService;
-import com.google.inject.AbstractModule;
 
 @Component(service = TemplatesPropertiesService.class)
 public class STDefaultPropertiesServiceImpl implements TemplatesPropertiesService {
@@ -43,12 +42,7 @@ public class STDefaultPropertiesServiceImpl implements TemplatesPropertiesServic
 
     @Activate
     protected void start() {
-        createInjector(new AbstractModule() {
-
-            @Override
-            protected void configure() {
-            }
-        }).injectMembers(this);
+        createInjector().injectMembers(this);
     }
 
 }

@@ -30,7 +30,6 @@ import org.osgi.service.component.annotations.Component;
 import com.anrisoftware.resources.binary.external.BinaryResource;
 import com.anrisoftware.resources.binary.external.BinaryResourceFactory;
 import com.anrisoftware.resources.binary.external.BinaryResourceService;
-import com.google.inject.AbstractModule;
 
 @Component(service = BinaryResourceService.class)
 public class BinaryResourceServiceImpl implements BinaryResourceService {
@@ -45,12 +44,7 @@ public class BinaryResourceServiceImpl implements BinaryResourceService {
 
     @Activate
     protected void start() {
-        createInjector(new BinaryResourceModule(), new AbstractModule() {
-
-            @Override
-            protected void configure() {
-            }
-        }).injectMembers(this);
+        createInjector(new BinaryResourceModule()).injectMembers(this);
     }
 
 }

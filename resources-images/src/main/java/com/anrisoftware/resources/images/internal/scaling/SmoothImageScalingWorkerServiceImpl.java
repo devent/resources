@@ -30,7 +30,6 @@ import org.osgi.service.component.annotations.Component;
 import com.anrisoftware.resources.images.external.ImageScalingWorker;
 import com.anrisoftware.resources.images.external.ImageScalingWorkerFactory;
 import com.anrisoftware.resources.images.external.ImageScalingWorkerService;
-import com.google.inject.AbstractModule;
 
 @Component(service = ImageScalingWorkerService.class)
 public class SmoothImageScalingWorkerServiceImpl implements ImageScalingWorkerService {
@@ -45,12 +44,7 @@ public class SmoothImageScalingWorkerServiceImpl implements ImageScalingWorkerSe
 
     @Activate
     protected void start() {
-        createInjector(new ResourcesSmoothScalingModule(), new AbstractModule() {
-
-            @Override
-            protected void configure() {
-            }
-        }).injectMembers(this);
+        createInjector(new ResourcesSmoothScalingModule()).injectMembers(this);
     }
 
 }

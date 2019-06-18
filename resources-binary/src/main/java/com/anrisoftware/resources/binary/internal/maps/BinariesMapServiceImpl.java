@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.binary.internal.maps;
 
-
 import static com.google.inject.Guice.createInjector;
 
 import javax.inject.Inject;
@@ -27,7 +26,6 @@ import org.osgi.service.component.annotations.Component;
 import com.anrisoftware.resources.binary.external.BinariesMap;
 import com.anrisoftware.resources.binary.external.BinariesMapFactory;
 import com.anrisoftware.resources.binary.external.BinariesMapService;
-import com.google.inject.AbstractModule;
 
 @Component(service = BinariesMapService.class)
 public class BinariesMapServiceImpl implements BinariesMapService {
@@ -42,12 +40,7 @@ public class BinariesMapServiceImpl implements BinariesMapService {
 
     @Activate
     protected void start() {
-        createInjector(new BinariesDefaultMapsModule(), new AbstractModule() {
-
-            @Override
-            protected void configure() {
-            }
-        }).injectMembers(this);
+        createInjector(new BinariesDefaultMapsModule()).injectMembers(this);
     }
 
 }

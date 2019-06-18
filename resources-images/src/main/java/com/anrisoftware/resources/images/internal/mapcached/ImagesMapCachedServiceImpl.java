@@ -27,7 +27,6 @@ import org.osgi.service.component.annotations.Component;
 import com.anrisoftware.resources.images.external.ImagesMap;
 import com.anrisoftware.resources.images.external.ImagesMapFactory;
 import com.anrisoftware.resources.images.external.ImagesMapService;
-import com.google.inject.AbstractModule;
 
 @Component(service = ImagesMapService.class)
 public class ImagesMapCachedServiceImpl implements ImagesMapService {
@@ -42,12 +41,7 @@ public class ImagesMapCachedServiceImpl implements ImagesMapService {
 
     @Activate
     protected void start() {
-        createInjector(new ResourcesImagesCachedMapModule(), new AbstractModule() {
-
-            @Override
-            protected void configure() {
-            }
-        }).injectMembers(this);
+        createInjector(new ResourcesImagesCachedMapModule()).injectMembers(this);
     }
 
 }

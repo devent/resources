@@ -27,7 +27,6 @@ import org.osgi.service.component.annotations.Component;
 import com.anrisoftware.resources.texts.external.TextsMap;
 import com.anrisoftware.resources.texts.external.TextsMapFactory;
 import com.anrisoftware.resources.texts.external.TextsMapService;
-import com.google.inject.AbstractModule;
 
 @Component(service = TextsMapService.class)
 public class TextsMapDefaultServiceImpl implements TextsMapService {
@@ -42,12 +41,7 @@ public class TextsMapDefaultServiceImpl implements TextsMapService {
 
     @Activate
     protected void start() {
-        createInjector(new TextsDefaultMapsModule(), new AbstractModule() {
-
-            @Override
-            protected void configure() {
-            }
-        }).injectMembers(this);
+        createInjector(new TextsDefaultMapsModule()).injectMembers(this);
     }
 
 }

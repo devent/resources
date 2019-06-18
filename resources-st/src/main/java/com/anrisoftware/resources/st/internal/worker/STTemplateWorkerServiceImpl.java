@@ -32,7 +32,6 @@ import org.osgi.service.component.annotations.Component;
 import com.anrisoftware.resources.templates.external.TemplateWorker;
 import com.anrisoftware.resources.templates.external.TemplateWorkerFactory;
 import com.anrisoftware.resources.templates.external.TemplateWorkerService;
-import com.google.inject.AbstractModule;
 
 @Component(service = TemplateWorkerService.class)
 public class STTemplateWorkerServiceImpl implements TemplateWorkerService {
@@ -47,12 +46,7 @@ public class STTemplateWorkerServiceImpl implements TemplateWorkerService {
 
     @Activate
     protected void start() {
-        createInjector(new STWorkerModule(), new AbstractModule() {
-
-            @Override
-            protected void configure() {
-            }
-        }).injectMembers(this);
+        createInjector(new STWorkerModule()).injectMembers(this);
     }
 
 }

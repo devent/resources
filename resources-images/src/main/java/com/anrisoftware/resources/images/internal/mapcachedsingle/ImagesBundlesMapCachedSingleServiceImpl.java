@@ -27,7 +27,6 @@ import org.osgi.service.component.annotations.Component;
 import com.anrisoftware.resources.images.external.ImagesBundlesMap;
 import com.anrisoftware.resources.images.external.ImagesBundlesMapFactory;
 import com.anrisoftware.resources.images.external.ImagesBundlesMapService;
-import com.google.inject.AbstractModule;
 
 @Component(service = ImagesBundlesMapService.class)
 public class ImagesBundlesMapCachedSingleServiceImpl implements ImagesBundlesMapService {
@@ -42,12 +41,7 @@ public class ImagesBundlesMapCachedSingleServiceImpl implements ImagesBundlesMap
 
     @Activate
     protected void start() {
-        createInjector(new ResourcesImagesCachedSingleMapModule(), new AbstractModule() {
-
-            @Override
-            protected void configure() {
-            }
-        }).injectMembers(this);
+        createInjector(new ResourcesImagesCachedSingleMapModule()).injectMembers(this);
     }
 
 }
