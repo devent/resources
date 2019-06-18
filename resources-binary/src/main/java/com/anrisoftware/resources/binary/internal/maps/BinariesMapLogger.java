@@ -17,7 +17,7 @@
 package com.anrisoftware.resources.binary.internal.maps;
 
 
-import static com.anrisoftware.resources.binary.internal.maps.BinariesMapLogger.m.resourceAlreadyInMap;
+import static com.anrisoftware.resources.binary.internal.maps.BinariesMapLogger.m.RESOURCE_ALREADY_IN_MAP;
 
 import javax.inject.Singleton;
 
@@ -29,7 +29,7 @@ final class BinariesMapLogger extends AbstractLogger {
 
     enum m {
 
-        resourceAlreadyInMap("Resource in map: {}");
+        RESOURCE_ALREADY_IN_MAP("Resource in map: {}");
 
         private String name;
 
@@ -48,7 +48,7 @@ final class BinariesMapLogger extends AbstractLogger {
     }
 
     void resourceAlreadyInMap(BinaryResource res) {
-        debug(resourceAlreadyInMap, res);
+        debug(RESOURCE_ALREADY_IN_MAP, res);
     }
 
 }
