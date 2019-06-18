@@ -27,7 +27,7 @@
 
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources</artifactId>
-    <version>4.5.1</version>
+    <version>4.5.2-SNAPSHOT</version>
     <name>Resources</name>
     <description>Contains the modules of the resources project.</description>
     <inceptionYear>2012</inceptionYear>
@@ -105,7 +105,7 @@
         <connection>${project.custom.scm.pub}</connection>
         <developerConnection>${project.custom.scm.dev}</developerConnection>
         <url>${project.custom.scm.url}</url>
-      <tag>resources-4.5.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <distributionManagement>
