@@ -1,1 +1,0 @@
-Ein Text mit Platzhalter: %s %d %.3f - German

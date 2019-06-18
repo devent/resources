@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.binary.internal.maps;
 
 import static java.util.Collections.synchronizedMap;
@@ -25,14 +26,7 @@ import javax.inject.Inject;
 
 import com.anrisoftware.resources.binary.external.BinariesMap;
 import com.anrisoftware.resources.binary.external.BinaryResource;
-import com.anrisoftware.resources.external.ResourcesException;
 
-/**
- * Stores the binary resources in a Java hash map.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 @ThreadSafe
 public class DefaultBinariesMap implements BinariesMap {
 
@@ -50,7 +44,7 @@ public class DefaultBinariesMap implements BinariesMap {
     }
 
     @Override
-    public void putBinary(BinaryResource resource) throws ResourcesException {
+    public void putBinary(BinaryResource resource) {
         String name = resource.getName();
         if (!map.containsKey(name)) {
             map.put(name, resource);

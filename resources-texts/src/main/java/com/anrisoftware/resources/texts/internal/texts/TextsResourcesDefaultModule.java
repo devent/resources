@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.texts.internal.texts;
 
-import com.anrisoftware.resources.binary.internal.binaries.BinariesResourcesModule;
-import com.anrisoftware.resources.binary.internal.maps.BinariesDefaultMapsModule;
+
 import com.anrisoftware.resources.texts.internal.maps.TextsDefaultMapsModule;
 import com.google.inject.AbstractModule;
 
-/**
- * Installs default modules for the texts resources.
- * 
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.5
- */
 public class TextsResourcesDefaultModule extends AbstractModule {
 
 	@Override
@@ -33,8 +27,6 @@ public class TextsResourcesDefaultModule extends AbstractModule {
 		install(new TextsResourcesModule());
 		install(new TextsResourcesCharsetModule());
 		install(new TextsDefaultMapsModule());
-		install(new BinariesResourcesModule());
-		install(new BinariesDefaultMapsModule());
 	}
 
 }

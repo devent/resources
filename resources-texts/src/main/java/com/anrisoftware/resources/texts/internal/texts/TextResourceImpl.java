@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.texts.internal.texts;
+
 
 import static java.lang.String.format;
 
@@ -33,19 +35,12 @@ import javax.inject.Inject;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.binary.external.BinaryResource;
 import com.anrisoftware.resources.binary.external.BinaryResourceFactory;
-import com.anrisoftware.resources.external.ResourcesException;
 import com.anrisoftware.resources.texts.external.TextResource;
 import com.google.inject.assistedinject.Assisted;
 
-/**
- * Lazy load the text resource from the specified URL. The resource is
- * serializable to be used in a distributed cache.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 class TextResourceImpl implements TextResource, Serializable {
 
     /**

@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.templates.internal.maps;
+
 
 import com.anrisoftware.resources.templates.external.TemplatesBundlesMap;
 import com.anrisoftware.resources.templates.external.TemplatesBundlesMapFactory;
@@ -22,12 +24,6 @@ import com.anrisoftware.resources.templates.external.TemplatesMapFactory;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
-/**
- * Binds the Java hash map as the template resources maps.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 public class TemplatesDefaultMapsModule extends AbstractModule {
 
 	@Override

@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.binary.internal.binaries;
+
 
 import static com.google.inject.Guice.createInjector;
 import static com.google.inject.util.Providers.of;
@@ -22,28 +24,20 @@ import java.util.ResourceBundle.Control;
 
 import javax.inject.Inject;
 
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.Service;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import com.anrisoftware.resources.binary.external.Binaries;
+import com.anrisoftware.resources.binary.external.BinariesBundlesMapFactory;
+import com.anrisoftware.resources.binary.external.BinariesBundlesMapService;
 import com.anrisoftware.resources.binary.external.BinariesFactory;
 import com.anrisoftware.resources.binary.external.BinariesMapFactory;
 import com.anrisoftware.resources.binary.external.BinariesMapService;
 import com.anrisoftware.resources.binary.external.BinariesService;
-import com.anrisoftware.resources.binary.external.BinariesBundlesMapFactory;
-import com.anrisoftware.resources.binary.external.BinariesBundlesMapService;
 import com.google.inject.AbstractModule;
 
-/**
- * Provides the binaries resources as a service.
- *
- * @author Erwin Müller, erwin.mueller@deventm.de
- * @since 2.1
- */
-@Component
-@Service(BinariesService.class)
+@Component(service = BinariesService.class)
 public class BinariesServiceImpl implements BinariesService {
 
     @Reference
@@ -71,8 +65,7 @@ public class BinariesServiceImpl implements BinariesService {
     }
 
     @Override
-    public Binaries create(String baseName, ClassLoader classLoader,
-            Control control) {
+    public Binaries create(String baseName, ClassLoader classLoader, Control control) {
         return binariesFactory.create(baseName, classLoader, control);
     }
 
@@ -83,8 +76,7 @@ public class BinariesServiceImpl implements BinariesService {
             @Override
             protected void configure() {
                 bind(BinariesBundlesMapFactory.class).toProvider(of(bundlesMapService));
-                bind(BinariesMapFactory.class).toProvider(
-                        of(binariesMapService));
+                bind(BinariesMapFactory.class).toProvider(of(binariesMapService));
             }
         }).injectMembers(this);
     }

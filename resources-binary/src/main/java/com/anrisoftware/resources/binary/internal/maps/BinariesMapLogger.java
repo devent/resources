@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,31 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.binary.internal.maps;
 
-import static com.anrisoftware.resources.binary.internal.maps.BinariesMapLogger._.resourceAlreadyInMap;
+
+import static com.anrisoftware.resources.binary.internal.maps.BinariesMapLogger.m.RESOURCE_ALREADY_IN_MAP;
 
 import javax.inject.Singleton;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.binary.external.BinaryResource;
 
-/**
- * Logger messages for the {@link DefaultBinariesMap}.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 @Singleton
 final class BinariesMapLogger extends AbstractLogger {
 
-    enum _ {
+    enum m {
 
-        resourceAlreadyInMap("Resource in map: {}");
+        RESOURCE_ALREADY_IN_MAP("Resource in map: {}");
 
         private String name;
 
-        private _(String name) {
+        private m(String name) {
             this.name = name;
         }
 
@@ -52,7 +48,7 @@ final class BinariesMapLogger extends AbstractLogger {
     }
 
     void resourceAlreadyInMap(BinaryResource res) {
-        debug(resourceAlreadyInMap, res);
+        debug(RESOURCE_ALREADY_IN_MAP, res);
     }
 
 }

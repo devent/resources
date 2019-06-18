@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,18 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.binary.external;
+
 
 import java.util.ResourceBundle;
 
-/**
- * Associating a resource bundle with an binaries map.
- * <p>
- * Lazy create a new binaries map for a new resource bundle.
- * 
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.1
- */
 public interface BinariesBundlesMap {
 
 	/**

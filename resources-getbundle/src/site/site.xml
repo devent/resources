@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+    Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -27,12 +27,12 @@ xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache
     <bannerRight>
         <name>Advanced Natural Research Institute Projects</name>
         <src>images/anri_logo_48.png</src>
-        <href>https://anrisoftware.com/projects</href>
+        <href>https://project.anrisoftware.com/</href>
     </bannerRight>
     <skin>
         <groupId>org.apache.maven.skins</groupId>
         <artifactId>maven-fluido-skin</artifactId>
-        <version>1.3.1</version>
+        <version>1.7</version>
     </skin>
     <body>
         <links>
@@ -40,12 +40,14 @@ xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache
         </links>
         <menu name="Overview">
             <item name="Home" href="/index.html" />
-            <item name="Download" href="https://anrisoftware.com/l/43" />
-            <item name="Javadoc" href="https://anrisoftware.com/javadoc/com.anrisoftware.resources/resources-getbundle/apidocs/index.html" />
-            <item name="Source code" href="https://anrisoftware.com/l/42" />
-            <item name="Source code (Github)" href="https://github.com/devent/resources" />
-            <item name="Roadmap" href="https://anrisoftware.com/l/40" />
-            <item name="Issues" href="https://anrisoftware.com/l/41" />
+            <item name="Download (Central)" href="https://search.maven.org/artifact/${project.groupId}/${project.artifactId}/${project.version}/pom" />
+            <item name="Source code" href="${project.custom.scm.repo}" />
+            <item name="Source code (Github)" href="${project.custom.scm.github}" />
+            <item name="Project Home" href="${project.issueManagement.url}" />
+            <item name="Project Roadmap" href="${project.issueManagement.url}/roadmap" />
+            <item name="Project Issues" href="${project.issueManagement.url}/issues" />
+            <item name="Jenkins" href="${project.custom.jenkins.url}" />
+            <item name="SonarQube" href="${project.custom.sonarqube.url}" />
         </menu>
         <menu ref="parent" />
         <menu ref="modules" />

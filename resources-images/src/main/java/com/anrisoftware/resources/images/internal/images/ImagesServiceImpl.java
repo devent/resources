@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.images.internal.images;
+
 
 import static com.google.inject.Guice.createInjector;
 import static com.google.inject.util.Providers.of;
@@ -22,30 +24,22 @@ import java.util.ResourceBundle.Control;
 
 import javax.inject.Inject;
 
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.Service;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
-import com.anrisoftware.resources.images.external.ImagesBundlesMapFactory;
-import com.anrisoftware.resources.images.external.ImagesBundlesMapService;
 import com.anrisoftware.resources.images.external.ImageScalingWorkerFactory;
 import com.anrisoftware.resources.images.external.ImageScalingWorkerService;
 import com.anrisoftware.resources.images.external.Images;
+import com.anrisoftware.resources.images.external.ImagesBundlesMapFactory;
+import com.anrisoftware.resources.images.external.ImagesBundlesMapService;
 import com.anrisoftware.resources.images.external.ImagesFactory;
 import com.anrisoftware.resources.images.external.ImagesMapFactory;
 import com.anrisoftware.resources.images.external.ImagesMapService;
 import com.anrisoftware.resources.images.external.ImagesService;
 import com.google.inject.AbstractModule;
 
-/**
- * Provides the images resources as a service.
- *
- * @author Erwin Müller, erwin.mueller@deventm.de
- * @since 2.1
- */
-@Component
-@Service(ImagesService.class)
+@Component(service = ImagesService.class)
 public class ImagesServiceImpl implements ImagesService {
 
     @Reference
@@ -76,8 +70,7 @@ public class ImagesServiceImpl implements ImagesService {
     }
 
     @Override
-    public Images create(String baseName, ClassLoader classLoader,
-            Control control) {
+    public Images create(String baseName, ClassLoader classLoader, Control control) {
         return imagesFactory.create(baseName, classLoader, control);
     }
 
@@ -89,8 +82,7 @@ public class ImagesServiceImpl implements ImagesService {
             protected void configure() {
                 bind(ImagesBundlesMapFactory.class).toProvider(of(bundlesMapService));
                 bind(ImagesMapFactory.class).toProvider(of(imagesMapService));
-                bind(ImageScalingWorkerFactory.class).toProvider(
-                        of(imageScalingWorkerService));
+                bind(ImageScalingWorkerFactory.class).toProvider(of(imageScalingWorkerService));
             }
         }).injectMembers(this);
     }

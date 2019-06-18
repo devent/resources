@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.texts.internal.maps;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,12 +25,6 @@ import javax.inject.Inject;
 import com.anrisoftware.resources.texts.external.TextResource;
 import com.anrisoftware.resources.texts.external.TextsMap;
 
-/**
- * Uses the Java hash map to store the text resources identified by their name.
- * 
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.1
- */
 class TextsMapImpl implements TextsMap {
 
 	private final TextsMapLogger log;

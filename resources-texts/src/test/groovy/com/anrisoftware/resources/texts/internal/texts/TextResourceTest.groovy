@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,21 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.texts.internal.texts
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
-import com.anrisoftware.resources.texts.AbstractTextResourceTest
 import com.anrisoftware.resources.texts.external.TextsFactory
+import com.anrisoftware.resources.texts.internal.AbstractTextResourceTest
 import com.anrisoftware.resources.texts.internal.maps.TextsDefaultMapsModule
-import com.google.inject.Injector
 
-/**
- * Creates the text resources and runs functionality tests.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 class TextResourceTest extends AbstractTextResourceTest {
 
     @Test

@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,21 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.binary
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
+import static org.junit.jupiter.api.Assertions.assertThrows
+import com.anrisoftware.resources.api.external.ResourcesException
 import com.anrisoftware.resources.binary.external.BinariesFactory
+import com.anrisoftware.resources.binary.internal.AbstractBinaryResourcesTest
 import com.anrisoftware.resources.binary.internal.binaries.BinariesResourcesModule
 import com.anrisoftware.resources.binary.internal.maps.BinariesDefaultMapsModule
-import com.anrisoftware.resources.external.ResourcesException
 
-/**
- * Test the binary resources.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 class BinaryResourcesTest extends AbstractBinaryResourcesTest {
 
     @Test
@@ -40,9 +37,9 @@ class BinaryResourcesTest extends AbstractBinaryResourcesTest {
         super."test serialize binary resource"()
     }
 
-    @Test(expected = ResourcesException)
+    @Test
     void "load missing resource"() {
-        super."load missing resource"()
+        assertThrows(ResourcesException.class,{ super."load missing resource"() })
     }
 
     @Override

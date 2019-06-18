@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,51 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.binary.external;
 
-import com.anrisoftware.resources.external.ResourcesException;
-
-/**
- * Puts binary resources and retrieve them. The resources are identified by
- * their name. Resources with the name that are already in the map are not
- * added.
- * 
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 public interface BinariesMap {
 
-	/**
-	 * Add new binary resource to the map.
-	 * <p>
-	 * If there is already a resource with the same name in the map, the
-	 * resource will not be added.
-	 * 
-	 * @param resource
-	 *            the {@link BinaryResource} that should be added.
-	 */
-	void putBinary(BinaryResource resource) throws ResourcesException;
+    /**
+     * Add new binary resource to the map.
+     * <p>
+     * If there is already a resource with the same name in the map, the resource
+     * will not be added.
+     * 
+     * @param resource the {@link BinaryResource} that should be added.
+     */
+    void putBinary(BinaryResource resource);
 
-	/**
-	 * Returns the binary resource from the map with the specified name.
-	 * 
-	 * @param name
-	 *            the name of the resource.
-	 * 
-	 * @return the {@link BinaryResource}, or <code>null</code> if no such
-	 *         resource was found in the map.
-	 */
-	BinaryResource getBinary(String name);
+    /**
+     * Returns the binary resource from the map with the specified name.
+     * 
+     * @param name the name of the resource.
+     * 
+     * @return the {@link BinaryResource}, or <code>null</code> if no such resource
+     *         was found in the map.
+     */
+    BinaryResource getBinary(String name);
 
-	/**
-	 * Check if the binary resource with the specified name is in the map.
-	 * 
-	 * @param name
-	 *            the name of the resource.
-	 * 
-	 * @return <code>true</code> if the resource is in the map,
-	 *         <code>false</code> otherwise.
-	 */
-	boolean haveBinary(String name);
+    /**
+     * Check if the binary resource with the specified name is in the map.
+     * 
+     * @param name the name of the resource.
+     * 
+     * @return <code>true</code> if the resource is in the map, <code>false</code>
+     *         otherwise.
+     */
+    boolean haveBinary(String name);
 
 }

@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.binary.external;
 
 import java.io.InputStream;
 
-import com.anrisoftware.resources.external.Resource;
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.Resource;
+import com.anrisoftware.resources.api.external.ResourcesException;
 
-/**
- * Binary data resource.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.1
- */
 public interface BinaryResource extends Resource {
 
     /**
@@ -36,31 +31,28 @@ public interface BinaryResource extends Resource {
      *
      * @return a byte array of the data.
      *
-     * @throws ResourcesException
-     *             if there was an error loading the binary data.
+     * @throws ResourcesException if there was an error loading the binary data.
      */
-    byte[] getBinary() throws ResourcesException;
+    byte[] getBinary();
 
     /**
      * Opens an input stream that reads the binary data.
      * <p>
-     * The binary data can't be stored for quick access because it is red
-     * sequential from the stream.
+     * The binary data can't be stored for quick access because it is red sequential
+     * from the stream.
      *
      * @return an {@link InputStream} that reads the binary data.
      *
-     * @throws ResourcesException
-     *             if there was an error opening the binary data.
+     * @throws ResourcesException if there was an error opening the binary data.
      */
-    InputStream getStream() throws ResourcesException;
+    InputStream getStream();
 
     /**
      * Discards the binary data of this resource.
      * <p>
      * Use this method if the binary data is no longer needed.
      *
-     * @throws ResourcesException
-     *             if there was an error discarding the data.
+     * @throws ResourcesException if there was an error discarding the data.
      */
-    void discardBinary() throws ResourcesException;
+    void discardBinary();
 }

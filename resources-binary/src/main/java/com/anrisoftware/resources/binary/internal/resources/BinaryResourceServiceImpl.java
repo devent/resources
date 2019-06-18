@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.binary.internal.resources;
+
 
 import static com.google.inject.Guice.createInjector;
 
@@ -22,23 +24,14 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Service;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
 
 import com.anrisoftware.resources.binary.external.BinaryResource;
 import com.anrisoftware.resources.binary.external.BinaryResourceFactory;
 import com.anrisoftware.resources.binary.external.BinaryResourceService;
-import com.google.inject.AbstractModule;
 
-/**
- * Provides the binaries resources as a service.
- *
- * @author Erwin Müller, erwin.mueller@deventm.de
- * @since 2.1
- */
-@Component
-@Service(BinaryResourceService.class)
+@Component(service = BinaryResourceService.class)
 public class BinaryResourceServiceImpl implements BinaryResourceService {
 
     @Inject
@@ -51,12 +44,7 @@ public class BinaryResourceServiceImpl implements BinaryResourceService {
 
     @Activate
     protected void start() {
-        createInjector(new BinaryResourceModule(), new AbstractModule() {
-
-            @Override
-            protected void configure() {
-            }
-        }).injectMembers(this);
+        createInjector(new BinaryResourceModule()).injectMembers(this);
     }
 
 }

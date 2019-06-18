@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.binary.internal.binaries;
 
 import java.util.Locale;
@@ -20,14 +21,13 @@ import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
 import com.anrisoftware.resources.binary.external.Binaries;
-import com.anrisoftware.resources.binary.external.BinaryResource;
 import com.anrisoftware.resources.binary.external.BinariesBundlesMap;
 import com.anrisoftware.resources.binary.external.BinariesBundlesMapFactory;
-import com.anrisoftware.resources.external.GetBundle;
-import com.anrisoftware.resources.external.GetBundleWithClassLoader;
-import com.anrisoftware.resources.external.GetBundleWithClassLoaderAndControl;
-import com.anrisoftware.resources.external.GetBundleWithControl;
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.binary.external.BinaryResource;
+import com.anrisoftware.resources.getbundle.external.GetBundle;
+import com.anrisoftware.resources.getbundle.external.GetBundleWithClassLoader;
+import com.anrisoftware.resources.getbundle.external.GetBundleWithClassLoaderAndControl;
+import com.anrisoftware.resources.getbundle.external.GetBundleWithControl;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
 
@@ -40,38 +40,29 @@ class BinariesImpl implements Binaries {
     private final BinariesWorkerFactory workerFactory;
 
     @AssistedInject
-    BinariesImpl(BinariesWorkerFactory workerFactory,
-            BinariesBundlesMapFactory bundles, @Assisted String baseName) {
+    BinariesImpl(BinariesWorkerFactory workerFactory, BinariesBundlesMapFactory bundles, @Assisted String baseName) {
         this(workerFactory, bundles, new GetBundle(baseName));
     }
 
     @AssistedInject
-    BinariesImpl(BinariesWorkerFactory workerFactory,
-            BinariesBundlesMapFactory bundles, @Assisted String baseName,
+    BinariesImpl(BinariesWorkerFactory workerFactory, BinariesBundlesMapFactory bundles, @Assisted String baseName,
             @Assisted ClassLoader classLoader) {
-        this(workerFactory, bundles, new GetBundleWithClassLoader(baseName,
-                classLoader));
+        this(workerFactory, bundles, new GetBundleWithClassLoader(baseName, classLoader));
     }
 
     @AssistedInject
-    BinariesImpl(BinariesWorkerFactory workerFactory,
-            BinariesBundlesMapFactory bundles, @Assisted String baseName,
+    BinariesImpl(BinariesWorkerFactory workerFactory, BinariesBundlesMapFactory bundles, @Assisted String baseName,
             @Assisted ResourceBundle.Control control) {
-        this(workerFactory, bundles,
-                new GetBundleWithControl(baseName, control));
+        this(workerFactory, bundles, new GetBundleWithControl(baseName, control));
     }
 
     @AssistedInject
-    BinariesImpl(BinariesWorkerFactory workerFactory,
-            BinariesBundlesMapFactory bundles, @Assisted String baseName,
-            @Assisted ClassLoader classLoader,
-            @Assisted ResourceBundle.Control control) {
-        this(workerFactory, bundles, new GetBundleWithClassLoaderAndControl(
-                baseName, classLoader, control));
+    BinariesImpl(BinariesWorkerFactory workerFactory, BinariesBundlesMapFactory bundles, @Assisted String baseName,
+            @Assisted ClassLoader classLoader, @Assisted ResourceBundle.Control control) {
+        this(workerFactory, bundles, new GetBundleWithClassLoaderAndControl(baseName, classLoader, control));
     }
 
-    private BinariesImpl(BinariesWorkerFactory workerFactory,
-            BinariesBundlesMapFactory bundles, GetBundle getBundle) {
+    private BinariesImpl(BinariesWorkerFactory workerFactory, BinariesBundlesMapFactory bundles, GetBundle getBundle) {
         this.workerFactory = workerFactory;
         this.bundles = bundles.create();
         this.getBundle = getBundle;
@@ -93,16 +84,14 @@ class BinariesImpl implements Binaries {
     }
 
     @Override
-    public BinaryResource getResource(String name) throws ResourcesException {
+    public BinaryResource getResource(String name) {
         return getResource(name, null);
     }
 
     @Override
-    public BinaryResource getResource(String name, Locale locale)
-            throws ResourcesException {
+    public BinaryResource getResource(String name, Locale locale) {
         locale = locale == null ? Locale.getDefault() : locale;
-        return workerFactory.create(name, locale, getBundle, bundles)
-                .binaryResource();
+        return workerFactory.create(name, locale, getBundle, bundles).binaryResource();
     }
 
 }

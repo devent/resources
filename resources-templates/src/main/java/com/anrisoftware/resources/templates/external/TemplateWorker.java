@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.templates.external;
 
 import java.io.Serializable;
@@ -20,14 +21,8 @@ import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
 
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
 
-/**
- * Process the calculated data and create a string for output.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 public interface TemplateWorker extends Serializable {
 
     /**
@@ -56,21 +51,21 @@ public interface TemplateWorker extends Serializable {
     /**
      * Process the template and return the text.
      *
-     * @param name
-     *            the name of the template.
+     * @param name the name of the template.
      *
-     * @param data
-     *            the data.
+     * @param data the data.
      *
      * @return the processed template as a string.
      *
-     * @throws ResourcesException
-     *             if an error has occurred while processing the template.
+     * @throws ResourcesException if an error has occurred while processing the
+     *                            template.
      */
-    String process(String name, Object... data) throws ResourcesException;
+    String process(String name, Object... data);
 
     /**
      * Returns the template engine of the resource.
+     * 
+     * @param <T> the type of the engine.
      *
      * @return the template engine of the resource.
      *

@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.templates.internal.templates;
+
 
 import java.net.URL;
 import java.util.Locale;
@@ -22,15 +24,9 @@ import java.util.ResourceBundle;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.templates.external.TemplateResource;
 
-/**
- * Logging messages for {@link TemplatesImpl}.
- * 
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 class TemplatesImplLogger extends AbstractLogger {
 
     private static final String NAME = "name";

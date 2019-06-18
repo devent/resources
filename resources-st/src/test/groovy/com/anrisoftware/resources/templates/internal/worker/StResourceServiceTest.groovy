@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,34 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.templates.internal.worker
 
 import static com.anrisoftware.globalpom.utils.TestUtils.*
-import groovy.transform.CompileStatic
-import groovy.util.logging.Slf4j
 
-import org.apache.sling.testing.mock.osgi.junit.OsgiContext
-import org.junit.Rule
-import org.junit.Test
+import org.apache.sling.testing.mock.osgi.junit5.OsgiContext
+import org.apache.sling.testing.mock.osgi.junit5.OsgiContextExtension
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 
-import com.anrisoftware.resources.templates.AbstractTemplateResourceTest
+import com.anrisoftware.resources.st.internal.worker.STDefaultPropertiesServiceImpl
+import com.anrisoftware.resources.st.internal.worker.STTemplateWorkerServiceImpl
 import com.anrisoftware.resources.templates.external.TemplatesService
+import com.anrisoftware.resources.templates.internal.AbstractTemplateResourceTest
 import com.anrisoftware.resources.templates.internal.maps.TemplatesBundlesDefaultMapServiceImpl
 import com.anrisoftware.resources.templates.internal.maps.TemplatesDefaultMapServiceImpl
 import com.anrisoftware.resources.templates.internal.templates.TemplatesServiceImpl
 import com.google.inject.Injector
 
-/**
- *
- *
- * @author Erwin Müller, erwin.mueller@deventm.de
- * @since 2.1
- */
+import groovy.transform.CompileStatic
+import groovy.util.logging.Slf4j
+
 @Slf4j
 @CompileStatic
+@ExtendWith(OsgiContextExtension.class)
 class StResourceServiceTest extends AbstractTemplateResourceTest {
 
-    @Rule
     public final OsgiContext context = new OsgiContext()
 
     TemplatesService service

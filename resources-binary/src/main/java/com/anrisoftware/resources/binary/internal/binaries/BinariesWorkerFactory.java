@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,37 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.binary.internal.binaries;
 
 import java.util.Locale;
 
 import com.anrisoftware.resources.binary.external.BinariesBundlesMap;
-import com.anrisoftware.resources.external.GetBundle;
+import com.anrisoftware.resources.getbundle.external.GetBundle;
 
-/**
- * Factory to create a new binary resources worker.
- * 
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 interface BinariesWorkerFactory {
 
-	/**
-	 * Creates a new {@link BinariesWorker}.
-	 * 
-	 * @param name
-	 *            the {@link String} name of the resource we want to get.
-	 * 
-	 * @param locale
-	 *            the {@link Locale} of the resource we want to get.
-	 * 
-	 * @param getBundle
-	 *            the {@link GetBundle} that returns the resource bundle for the
-	 *            locale.
-	 * 
-	 * @param bundles
-	 *            the map of bundles with their binary resources maps.
-	 */
-	BinariesWorker create(String name, Locale locale, GetBundle getBundle,
-			BinariesBundlesMap bundles);
+    /**
+     * Creates a new {@link BinariesWorker}.
+     * 
+     * @param name      the {@link String} name of the resource we want to get.
+     * 
+     * @param locale    the {@link Locale} of the resource we want to get.
+     * 
+     * @param getBundle the {@link GetBundle} that returns the resource bundle for
+     *                  the locale.
+     * 
+     * @param bundles   the map of bundles with their binary resources maps.
+     */
+    BinariesWorker create(String name, Locale locale, GetBundle getBundle, BinariesBundlesMap bundles);
 }

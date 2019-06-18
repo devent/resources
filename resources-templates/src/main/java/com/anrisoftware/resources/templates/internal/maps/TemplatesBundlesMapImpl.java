@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.templates.internal.maps;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,12 +27,6 @@ import com.anrisoftware.resources.templates.external.TemplatesBundlesMap;
 import com.anrisoftware.resources.templates.external.TemplatesMap;
 import com.anrisoftware.resources.templates.external.TemplatesMapFactory;
 
-/**
- * Uses a Java hash map to store the texts for each resource bundle.
- * 
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.1
- */
 class TemplatesBundlesMapImpl implements TemplatesBundlesMap {
 
 	private final Map<ResourceBundle, TemplatesMap> map;

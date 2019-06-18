@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,18 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.templates.external;
 
-/**
- * Factory to create a new template resources map.
- * 
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
+
 public interface TemplatesMapFactory {
 
 	/**
-	 * Creates a new {@link TemplatesMap}.
+	 * Creates a new templates map.
+	 * 
+	 * @return {@link TemplatesMap}
 	 */
 	TemplatesMap create();
 }

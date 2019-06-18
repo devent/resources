@@ -1,46 +1,61 @@
+<!--
+
+    Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>resources-parent</artifactId>
-		<groupId>com.anrisoftware.resources</groupId>
-		<version>2.1</version>
-		<relativePath>../resources-parent</relativePath>
+        <artifactId>resources</artifactId>
+        <groupId>com.anrisoftware.resources</groupId>
+        <version>4.5.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>resources-templates-tests</artifactId>
 	<name>Resources :: Templates :: Tests</name>
 	<description>Bundles test resources and unit tests for the template resources.</description>
-	<url>https://anrisoftware.com/projects/projects/resources-templates-tests</url>
 	<inceptionYear>2012</inceptionYear>
+    <url>https://javadoc.anrisoftware.com/${project.groupId}/${project.artifactId}/${project.version}/</url>
 
-	<scm>
-		<connection>scm:git:git@anrisoftware.com:resources.git</connection>
-		<developerConnection>scm:git:git@anrisoftware.com:resources.git</developerConnection>
-		<url>https://anrisoftware.com/projects/projects/resources-templates-tests/repository</url>
-	</scm>
+    <properties>
+        <project.custom.bundle.namespace>com.anrisoftware.resources.templates</project.custom.bundle.namespace>
+    </properties>
 
-	<issueManagement>
-		<system>Redmine</system>
-		<url>https://anrisoftware.com/projects/projects/resources-templates-tests</url>
-	</issueManagement>
+    <scm>
+        <connection>${project.custom.scm.pub}</connection>
+        <developerConnection>${project.custom.scm.dev}</developerConnection>
+        <url>${project.custom.scm.url}</url>
+    </scm>
 
-	<distributionManagement>
-		<site>
-			<id>anrisoftware</id>
-			<url>dav:https://anrisoftware.com/javadoc/${project.groupId}/${project.artifactId}</url>
-		</site>
-		<repository>
-			<id>osssonatype</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-		</repository>
-		<snapshotRepository>
-			<id>osssonatype_snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
+    <distributionManagement>
+        <site>
+            <id>site-ssh</id>
+            <url>${site.ssh.url}</url>
+        </site>
+        <repository>
+            <id>public_releases</id>
+            <url>https://maven.anrisoftware.com/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>public_snapshots</id>
+            <url>https://maven.anrisoftware.com/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 	<dependencies>
 
@@ -48,10 +63,6 @@
 		<dependency>
 			<groupId>com.anrisoftware.globalpom</groupId>
 			<artifactId>globalpom-groovytestutils</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.propertiesutils</groupId>

@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,36 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.texts.external;
 
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Locale;
 
-/**
- * Factory to create a new text resource.
- * 
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 public interface TextResourceFactory {
 
-	/**
-	 * Creates a new text resource which will load the text from the URL.
-	 * 
-	 * @param name
-	 *            the name {@link String} of this resource.
-	 * 
-	 * @param locale
-	 *            the {@link Locale} this text resource.
-	 * 
-	 * @param url
-	 *            the {@link URL} of the resource.
-	 * 
-	 * @param charset
-	 *            the {@link Charset} of the resource.
-	 * 
-	 * @since 1.1
-	 */
-	TextResource create(String name, Locale locale, URL url, Charset charset);
+    /**
+     * Creates a new text resource which will load the text from the URL.
+     * 
+     * @param name    the name {@link String} of this resource.
+     * 
+     * @param locale  the {@link Locale} this text resource.
+     * 
+     * @param url     the {@link URL} of the resource.
+     * 
+     * @param charset the {@link Charset} of the resource.
+     * 
+     * @return {@link TextResource}
+     * 
+     * @since 1.1
+     */
+    TextResource create(String name, Locale locale, URL url, Charset charset);
 }

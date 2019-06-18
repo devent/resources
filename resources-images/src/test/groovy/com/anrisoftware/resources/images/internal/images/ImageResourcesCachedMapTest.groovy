@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,25 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.images.internal.images
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty
 
-import com.anrisoftware.resources.images.AbstractImageResourcesTest
 import com.anrisoftware.resources.images.external.ImageResolution
 import com.anrisoftware.resources.images.external.ImageResource
 import com.anrisoftware.resources.images.external.ImageResourceFactory
 import com.anrisoftware.resources.images.external.ImagesFactory
 import com.anrisoftware.resources.images.external.ImagesMapFactory
+import com.anrisoftware.resources.images.internal.AbstractImageResourcesTest
 import com.anrisoftware.resources.images.internal.mapcached.ResourcesImagesCachedMapModule
 import com.anrisoftware.resources.images.internal.scaling.ResourcesSmoothScalingModule
 
-/**
- * Test the image resources with a cached sizes map.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.17
- */
+@EnabledIfSystemProperty(named = "project.custom.gui_tests", matches = "true")
 class ImageResourcesCachedMapTest extends AbstractImageResourcesTest {
 
     @Test

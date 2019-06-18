@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.images.internal.resource;
+
 
 import java.io.IOException;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
 
-/**
- * Logging messages for the {@link ImageResourceImpl}.
- * 
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 class ImageResourceImplLogger extends AbstractLogger {
 
 	private static final String WAIT_WIDTH_AVAILABLE = "Wait until image width available for {}.";

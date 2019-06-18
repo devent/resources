@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,20 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.binary.external;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import com.anrisoftware.resources.external.ResourcesException;
+import com.anrisoftware.resources.api.external.ResourcesException;
 
-/**
- * Binary data resources bundle.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.1
- * @see BinaryResource
- */
 public interface Binaries {
 
     /**
@@ -53,38 +47,32 @@ public interface Binaries {
     /**
      * Returns the binary resource with the specified name and language.
      *
-     * @param name
-     *            the name of the resource.
+     * @param name   the name of the resource.
      *
-     * @param locale
-     *            the {@link Locale} of the resource or <code>null</code>. If
-     *            the locale is <code>null</code> the default locale as in
-     *            {@link Locale#getDefault()} is used.
+     * @param locale the {@link Locale} of the resource or <code>null</code>. If the
+     *               locale is <code>null</code> the default locale as in
+     *               {@link Locale#getDefault()} is used.
      *
      * @return the {@link BinaryResource}.
      *
-     * @throws ResourcesException
-     *             if the resource is not available.
+     * @throws ResourcesException if the resource is not available.
      *
      * @since 1.2
      */
-    BinaryResource getResource(String name, Locale locale)
-            throws ResourcesException;
+    BinaryResource getResource(String name, Locale locale);
 
     /**
-     * Returns the binary resource with the specified name and the default
-     * locale as in {@link Locale#getDefault()}.
+     * Returns the binary resource with the specified name and the default locale as
+     * in {@link Locale#getDefault()}.
      *
-     * @param name
-     *            the name of the resource.
+     * @param name the name of the resource.
      *
      * @return the {@link BinaryResource}.
      *
-     * @throws ResourcesException
-     *             if the resource is not available.
+     * @throws ResourcesException if the resource is not available.
      *
      * @since 1.2
      */
-    BinaryResource getResource(String name) throws ResourcesException;
+    BinaryResource getResource(String name);
 
 }

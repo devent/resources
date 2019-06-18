@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,13 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.images.external;
 
-/**
- * Image scaling worker service.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 2.1
- */
+
 public interface ImageScalingWorkerService extends ImageScalingWorkerFactory {
 }
