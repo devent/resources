@@ -36,9 +36,9 @@ public interface STTemplateWorkerFactory extends TemplateWorkerFactory {
      * @param properties  the {@link Properties} for the template group file. Have
      *                    the properties:
      *                    <ul>
-     *                    <li>{@value STTemplateProperties#ENCODING_PROPERTY}</li>
-     *                    <li>{@value STTemplateProperties#DELIMITER_START_CHAR_PROPERTY}</li>
-     *                    <li>{@value STTemplateProperties#DELIMITER_STOP_CHAR_PROPERTY}</li>
+     *                    <li>{@link STTemplateProperties#ENCODING_PROPERTY}</li>
+     *                    <li>{@link STTemplateProperties#DELIMITER_START_CHAR_PROPERTY}</li>
+     *                    <li>{@link STTemplateProperties#DELIMITER_STOP_CHAR_PROPERTY}</li>
      *                    </ul>
      *
      * @param attributes  the attributes {@link Map} for the template. Can contain
