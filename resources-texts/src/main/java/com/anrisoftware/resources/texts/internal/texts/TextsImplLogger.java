@@ -16,7 +16,6 @@
 
 package com.anrisoftware.resources.texts.internal.texts;
 
-
 import static java.lang.String.format;
 
 import java.net.URL;
@@ -31,61 +30,60 @@ import com.anrisoftware.resources.texts.external.TextResource;
 
 class TextsImplLogger extends AbstractLogger {
 
-	private static final String RESOURCE_URL_NOT_FOUND = "The resource URL ``{}'' could not be found.";
+    private static final String LOCALE = "locale";
 
-	private static final String LOADED_RESOURCE_BUNDLE = "Loaded the resource bundle {} for the text resource ``{}''.";
+    private static final String RESOURCE_URL_NOT_FOUND = "The resource URL ``{}'' could not be found.";
 
-	private static final String NO_TEXT_RESOURCE_AVAILABLE = "No text resource available '%s' (%s)";
+    private static final String LOADED_RESOURCE_BUNDLE = "Loaded the resource bundle {} for the text resource ``{}''.";
 
-	private static final String NO_TEXT_RESOURCE_LOADED = "No text resource loaded '%s' (%s)";
+    private static final String NO_TEXT_RESOURCE_AVAILABLE = "No text resource available '%s' (%s)";
 
-	/**
-	 * Creates a logger for {@link TextsImpl}.
-	 */
-	TextsImplLogger() {
-		super(TextsImpl.class);
-	}
+    private static final String NO_TEXT_RESOURCE_LOADED = "No text resource loaded '%s' (%s)";
 
-	void checkTextLoaded(boolean haveText, String name, Locale locale,
-			ResourceBundle bundle) throws ResourcesException {
-		if (!haveText) {
-			String message = format(NO_TEXT_RESOURCE_LOADED, name, locale);
-			ResourcesException ex = new ResourcesException(message, bundle
-					.getClass().getName(), name);
-			ex.addContext("locale", locale);
-			logException(ex, message);
-			throw ex;
-		}
-	}
+    /**
+     * Creates a logger for {@link TextsImpl}.
+     */
+    TextsImplLogger() {
+        super(TextsImpl.class);
+    }
 
-	public URL checkResourceURL(URL url, String urlString) {
-		if (url == null) {
-			log.warn(RESOURCE_URL_NOT_FOUND, urlString);
-		}
-		return url;
-	}
+    void checkTextLoaded(boolean haveText, String name, Locale locale, ResourceBundle bundle)
+            throws ResourcesException {
+        if (!haveText) {
+            String message = format(NO_TEXT_RESOURCE_LOADED, name, locale);
+            ResourcesException ex = new ResourcesException(message, bundle.getClass().getName(), name);
+            ex.addContext(LOCALE, locale);
+            logException(ex, message);
+            throw ex;
+        }
+    }
 
-	void checkHaveResource(TextResource text, String name, Locale locale,
-			ResourceBundle bundle) throws ResourcesException {
-		if (text == null) {
-			String message = format(NO_TEXT_RESOURCE_AVAILABLE, name, locale);
-			ResourcesException ex = new ResourcesException(message, bundle
-					.getClass().getName(), name);
-			ex.addContext("locale", locale);
-			logException(ex, message);
-			throw ex;
-		}
-	}
+    public URL checkResourceURL(URL url, String urlString) {
+        if (url == null) {
+            log.warn(RESOURCE_URL_NOT_FOUND, urlString);
+        }
+        return url;
+    }
 
-	void loadedResourceBundle(String name, ResourceBundle bundle) {
-		if (log.isDebugEnabled()) {
-			log.debug(LOADED_RESOURCE_BUNDLE, bundleToString(bundle), name);
-		}
-	}
+    void checkHaveResource(TextResource text, String name, Locale locale, ResourceBundle bundle)
+            throws ResourcesException {
+        if (text == null) {
+            String message = format(NO_TEXT_RESOURCE_AVAILABLE, name, locale);
+            ResourcesException ex = new ResourcesException(message, bundle.getClass().getName(), name);
+            ex.addContext(LOCALE, locale);
+            logException(ex, message);
+            throw ex;
+        }
+    }
 
-	private String bundleToString(ResourceBundle bundle) {
-		return new ToStringBuilder(bundle).append("locale", bundle.getLocale())
-				.toString();
-	}
+    void loadedResourceBundle(String name, ResourceBundle bundle) {
+        if (log.isDebugEnabled()) {
+            log.debug(LOADED_RESOURCE_BUNDLE, bundleToString(bundle), name);
+        }
+    }
+
+    private String bundleToString(ResourceBundle bundle) {
+        return new ToStringBuilder(bundle).append(LOCALE, bundle.getLocale()).toString();
+    }
 
 }
