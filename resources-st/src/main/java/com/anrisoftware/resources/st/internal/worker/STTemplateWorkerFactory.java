@@ -21,35 +21,10 @@ import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
 
-import org.stringtemplate.v4.STGroup;
-
-import com.anrisoftware.resources.st.external.StAttributeRenderer;
 import com.anrisoftware.resources.templates.external.TemplateWorker;
 import com.anrisoftware.resources.templates.external.TemplateWorkerFactory;
 
 public interface STTemplateWorkerFactory extends TemplateWorkerFactory {
-
-    static final String DELIMITER_STOP_CHAR_PROPERTY = "template_delimiter_stop_character";
-
-    static final String DELIMITER_START_CHAR_PROPERTY = "template_delimiter_start_character";
-
-    static final String ENCODING_PROPERTY = "template_encoding";
-
-    /**
-     * The map key for the attribute renderers.
-     *
-     * @see StAttributeRenderer
-     */
-    static final String RENDERERS_KEY = "renderers";
-
-    /**
-     * The map key for the attribute imports.
-     *
-     * @see STGroup#importTemplates(STGroup)
-     *
-     * @since 2.1
-     */
-    static final String IMPORTS_KEY = "imports";
 
     /**
      * Creates a new template worker that is using a <a href=
@@ -61,14 +36,14 @@ public interface STTemplateWorkerFactory extends TemplateWorkerFactory {
      * @param properties  the {@link Properties} for the template group file. Have
      *                    the properties:
      *                    <ul>
-     *                    <li>{@value #ENCODING_PROPERTY}</li>
-     *                    <li>{@value #DELIMITER_START_CHAR_PROPERTY}</li>
-     *                    <li>{@value #DELIMITER_STOP_CHAR_PROPERTY}</li>
+     *                    <li>{@value STTemplateProperties#ENCODING_PROPERTY}</li>
+     *                    <li>{@value STTemplateProperties#DELIMITER_START_CHAR_PROPERTY}</li>
+     *                    <li>{@value STTemplateProperties#DELIMITER_STOP_CHAR_PROPERTY}</li>
      *                    </ul>
      *
      * @param attributes  the attributes {@link Map} for the template. Can contain
      *                    the attribute renderers in the map key
-     *                    {@link RENDERERS_KEY}.
+     *                    {@link STTemplateProperties#RENDERERS_KEY}.
      *
      *
      * @return the {@link TemplateWorker}.

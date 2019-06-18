@@ -16,11 +16,11 @@
 
 package com.anrisoftware.resources.st.internal.worker;
 
-import static com.anrisoftware.resources.st.internal.worker.STTemplateWorkerFactory.DELIMITER_START_CHAR_PROPERTY;
-import static com.anrisoftware.resources.st.internal.worker.STTemplateWorkerFactory.DELIMITER_STOP_CHAR_PROPERTY;
-import static com.anrisoftware.resources.st.internal.worker.STTemplateWorkerFactory.ENCODING_PROPERTY;
-import static com.anrisoftware.resources.st.internal.worker.STTemplateWorkerFactory.IMPORTS_KEY;
-import static com.anrisoftware.resources.st.internal.worker.STTemplateWorkerFactory.RENDERERS_KEY;
+import static com.anrisoftware.resources.st.internal.worker.STTemplateProperties.DELIMITER_START_CHAR_PROPERTY;
+import static com.anrisoftware.resources.st.internal.worker.STTemplateProperties.DELIMITER_STOP_CHAR_PROPERTY;
+import static com.anrisoftware.resources.st.internal.worker.STTemplateProperties.ENCODING_PROPERTY;
+import static com.anrisoftware.resources.st.internal.worker.STTemplateProperties.IMPORTS_KEY;
+import static com.anrisoftware.resources.st.internal.worker.STTemplateProperties.RENDERERS_KEY;
 import static org.apache.commons.lang3.ArrayUtils.remove;
 
 import java.io.ObjectStreamException;
@@ -106,11 +106,11 @@ class STTemplateWorker implements TemplateWorker {
     }
 
     private void setupImports(STGroupFile group) {
-        if (!attributes.containsKey(IMPORTS_KEY)) {
+        if (!attributes.containsKey(IMPORTS_KEY.getProperty())) {
             return;
         }
         @SuppressWarnings({ "unchecked", "rawtypes" })
-        List<Serializable> imports = (List) attributes.get(IMPORTS_KEY);
+        List<Serializable> imports = (List) attributes.get(IMPORTS_KEY.getProperty());
         for (Serializable s : imports) {
             if (s instanceof SerializiableGroup) {
                 SerializiableGroup sgroup = (SerializiableGroup) s;
@@ -120,11 +120,11 @@ class STTemplateWorker implements TemplateWorker {
     }
 
     private void setupRenderers(STGroupFile group) {
-        if (!attributes.containsKey(RENDERERS_KEY)) {
+        if (!attributes.containsKey(RENDERERS_KEY.getProperty())) {
             return;
         }
         @SuppressWarnings({ "unchecked", "rawtypes" })
-        List<StAttributeRenderer> renderers = (List) attributes.get(RENDERERS_KEY);
+        List<StAttributeRenderer> renderers = (List) attributes.get(RENDERERS_KEY.getProperty());
         for (StAttributeRenderer renderer : renderers) {
             group.registerRenderer(renderer.getAttributeType(), renderer);
         }
@@ -134,9 +134,9 @@ class STTemplateWorker implements TemplateWorker {
         String encoding;
         char startChar;
         char stopChar;
-        encoding = properties.getProperty(ENCODING_PROPERTY);
-        startChar = properties.getCharProperty(DELIMITER_START_CHAR_PROPERTY);
-        stopChar = properties.getCharProperty(DELIMITER_STOP_CHAR_PROPERTY);
+        encoding = properties.getProperty(ENCODING_PROPERTY.getProperty());
+        startChar = properties.getCharProperty(DELIMITER_START_CHAR_PROPERTY.getProperty());
+        stopChar = properties.getCharProperty(DELIMITER_STOP_CHAR_PROPERTY.getProperty());
         try {
             return new STGroupFile(templateUrl, encoding, startChar, stopChar);
         } catch (STException e) {
