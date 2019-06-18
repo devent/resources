@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.itest.internal
 
 import static org.ops4j.pax.exam.CoreOptions.*
@@ -24,12 +25,6 @@ import org.ops4j.pax.exam.Option
 import org.ops4j.pax.exam.util.PathUtils
 import org.osgi.framework.BundleContext
 
-/**
- *
- *
- * @author Erwin Müller <erwin.mueller@deventm.de>
- * @version 2.2
- */
 abstract class AbstractTestPax {
 
     @Inject
@@ -45,7 +40,7 @@ abstract class AbstractTestPax {
     List<Option> createConfig(List<Option> options) {
         options << junitBundles()
         options << systemProperty('logback.configurationFile').value("file:${PathUtils.baseDir}/src/test/resources/logback-test.xml")
-        options << mavenBundle("org.apache.felix", "org.apache.felix.scr", "1.6.0")
+        options << mavenBundle("org.apache.felix", "org.apache.felix.scr", "2.1.6")
         options << mavenBundle("org.slf4j", "slf4j-api").versionAsInProject()
         options << mavenBundle("ch.qos.logback", "logback-classic").versionAsInProject()
         options << mavenBundle("ch.qos.logback", "logback-core").versionAsInProject()

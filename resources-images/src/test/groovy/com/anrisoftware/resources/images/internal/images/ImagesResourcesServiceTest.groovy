@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,23 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.images.internal.images
 
 import static com.anrisoftware.globalpom.utils.TestUtils.*
-import groovy.transform.CompileStatic
-import groovy.util.logging.Slf4j
 
-import org.apache.sling.testing.mock.osgi.junit.OsgiContext
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.apache.sling.testing.mock.osgi.junit5.OsgiContext
+import org.apache.sling.testing.mock.osgi.junit5.OsgiContextExtension
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty
+import org.junit.jupiter.api.extension.ExtendWith
 
 import com.anrisoftware.globalpom.utils.frametesting.FrameTestingModule
 import com.anrisoftware.globalpom.utils.imagetesting.ImageTestingModule
-import com.anrisoftware.resources.images.internal.AbstractImageResourcesTest
 import com.anrisoftware.resources.images.external.ImageResolution
 import com.anrisoftware.resources.images.external.ImageResource
 import com.anrisoftware.resources.images.external.ImagesService
+import com.anrisoftware.resources.images.internal.AbstractImageResourcesTest
 import com.anrisoftware.resources.images.internal.mapcached.ImagesBundlesMapCachedServiceImpl
 import com.anrisoftware.resources.images.internal.mapcached.ImagesMapCachedServiceImpl
 import com.anrisoftware.resources.images.internal.mapcachedbounded.ImagesBundlesMapCachedBoundedServiceImpl
@@ -39,17 +40,15 @@ import com.anrisoftware.resources.images.internal.scaling.SmoothImageScalingWork
 import com.google.inject.Guice
 import com.google.inject.Injector
 
-/**
- *
- *
- * @author Erwin Müller, erwin.mueller@deventm.de
- * @since 2.1
- */
+import groovy.transform.CompileStatic
+import groovy.util.logging.Slf4j
+
 @Slf4j
 @CompileStatic
+@ExtendWith(OsgiContextExtension.class)
+@EnabledIfSystemProperty(named = "project.custom.gui_tests", matches = "true")
 class ImagesResourcesServiceTest extends AbstractImageResourcesTest {
 
-    @Rule
     public final OsgiContext context = new OsgiContext()
 
     @Test
@@ -94,7 +93,7 @@ class ImagesResourcesServiceTest extends AbstractImageResourcesTest {
 
     ImagesService service
 
-    @Before
+    @BeforeEach
     void createFactories() {
         injector = createInjector()
     }

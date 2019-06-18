@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,22 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.st.external;
 
 import java.util.Locale;
 
-/**
- * Factory to create a new attribute renderer.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.6
- */
 public class AttributeRendererFactory {
 
     /**
+     * @param type     the attribute type {@link Class}.
+     *
+     * @param renderer the {@link org.stringtemplate.v4.AttributeRenderer}.
+     *
+     * @return the {@link StAttributeRenderer}.
+     * 
      * @see #wrap(Class, org.stringtemplate.v4.AttributeRenderer)
      */
-    public static AttributeRenderer wrapAttributeRenderer(final Class<?> type,
+    public static StAttributeRenderer wrapAttributeRenderer(final Class<?> type,
             final org.stringtemplate.v4.AttributeRenderer renderer) {
         return wrap(type, renderer);
     }
@@ -36,18 +37,15 @@ public class AttributeRendererFactory {
     /**
      * Wraps the ST attribute renderer with the attribute type.
      *
-     * @param type
-     *            the attribute type {@link Class}.
+     * @param type     the attribute type {@link Class}.
      *
-     * @param renderer
-     *            the {@link org.stringtemplate.v4.AttributeRenderer}.
+     * @param renderer the {@link org.stringtemplate.v4.AttributeRenderer}.
      *
-     * @return the {@link AttributeRenderer}.
+     * @return the {@link StAttributeRenderer}.
      */
     @SuppressWarnings("serial")
-    public static AttributeRenderer wrap(final Class<?> type,
-            final org.stringtemplate.v4.AttributeRenderer renderer) {
-        return new AttributeRenderer() {
+    public static StAttributeRenderer wrap(final Class<?> type, final org.stringtemplate.v4.AttributeRenderer renderer) {
+        return new StAttributeRenderer() {
 
             @Override
             public String toString(Object o, String formatString, Locale locale) {

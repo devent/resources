@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,20 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.templates.internal
 
-import org.junit.Before
+import org.junit.jupiter.api.BeforeEach
 
 import com.anrisoftware.globalpom.utils.TestUtils
 import com.google.inject.Guice
 import com.google.inject.Injector
 
-/**
- * Creates the environment to unit test the template resources.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 abstract class AbstractTemplateResourceTestUtils extends TestUtils {
 
     Injector injector
@@ -35,7 +30,7 @@ abstract class AbstractTemplateResourceTestUtils extends TestUtils {
 
     def resourceFactory
 
-    @Before
+    @BeforeEach
     void createFactories() {
         injector = createInjector()
         factory = createFactory()

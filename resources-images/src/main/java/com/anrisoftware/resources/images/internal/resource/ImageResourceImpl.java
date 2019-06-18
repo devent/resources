@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.images.internal.resource;
 
 import static java.awt.image.ImageObserver.HEIGHT;
@@ -30,19 +31,11 @@ import javax.swing.ImageIcon;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.images.external.ImageResolution;
 import com.anrisoftware.resources.images.external.ImageResource;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
 
-/**
- * Image resource with lazy loading. Two image resources are equals if the
- * resource URL is the same.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 class ImageResourceImpl implements ImageResource {
 
     private static final int HEIGHT_WIDTH_NOT_SET = -1;
@@ -75,21 +68,19 @@ class ImageResourceImpl implements ImageResource {
     private boolean imageLoaded;
 
     @AssistedInject
-    ImageResourceImpl(ImageResourceImplLogger logger, @Assisted String name,
-            @Assisted Locale locale, @Assisted ImageResolution resolution,
-            @Assisted URL url) {
+    ImageResourceImpl(ImageResourceImplLogger logger, @Assisted String name, @Assisted Locale locale,
+            @Assisted ImageResolution resolution, @Assisted URL url) {
         this(logger, name, locale, resolution, url, null);
     }
 
     @AssistedInject
-    ImageResourceImpl(ImageResourceImplLogger logger, @Assisted String name,
-            @Assisted Locale locale, @Assisted ImageResolution resolution,
-            @Assisted Image image) {
+    ImageResourceImpl(ImageResourceImplLogger logger, @Assisted String name, @Assisted Locale locale,
+            @Assisted ImageResolution resolution, @Assisted Image image) {
         this(logger, name, locale, resolution, null, image);
     }
 
-    private ImageResourceImpl(ImageResourceImplLogger logger, String name,
-            Locale locale, ImageResolution resolution, URL url, Image image) {
+    private ImageResourceImpl(ImageResourceImplLogger logger, String name, Locale locale, ImageResolution resolution,
+            URL url, Image image) {
         this.log = logger;
         this.name = name;
         this.locale = locale;
@@ -121,7 +112,7 @@ class ImageResourceImpl implements ImageResource {
     }
 
     @Override
-    public synchronized Image getImage() throws ResourcesException {
+    public synchronized Image getImage() {
         if (!imageLoaded) {
             Image image;
             image = imageLoadWorker.loadImage(this, log, url);
@@ -140,7 +131,7 @@ class ImageResourceImpl implements ImageResource {
     }
 
     @Override
-    public Image getImage(ImageObserver observer) throws ResourcesException {
+    public Image getImage(ImageObserver observer) {
         if (!imageLoaded) {
             Image image;
             image = imageLoadWorker.loadImage(this, log, url);
@@ -159,11 +150,9 @@ class ImageResourceImpl implements ImageResource {
     }
 
     @Override
-    public synchronized BufferedImage getBufferedImage(int imageType)
-            throws ResourcesException {
+    public synchronized BufferedImage getBufferedImage(int imageType) {
         if (bufferedImage == null) {
-            BufferedImage image = imageBufferedWorker.toBuffered(getImage(),
-                    getWidthPx(), getHeightPx(), imageType);
+            BufferedImage image = imageBufferedWorker.toBuffered(getImage(), getWidthPx(), getHeightPx(), imageType);
             this.bufferedImage = image;
             this.image = null;
         }
@@ -171,11 +160,9 @@ class ImageResourceImpl implements ImageResource {
     }
 
     @Override
-    public BufferedImage getBufferedImage(int imageType, ImageObserver observer)
-            throws ResourcesException {
+    public BufferedImage getBufferedImage(int imageType, ImageObserver observer) {
         if (bufferedImage == null) {
-            BufferedImage image = imageBufferedWorker.toBuffered(
-                    getImage(observer), getWidthPx(observer),
+            BufferedImage image = imageBufferedWorker.toBuffered(getImage(observer), getWidthPx(observer),
                     getHeightPx(observer), imageType);
             this.bufferedImage = image;
             this.image = null;
@@ -184,14 +171,14 @@ class ImageResourceImpl implements ImageResource {
     }
 
     @Override
-    public synchronized int getHeightPx() throws ResourcesException {
+    public synchronized int getHeightPx() {
         if (size.height == HEIGHT_WIDTH_NOT_SET) {
             size.height = determineHeight();
         }
         return size.height;
     }
 
-    private Integer determineHeight() throws ResourcesException {
+    private Integer determineHeight() {
         ImageResourceObserver observer = new ImageResourceObserver(HEIGHT);
         int height = getImage().getHeight(observer);
         height = waitForHeight(observer, height);
@@ -210,21 +197,21 @@ class ImageResourceImpl implements ImageResource {
     }
 
     @Override
-    public int getHeightPx(ImageObserver observer) throws ResourcesException {
+    public int getHeightPx(ImageObserver observer) {
         int height = getImage(observer).getHeight(observer);
         size.height = height;
         return height;
     }
 
     @Override
-    public synchronized int getWidthPx() throws ResourcesException {
+    public synchronized int getWidthPx() {
         if (size.width == HEIGHT_WIDTH_NOT_SET) {
             size.width = determineWidth();
         }
         return size.width;
     }
 
-    private int determineWidth() throws ResourcesException {
+    private int determineWidth() {
         ImageResourceObserver observer = new ImageResourceObserver(WIDTH);
         int width = getImage().getWidth(observer);
         width = waitForWidth(observer, width);
@@ -243,14 +230,14 @@ class ImageResourceImpl implements ImageResource {
     }
 
     @Override
-    public int getWidthPx(ImageObserver observer) throws ResourcesException {
+    public int getWidthPx(ImageObserver observer) {
         int width = getImage(observer).getWidth(observer);
         size.width = width;
         return width;
     }
 
     @Override
-    public synchronized Dimension getSizePx() throws ResourcesException {
+    public synchronized Dimension getSizePx() {
         if (size.height == HEIGHT_WIDTH_NOT_SET) {
             getHeightPx();
         }
@@ -261,8 +248,7 @@ class ImageResourceImpl implements ImageResource {
     }
 
     @Override
-    public Dimension getSizePx(ImageObserver observer)
-            throws ResourcesException {
+    public Dimension getSizePx(ImageObserver observer) {
         if (size.height == HEIGHT_WIDTH_NOT_SET) {
             getHeightPx(observer);
         }
@@ -274,8 +260,7 @@ class ImageResourceImpl implements ImageResource {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append(name).append(locale)
-                .append(resolution).toString();
+        return new ToStringBuilder(this).append(name).append(locale).append(resolution).toString();
     }
 
 }

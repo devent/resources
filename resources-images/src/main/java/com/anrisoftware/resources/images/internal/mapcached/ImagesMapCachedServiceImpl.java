@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,29 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.images.internal.mapcached;
+
 
 import static com.google.inject.Guice.createInjector;
 
 import javax.inject.Inject;
 
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Service;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
 
 import com.anrisoftware.resources.images.external.ImagesMap;
 import com.anrisoftware.resources.images.external.ImagesMapFactory;
 import com.anrisoftware.resources.images.external.ImagesMapService;
-import com.google.inject.AbstractModule;
 
-/**
- * Binaries resources map service.
- *
- * @author Erwin Müller, erwin.mueller@deventm.de
- * @since 2.1
- */
-@Component
-@Service(ImagesMapService.class)
+@Component(service = ImagesMapService.class)
 public class ImagesMapCachedServiceImpl implements ImagesMapService {
 
     @Inject
@@ -48,13 +41,7 @@ public class ImagesMapCachedServiceImpl implements ImagesMapService {
 
     @Activate
     protected void start() {
-        createInjector(new ResourcesImagesCachedMapModule(),
-                new AbstractModule() {
-
-                    @Override
-                    protected void configure() {
-                    }
-                }).injectMembers(this);
+        createInjector(new ResourcesImagesCachedMapModule()).injectMembers(this);
     }
 
 }

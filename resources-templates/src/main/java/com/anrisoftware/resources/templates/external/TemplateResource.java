@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.templates.external;
 
 import java.io.Serializable;
@@ -22,13 +23,6 @@ import java.util.Properties;
 import com.anrisoftware.resources.api.external.Resource;
 import com.anrisoftware.resources.api.external.ResourcesException;
 
-/**
- * Template resource.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- * @see TemplateResourceFactory
- */
 public interface TemplateResource extends Resource {
 
     /**
@@ -36,37 +30,35 @@ public interface TemplateResource extends Resource {
      * <p>
      * The processed text is cached and is returned for the same data.
      *
-     * @param data
-     *            the data for the template.
+     * @param data the data for the template.
      *
-     * @throws ResourcesException
-     *             if there was an error loading the text.
+     * @return {@link String} the text.
+     *
+     * @throws ResourcesException if there was an error loading the text.
      */
-    String getText(Object... data) throws ResourcesException;
+    String getText(Object... data);
 
     /**
      * Process the template and returns the text.
      * <p>
      * The processed text is cached and is returned for the same data.
      *
-     * @param invalidate
-     *            set to {@code true} to invalidate the cache before processing
-     *            the text.
+     * @param invalidate set to {@code true} to invalidate the cache before
+     *                   processing the text.
      *
-     * @param data
-     *            the data for the template.
+     * @param data       the data for the template.
      *
-     * @throws ResourcesException
-     *             if there was an error loading the text.
+     * @return {@link String} the text.
+     *
+     * @throws ResourcesException if there was an error loading the text.
      *
      * @since 1.1
      */
-    String getText(boolean invalidate, Object... data)
-            throws ResourcesException;
+    String getText(boolean invalidate, Object... data);
 
     /**
-     * Invalidate the template resource. Delete the cached resource so a
-     * subsequent call of {@link #getText(Object...)} will process the template.
+     * Invalidate the template resource. Delete the cached resource so a subsequent
+     * call of {@link #getText(Object...)} will process the template.
      * <p>
      * Use this if the data for the template have changed.
      */
@@ -90,6 +82,8 @@ public interface TemplateResource extends Resource {
 
     /**
      * Returns the template engine of the resource.
+     * 
+     * @param <T> the type of the engine.
      *
      * @return the template engine of the resource.
      *

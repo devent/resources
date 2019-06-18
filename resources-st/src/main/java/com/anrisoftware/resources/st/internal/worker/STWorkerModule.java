@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,21 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.st.internal.worker;
+
 
 import com.anrisoftware.resources.templates.external.TemplateWorker;
 import com.anrisoftware.resources.templates.external.TemplateWorkerFactory;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
-/**
- * Binds the ST worker classes that is using a <a
- * href=http://www.antlr.org/wiki/display/ST4/StringTemplate+4+Wiki+Home>String
- * Template</a> template engine.
- * 
- * @author Erwin Müller, erwin.mueller@deventm.org
- * @since 1.0
- */
 public class STWorkerModule extends AbstractModule {
 
 	@Override

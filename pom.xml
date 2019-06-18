@@ -1,3 +1,20 @@
+<!--
+
+    Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -7,13 +24,13 @@
     <parent>
         <groupId>com.anrisoftware.globalpom</groupId>
         <artifactId>globalpom-groovy-osgi</artifactId>
-        <version>4.4.0</version>
+        <version>4.5.1</version>
     </parent>
 
     <groupId>com.anrisoftware.resources</groupId>
-    <artifactId>resources-bundle</artifactId>
-    <version>4.4.0-SNAPSHOT</version>
-    <name>Resources Bundle POM</name>
+    <artifactId>resources</artifactId>
+    <version>4.5.1-SNAPSHOT</version>
+    <name>Resources</name>
     <description>Contains the modules of the resources project.</description>
     <inceptionYear>2012</inceptionYear>
     <packaging>pom</packaging>
@@ -27,7 +44,7 @@
         <module>resources-images</module>
         <module>resources-images-tests</module>
         <module>resources-itest</module>
-        <module>resources-parent</module>
+        <module>resources-it</module>
         <module>resources-st</module>
         <module>resources-templates</module>
         <module>resources-templates-tests</module>
@@ -37,9 +54,21 @@
 
     <properties>
         <project.custom.home>https://project.anrisoftware.com/projects/resources</project.custom.home>
+        <project.custom.license.image.url>https://project.anrisoftware.com/attachments/download/217/apache2.0-small.gif</project.custom.license.image.url>
+        <project.custom.central.url>https://search.maven.org/artifact/${project.groupId}/${project.artifactId}/${project.version}/pom</project.custom.central.url>
+        <project.custom.scm.repo>https://gitea.anrisoftware.com/anrisoftware.com/resources.git</project.custom.scm.repo>
+        <project.custom.scm.github>https://github.com/devent/resources</project.custom.scm.github>
         <project.custom.scm.pub>scm:git:https://gitea.anrisoftware.com/anrisoftware.com/resources.git</project.custom.scm.pub>
         <project.custom.scm.dev>scm:git:git@anrisoftware.com:anrisoftware.com/resources.git</project.custom.scm.dev>
         <project.custom.scm.url>${project.custom.home}/repository</project.custom.scm.url>
+        <project.custom.jenkins.url>https://jenkins.anrisoftware.com/job/resources-public/</project.custom.jenkins.url>
+        <project.custom.jenkins.build.badge.master>https://jenkins.anrisoftware.com/job/resources-public/job/master/badge/icon</project.custom.jenkins.build.badge.master>
+        <project.custom.jenkins.build.link.master>https://jenkins.anrisoftware.com/job/resources-public/master</project.custom.jenkins.build.link.master>
+        <project.custom.sonarqube.url>https://sonar.anrisoftware.com/dashboard?id=com.anrisoftware.resources%3Aresources</project.custom.sonarqube.url>
+        <project.custom.sonarqube.qualitygate.badge>https://sonar.anrisoftware.com/api/badges/gate?key=com.anrisoftware.resources%3Aresources</project.custom.sonarqube.qualitygate.badge>
+        <project.custom.sonarqube.qualitygate.link>${project.custom.sonarqube.url}</project.custom.sonarqube.qualitygate.link>
+        <!-- sonar -->
+        <sonar.coverage.jacoco.xmlReportPaths>../resources-it/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <developers>
@@ -94,6 +123,28 @@
             <url>https://maven.anrisoftware.com/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.anrisoftware.globalpom</groupId>
+                <artifactId>globalpom-groovytestutils</artifactId>
+                <version>4.5.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.anrisoftware.globalpom</groupId>
+                <artifactId>globalpom-log</artifactId>
+                <version>4.5.1</version>
+                <type>bundle</type>
+            </dependency>
+            <dependency>
+                <groupId>com.anrisoftware.propertiesutils</groupId>
+                <artifactId>propertiesutils-contextproperties</artifactId>
+                <version>4.5.1</version>
+                <type>bundle</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <profiles>
         <profile>

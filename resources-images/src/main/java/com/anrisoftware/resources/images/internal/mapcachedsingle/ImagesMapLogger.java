@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,18 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.images.internal.mapcachedsingle;
+
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.images.external.ImageResource;
 import com.anrisoftware.resources.images.external.ImagesMap;
 
-/**
- * Logger messages for the {@link ImagesMapImpl}.
- * 
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 class ImagesMapLogger extends AbstractLogger {
 
 	private static final String NO_IMAGE = "Image resource '{}' with the size not found in the map, returning the next nearest.";

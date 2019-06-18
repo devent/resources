@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,9 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.templates.internal.worker
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
+import static org.junit.jupiter.api.Assertions.assertThrows
 
 import com.anrisoftware.resources.api.external.ResourcesException
 import com.anrisoftware.resources.st.internal.worker.STDefaultPropertiesFactory
@@ -28,12 +30,6 @@ import com.anrisoftware.resources.templates.internal.AbstractTemplateResourceTes
 import com.anrisoftware.resources.templates.internal.maps.TemplatesDefaultMapsModule
 import com.anrisoftware.resources.templates.internal.templates.TemplatesResourcesModule
 
-/**
- * Creates the ST template resources and runs functionality tests.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 class StResourceTest extends AbstractTemplateResourceTest {
 
     @Test
@@ -100,7 +96,7 @@ class StResourceTest extends AbstractTemplateResourceTest {
         assertStringContent template.getText(args), "${args[2]}:${args[4]}"
     }
 
-    @Test(expected = ResourcesException)
+    @Test
     void "load missng template"() {
         String[] args = [
             "arg1",
@@ -111,10 +107,10 @@ class StResourceTest extends AbstractTemplateResourceTest {
         def baseName = "Templates"
         def templates = factory.create baseName
         def template = templates.getResource "errorstemplate"
-        template.getText(args)
+        assertThrows(ResourcesException.class, { template.getText(args) })
     }
 
-    @Test(expected = ResourcesException)
+    @Test
     void "load template with errors"() {
         String[] args = [
             "test",
@@ -126,7 +122,7 @@ class StResourceTest extends AbstractTemplateResourceTest {
         def baseName = "Templates"
         def templates = factory.create baseName
         def template = templates.getResource "errorstemplate"
-        template.getText(args)
+        assertThrows(ResourcesException.class, { template.getText(args) })
     }
 
     def getTemplatesModule() {

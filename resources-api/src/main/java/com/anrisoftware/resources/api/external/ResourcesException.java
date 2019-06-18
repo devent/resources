@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,26 +15,6 @@
  */
 package com.anrisoftware.resources.api.external;
 
-/*-
- * #%L
- * Resources :: API
- * %%
- * Copyright (C) 2012 - 2018 Advanced Natural Research Institute
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
- */
-
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 import java.util.List;
@@ -42,23 +22,22 @@ import java.util.Map;
 import java.util.MissingResourceException;
 
 import org.apache.commons.lang3.exception.DefaultExceptionContext;
-import org.apache.commons.lang3.exception.ExceptionContext;
 import org.apache.commons.lang3.tuple.Pair;
 
-/**
- * Exception that is thrown if there was an error loading a resource.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 @SuppressWarnings("serial")
 public class ResourcesException extends MissingResourceException {
 
-    private final ExceptionContext context;
+    private final DefaultExceptionContext context;
 
     private final Throwable cause;
 
     /**
+     * @param message   the detail message
+     *
+     * @param className the name of the resource class
+     *
+     * @param key       the key for the missing resource.
+     *
      * @see MissingResourceException#MissingResourceException(String, String,
      *      String)
      *
@@ -69,16 +48,20 @@ public class ResourcesException extends MissingResourceException {
     }
 
     /**
-     * @param cause
-     *            the {@link Throwable} cause of the exception.
+     * @param cause     the {@link Throwable} cause of the exception.
+     *
+     * @param message   the detail message
+     *
+     * @param className the name of the resource class
+     *
+     * @param key       the key for the missing resource.
      *
      * @see MissingResourceException#MissingResourceException(String, String,
      *      String)
      *
      * @since 1.7
      */
-    public ResourcesException(Throwable cause, String message, String className,
-            String key) {
+    public ResourcesException(Throwable cause, String message, String className, String key) {
         super(message, className, key);
         this.context = new DefaultExceptionContext();
         this.cause = cause;
@@ -96,11 +79,9 @@ public class ResourcesException extends MissingResourceException {
     /**
      * Adds the context with the specified name.
      *
-     * @param name
-     *            the name of the context.
+     * @param name  the name of the context.
      *
-     * @param value
-     *            the context value.
+     * @param value the context value.
      *
      * @return the context {@link Exception}.
      *

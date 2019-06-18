@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,29 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * Copyright 2012-2016 Erwin Müller <erwin.mueller@deventm.org>
- *
- * This file is part of resources-texts.
- *
- * resources-texts is free software: you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or (at your
- * option) any later version.
- *
- * resources-texts is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with resources-texts. If not, see <http://www.gnu.org/licenses/>.
- */
+
 package com.anrisoftware.resources.texts.internal.texts
 
-import org.apache.sling.testing.mock.osgi.junit.OsgiContext
-import org.junit.Rule
-import org.junit.Test
+import org.apache.sling.testing.mock.osgi.junit5.OsgiContext
+import org.apache.sling.testing.mock.osgi.junit5.OsgiContextExtension
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 
 import com.anrisoftware.resources.binary.internal.binaries.BinariesServiceImpl
 import com.anrisoftware.resources.binary.internal.maps.BinariesBundlesMapServiceImpl
@@ -58,9 +42,9 @@ import groovy.util.logging.Slf4j
  */
 @Slf4j
 @CompileStatic
+@ExtendWith(OsgiContextExtension.class)
 class TextsResourcesServiceTest extends AbstractTextResourceTest {
 
-    @Rule
     public final OsgiContext context = new OsgiContext()
 
     @Test

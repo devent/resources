@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,18 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.st.external;
+
 
 import java.io.Serializable;
 
 import org.stringtemplate.v4.STGroup;
 
-/**
- * Wrap {@link STGroup} group in a serializable to be use in the attributes map.
- *
- * @author Erwin Müller <erwin.mueller@deventm.de>
- * @version 2.1
- */
 @SuppressWarnings("serial")
 public class SerializiableGroup implements Serializable {
 

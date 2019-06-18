@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,29 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.texts.internal.maps;
+
 
 import static com.google.inject.Guice.createInjector;
 
 import javax.inject.Inject;
 
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Service;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
 
 import com.anrisoftware.resources.texts.external.TextsMap;
 import com.anrisoftware.resources.texts.external.TextsMapFactory;
 import com.anrisoftware.resources.texts.external.TextsMapService;
-import com.google.inject.AbstractModule;
 
-/**
- * Texts resources map service.
- *
- * @author Erwin Müller, erwin.mueller@deventm.de
- * @since 2.1
- */
-@Component
-@Service(TextsMapService.class)
+@Component(service = TextsMapService.class)
 public class TextsMapDefaultServiceImpl implements TextsMapService {
 
     @Inject
@@ -48,12 +41,7 @@ public class TextsMapDefaultServiceImpl implements TextsMapService {
 
     @Activate
     protected void start() {
-        createInjector(new TextsDefaultMapsModule(), new AbstractModule() {
-
-            @Override
-            protected void configure() {
-            }
-        }).injectMembers(this);
+        createInjector(new TextsDefaultMapsModule()).injectMembers(this);
     }
 
 }

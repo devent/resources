@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.templates.internal.maps;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,13 +25,6 @@ import javax.inject.Inject;
 import com.anrisoftware.resources.templates.external.TemplateResource;
 import com.anrisoftware.resources.templates.external.TemplatesMap;
 
-/**
- * Uses a Java hash map to store the template resources identified by their
- * name.
- * 
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 class TemplatesMapImpl implements TemplatesMap {
 
 	private final TemplatesMapLogger log;

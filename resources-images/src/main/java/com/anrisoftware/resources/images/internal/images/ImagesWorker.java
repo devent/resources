@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.images.internal.images;
 
 import static java.lang.String.format;
@@ -26,7 +27,6 @@ import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 
-import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.getbundle.external.GetBundle;
 import com.anrisoftware.resources.images.external.ImageResolution;
 import com.anrisoftware.resources.images.external.ImageResource;
@@ -36,14 +36,6 @@ import com.anrisoftware.resources.images.external.ImagesBundlesMap;
 import com.anrisoftware.resources.images.external.ImagesMap;
 import com.google.inject.assistedinject.Assisted;
 
-/**
- * Returns the image resource with the desired name, locale, resolution and
- * size. It will scale the image if necessary and add the scaled image resource
- * to the images map.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.1
- */
 class ImagesWorker {
 
     private final ImagesWorkerLogger log;
@@ -59,24 +51,19 @@ class ImagesWorker {
     /**
      * Injects the dependencies.
      *
-     * @param logger
-     *            the {@link ImagesWorkerLogger} where the logging messages are
-     *            logged.
+     * @param logger               the {@link ImagesWorkerLogger} where the logging
+     *                             messages are logged.
      *
-     * @param imageResourceFactory
-     *            the {@link ImageResourceFactory} to create a new image
-     *            resource.
+     * @param imageResourceFactory the {@link ImageResourceFactory} to create a new
+     *                             image resource.
      *
-     * @param scalingWorkerFactory
-     *            the {@link ImageScalingWorkerFactory} to create a new worker
-     *            that will scale the image.
+     * @param scalingWorkerFactory the {@link ImageScalingWorkerFactory} to create a
+     *                             new worker that will scale the image.
      *
-     * @param getBundle
-     *            the {@link GetBundle} that returns the resource bundle for the
-     *            locale.
+     * @param getBundle            the {@link GetBundle} that returns the resource
+     *                             bundle for the locale.
      *
-     * @param bundles
-     *            the map of bundles with their images maps.
+     * @param bundles              the map of bundles with their images maps.
      */
     @Inject
     ImagesWorker(ImagesWorkerLogger logger, ImageResourceFactory imageResourceFactory,
@@ -90,18 +77,15 @@ class ImagesWorker {
     }
 
     /**
-     * Returns the image resource with the desired name, locale and size. It
-     * will choose the best available resolution for scaling.
+     * Returns the image resource with the desired name, locale and size. It will
+     * choose the best available resolution for scaling.
      *
-     * @param name
-     *            the {@link String} name of the image resource we want to get.
+     * @param name   the {@link String} name of the image resource we want to get.
      *
-     * @param locale
-     *            the {@link Locale} of the image resource we want to get.
+     * @param locale the {@link Locale} of the image resource we want to get.
      *
-     * @param size
-     *            the {@link Dimension} width and height of the image resource
-     *            we want to get.
+     * @param size   the {@link Dimension} width and height of the image resource we
+     *               want to get.
      *
      * @return a {@link ImageResource}.
      */
@@ -117,29 +101,26 @@ class ImagesWorker {
         return image;
     }
 
-    private void lazyLoadImagesForAvailableResolutions(String name, Locale locale, ImagesMap map, ResourceBundle bundle)
-            throws ResourcesException {
+    private void lazyLoadImagesForAvailableResolutions(String name, Locale locale, ImagesMap map,
+            ResourceBundle bundle) {
         for (ImageResolution resolution : ImageResolution.values()) {
             lazyLoadImagesForResolution(name, locale, map, bundle, resolution);
         }
     }
 
     /**
-     * Returns the image resource with the desired name, locale and size. It
-     * will use the specified resolution for scaling.
+     * Returns the image resource with the desired name, locale and size. It will
+     * use the specified resolution for scaling.
      *
-     * @param name
-     *            the {@link String} name of the image resource we want to get.
+     * @param name       the {@link String} name of the image resource we want to
+     *                   get.
      *
-     * @param locale
-     *            the {@link Locale} of the image resource we want to get.
+     * @param locale     the {@link Locale} of the image resource we want to get.
      *
-     * @param size
-     *            the {@link Dimension} width and height of the image resource
-     *            we want to get.
+     * @param size       the {@link Dimension} width and height of the image
+     *                   resource we want to get.
      *
-     * @param resolution
-     *            the specified {@link ImageResolution}.
+     * @param resolution the specified {@link ImageResolution}.
      *
      * @return a {@link ImageResource}.
      */
@@ -155,7 +136,7 @@ class ImagesWorker {
     }
 
     private void lazyLoadImagesForResolution(String name, Locale locale, ImagesMap map, ResourceBundle bundle,
-            ImageResolution resolution) throws ResourcesException {
+            ImageResolution resolution) {
         if (map.haveImage(name, resolution)) {
             return;
         }
@@ -203,8 +184,7 @@ class ImagesWorker {
         return res;
     }
 
-    private Image resizeImage(String name, Dimension size, Image image, Locale locale, ResourceBundle bundle)
-            throws ResourcesException {
+    private Image resizeImage(String name, Dimension size, Image image, Locale locale, ResourceBundle bundle) {
         try {
             return scalingWorkerFactory.create(image, size).call();
         } catch (Exception e) {

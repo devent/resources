@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.images.internal
 
 import java.awt.Dimension
 
 import com.anrisoftware.globalpom.utils.imagetesting.ShowImagesFrame
-import com.anrisoftware.globalpom.utils.imagetesting.ShowImagesFrame.ShowImagesFrameFactory
+import com.anrisoftware.globalpom.utils.imagetesting.ShowImagesFrameFactory
 
-/**
- * Create tests to test the image resource.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 abstract class AbstractImageResourceTest extends AbstractImageResourcesTestUtils {
 
     public static imageLowURL = AbstractImageResourceTest.class.getResource("/com/anrisoftware/resources/images/logos/xx/ldpi/x-mail-distribution-list.png")

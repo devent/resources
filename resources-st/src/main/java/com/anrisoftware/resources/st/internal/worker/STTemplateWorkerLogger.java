@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.st.internal.worker;
+
 
 import java.net.URL;
 
@@ -24,12 +26,6 @@ import org.stringtemplate.v4.misc.STMessage;
 import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.api.external.ResourcesException;
 
-/**
- * Logging messages for {@link STTemplateWorker}.
- * 
- * @author Erwin Müller, erwin.mueller@deventm.org
- * @since 1.0
- */
 class STTemplateWorkerLogger extends AbstractLogger {
 
 	private static final String URL = "url";

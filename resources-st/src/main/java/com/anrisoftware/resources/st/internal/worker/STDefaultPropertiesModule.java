@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,17 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.st.internal.worker;
+
 
 import com.anrisoftware.resources.templates.external.TemplatesPropertiesFactory;
 import com.google.inject.AbstractModule;
 
-/**
- * Binds default ST4 template properties.
- *
- * @author Erwin Müller, erwin.mueller@deventm.org
- * @since 2.1
- */
 public class STDefaultPropertiesModule extends AbstractModule {
 
     @Override

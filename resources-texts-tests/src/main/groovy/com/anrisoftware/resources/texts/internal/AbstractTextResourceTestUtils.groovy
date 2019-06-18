@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 Erwin Müller <erwin.mueller@deventm.org>
+/**
+ * Copyright © 2012 Erwin Müller (erwin.mueller@anrisoftware.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,37 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.anrisoftware.resources.texts.internal
 
 import static com.anrisoftware.globalpom.utils.TestUtils.*
 
-import org.junit.Before
-import org.junit.BeforeClass
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.BeforeEach
 
 import com.anrisoftware.resources.binary.internal.binaries.BinariesResourcesModule
 import com.anrisoftware.resources.binary.internal.maps.BinariesDefaultMapsModule
 import com.google.inject.Guice
 import com.google.inject.Injector
 
-/**
- * Creates the environment to unit test the texts resources. Adds binary
- * resources modules.
- *
- * @author Erwin Mueller, erwin.mueller@deventm.org
- * @since 1.0
- */
 abstract class AbstractTextResourceTestUtils {
 
     Injector injector
 
     def factory
 
-    @BeforeClass
+    @BeforeAll
     static void setupToStringStyle() {
         toStringStyle
     }
 
-    @Before
+    @BeforeEach
     void createFactories() {
         injector = createInjector()
         factory = createFactory()
