@@ -72,7 +72,7 @@ class STTemplateWorker implements TemplateWorker {
         createGroupFile();
     }
 
-    private Object readResolve() throws ObjectStreamException {
+    Object readResolve() throws ObjectStreamException {
         createGroupFile();
         return this;
     }
