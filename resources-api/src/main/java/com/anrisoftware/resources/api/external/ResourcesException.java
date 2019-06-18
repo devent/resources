@@ -22,13 +22,12 @@ import java.util.Map;
 import java.util.MissingResourceException;
 
 import org.apache.commons.lang3.exception.DefaultExceptionContext;
-import org.apache.commons.lang3.exception.ExceptionContext;
 import org.apache.commons.lang3.tuple.Pair;
 
 @SuppressWarnings("serial")
 public class ResourcesException extends MissingResourceException {
 
-    private final ExceptionContext context;
+    private final DefaultExceptionContext context;
 
     private final Throwable cause;
 
