@@ -24,7 +24,7 @@
     <parent>
         <groupId>com.anrisoftware.globalpom</groupId>
         <artifactId>globalpom-groovy-osgi</artifactId>
-        <version>4.5.1-SNAPSHOT</version>
+        <version>4.5.1</version>
     </parent>
 
     <groupId>com.anrisoftware.resources</groupId>
@@ -129,12 +129,12 @@
             <dependency>
                 <groupId>com.anrisoftware.globalpom</groupId>
                 <artifactId>globalpom-groovytestutils</artifactId>
-                <version>4.5.1-SNAPSHOT</version>
+                <version>4.5.1</version>
             </dependency>
             <dependency>
                 <groupId>com.anrisoftware.globalpom</groupId>
                 <artifactId>globalpom-log</artifactId>
-                <version>4.5.1-SNAPSHOT</version>
+                <version>4.5.1</version>
                 <type>bundle</type>
             </dependency>
             <dependency>
