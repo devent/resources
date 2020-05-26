@@ -29,7 +29,7 @@
 
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources</artifactId>
-    <version>4.5.2-SNAPSHOT</version>
+    <version>4.5.2</version>
     <name>Resources</name>
     <description>Contains the modules of the resources project.</description>
     <inceptionYear>2012</inceptionYear>

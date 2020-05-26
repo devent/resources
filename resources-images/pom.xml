@@ -22,7 +22,7 @@
 	<parent>
         <artifactId>resources</artifactId>
         <groupId>com.anrisoftware.resources</groupId>
-        <version>4.5.2-SNAPSHOT</version>
+        <version>4.5.2</version>
 	</parent>
 
 	<artifactId>resources-images</artifactId>
@@ -65,7 +65,7 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-images-tests</artifactId>
-			<version>4.5.2-SNAPSHOT</version>
+			<version>4.5.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -93,13 +93,13 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>4.5.2-SNAPSHOT</version>
+			<version>4.5.2</version>
 			<type>bundle</type>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>4.5.2-SNAPSHOT</version>
+			<version>4.5.2</version>
 			<type>bundle</type>
 		</dependency>
 
@@ -107,7 +107,6 @@
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.service.component.annotations</artifactId>
-            <version>1.3.0</version>
         </dependency>
 		<dependency>
 			<groupId>com.google.inject.extensions</groupId>
