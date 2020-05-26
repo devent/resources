@@ -15,14 +15,16 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.anrisoftware.globalpom</groupId>
         <artifactId>globalpom-groovy-osgi</artifactId>
-        <version>4.5.1</version>
+        <version>4.5.2</version>
     </parent>
 
     <groupId>com.anrisoftware.resources</groupId>
@@ -67,6 +69,8 @@
         <project.custom.sonarqube.qualitygate.link>${project.custom.sonarqube.url}</project.custom.sonarqube.qualitygate.link>
         <!-- sonar -->
         <sonar.coverage.jacoco.xmlReportPaths>../resources-it/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <!-- versions -->
+        <project.custom.globalpom.version>4.5.2</project.custom.globalpom.version>
     </properties>
 
     <developers>
@@ -105,8 +109,8 @@
         <connection>${project.custom.scm.pub}</connection>
         <developerConnection>${project.custom.scm.dev}</developerConnection>
         <url>${project.custom.scm.url}</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <distributionManagement>
         <site>
@@ -128,18 +132,18 @@
             <dependency>
                 <groupId>com.anrisoftware.globalpom</groupId>
                 <artifactId>globalpom-groovytestutils</artifactId>
-                <version>4.5.1</version>
+                <version>${project.custom.globalpom.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.anrisoftware.globalpom</groupId>
                 <artifactId>globalpom-log</artifactId>
-                <version>4.5.1</version>
+                <version>${project.custom.globalpom.version}</version>
                 <type>bundle</type>
             </dependency>
             <dependency>
                 <groupId>com.anrisoftware.propertiesutils</groupId>
                 <artifactId>propertiesutils-contextproperties</artifactId>
-                <version>4.5.1</version>
+                <version>${project.custom.globalpom.version}</version>
                 <type>bundle</type>
             </dependency>
         </dependencies>
