@@ -53,7 +53,7 @@ class ImagesMapImpl implements ImagesMap {
     @Inject
     ImagesMapImpl(ImagesMapLogger logger) {
         this.log = logger;
-        this.images = new HashMap<String, Map<ImageResolution, Map<Dimension, ImageResource>>>();
+        this.images = new HashMap<>();
         this.maxEntries = 32;
     }
 
@@ -77,7 +77,7 @@ class ImagesMapImpl implements ImagesMap {
             ImageResolution resolution) {
         Map<Dimension, ImageResource> resources = resolutions.get(resolution);
         if (resources == null) {
-            resources = new LinkedHashMap<Dimension, ImageResource>() {
+            resources = new LinkedHashMap<>() {
                 @Override
                 protected boolean removeEldestEntry(Map.Entry<Dimension, ImageResource> eldest) {
                     return size() > maxEntries;
@@ -92,7 +92,7 @@ class ImagesMapImpl implements ImagesMap {
         Map<ImageResolution, Map<Dimension, ImageResource>> resolutions;
         resolutions = images.get(name);
         if (resolutions == null) {
-            resolutions = new HashMap<ImageResolution, Map<Dimension, ImageResource>>();
+            resolutions = new HashMap<>();
             images.put(name, resolutions);
         }
         return resolutions;

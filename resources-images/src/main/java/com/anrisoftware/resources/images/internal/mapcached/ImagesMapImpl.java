@@ -19,7 +19,6 @@ package com.anrisoftware.resources.images.internal.mapcached;
 import static java.lang.Math.abs;
 
 import java.awt.Dimension;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -52,7 +51,7 @@ class ImagesMapImpl implements ImagesMap {
     @Inject
     ImagesMapImpl(ImagesMapLogger logger) {
         this.log = logger;
-        this.images = new HashMap<String, Map<ImageResolution, Map<Dimension, ImageResource>>>();
+        this.images = new HashMap<>();
     }
 
     @Override
@@ -73,14 +72,8 @@ class ImagesMapImpl implements ImagesMap {
             ImageResolution resolution) {
         Map<Dimension, ImageResource> resources = resolutions.get(resolution);
         if (resources == null) {
-            resources = new TreeMap<Dimension, ImageResource>(new Comparator<Dimension>() {
-
-                @Override
-                public int compare(Dimension o1, Dimension o2) {
-                    return o1.height < o2.height ? -1 : o1.height > o2.height ? 1 : 0;
-                }
-
-            });
+            resources = new TreeMap<>(
+                    (o1, o2) -> o1.height < o2.height ? -1 : o1.height > o2.height ? 1 : 0);
         }
         resolutions.put(resolution, resources);
         return resources;
@@ -90,7 +83,7 @@ class ImagesMapImpl implements ImagesMap {
         Map<ImageResolution, Map<Dimension, ImageResource>> resolutions;
         resolutions = images.get(name);
         if (resolutions == null) {
-            resolutions = new HashMap<ImageResolution, Map<Dimension, ImageResource>>();
+            resolutions = new HashMap<>();
             images.put(name, resolutions);
         }
         return resolutions;
