@@ -23,7 +23,7 @@
     <parent>
         <artifactId>resources</artifactId>
         <groupId>com.anrisoftware.resources</groupId>
-        <version>4.5.1</version>
+        <version>4.5.2</version>
     </parent>
 
     <artifactId>resources-itest</artifactId>
@@ -42,49 +42,49 @@
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-api</artifactId>
-            <version>4.5.1</version>
+            <version>4.5.2</version>
             <type>bundle</type>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-getbundle</artifactId>
-            <version>4.5.1</version>
+            <version>4.5.2</version>
             <type>bundle</type>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-binary</artifactId>
-            <version>4.5.1</version>
+            <version>4.5.2</version>
             <type>bundle</type>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-images</artifactId>
-            <version>4.5.1</version>
+            <version>4.5.2</version>
             <type>bundle</type>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-templates</artifactId>
-            <version>4.5.1</version>
+            <version>4.5.2</version>
             <type>bundle</type>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-st</artifactId>
-            <version>4.5.1</version>
+            <version>4.5.2</version>
             <type>bundle</type>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-texts</artifactId>
-            <version>4.5.1</version>
+            <version>4.5.2</version>
             <type>bundle</type>
             <scope>test</scope>
         </dependency>

@@ -22,7 +22,7 @@
     <parent>
         <artifactId>resources</artifactId>
         <groupId>com.anrisoftware.resources</groupId>
-        <version>4.5.1</version>
+        <version>4.5.2</version>
     </parent>
 
     <artifactId>resources-binary-tests</artifactId>
@@ -39,7 +39,7 @@
         <connection>${project.custom.scm.pub}</connection>
         <developerConnection>${project.custom.scm.dev}</developerConnection>
         <url>${project.custom.scm.url}</url>
-      <tag>resources-4.5.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <distributionManagement>

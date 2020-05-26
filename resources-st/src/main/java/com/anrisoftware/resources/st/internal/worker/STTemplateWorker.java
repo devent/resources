@@ -38,8 +38,8 @@ import org.stringtemplate.v4.misc.STMessage;
 
 import com.anrisoftware.propertiesutils.ContextProperties;
 import com.anrisoftware.resources.api.external.ResourcesException;
-import com.anrisoftware.resources.st.external.StAttributeRenderer;
 import com.anrisoftware.resources.st.external.SerializiableGroup;
+import com.anrisoftware.resources.st.external.StAttributeRenderer;
 import com.anrisoftware.resources.templates.external.TemplateWorker;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
@@ -119,13 +119,15 @@ class STTemplateWorker implements TemplateWorker {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void setupRenderers(STGroupFile group) {
         if (!attributes.containsKey(RENDERERS_KEY.getProperty())) {
             return;
         }
-        @SuppressWarnings({ "unchecked", "rawtypes" })
-        List<StAttributeRenderer> renderers = (List) attributes.get(RENDERERS_KEY.getProperty());
-        for (StAttributeRenderer renderer : renderers) {
+        @SuppressWarnings("rawtypes")
+        List<StAttributeRenderer<?>> renderers = (List) attributes.get(RENDERERS_KEY.getProperty());
+        for (@SuppressWarnings("rawtypes")
+        StAttributeRenderer renderer : renderers) {
             group.registerRenderer(renderer.getAttributeType(), renderer);
         }
     }
