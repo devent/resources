@@ -146,6 +146,11 @@
                 <version>${project.custom.globalpom.version}</version>
                 <type>bundle</type>
             </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>1.8</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
