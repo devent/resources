@@ -225,7 +225,7 @@ class ImagesMapImpl implements ImagesMap {
         if (resolutions == null) {
             return false;
         }
-        Map<Dimension, ImageResource> sizes = resolutions.get(size);
+        Map<Dimension, ImageResource> sizes = resolutions.get(resolution);
         return sizes == null ? false : sizes.containsKey(size);
     }
 
