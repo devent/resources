@@ -18,19 +18,30 @@ package com.anrisoftware.resources.st.external;
 
 import java.util.Locale;
 
+import org.stringtemplate.v4.AttributeRenderer;
+
+/**
+ * Wraps {@link AttributeRenderer} with a type to {@link StAttributeRenderer}.
+ *
+ * @author Erwin Müller
+ */
 public class AttributeRendererFactory {
 
     /**
      * @param type     the attribute type {@link Class}.
      *
-     * @param renderer the {@link org.stringtemplate.v4.AttributeRenderer}.
+     * @param renderer the {@link AttributeRenderer}.
+     *
+     * @param <T>      the type of the renderer.
      *
      * @return the {@link StAttributeRenderer}.
-     * 
-     * @see #wrap(Class, org.stringtemplate.v4.AttributeRenderer)
+     *
+     * @see #wrap(Class, AttributeRenderer)
+     *
+     * @since 4.5.2
      */
-    public static StAttributeRenderer wrapAttributeRenderer(final Class<?> type,
-            final org.stringtemplate.v4.AttributeRenderer renderer) {
+    public static <T> StAttributeRenderer<T> wrapAttributeRenderer(final Class<T> type,
+            final AttributeRenderer<T> renderer) {
         return wrap(type, renderer);
     }
 
@@ -39,21 +50,25 @@ public class AttributeRendererFactory {
      *
      * @param type     the attribute type {@link Class}.
      *
-     * @param renderer the {@link org.stringtemplate.v4.AttributeRenderer}.
+     * @param renderer the {@link AttributeRenderer}.
+     *
+     * @param <T>      the type of the renderer.
      *
      * @return the {@link StAttributeRenderer}.
+     *
+     * @since 4.5.2
      */
     @SuppressWarnings("serial")
-    public static StAttributeRenderer wrap(final Class<?> type, final org.stringtemplate.v4.AttributeRenderer renderer) {
-        return new StAttributeRenderer() {
+    public static <T> StAttributeRenderer<T> wrap(final Class<T> type, final AttributeRenderer<T> renderer) {
+        return new StAttributeRenderer<>() {
 
             @Override
-            public String toString(Object o, String formatString, Locale locale) {
+            public String toString(T o, String formatString, Locale locale) {
                 return renderer.toString(o, formatString, locale);
             }
 
             @Override
-            public Class<?> getAttributeType() {
+            public Class<T> getAttributeType() {
                 return type;
             }
 
