@@ -29,7 +29,7 @@
 
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources</artifactId>
-    <version>4.5.2-SNAPSHOT</version>
+    <version>4.5.2</version>
     <name>Resources</name>
     <description>Contains the modules of the resources project.</description>
     <inceptionYear>2012</inceptionYear>
@@ -145,6 +145,11 @@
                 <artifactId>propertiesutils-contextproperties</artifactId>
                 <version>${project.custom.globalpom.version}</version>
                 <type>bundle</type>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>1.8</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

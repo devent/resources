@@ -21,14 +21,17 @@ import java.io.Serializable;
 import org.stringtemplate.v4.AttributeRenderer;
 
 /**
- * @since 4.5.1
+ * @since 4.5.2
+ *
+ * @param <T> the type of the renderer.
+ *
  */
-public interface StAttributeRenderer extends AttributeRenderer, Serializable {
+public interface StAttributeRenderer<T> extends AttributeRenderer<T>, Serializable {
 
     /**
      * Returns the attribute type of the renderer.
      *
      * @return the type {@link Class}.
      */
-    Class<?> getAttributeType();
+    Class<T> getAttributeType();
 }
