@@ -23,13 +23,12 @@
 
     <parent>
         <groupId>com.anrisoftware.globalpom</groupId>
-        <artifactId>globalpom-groovy-osgi</artifactId>
-        <version>4.5.2</version>
+        <artifactId>globalpom-groovy-gmavenplus</artifactId>
+        <version>4.6.0-SNAPSHOT</version>
     </parent>
 
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources</artifactId>
-    <version>4.5.2</version>
     <name>Resources</name>
     <description>Contains the modules of the resources project.</description>
     <inceptionYear>2012</inceptionYear>
@@ -43,7 +42,6 @@
         <module>resources-getbundle</module>
         <module>resources-images</module>
         <module>resources-images-tests</module>
-        <module>resources-itest</module>
         <module>resources-it</module>
         <module>resources-st</module>
         <module>resources-templates</module>
@@ -70,7 +68,7 @@
         <!-- sonar -->
         <sonar.coverage.jacoco.xmlReportPaths>../resources-it/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
         <!-- versions -->
-        <project.custom.globalpom.version>4.5.2</project.custom.globalpom.version>
+        <project.custom.globalpom.version>4.6.0-SNAPSHOT</project.custom.globalpom.version>
     </properties>
 
     <developers>
@@ -138,18 +136,11 @@
                 <groupId>com.anrisoftware.globalpom</groupId>
                 <artifactId>globalpom-log</artifactId>
                 <version>${project.custom.globalpom.version}</version>
-                <type>bundle</type>
             </dependency>
             <dependency>
                 <groupId>com.anrisoftware.propertiesutils</groupId>
                 <artifactId>propertiesutils-contextproperties</artifactId>
                 <version>${project.custom.globalpom.version}</version>
-                <type>bundle</type>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-text</artifactId>
-                <version>1.8</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

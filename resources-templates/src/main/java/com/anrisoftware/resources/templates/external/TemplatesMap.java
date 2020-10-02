@@ -16,43 +16,36 @@
 
 package com.anrisoftware.resources.templates.external;
 
-
-import com.anrisoftware.resources.templates.external.TemplateResource;
-
 public interface TemplatesMap {
 
 	/**
-	 * Adds a new template resource to the map. Already added resources with the
-	 * same name are discarded.
-	 * 
-	 * @param name
-	 *            the name of the resource.
-	 * 
-	 * @param text
-	 *            the {@link TemplateResource} to add.
-	 */
+     * Adds a new template resource to the map. Already added resources with the
+     * same name are discarded.
+     *
+     * @param name the name of the resource.
+     *
+     * @param text the {@link TemplateResource} to add.
+     */
 	void putTemplate(String name, TemplateResource text);
 
 	/**
-	 * Returns the template resource with the specified name.
-	 * 
-	 * @param name
-	 *            the name of the resource.
-	 * 
-	 * @return the {@link TemplateResource} with the specified name or
-	 *         <code>null</code>.
-	 */
+     * Returns the template resource with the specified name.
+     *
+     * @param name the name of the resource.
+     *
+     * @return the {@link TemplateResource} with the specified name or
+     *         <code>null</code>.
+     */
 	TemplateResource getTemplate(String name);
 
 	/**
-	 * Check if the map contains the template resource with the specified name.
-	 * 
-	 * @param name
-	 *            the name of the template resource.
-	 * 
-	 * @return {@code true} if the map contains the resource or {@code false} if
-	 *         not.
-	 */
+     * Check if the map contains the template resource with the specified name.
+     *
+     * @param name the name of the template resource.
+     *
+     * @return {@code true} if the map contains the resource or {@code false} if
+     *         not.
+     */
 	boolean haveText(String name);
 
 }
