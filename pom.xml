@@ -24,7 +24,7 @@
     <parent>
         <groupId>com.anrisoftware.globalpom</groupId>
         <artifactId>globalpom-groovy-gmavenplus</artifactId>
-        <version>4.6.0-SNAPSHOT</version>
+        <version>4.6.0</version>
     </parent>
 
     <groupId>com.anrisoftware.resources</groupId>
