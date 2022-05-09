@@ -24,7 +24,7 @@
     <parent>
         <groupId>com.anrisoftware.resources</groupId>
         <artifactId>resources</artifactId>
-        <version>4.6.0</version>
+        <version>4.6.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>resources-it</artifactId>
@@ -43,8 +43,8 @@
 
     <distributionManagement>
         <site>
-            <id>site-ssh</id>
-            <url>${site.ssh.url}</url>
+            <id>site-distribution-id</id>
+            <url>${site.distribution.url}</url>
         </site>
         <repository>
             <id>public_releases</id>

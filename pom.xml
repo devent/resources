@@ -24,12 +24,12 @@
     <parent>
         <groupId>com.anrisoftware.globalpom</groupId>
         <artifactId>globalpom-groovy-gmavenplus</artifactId>
-        <version>4.6.0</version>
+        <version>4.6.1</version>
     </parent>
 
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources</artifactId>
-    <version>4.6.0</version>
+    <version>4.6.1-SNAPSHOT</version>
     <name>Resources</name>
     <description>Contains the modules of the resources project.</description>
     <inceptionYear>2012</inceptionYear>
@@ -55,9 +55,9 @@
         <project.custom.home>https://project.anrisoftware.com/projects/resources</project.custom.home>
         <project.custom.license.image.url>https://project.anrisoftware.com/attachments/download/217/apache2.0-small.gif</project.custom.license.image.url>
         <project.custom.central.url>https://search.maven.org/artifact/${project.groupId}/${project.artifactId}/${project.version}/pom</project.custom.central.url>
-        <project.custom.scm.repo>https://gitea.anrisoftware.com/anrisoftware.com/resources.git</project.custom.scm.repo>
+        <project.custom.scm.repo>https://gitea.anrisoftware.com/com.anrisoftware.resources/resources.git</project.custom.scm.repo>
         <project.custom.scm.github>https://github.com/devent/resources</project.custom.scm.github>
-        <project.custom.scm.pub>scm:git:https://gitea.anrisoftware.com/anrisoftware.com/resources.git</project.custom.scm.pub>
+        <project.custom.scm.pub>scm:git:https://gitea.anrisoftware.com/com.anrisoftware.resources/resources.git</project.custom.scm.pub>
         <project.custom.scm.dev>scm:git:git@anrisoftware.com:anrisoftware.com/resources.git</project.custom.scm.dev>
         <project.custom.scm.url>${project.custom.home}/repository</project.custom.scm.url>
         <project.custom.jenkins.url>https://jenkins.anrisoftware.com/job/resources-public/</project.custom.jenkins.url>
@@ -69,7 +69,7 @@
         <!-- sonar -->
         <sonar.coverage.jacoco.xmlReportPaths>../resources-it/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
         <!-- versions -->
-        <project.custom.globalpom.version>4.6.0</project.custom.globalpom.version>
+        <project.custom.globalpom.version>4.6.1</project.custom.globalpom.version>
     </properties>
 
     <developers>
@@ -113,8 +113,8 @@
 
     <distributionManagement>
         <site>
-            <id>site-ssh</id>
-            <url>${site.ssh.url}</url>
+            <id>site-distribution-id</id>
+            <url>${site.distribution.url}</url>
         </site>
         <repository>
             <id>public_releases</id>
@@ -165,8 +165,8 @@
             <id>osssonatype</id>
             <distributionManagement>
                 <site>
-                    <id>site-ssh</id>
-                    <url>${site.ssh.url}</url>
+                    <id>site-distribution-id</id>
+                    <url>${site.distribution.url}</url>
                 </site>
                 <repository>
                     <id>osssonatype_releases</id>

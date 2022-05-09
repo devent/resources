@@ -22,7 +22,7 @@
 	<parent>
         <artifactId>resources</artifactId>
         <groupId>com.anrisoftware.resources</groupId>
-        <version>4.6.0</version>
+        <version>4.6.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>resources-templates</artifactId>
@@ -46,8 +46,8 @@
 
     <distributionManagement>
         <site>
-            <id>site-ssh</id>
-            <url>${site.ssh.url}</url>
+            <id>site-distribution-id</id>
+            <url>${site.distribution.url}</url>
         </site>
         <repository>
             <id>public_releases</id>
@@ -65,12 +65,12 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>4.6.0</version>
+			<version>4.6.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>4.6.0</version>
+			<version>4.6.1-SNAPSHOT</version>
 		</dependency>
 
 		<!-- compile dependencies -->
