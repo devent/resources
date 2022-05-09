@@ -22,7 +22,7 @@
     <parent>
         <artifactId>resources</artifactId>
         <groupId>com.anrisoftware.resources</groupId>
-        <version>4.6.0</version>
+        <version>4.6.1</version>
     </parent>
 
     <artifactId>resources-binary</artifactId>
@@ -46,8 +46,8 @@
 
     <distributionManagement>
         <site>
-            <id>site-ssh</id>
-            <url>${site.ssh.url}</url>
+            <id>site-distribution-id</id>
+            <url>${site.distribution.url}</url>
         </site>
         <repository>
             <id>public_releases</id>
@@ -65,7 +65,7 @@
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-binary-tests</artifactId>
-            <version>4.6.0</version>
+            <version>4.6.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -78,13 +78,13 @@
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-api</artifactId>
-            <version>4.6.0</version>
+            <version>4.6.1</version>
 
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-getbundle</artifactId>
-            <version>4.6.0</version>
+            <version>4.6.1</version>
 
         </dependency>
 
