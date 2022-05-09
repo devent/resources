@@ -150,6 +150,10 @@
         <profile>
             <id>private-repository</id>
             <distributionManagement>
+                <site>
+                    <id>site-distribution-id</id>
+                    <url>${site.distribution.url}</url>
+                </site>
                 <repository>
                     <id>private_repo_releases</id>
                     <url>https://maven.anrisoftware.com/repository/internal/</url>
