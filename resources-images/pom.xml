@@ -22,7 +22,7 @@
 	<parent>
         <artifactId>resources</artifactId>
         <groupId>com.anrisoftware.resources</groupId>
-        <version>4.6.2-SNAPSHOT</version>
+        <version>4.6.2</version>
 	</parent>
 
 	<artifactId>resources-images</artifactId>
@@ -65,7 +65,7 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-images-tests</artifactId>
-			<version>4.6.2-SNAPSHOT</version>
+			<version>4.6.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -78,12 +78,12 @@
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>4.6.2-SNAPSHOT</version>
+			<version>4.6.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.anrisoftware.resources</groupId>
 			<artifactId>resources-getbundle</artifactId>
-			<version>4.6.2-SNAPSHOT</version>
+			<version>4.6.2</version>
 		</dependency>
 
 		<!-- other dependencies -->
