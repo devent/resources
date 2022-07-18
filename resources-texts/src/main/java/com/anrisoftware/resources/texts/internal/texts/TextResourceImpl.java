@@ -15,15 +15,11 @@
  */
 package com.anrisoftware.resources.texts.internal.texts;
 
-
 import static java.lang.String.format;
 
-import java.io.Externalizable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
 import java.io.Serializable;
 import java.net.URL;
 import java.nio.charset.Charset;
@@ -34,6 +30,7 @@ import javax.inject.Inject;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import com.anrisoftware.globalpom.core.charset.SerializableCharset;
 import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.binary.external.BinaryResource;
 import com.anrisoftware.resources.binary.external.BinaryResourceFactory;
@@ -47,61 +44,11 @@ class TextResourceImpl implements TextResource, Serializable {
      */
     private static final long serialVersionUID = -2425350301703068585L;
 
-    /**
-     * Wrapper around a character set to make the character set serializable.
-     *
-     * @author Erwin Mueller, erwin.mueller@deventm.org
-     * @since 1.0
-     */
-    private static class SerializableCharsetWrapper implements Externalizable {
-
-        private Charset charset;
-
-        /**
-         * @deprecated Used only for serialization.
-         */
-        @Deprecated
-        public SerializableCharsetWrapper() {
-        }
-
-        /**
-         * Sets the character set for serialization.
-         *
-         * @param charset
-         *            the {@link Charset}.
-         */
-        public SerializableCharsetWrapper(Charset charset) {
-            this.charset = charset;
-        }
-
-        /**
-         * Returns the character set.
-         *
-         * @return the {@link Charset}.
-         */
-        public Charset getCharset() {
-            return charset;
-        }
-
-        @Override
-        public void writeExternal(ObjectOutput out) throws IOException {
-            out.writeUTF(charset.name());
-        }
-
-        @Override
-        public void readExternal(ObjectInput in) throws IOException,
-                ClassNotFoundException {
-            String charsetName = in.readUTF();
-            charset = Charset.forName(charsetName);
-        }
-
-    }
-
     private final TextResourceImplLogger log;
 
     private final BinaryResource binary;
 
-    private final SerializableCharsetWrapper charsetWrapper;
+    private final SerializableCharset charsetWrapper;
 
     private String text;
 
@@ -110,33 +57,25 @@ class TextResourceImpl implements TextResource, Serializable {
     /**
      * Sets the needed properties of the text resource.
      *
-     * @param logger
-     *            the {@link TextResourceImplLogger} for logging messages.
+     * @param logger  the {@link TextResourceImplLogger} for logging messages.
      *
-     * @param factory
-     *            the {@link BinaryResourceFactory} that creates the binary
-     *            resource from which we load the text resource.
+     * @param factory the {@link BinaryResourceFactory} that creates the binary
+     *                resource from which we load the text resource.
      *
-     * @param name
-     *            the name of this resource.
+     * @param name    the name of this resource.
      *
-     * @param locale
-     *            the {@link Locale} of this resource.
+     * @param locale  the {@link Locale} of this resource.
      *
-     * @param charset
-     *            the {@link Charset} of this resource.
+     * @param charset the {@link Charset} of this resource.
      *
-     * @param url
-     *            the {@link URL} of this resource.
+     * @param url     the {@link URL} of this resource.
      */
     @Inject
-    TextResourceImpl(TextResourceImplLogger logger,
-            BinaryResourceFactory factory, @Assisted String name,
-            @Assisted Locale locale, @Assisted Charset charset,
-            @Assisted URL url) {
+    TextResourceImpl(TextResourceImplLogger logger, BinaryResourceFactory factory, @Assisted String name,
+            @Assisted Locale locale, @Assisted Charset charset, @Assisted URL url) {
         this.binary = factory.create(name, locale, url);
         this.log = logger;
-        this.charsetWrapper = new SerializableCharsetWrapper(charset);
+        this.charsetWrapper = SerializableCharset.decorate(charset);
     }
 
     @Override
@@ -197,13 +136,13 @@ class TextResourceImpl implements TextResource, Serializable {
     }
 
     /**
-     * String representation for debugging. Contains the locale, name and the
-     * URL of this resource.
+     * String representation for debugging. Contains the locale, name and the URL of
+     * this resource.
      */
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("locale", getLocale())
-                .append("name", getName()).append("url", getURL()).toString();
+        return new ToStringBuilder(this).append("locale", getLocale()).append("name", getName()).append("url", getURL())
+                .toString();
     }
 
 }

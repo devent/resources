@@ -23,7 +23,7 @@ import org.stringtemplate.v4.STGroup;
 @SuppressWarnings("serial")
 public class SerializiableGroup implements Serializable {
 
-    public final STGroup group;
+    public transient final STGroup group;
 
     public SerializiableGroup(STGroup group) {
         this.group = group;

@@ -143,6 +143,11 @@
                 <artifactId>propertiesutils-contextproperties</artifactId>
                 <version>${globalpom.custom.anrisoftware.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.anrisoftware.globalpom</groupId>
+                <artifactId>globalpomutils-core</artifactId>
+                <version>${globalpom.custom.anrisoftware.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

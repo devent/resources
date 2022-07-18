@@ -93,6 +93,10 @@
 
         <!-- compile dependencies -->
         <dependency>
+            <groupId>com.anrisoftware.globalpom</groupId>
+            <artifactId>globalpomutils-core</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.service.component.annotations</artifactId>
         </dependency>
