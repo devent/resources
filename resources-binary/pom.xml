@@ -22,7 +22,7 @@
     <parent>
         <artifactId>resources</artifactId>
         <groupId>com.anrisoftware.resources</groupId>
-        <version>4.6.2</version>
+        <version>4.6.3</version>
     </parent>
 
     <artifactId>resources-binary</artifactId>
@@ -65,7 +65,7 @@
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-binary-tests</artifactId>
-            <version>4.6.2</version>
+            <version>4.6.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -78,13 +78,13 @@
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-api</artifactId>
-            <version>4.6.2</version>
+            <version>4.6.3</version>
 
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-getbundle</artifactId>
-            <version>4.6.2</version>
+            <version>4.6.3</version>
 
         </dependency>
 

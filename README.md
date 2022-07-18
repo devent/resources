@@ -1,5 +1,6 @@
-![Build Status](https://jenkins.anrisoftware.com/job/com.anrisoftware.resources-resources/job/main/badge/icon "Build Status"):https://jenkins.anrisoftware.com/job/com.anrisoftware.resources-resources/job/main
-![Apache License, Version 2.0](https://project.anrisoftware.com/attachments/download/217/apache2.0-small.gif "Apache License, Version 2.0"):http://www.apache.org/licenses/LICENSE-2.0
+[![Build Status](https://jenkins.anrisoftware.com/job/com.anrisoftware.resources-resources/job/main/badge/icon)](https://jenkins.anrisoftware.com/job/com.anrisoftware.resources-resources)
+[![Gate](https://sonarcloud.io/api/project_badges/measure?project=devent_resources&metric=alert_status)](https://sonarcloud.io/project/overview?id=devent_resources)
+[![Apache License, Version 2.0](https://project.anrisoftware.com/attachments/download/217/apache2.0-small.gif)](http://www.apache.org/licenses/LICENSE-2.0)
 © 2012-2022 Erwin Müller
 
 Description
@@ -11,7 +12,7 @@ Links
 =====
 
 -   [Generated
-    Site](https://javadoc.anrisoftware.com/com.anrisoftware.resources/propertiesutils/4.6.2/index.html)
+    Site](https://javadoc.anrisoftware.com/com.anrisoftware.resources/propertiesutils/4.6.3/index.html)
 -   [Download
     (Central)](https://search.maven.org/search?q=g:com.anrisoftware.resources)
 -   [Source
@@ -22,7 +23,7 @@ Links
     Roadmap](https://project.anrisoftware.com/projects/resources/roadmap)
 -   [Project
     Issues](https://project.anrisoftware.com/projects/resources/issues)
--   [Jenkins](https://jenkins.anrisoftware.com/job/com.anrisoftware.resources-resources/)
+-   [Jenkins](https://jenkins.anrisoftware.com/job/com.anrisoftware.resources-resources)
 
 Packages Overview
 =================
@@ -32,8 +33,7 @@ Packages Overview
 License
 =======
 
-Copyright ©2012 - 2022 [Advanced Natural Research
-Institute](https://anrisoftware.com/). All rights reserved.
+Copyright ©2012 - 2022 Erwin Müller. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");\
 you may not use this file except in compliance with the License.\
@@ -47,9 +47,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 implied.\
 See the License for the specific language governing permissions and\
 limitations under the License.
-
-##### Markdown
-
-    [![Build Status](https://jenkins.anrisoftware.com/job/com.anrisoftware.resources-resources/job/main/badge/icon)](https://jenkins.anrisoftware.com/job/com.anrisoftware.resources-resources/job/main)
-    [![Apache License, Version 2.0](https://project.anrisoftware.com/attachments/download/217/apache2.0-small.gif)](http://www.apache.org/licenses/LICENSE-2.0)
-    © 2012-2022 Erwin Müller
