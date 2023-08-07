@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2022 Erwin Müller <erwin.mueller@anrisoftware.com>
+ * Copyright 2012-2023 Erwin Müller <erwin.mueller@anrisoftware.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,17 +25,16 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Locale;
 
-import javax.inject.Inject;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.anrisoftware.globalpom.core.charset.SerializableCharset;
 import com.anrisoftware.resources.api.external.ResourcesException;
 import com.anrisoftware.resources.binary.external.BinaryResource;
 import com.anrisoftware.resources.binary.external.BinaryResourceFactory;
 import com.anrisoftware.resources.texts.external.TextResource;
 import com.google.inject.assistedinject.Assisted;
+
+import jakarta.inject.Inject;
 
 class TextResourceImpl implements TextResource, Serializable {
 

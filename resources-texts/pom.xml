@@ -1,6 +1,6 @@
 <!--
 
-    Copyright 2012-2022 Erwin Müller <erwin.mueller@anrisoftware.com>
+    Copyright 2012-2023 Erwin Müller <erwin.mueller@anrisoftware.com>
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
     <parent>
         <artifactId>resources</artifactId>
         <groupId>com.anrisoftware.resources</groupId>
-        <version>4.6.3</version>
+        <version>4.7.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>resources-texts</artifactId>
@@ -65,7 +65,7 @@
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-texts-tests</artifactId>
-            <version>4.6.3</version>
+            <version>4.7.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -78,24 +78,20 @@
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-api</artifactId>
-            <version>4.6.3</version>
+            <version>4.7.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-getbundle</artifactId>
-            <version>4.6.3</version>
+            <version>4.7.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.anrisoftware.resources</groupId>
             <artifactId>resources-binary</artifactId>
-            <version>4.6.3</version>
+            <version>4.7.0-SNAPSHOT</version>
         </dependency>
 
         <!-- compile dependencies -->
-        <dependency>
-            <groupId>com.anrisoftware.globalpom</groupId>
-            <artifactId>globalpomutils-core</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.service.component.annotations</artifactId>

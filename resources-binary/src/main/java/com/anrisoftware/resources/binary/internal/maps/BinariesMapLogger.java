@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2022 Erwin Müller <erwin.mueller@anrisoftware.com>
+ * Copyright 2012-2023 Erwin Müller <erwin.mueller@anrisoftware.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +15,12 @@
  */
 package com.anrisoftware.resources.binary.internal.maps;
 
-
 import static com.anrisoftware.resources.binary.internal.maps.BinariesMapLogger.m.RESOURCE_ALREADY_IN_MAP;
-
-import javax.inject.Singleton;
 
 import com.anrisoftware.globalpom.log.AbstractLogger;
 import com.anrisoftware.resources.binary.external.BinaryResource;
+
+import jakarta.inject.Singleton;
 
 @Singleton
 final class BinariesMapLogger extends AbstractLogger {

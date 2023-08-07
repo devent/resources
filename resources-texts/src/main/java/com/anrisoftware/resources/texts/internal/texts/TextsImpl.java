@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2022 Erwin Müller <erwin.mueller@anrisoftware.com>
+ * Copyright 2012-2023 Erwin Müller <erwin.mueller@anrisoftware.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,8 +22,6 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
-import javax.inject.Named;
-
 import org.apache.commons.text.StringTokenizer;
 
 import com.anrisoftware.resources.api.external.ResourcesException;
@@ -39,6 +37,8 @@ import com.anrisoftware.resources.texts.external.TextsBundlesMapFactory;
 import com.anrisoftware.resources.texts.external.TextsMap;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
+
+import jakarta.inject.Named;
 
 class TextsImpl implements Texts {
 

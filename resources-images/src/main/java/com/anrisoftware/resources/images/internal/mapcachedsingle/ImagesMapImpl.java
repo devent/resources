@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2022 Erwin Müller <erwin.mueller@anrisoftware.com>
+ * Copyright 2012-2023 Erwin Müller <erwin.mueller@anrisoftware.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import com.anrisoftware.resources.images.external.ImageResolution;
 import com.anrisoftware.resources.images.external.ImageResource;

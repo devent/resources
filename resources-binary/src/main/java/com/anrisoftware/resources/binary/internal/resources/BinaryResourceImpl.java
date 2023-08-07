@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2022 Erwin Müller <erwin.mueller@anrisoftware.com>
+ * Copyright 2012-2023 Erwin Müller <erwin.mueller@anrisoftware.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.Locale;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 

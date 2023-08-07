@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2022 Erwin Müller <erwin.mueller@anrisoftware.com>
+ * Copyright 2012-2023 Erwin Müller <erwin.mueller@anrisoftware.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,13 +27,13 @@ import org.junit.Test
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty
 
 import com.anrisoftware.globalpom.utils.frametesting.FrameTestingFactory
-import com.anrisoftware.resources.images.internal.AbstractImageResourcesTest
 import com.anrisoftware.resources.images.external.ImageResolution
 import com.anrisoftware.resources.images.external.ImageResource
 import com.anrisoftware.resources.images.external.ImageResourceFactory
 import com.anrisoftware.resources.images.external.Images
 import com.anrisoftware.resources.images.external.ImagesFactory
 import com.anrisoftware.resources.images.external.ImagesMapFactory
+import com.anrisoftware.resources.images.internal.AbstractImageResourcesTest
 import com.anrisoftware.resources.images.internal.mapcachedsingle.ResourcesImagesCachedSingleMapModule
 import com.anrisoftware.resources.images.internal.scaling.ResourcesSmoothScalingModule
 

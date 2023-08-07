@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2022 Erwin Müller <erwin.mueller@anrisoftware.com>
+ * Copyright 2012-2023 Erwin Müller <erwin.mueller@anrisoftware.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@ package com.anrisoftware.resources.images.internal
 
 import java.awt.Dimension
 
-import com.anrisoftware.globalpom.utils.imagetesting.ShowImagesFrame
 import com.anrisoftware.globalpom.utils.imagetesting.ShowImagesFrameFactory
 
 abstract class AbstractImageResourcesTest extends AbstractImageResourcesTestUtils {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2022 Erwin Müller <erwin.mueller@anrisoftware.com>
+ * Copyright 2012-2023 Erwin Müller <erwin.mueller@anrisoftware.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.concurrent.ThreadSafe;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import com.anrisoftware.resources.binary.external.BinariesMap;
 import com.anrisoftware.resources.binary.external.BinaryResource;
