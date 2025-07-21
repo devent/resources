@@ -24,13 +24,13 @@
     <parent>
         <groupId>com.anrisoftware.globalpom</groupId>
         <artifactId>globalpom-groovy-gmavenplus</artifactId>
-        <version>4.8.0</version>
+        <version>4.8.1</version>
     </parent>
 
     <groupId>com.anrisoftware.resources</groupId>
     <artifactId>resources</artifactId>
     <name>Resources</name>
-    <version>4.8.0</version>
+    <version>4.8.1</version>
     <description>Contains the modules of the resources project.</description>
     <inceptionYear>2012</inceptionYear>
     <packaging>pom</packaging>
